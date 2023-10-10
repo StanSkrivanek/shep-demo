@@ -1,0 +1,80 @@
+<script>
+	/**
+	 * @type {any}
+	 */
+	export let portableText;
+
+
+	$: ({ indexInParent, global, value } = portableText);
+	$: ({ ptBlocks } = global);
+	$: ({ style } = value);
+
+	$: precededByHeading = ['h1', 'h2', 'h3', 'h4', 'h5'].includes(
+		ptBlocks[indexInParent - 1]?.style
+	);
+	
+	$: anchorId = `heading-${value._key}`;
+</script>
+
+<div class="relative {precededByHeading ? 'mt-10' : 'mt-4'}" id={anchorId}>
+	<!-- <a href="#{anchorId}">
+		<span class="sr-only">Link to this heading</span>
+	</a> -->
+	{#if style === 'h1'}
+		<h1><slot /></h1>
+	{:else if style === 'h2'}
+		<h2><slot /></h2>
+	{:else if style === 'h3'}
+		<h3><slot /></h3>
+	{:else if style === 'h4'}
+		<h4><slot /></h4>
+	{:else}
+		<h5><slot /></h5>
+	{/if}
+</div>
+
+<style>
+	/* a {
+		color: blue;
+		position: absolute;
+		top: -0.5rem;
+		left: -1.5rem;
+		opacity: 0;
+		transition: opacity 0.2s ease-in-out;
+	} */
+
+	/* a:hover {
+		color: red;
+		opacity: 1;
+	} */
+	/* h1,
+	h2,
+	h3,
+	h4,
+	h5 {
+		font-family: 'Inter', sans-serif;
+		font-weight: 700;
+		line-height: 1;
+		letter-spacing: -0.025em;
+		color: rgb(75, 77, 82);
+		margin-block: 0.5rem;
+	}
+	h1 {
+		font-size: 4.209rem;
+	}
+
+	h2 {
+		font-size: 3.157rem;
+	}
+
+	h3 {
+		font-size: 2.369rem;
+	}
+
+	h4 {
+		font-size: 1.777rem;
+	}
+	h5 {
+		font-size: 1.333rem;
+	} */
+</style>

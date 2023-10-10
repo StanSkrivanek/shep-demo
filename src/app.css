@@ -1,0 +1,186 @@
+@font-face {
+	font-family: 'Inter';
+	src: url('fonts/inter/Inter-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Gilroy';
+	src: url('fonts/gilroy/Gilroy-Regular.ttf') format('truetype');
+
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Gilroy-m';
+	src: url('fonts/gilroy/Gilroy-Medium.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Gunterhaus';
+	src: url('fonts/Gunterhaus/Gunterhaus-Modern.ttf') format('truetype');
+
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Montreux';
+	src: url('fonts/Montreux Branding/MontreuxBranding-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+:root {
+	/* Fonts */
+	--base-size: 1.2rem;
+	--lineHeight: 1.6;
+
+	/* fonts scale */
+	--scale: 1.25;
+	--xl: calc(var(--lg) * var(--scale));
+	--lg: calc(var(--h1) * var(--scale));
+	--h1: calc(var(--h2) * var(--scale));
+	--h2: calc(var(--h3) * var(--scale));
+	--h3: calc(var(--h4) * var(--scale));
+	--h4: calc(var(--h5) * var(--scale));
+	--h5: calc(var(--h6) * var(--scale));
+	--h6: var(--base-size);
+	--sm: calc(var(--base-size) / var(--scale));
+	--xs: calc(var(--sm) / var(--scale));
+
+	/* typography */
+	--ff-inter: 'Inter', sans-serif;
+	--ff-gilroy: 'Gilroy', sans-serif;
+	--ff-gilroy-m: 'Gilroy-m', sans-serif;
+	--ff-gunterhaus: 'Gunterhaus', sans-serif;
+	--ff-montreux: 'Montreux', sans-serif;
+
+	/* Font colors */
+	--fc-light: #787676;
+	--fc-mid: #48475e;
+	--fc-main: #24242d;
+
+	/* Colors */
+	--gray-1: #fafafa;
+	--gray-2: #e8e8e9;
+	--gray-3: #7a828b;
+	--gray-4: #54595f;
+
+	--bluegray: #607891;
+	--darkblue: #2c425d;
+
+	--yellow: #f7e486;
+	--orange: #fac7a3;
+	--orange-sha-1: #f0cfb7;
+	--orange-sha-2: #fff5ed;
+	--green: #b2ebd1;
+	--green-sha-1: #c2efdc;
+	--pink: #fca9f0;
+	--red: #f292a4;
+	--red-sha-1: #ffdcf8;
+	--blue: #64a5dd;
+	--blue-sha-1: #b9dcfa;
+	--blue-sha-2: #cce5fc;
+
+	--green-light: #e8fbf3;
+	--blue-light: #e8f3fd;
+	--orange-light: #fff5ed;
+
+	--color-primary: #1a1a1a;
+	--color-secondary: #f2f2f2;
+	--color-tertiary: #e5e5e5;
+	--color-accent: #ff0000;
+	--bg-base: #fafafa;
+}
+
+/* html {
+	font-family: var(--ff-gilroy);
+	font-size: var(--base-size);
+	line-height: var(--lineHeight);
+} */
+body {
+	font-size: clamp(1rem, 0.5vw + 0.5rem, 1.125rem);
+	font-family: var(--ff-gilroy);
+	font-size: var(--base-size);
+	line-height: var(--lineHeight);
+	color: rgb(73, 76, 82);
+	/* margin: 0;
+	padding: 0; */
+}
+a {
+	/* text-decoration: none; */
+	color: rgb(55, 56, 58);
+	color: blue;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: lightseagreen;
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--ff-gilroy);
+	font-weight: 100;
+	line-height: 1;
+	letter-spacing: -0.025em;
+	color: rgb(75, 77, 82);
+	margin-block: 0;
+}
+
+h1 {
+	font-family: var(--ff-gunterhaus);
+	font-weight: 100;
+	line-height: 1;
+	letter-spacing: -0.025em;
+	color: rgb(75, 77, 82);
+	margin-block: 0;
+}
+
+h1,
+.h1 {
+	font-size: clamp(2.441rem, calc(2.441rem + 1vw), 3.052rem);
+	margin-bottom: var(--h2);
+}
+
+h2,
+.h2 {
+	font-size: clamp(1.953rem, calc(1.953rem + 1vw), 2.441rem);
+	margin-bottom: var(--h3);
+}
+
+h3,
+.h3 {
+	font-size: clamp(1.536rem, calc(1.536rem + 1vw), 1.993rem);
+	margin-bottom: var(--h4);
+}
+
+h4,
+.h4 {
+	font-size: clamp(1.25rem, calc(1.25rem + 1vw), 1.563rem);
+	margin-bottom: var(--h5);
+}
+h5,
+.h5 {
+	font-size: clamp(1rem, calc(1rem + 1vw), 1.25rem);
+	margin-bottom: var(--h6);
+}
+h6,
+.h6 {
+	font-size: clamp(1rem, calc(1rem + 0.5vw), 1rem);
+	margin-bottom: var(--base-size);
+}
+
+ul {
+	list-style-type: square;
+	margin-bottom: 2rem;
+}
+ul,
+p {
+	line-height: 1.4;
+	margin-bottom: 1rem;
+	/* padding-bottom: 1rem; */
+}
