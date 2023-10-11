@@ -42,8 +42,8 @@
 				</div>
 				<div class="card-footer">
 					<p>{course.course.type}</p>
-					<a href="course/{course.course.slug.current}">
-						<LinkCircle />
+					<a class="btn-link" href="course/{course.course.slug.current}">
+						<LinkCircle width={64} height={64}/>
 					</a>
 				</div>
 
@@ -161,7 +161,6 @@
 	}
 	.card {
 		display: grid;
-		/* grid-template-columns: 1fr ; */
 		grid-template-areas:
 			'subHeader '
 			'header '
@@ -172,15 +171,17 @@
 			[header] 4rem
 			[body] auto
 			[footer] 4rem;
-		/* grid-template-columns: [fullbleed-start] 1rem [main-start] auto [main-end] 1rem [fullbleed-end]; */
-		/* display: flex; */
-		/* flex-direction: column; */
-		/* justify-content: space-between; */
-		/* grid-column: span 2; */
+
 		border: 1px solid var(--gray-2);
 		border-radius: 1rem;
 		padding: 1rem;
-		/* min-width: 18rem; */
+		transition: all 0.3s ease-in-out;
+		pointer-events: none;
+	}
+	.card:hover {
+		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
+		box-shadow: 8px 10px 15px -3px var(--gray-2);
+		background: var(--green-light);
 	}
 	.card-header {
 		grid-area: header;
@@ -204,11 +205,6 @@
 	}
 	.card-body {
 		grid-area: body;
-		/* display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center; */
-		/* margin-bottom: 1rem; */
 		& p {
 			margin: 0;
 			font-size: 1rem;
@@ -226,6 +222,38 @@
 			margin: 0;
 			font-size: var(--xs);
 			color: var(--gray-3);
+		}
+		& .btn-link {
+			pointer-events: all;
+		}
+	}
+
+
+	@media (max-width: 996px) {
+		.hero-data {
+			flex-direction: row;
+			gap: 3rem;
+		}
+		.hero-data h1 {
+			margin-bottom: 0;
+		}
+		.hero-data p {
+			margin-bottom: 0;
+			max-width: 75ch;
+		}
+		.hero-col-2__c {
+			grid-template-areas:
+				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
+				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
+		}
+	}
+
+	@media (max-width: 500px) {
+		.hero-data {
+			display: block;
+		}
+		.hero-data h1 {
+			margin-bottom: 2rem;
 		}
 	}
 </style>
