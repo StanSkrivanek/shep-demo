@@ -57,10 +57,10 @@ export const getAllOpenCouses = async () => {
 		},
 	},
 	'course': course {
-		_type == 'reference' => @->{title, type}    
+		_type == 'reference' => @->{title, type, excerpt, slug}    
 	},
 		'venue': venue {
-		_type == 'reference' => @->{venue_name}    
+		_type == 'reference' => @->{venue_name, city}    
 	},
 
    'form': application_form {

@@ -36,7 +36,9 @@
 					</div>
 					<div class="address">
 						<p>{venue.address_1}</p>
-						{#if venue.address_2 != null || venue.address_2 != ''}
+						{#if venue.address_2 == '' || venue.address_2 == null}
+							<p>-</p>
+						{:else}
 							<p>{venue.address_2}</p>
 						{/if}
 						<p>{venue.eircode}</p>
@@ -119,7 +121,7 @@
 		text-decoration: none;
 		color: var(--text-base);
 		font-size: 1rem;
-		border: 2px solid var(--gray-2);
+		border: 2px solid var(--gray-1);
 		border-radius: 1rem;
 		transition: all 0.3s ease-in-out;
 		&:hover {
@@ -166,10 +168,10 @@
 			margin-bottom: 0.5rem;
 			color: var(--fc-light);
 		}
-      & .address p {
-         color: var(--fc-mid);
-         margin-bottom: 0;
-      }
+		& .address p {
+			color: var(--fc-mid);
+			margin-bottom: 0;
+		}
 	}
 
 	.excerpt {
@@ -219,16 +221,15 @@
 	}
 	.sm {
 		font-size: var(--sm);
-      
 	}
 	.address p {
 		color: var(--fs-mid);
 	}
 	.link-desc__w {
 		margin-bottom: 1.2rem;
-      & p{
-          line-height: 1.1;
-      }
+		& p {
+			line-height: 1.1;
+		}
 	}
 	@media (max-width: 996px) {
 		.venue {
