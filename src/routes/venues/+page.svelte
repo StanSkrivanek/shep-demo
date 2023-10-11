@@ -1,8 +1,8 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
-	export let data;
-	console.log('🚀 ~ file: +page.svelte:3 ~ data:', data);
-	const { venue_name } = data.venues;
+	export let data
+	// console.log('🚀 ~ file: +page.svelte:3 ~ data:', data);
+	// const { venue_name } = data.venues;
 </script>
 
 <div class="content">

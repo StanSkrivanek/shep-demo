@@ -40,6 +40,53 @@ export const getAllVenues = async () => {
 	const allVenues = await client.fetch(allVenuesQuery);
 	return allVenues;
 };
+
+export const getAllCourses = async () => {
+	const client = sanityClient();
+	const allCoursesQuery = `*[_type == "course"]{
+	 "id": _id,
+	 title,
+	 "slug": slug.current,
+	 excerpt,
+	 type,
+	 "main_img": main_image.asset->url,
+	 "content": content[] {
+		...,
+	 _type == "image" => {
+		  ...,
+		  "asset": asset->
+		} 
+	 }
+  }`;
+
+	const allCourses = await client.fetch(allCoursesQuery);
+	return allCourses;
+}
+
+export const getSingleCourse = async (/** @type {undefined} */ slug) => {
+	const client = sanityClient();
+	const query = `*[_type == "course" && slug.current == $slug][0]{
+	 _id,
+	 title,
+	 "slug": slug.current,
+	 type,
+	 full_price,
+	 funded_price,
+	 excerpt,
+	 "main_img": image.asset->url,
+	 "content": content[] {
+		...,
+	 _type == "image" => {
+		  ...,
+		  "asset": asset->
+		} 
+	 },
+	 "brochure": brochure.asset->url,
+  }`;
+	const course = await client.fetch(query, { slug });
+	return course;
+}
+
 export const getAllOpenCouses = async () => {
 	const client = sanityClient();
 	const allOpenCoursesQuery = `*[_type == "open_course" && is_active == true]{

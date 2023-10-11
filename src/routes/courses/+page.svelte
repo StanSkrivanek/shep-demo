@@ -1,49 +1,47 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	export let data;
-	// console.log(data.allOpenCourses);
+	// console.log(data.allCourses);
 	// const openCourse = data.allOpenCourses;
-	const { course, online, in_person, venue, form } = data.allOpenCourses;
+	const { course, online, in_person, venue, form } = data.allCourses;
 </script>
 
 <div class="conetnt">
 	<div class="hero">
 		<div class="hero-col-2__c">
 			<div class="hero-data">
-				<h1>SHEP courses and trainings currently open for applications</h1>
+				<h1>All our courses and trainings for Mental Health & Wellbeing</h1>
 				<p>
-					SHEP offers a wide range of courses in a variety of venues across Ireland. Thanks to our
-					partners we can provide our courses in a number of facilities in Cork, Kerry, Limerick,
-					Tipperary, Waterford, and Dublin. We also offer courses in other venues around the
-					country.
+					SHEP Courses and Trainings offer personalized learning experiences that prioritize
+					individual needs, creating a nurturing environment where participants are heard, fostering
+					a strong sense of belonging, safety, and respect within small, diverse groups.
 				</p>
 			</div>
 			<div class="hero-img">
 				<img
-					src="https://cdn.sanity.io/images/gkez65br/production/8b137c079b2438d98270dd211b76ea58c1a0210c-1200x719.jpg?w=2000&fit=max&auto=format"
-					alt=""
+					src="https://cdn.sanity.io/images/gkez65br/production/8b137c079b2438d98270dd211b76ea58c1a0210c-1200x719.jpg"
+					alt="pinky theme"
 				/>
 			</div>
 		</div>
 	</div>
-	<h1 class="separator-heading">Open Courses</h1>
+	<h1 class="separator-heading">Courses</h1>
 	<main class="container">
-		{#each data.allOpenCourses as course}
+		{#each data.allCourses as course}
 			<div class="card">
 				<div class="card-subheading">
-					<p>{course.venue.venue_name}</p>
-					<p>{course.venue.city}</p>
+					<p>{course.type}</p>
+					<!-- <p>{course.venue.city}</p> -->
 				</div>
 				<div class="card-header">
-					<h3>{course.course.title}</h3>
+					<h3>{course.title}</h3>
 				</div>
 				<div class="card-body">
-					<p>{course.course.excerpt}</p>
+					<p>{course.excerpt}</p>
 				</div>
 				<div class="card-footer">
-					<p>{course.course.type}</p>
-					<a class="btn-link" href="courses/{course.course.slug.current}">
-						<LinkCircle width={64} height={64}/>
+					<a class="btn-link" href="courses/{course.slug}">
+						<LinkCircle width={64} height={64} />
 					</a>
 				</div>
 
@@ -141,6 +139,7 @@
 		border-radius: 1rem;
 		background: var(--gray-1);
 		max-height: max-content;
+
 		& img {
 			width: 100%;
 			height: 100%;
@@ -185,10 +184,12 @@
 	}
 	.card-header {
 		grid-area: header;
+
 		& h3 {
 			font-size: 1.5rem;
 			font-weight: 16rem;
 		}
+
 		& p {
 			margin: 0;
 		}
@@ -205,6 +206,7 @@
 	}
 	.card-body {
 		grid-area: body;
+		margin-bottom: 0.5rem;
 		& p {
 			margin: 0;
 			font-size: 1rem;
@@ -214,8 +216,7 @@
 	.card-footer {
 		grid-area: footer;
 		display: flex;
-		justify-content: space-between;
-		/* border: 1px solid var(--gray-2); */
+		justify-content: flex-end;
 
 		& p {
 			align-self: flex-end;
@@ -223,11 +224,11 @@
 			font-size: var(--xs);
 			color: var(--gray-3);
 		}
+
 		& .btn-link {
 			pointer-events: all;
 		}
 	}
-
 
 	@media (max-width: 996px) {
 		.hero-data {
