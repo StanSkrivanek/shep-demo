@@ -61,7 +61,7 @@ export const getAllCourses = async () => {
 
 	const allCourses = await client.fetch(allCoursesQuery);
 	return allCourses;
-}
+};
 
 export const getSingleCourse = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
@@ -85,9 +85,9 @@ export const getSingleCourse = async (/** @type {undefined} */ slug) => {
   }`;
 	const course = await client.fetch(query, { slug });
 	return course;
-}
+};
 
-export const getAllOpenCouses = async () => {
+export const getAllOpenCourses = async () => {
 	const client = sanityClient();
 	const allOpenCoursesQuery = `*[_type == "open_course" && is_active == true]{
 	_id,

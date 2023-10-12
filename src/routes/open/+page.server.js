@@ -1,6 +1,6 @@
-import { getAllOpenCouses} from '$lib/server/sanity';
+import { getAllOpenCourses } from '$lib/server/sanity';
 export async function load() {
-	const allOpenCourses = await getAllOpenCouses();
+	const allOpenCourses = await getAllOpenCourses();
 	return {
 		allOpenCourses
 	};

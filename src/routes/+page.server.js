@@ -1,7 +1,7 @@
-import { getAllOpenCouses, getAllVenues } from '$lib/server/sanity';
+import { getAllOpenCourses, getAllVenues } from '$lib/server/sanity';
 export async function load() {
 	const venues = await getAllVenues();
-	const allOpenCourses = await getAllOpenCouses();
+	const allOpenCourses = await getAllOpenCourses();
 	return {
 		venues,
 		allOpenCourses
