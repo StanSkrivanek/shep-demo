@@ -1,15 +1,15 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 
-	// import { PortableText } from '@portabletext/svelte';
-	// import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
+	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
+	import { PortableText } from '@portabletext/svelte';
 	export let data;
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
 		data.course;
 	console.log('🚀 ~ file: +page.svelte:3 ~ data:', data.course);
 </script>
 
-<div class="conetnt">
+<div class="page__c">
 	<!-- hero -->
 	<!-- TODO: update other Heros based on this principle 4 rows without 2-cols wrapper -->
 	<div class="hero">
@@ -24,9 +24,7 @@
 		</div>
 
 		<div class="hero-info__price">
-			<!-- <div class="hero-price__heading"> -->
-			<p class="small-title sm">Course Fee</p>
-			<!-- </div> -->
+			<p class="small-title">Course Fee</p>
 			<div class="fee">
 				{#if full_price != 'No Charge'}
 					<p><span>In Full:</span>€ {full_price}</p>
@@ -38,27 +36,46 @@
 				{/if}
 			</div>
 		</div>
-		<a class="link" href={brochure} target="_blank">
+		<div class="link">
 			<div class="link-desc__w">
 				<p class="small-title">Brochure</p>
 				<p>Feel free to access our course brochure in PDF format</p>
 			</div>
-			<div class="link-icon">
-				<LinkCircle width={60} height={60} />
-			</div>
-		</a>
-		<!-- <div class="hero-info__btn">
-			<p>Course Brochure</p>
-			<a class="btn-link" href="courses/{slug.current}">
-				<LinkCircle width={64} height={64} />
+			<a href={brochure} target="_blank">
+				<div class="link-icon">
+					<LinkCircle width={60} height={60} />
+				</div>
 			</a>
-		</div> -->
+		</div>
 	</div>
 
 	<!-- wapper start -->
-	<!-- aside -->
+	<div class="main__c">
+		<!-- aside -->
+		<aside>Aside</aside>
+		<!-- main -->
+		<main>
+			<PortableText
+				value={content}
+				onMissingComponent={false}
+				components={{
+					block: {
+						// blockquote: Quote,
+						h1: CustomHeading,
+						h2: CustomHeading,
+						h3: CustomHeading,
+						h4: CustomHeading,
+						h5: CustomHeading,
+						normal: TextRte
+					},
+					types: {
+						image: ImageRte
+					}
+				}}
+			/>
+		</main>
+	</div>
 
-	<!-- main -->
 	<!-- wrapper end -->
 
 	<!-- footer -->
@@ -88,7 +105,7 @@
 </div>
 
 <style>
-	.conetnt {
+	.page__c {
 		max-width: 1680px;
 		margin: 0 auto;
 		display: grid;
@@ -108,6 +125,7 @@
 			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-btn';
 	}
 
+	/* Hero */
 	.hero-data {
 		grid-area: hero-data;
 		display: flex;
@@ -130,7 +148,6 @@
 			aspect-ratio: 2.4/1;
 		}
 	}
-
 	.hero-info__price {
 		grid-area: hero-price;
 		padding: 1.4rem;
@@ -138,32 +155,24 @@
 		background: var(--gray-1);
 	}
 
-	/* .hero-info__btn {
-		grid-area: hero-btn;
-		background: var(--blue-light);
-		padding: 1.4rem;
-		border-radius: 1rem;
+	/* Fee */
+	.fee {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 		& p {
+			display: flex;
+			justify-content: space-between;
 			margin: 0;
 			margin-bottom: 0.5rem;
-			color: var(--fc-light);
-		}
-	} */
-	a {
-		padding: 1rem;
-		text-decoration: none;
-		color: var(--text-base);
-		font-size: 1rem;
-		border: 2px solid var(--gray-1);
-		border-radius: 1rem;
-		transition: all 0.3s ease-in-out;
-		&:hover {
-			text-decoration: none;
-			color: var(--text-base);
-			background: var(--blue-light);
-			border: 2px solid var(--blue-sha-2);
+			color: var(--fc-main);
+			& span {
+				color: var(--fc-light);
+			}
 		}
 	}
+
+	/* Brochure */
 	.link {
 		grid-area: hero-btn;
 		display: flex;
@@ -174,12 +183,27 @@
 		color: var(--fc-light);
 		background: var(--blue-light);
 		min-width: 160px;
+		/* & a {
+			text-decoration: none;
+			color: var(--text-base);
+			font-size: 1rem;
+			border: 2px solid var(--gray-1);
+			border-radius: 1rem;
+			transition: all 0.3s ease-in-out;
+			&:hover {
+				text-decoration: none;
+				color: var(--text-base);
+				background: var(--blue-light);
+				border: 2px solid var(--blue-sha-2);
+			}
+		} */
 	}
-
 	.small-title {
 		position: relative;
-		margin-bottom: 1.2rem;
+		margin-top: 0;
+		/* margin-bottom: 1.2rem; */
 		font-family: var(--ff-gilroy-m);
+		font-size: var(--sm);
 		color: var(--fc-main);
 		&::after {
 			content: '';
@@ -196,31 +220,75 @@
 		justify-content: right;
 		align-items: center;
 	}
-	.sm {
-		font-size: var(--sm);
-	}
-	/* .address p {
-		color: var(--fs-mid);
-	} */
+
 	.link-desc__w {
-		margin-bottom: 1.2rem;
+		/* margin-bottom: 1.2rem; */
 		& p {
+			font-size: var(--sm);
 			line-height: 1.1;
 		}
 	}
-	.fee {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		& p {
-			display: flex;
-			justify-content: space-between;
-			margin: 0;
-			margin-bottom: 0.5rem;
-			color: var(--fc-main);
-			& span {
-				color: var(--fc-light);
-			}
+
+	/* === MAIN CONTENT === */
+
+	.main__c {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-template-areas: 'aside aside aside main main main main ';
+		grid-column: 1/-1;
+		margin-bottom: 5rem;
+		gap: 1rem;
+	}
+
+	aside {
+		grid-area: aside;
+	}
+	main {
+		grid-area: main;
+	}
+
+	/* Media Query */
+
+	@media screen and (max-width: 996px) {
+		.hero {
+			/* grid-template-columns: subgrid; */
+			grid-template-rows: repeat(4, minmax(6rem, 1fr));
+			grid-template-areas:
+				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
+				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
+				'hero-data hero-data hero-data hero-data hero-data hero-data hero-price hero-price'
+				'hero-data hero-data hero-data hero-data hero-data hero-data hero-btn hero-btn';
+		}
+		.main__c {
+			grid-template-columns: subgrid;
+			grid-template-areas:
+				'main main main main main main main main'
+				'aside aside aside aside aside aside aside aside';
+		}
+	}
+	@media (max-width: 768px) {
+		.hero {
+			grid-template-rows: repeat(3, minmax(6rem, max-content));
+			grid-template-areas:
+				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
+				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
+				'hero-price hero-price hero-price hero-price hero-btn hero-btn hero-btn hero-btn';
+		}
+	}
+	@media (max-width: 576px) {
+		.hero {
+			grid-template-rows: repeat(4, minmax(100px, max-content));
+			grid-template-areas:
+				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
+				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
+				'hero-price hero-price hero-price hero-price hero-price hero-price hero-price hero-price'
+				'hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn';
+		}
+		.main__c {
+			grid-template-columns: subgrid;
+			grid-template-areas:
+				'main main main main main main main main'
+				'aside aside aside aside aside aside aside aside';
 		}
 	}
 </style>

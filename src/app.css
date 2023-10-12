@@ -124,7 +124,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: var(--ff-gilroy);
+	font-family: var(--ff-gilroy-m);
 	font-weight: 100;
 	line-height: 1;
 	letter-spacing: -0.025em;

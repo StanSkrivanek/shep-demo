@@ -47,7 +47,7 @@
 		color: red;
 		opacity: 1;
 	} */
-	/* h1,
+	 /* h1,
 	h2,
 	h3,
 	h4,
@@ -57,9 +57,10 @@
 		line-height: 1;
 		letter-spacing: -0.025em;
 		color: rgb(75, 77, 82);
+		color: rgb(226, 60, 212);
 		margin-block: 0.5rem;
-	}
-	h1 {
+	} */
+	/* h1 {
 		font-size: 4.209rem;
 	}
 
@@ -76,5 +77,5 @@
 	}
 	h5 {
 		font-size: 1.333rem;
-	} */
+	}  */
 </style>
