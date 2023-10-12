@@ -122,22 +122,23 @@
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;
 		grid-template-areas: 'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-img';
+
 		grid-template-rows: auto;
 		gap: 1rem;
 	}
 	.hero-data {
+		grid-area: hero-data;
 		display: flex;
 		flex-direction: column;
-		grid-column: 1 / 4;
-		grid-row: 1/1;
-		grid-area: hero-data;
+		/* grid-column: 1 / 4; */
+		/* grid-row: 1/1; */
 		padding: 2rem;
 		border-radius: 1rem;
 		background: var(--orange-light);
 	}
 	.hero-img {
-		grid-column: 4 / -1;
 		grid-area: hero-img;
+		/* grid-column: 4 / -1; */
 		border-radius: 1rem;
 		background: var(--gray-1);
 		max-height: max-content;
