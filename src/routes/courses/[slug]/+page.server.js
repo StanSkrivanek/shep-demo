@@ -1,10 +1,12 @@
-import { getSingleCourse } from '$lib/server/sanity';
+import { getSingleCourse, getAllOpenCoursesForCurrentCourse } from '$lib/server/sanity';
 export async function load({ params} ) {
 	console.log(params);
-
+	// @ts-ignore
+const allOpenCourses = await getAllOpenCoursesForCurrentCourse(params.slug);
 	// @ts-ignore
 	const course = await getSingleCourse(params.slug);
 	return {
-		course
+		course,
+		allOpenCourses
 	};
 }

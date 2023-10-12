@@ -1,12 +1,24 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
-
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
+	import { formatDateMonthName, formatTime } from '$lib/utils/datehelpers';
 	import { PortableText } from '@portabletext/svelte';
+	import { slide } from 'svelte/transition';
+
 	export let data;
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
 		data.course;
-	console.log('🚀 ~ file: +page.svelte:3 ~ data:', data.course);
+	const openCourses = data.allOpenCourses;
+	console.log('🚀 ~ file: +page.svelte:3 ~ data:', openCourses);
+
+	/**
+	 * @type {number | boolean | null}
+	 */
+	let show = null;
+
+	const toggleActive = (/** @type {number | boolean | null} */ i) => {
+		i == show ? (show = null) : (show = i);
+	};
 </script>
 
 <div class="page__c">
@@ -52,7 +64,45 @@
 	<!-- wapper start -->
 	<div class="main__c">
 		<!-- aside -->
-		<aside>Aside</aside>
+		<aside>
+			<div class="accordion">
+				{#each openCourses as item, i}
+					<div
+						class="accordion_item card"
+						role="button"
+						tabindex={i}
+						on:click={() => toggleActive(i)}
+						on:keydown={() => toggleActive(i)}
+					>
+						<div class="accordion-header">
+							<div class="data">
+								<div class="location">
+									<p>{item.venue.venue_name}</p>
+									<p >{item.venue.city}</p>
+								<!-- </div>
+								<div class="datetime"> -->
+									<p>{formatDateMonthName(item.in_person.start_date)}</p>
+									<p>{formatTime(item.in_person.start_date)}</p>
+								</div>
+							</div>
+							<div class="link">
+								<div class="link-icon">
+									<LinkCircle width={60} height={60} />
+								</div>
+							</div>
+						</div>
+					</div>
+					{#if show == i}
+						<div class="body accordion-body" transition:slide>
+							<p>{formatDateMonthName(item.in_person.start_date)}</p>
+							<p>{formatTime(item.in_person.start_date)}</p>
+							<!-- <a href={`/courses/${course.slug}`}>View Course</a> -->
+							<p>Group: {item.in_person.group}</p>
+						</div>
+					{/if}
+				{/each}
+			</div>
+		</aside>
 		<!-- main -->
 		<main>
 			<PortableText
@@ -245,6 +295,82 @@
 	}
 	main {
 		grid-area: main;
+	}
+/* 
+	.card {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 1.4rem;
+		border-radius: 1rem;
+		background: var(--gray-1);
+		min-width: 160px;
+		margin-bottom: 1rem;
+		&__info {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			& p {
+				margin: 0;
+				margin-bottom: 0.5rem;
+				color: var(--fc-main);
+			}
+		}
+	} */
+
+	.accordion-header {
+		padding: 1rem;
+		border-bottom: 1px solid grey;
+		transition: background 200ms ease-in-out;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		& p:first-child {
+			margin-bottom: 0;
+		}
+		
+		& p:not(:first-child) {
+			margin: 0;
+			color: var(--fc-main);
+			/* margin-bottom: 0.5rem; */
+			font-size: var(--sm);
+		}
+		& p:nth-child(2) {
+			color: var(--fc-light);
+			margin-bottom: 0.5rem;
+		}
+		& .city {
+			color: var(--fc-light);
+			font-size: 1rem;
+		}
+		& .datetime {
+			font-size: var(--sm);
+			/* display: flex;
+			flex-direction: column;
+			justify-content: space-between; */
+			& p {
+				margin: 0;
+				/* margin-bottom: 0.5rem; */
+				color: var(--fc-main);
+			}
+		}
+		& .link {
+			display: flex;
+			justify-content: right;
+			align-items: center;
+		}
+		& .link-icon {
+			display: flex;
+			justify-content: right;
+			align-items: center;
+		}
+	}
+
+	.accordion-body {
+		padding: 1rem;
+		background: #f0f0f0;
+		margin-bottom: 1rem;
 	}
 
 	/* Media Query */

@@ -120,3 +120,37 @@ export const getAllOpenCourses = async () => {
 	const allOpenCourses = await client.fetch(allOpenCoursesQuery);
 	return allOpenCourses;
 };
+
+export const getAllOpenCoursesForCurrentCourse = async (/** @type {undefined} */ slug) => {
+	const client = sanityClient();
+	const allOpenCoursesQuery = `*[_type == "open_course" && course->slug.current == $slug]{
+	_id,
+	'in_person': in_person {
+		...,
+				'leader': course_leader[] {
+		_type == 'reference' => @->{name}    
+	},
+	},
+	'online': online {
+		...,
+		'leader': course_leader[] {
+		_type == 'reference' => @->{name}    
+		},
+	},
+	'course': course {
+		_type == 'reference' => @->{title, type, excerpt, slug}    
+	},
+		'venue': venue {
+		_type == 'reference' => @->{venue_name, city}    
+	},
+
+	'form': application_form {
+		'asset': asset->url
+  },
+ 
+}
+`;
+
+	const getAllOpenCoursesForCurrentCourse = await client.fetch(allOpenCoursesQuery, { slug });
+	return getAllOpenCoursesForCurrentCourse;
+};
