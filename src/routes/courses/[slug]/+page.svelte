@@ -1,5 +1,6 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import ArrowOpen from '$lib/components/icons/arrowOpen.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
 	import { formatDateMonthName, formatTime } from '$lib/utils/datehelpers';
 	import { PortableText } from '@portabletext/svelte';
@@ -79,15 +80,13 @@
 								<div class="location">
 									<p>{item.venue.venue_name}</p>
 									<p >{item.venue.city}</p>
-								<!-- </div>
-								<div class="datetime"> -->
 									<p>{formatDateMonthName(item.in_person.start_date)}</p>
 									<p>{formatTime(item.in_person.start_date)}</p>
 								</div>
 							</div>
-							<div class="link">
+							<div >
 								<div class="link-icon">
-									<LinkCircle width={60} height={60} />
+									<ArrowOpen width={58} height={58} />
 								</div>
 							</div>
 						</div>
@@ -269,6 +268,7 @@
 		display: flex;
 		justify-content: right;
 		align-items: center;
+		/* border: 1px solid var(--fc-light); */
 	}
 
 	.link-desc__w {
