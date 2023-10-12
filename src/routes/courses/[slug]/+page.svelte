@@ -2,7 +2,7 @@
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import ArrowOpen from '$lib/components/icons/arrowOpen.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
-	import { formatDateMonthName, formatTime } from '$lib/utils/datehelpers';
+	import { formatDateMonthName, formatTime12 } from '$lib/utils/datehelpers';
 	import { PortableText } from '@portabletext/svelte';
 	import { slide } from 'svelte/transition';
 
@@ -79,26 +79,45 @@
 							<div class="data">
 								<div class="location">
 									<p>{item.venue.venue_name}</p>
-									<p >{item.venue.city}</p>
+									<p>{item.venue.city}</p>
 									<p>{formatDateMonthName(item.in_person.start_date)}</p>
-									<p>{formatTime(item.in_person.start_date)}</p>
+									<p>{formatTime12(item.in_person.start_date)}</p>
 								</div>
 							</div>
-							<div >
+							<div>
 								<div class="link-icon">
 									<ArrowOpen width={58} height={58} />
 								</div>
 							</div>
 						</div>
-					</div>
-					{#if show == i}
+						<!-- {#if show == i} -->
 						<div class="body accordion-body" transition:slide>
-							<p>{formatDateMonthName(item.in_person.start_date)}</p>
-							<p>{formatTime(item.in_person.start_date)}</p>
+							<div class="detail">
+								<div class="row-1">
+									<p>In Person</p>
+									<p>refNo.</p>
+								</div>
+								<div class="row-2">
+									<p>
+										Leaded by:
+										{#each item.in_person.leader as leader}
+											{#if leader != item.in_person.leader[item.in_person.leader.length - 1]}
+												<span>{leader.name}, </span>
+											{:else}
+												<span>{leader.name}</span>
+											{/if}
+										{/each}
+									</p>
+									<p>Group: {item.in_person.group}</p>
+								</div>
+								<p>{formatDateMonthName(item.in_person.start_date)}</p>
+								<p>{formatTime12(item.in_person.start_date)}</p>
+								<p>Group: {item.in_person.group}</p>
+							</div>
 							<!-- <a href={`/courses/${course.slug}`}>View Course</a> -->
-							<p>Group: {item.in_person.group}</p>
 						</div>
-					{/if}
+						<!-- {/if} -->
+					</div>
 				{/each}
 			</div>
 		</aside>
@@ -296,7 +315,7 @@
 	main {
 		grid-area: main;
 	}
-/* 
+	/* 
 	.card {
 		display: flex;
 		flex-direction: column;
@@ -317,19 +336,23 @@
 			}
 		}
 	} */
-
+	.accordion_item {
+		margin-bottom: 1rem;
+		background-color: var(--blue-light);
+		border-radius: 1rem;
+	}
 	.accordion-header {
 		padding: 1rem;
-		border-bottom: 1px solid grey;
-		transition: background 200ms ease-in-out;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		/* background-color: var(--blue-light); */
+		/* transition: background 200ms ease-in-out; */
 
 		& p:first-child {
 			margin-bottom: 0;
 		}
-		
+
 		& p:not(:first-child) {
 			margin: 0;
 			color: var(--fc-main);
@@ -369,8 +392,8 @@
 
 	.accordion-body {
 		padding: 1rem;
-		background: #f0f0f0;
 		margin-bottom: 1rem;
+		/* background-color: var(--blue-light); */
 	}
 
 	/* Media Query */

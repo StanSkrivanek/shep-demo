@@ -1,5 +1,5 @@
 <script>
-	import { formatDate, formatTime, formatDateMonthName } from '$lib/utils/datehelpers.js';
+	import { formatDate, formatTime12, formatDateMonthName } from '$lib/utils/datehelpers.js';
 	export let data;
 	// console.log(data.allOpenCourses);
 	// const openCourse = data.allOpenCourses;
@@ -22,10 +22,10 @@
 				<p>Starts: {formatDateMonthName(course.in_person.start_date)}</p>
 				<p>Ends:{formatDateMonthName(course.in_person.end_date)}</p>
 				<p>
-					From: {formatTime(course.in_person.start_date)}
+					From: {formatTime12(course.in_person.start_date)}
 				</p>
 				<p>
-					To: {formatTime(course.in_person.end_date)}
+					To: {formatTime12(course.in_person.end_date)}
 				</p>
 				<div class="trainers">
 					{#each course.in_person.leader as trainer}
@@ -49,10 +49,10 @@
 					Ends: {formatDateMonthName(course.online.end_date)}
 				</p>
 				<p>
-					From: {formatTime(course.online.start_date)}
+					From: {formatTime12(course.online.start_date)}
 				</p>
 				<p>
-					To: {formatTime(course.online.end_date)}
+					To: {formatTime12(course.online.end_date)}
 				</p>
 				<div class="trainers">
 					{#each course.online.leader as trainer}
