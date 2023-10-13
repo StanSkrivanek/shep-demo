@@ -123,7 +123,7 @@ export const getAllOpenCourses = async () => {
 
 export const getAllOpenCoursesForCurrentCourse = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
-	const allOpenCoursesQuery = `*[_type == "open_course" && course->slug.current == $slug]{
+	const allOpenCoursesQuery = `*[_type == "open_course" && course->slug.current == $slug && is_active == true]{
 	_id,
 	'in_person': in_person {
 		...,

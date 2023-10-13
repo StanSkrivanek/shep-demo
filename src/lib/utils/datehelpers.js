@@ -5,7 +5,7 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
  */
 function formatDate(date) {
 	var d = new Date(date),
-		month = '' + (d.getMonth() + 1),
+		month = '' + d.getMonth(),
 		day = '' + d.getUTCDate(),
 		year = d.getUTCFullYear();
 
@@ -16,6 +16,33 @@ function formatDate(date) {
 	return [month, day, year].join('-');
 }
 
+/**
+ * @param {string | number | Date} date
+ */
+function monthNameDateYear(date) {
+	var d = new Date(date),
+		month = '' + d.getMonth(),
+		day = '' + d.getUTCDate(),
+		year = d.getUTCFullYear();
+	if (month.length < 2) month = '0' + month;
+	if (day.length < 2) day = '0' + day;
+	// @ts-ignore
+	const monthStr = months[parseInt(month)];
+	return `${monthStr} ${day}, ${year}`;
+}
+/**
+ * @param {string | number | Date} date
+ */
+function monthNameDate(date) {
+	var d = new Date(date),
+		month = '' + d.getMonth(),
+		day = '' + d.getUTCDate();
+	if (month.length < 2) month = '0' + month;
+	if (day.length < 2) day = '0' + day;
+	// @ts-ignore
+	const monthStr = months[parseInt(month)];
+	return `${monthStr} ${day}`;
+}
 /**
  * @param {string | number | Date} date
  */
@@ -50,19 +77,5 @@ function formatTime12(date) {
 
 	return `${[hours, minutes].join(':')}${am_pm}`;
 }
-/**
- * @param {string | number | Date} date
- */
-function formatDateMonthName(date) {
-	var d = new Date(date),
-		month = '' + (d.getMonth() + 1),
-		day = '' + d.getUTCDate(),
-		year = d.getUTCFullYear();
-	if (month.length < 2) month = '0' + month;
-	if (day.length < 2) day = '0' + day;
-	// @ts-ignore
-	const monthStr = months[parseInt(month)];
-	return `${monthStr} ${day}, ${year}`;
-}
 
-export { formatDate, formatDateMonthName, formatTime12, formatTime24 };
+export { formatDate, monthNameDateYear, formatTime12, formatTime24, monthNameDate };

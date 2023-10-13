@@ -1,16 +1,16 @@
 <script>
+	import ArrowOpen from '$lib/components/icons/ArrowOpen.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
-	import ArrowOpen from '$lib/components/icons/arrowOpen.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
-	import { formatDateMonthName, formatTime12 } from '$lib/utils/datehelpers';
+	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers';
 	import { PortableText } from '@portabletext/svelte';
 	import { slide } from 'svelte/transition';
 
 	export let data;
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
 		data.course;
-	const openCourses = data.allOpenCourses;
-	console.log('🚀 ~ file: +page.svelte:3 ~ data:', openCourses);
+	const openForApplication = data.allOpenCourses;
+	console.log('🚀 ~ file: +page.svelte:3 ~ openForApplication:', openForApplication);
 
 	/**
 	 * @type {number | boolean | null}
@@ -66,108 +66,149 @@
 	<div class="main__c">
 		<!-- aside -->
 		<aside>
-			<div class="accordion">
-				{#each openCourses as item, i}
-					<div
-						class="accordion_item card"
-						role="button"
-						tabindex={i}
-						on:click={() => toggleActive(i)}
-						on:keydown={() => toggleActive(i)}
-					>
-						<div class="accordion-header">
-							<div class="data">
-								<div class="location">
-									<p>{item.venue.venue_name}</p>
-									<p>{item.venue.city}</p>
-									<p>{formatDateMonthName(item.in_person.start_date)}</p>
-									<p>{formatTime12(item.in_person.start_date)}</p>
-								</div>
-							</div>
-							<div>
-								<div class="link-icon">
-									<ArrowOpen width={58} height={58} />
-								</div>
-							</div>
-						</div>
-						{#if show == i}
-						<div class="body accordion-body" transition:slide>
-							<div class="detail">
-								<!-- header -->
-								<div class="detail-header">
-									<p>In Person</p>
-									<p>refNo.</p>
-								</div>
-								<!-- trainers list -->
-								<div class="detail-leader">
-									<p>
-										<span class="bold">Leaded by:</span>
-										{#each item.in_person.leader as leader}
-											{#if leader != item.in_person.leader[item.in_person.leader.length - 1]}
-												<span>{leader.name}, </span>
-											{:else}
-												<span>{leader.name}</span>
-											{/if}
-										{/each}
-									</p>
-									<p><span class="bold">Group:</span> {item.in_person.group}</p>
-								</div>
-								<!-- footer - week day & time-->
-								<div class="detail-schedule">
-									<p>{item.in_person.weekday}</p>
-									<div>
-										<span>{formatTime12(item.in_person.start_date)}</span>
-										<span class="schedule-spacer">-</span>
-										<span>{formatTime12(item.in_person.end_date)}</span>
-									</div>
-								</div>
-							</div>
-							<div class="detail">
-								<!-- header -->
-								<div class="detail-header">
-									<p>Online</p>
-									<p>refNo.</p>
-								</div>
-								<!-- trainers list -->
-								<div class="detail-leader">
-									<p>
-										Leaded by:
-										{#each item.online.leader as leader}
-											{#if leader != item.online.leader[item.online.leader.length - 1]}
-												<span>{leader.name}, </span>
-											{:else}
-												<span>{leader.name}</span>
-											{/if}
-										{/each}
-									</p>
-									<p>Group: {item.online.group}</p>
-								</div>
-								<!-- footer - week day & time-->
-								<div class="detail-schedule">
-									<p>{item.online.weekday}</p>
-									<div>
-										<span>{formatTime12(item.online.start_date)}</span>
-										<span class="schedule-spacer">-</span>
-										<span>{formatTime12(item.online.end_date)}</span>
-									</div>
-								</div>
-							</div>
-							<div class="accordion-links">
-								<!-- download brochure -->
-								<a href={item.form.asset} target="_blank">
-									<span>download form</span>
-								</a>
+			{#if openForApplication.length == 0}
+				<div class="no-course">
+					<p>We are sorry but in this venue are currently no SHEP courses open for applications.</p>
 
-								<!-- apply online -->
-								<a href="#" target="_blank">
-									<span>apply online</span>
-								</a>
+					<p>
+						You can sign to our newsletter to be notified when new Shep courses will open for
+						applications.
+					</p>
+				</div>
+			{:else}
+				<div class="accordion">
+					{#each openForApplication as item, i}
+						<div
+							class="accordion_item card"
+							role="button"
+							tabindex={i}
+							on:click={() => toggleActive(i)}
+							on:keydown={() => toggleActive(i)}
+						>
+							<div class="accordion-header">
+								<div class="data">
+									<div class="location">
+										<p>{item.venue.venue_name}</p>
+										<p>{item.venue.city}</p>
+										<p>{monthNameDateYear(item.in_person.start_date)}</p>
+										<p>{formatTime12(item.in_person.start_date)}</p>
+									</div>
+								</div>
+								<div>
+									<div class="link-icon">
+										<ArrowOpen width={58} height={58} />
+									</div>
+								</div>
 							</div>
+							{#if show == i}
+							<div class="body accordion-body" transition:slide>
+								<div class="detail">
+									<!-- header -->
+									<div class="detail-header">
+										<p>In Person</p>
+										<!-- <p>refNo: {item.in_person.course_in_ref}</p> -->
+									</div>
+									{#if item.in_person.is_active == false}
+										<p>Not available</p>
+									{:else}
+										<div class="date-group">
+											<p class="small">
+												{monthNameDate(item.in_person.start_date)} - {monthNameDateYear(
+													item.in_person.end_date
+												)}
+											</p>
+											<p class="small"><span class="bold">Group:</span> {item.in_person.group}</p>
+										</div>
+										<div class="detail-schedule">
+											<p>{item.in_person.weekday}</p>
+											<div>
+												<span>{formatTime12(item.in_person.start_date)}</span>
+												<span class="schedule-spacer">-</span>
+												<span>{formatTime12(item.in_person.end_date)}</span>
+											</div>
+										</div>
+										<!-- trainers list -->
+										<div class="detail-leader">
+											<p>
+												<span class="bold">Leaded by:</span>
+												{#each item.in_person.leader as leader}
+													{#if leader != item.in_person.leader[item.in_person.leader.length - 1]}
+														<span>{leader.name}, </span>
+													{:else}
+														<span>{leader.name}</span>
+													{/if}
+												{/each}
+											</p>
+										</div>
+										<!-- footer - week day & time-->
+									{/if}
+								</div>
+
+								{#if item.online.is_active == false}
+									<!-- <p>We do not currently offer an online version for this course.</p> -->
+									<p></p>
+								{:else}
+								<div class="detail">
+									<!-- header -->
+									<div class="detail-header">
+										<p>Online</p>
+										<!-- <p>refNo: {item.in_person.course_in_ref}</p> -->
+									</div>
+									{#if item.online.is_active == false}
+										<p>Not available</p>
+									{:else}
+										<div class="date-group">
+											<p class="small">
+												{monthNameDate(item.online.start_date)} - {monthNameDateYear(
+													item.online.end_date
+												)}
+											</p>
+											<p class="small"><span class="bold">Group:</span> {item.online.group}</p>
+										</div>
+										<div class="detail-schedule">
+											<p>{item.online.weekday}</p>
+											<div>
+												<span>{formatTime12(item.online.start_date)}</span>
+												<span class="schedule-spacer">-</span>
+												<span>{formatTime12(item.online.end_date)}</span>
+											</div>
+										</div>
+										<!-- trainers list -->
+										<div class="detail-leader">
+											<p>
+												<span class="bold">Leaded by:</span>
+												{#each item.online.leader as leader}
+													{#if leader != item.online.leader[item.online.leader.length - 1]}
+														<span>{leader.name}, </span>
+													{:else}
+														<span>{leader.name}</span>
+													{/if}
+												{/each}
+											</p>
+										</div>
+										<!-- footer - week day & time-->
+									{/if}
+								</div>
+
+									{/if}
+								<!--  -->
+								<div class="accordion-links">
+									<!-- download brochure -->
+									<a href={item.form.asset} target="_blank">
+										<span>download form</span>
+									</a>
+
+									<!-- apply online -->
+									<a href="#" target="_blank">
+										<span>apply online</span>
+									</a>
+								</div>
+							</div>
+							{/if}
 						</div>
-						{/if}
-					</div>
-				{/each}
-			</div>
+					{/each}
+				</div>
+			{/if}
 		</aside>
 		<!-- main -->
 		<main>
@@ -361,6 +402,20 @@
 		grid-area: aside;
 	}
 	/* Accordion */
+	.no-course {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 2rem;
+		border-radius: 1rem;
+		background: var(--red-sha-1);
+		& p {
+			margin: 0;
+			margin-bottom: 1rem;
+			color: var(--fc-main);
+		}
+	}
 	.accordion_item {
 		margin-bottom: 1rem;
 		background-color: var(--green-light);
@@ -424,36 +479,55 @@
 		/* background-color: var(--blue-light); */
 		& .detail {
 			margin-bottom: 2rem;
+			& p {
+				margin: 0;
+				margin-bottom: 0.5rem;
+				color: var(--fc-main);
+			}
+			& .small {
+				font-size: var(--sm);
+				/* color: var(--fc-light); */
+			}
 		}
 		& .detail-header {
-			display: flex;
+			/* display: flex;
 			justify-content: space-between;
-			align-items: baseline;
+			align-items: baseline; */
 			font-size: 1.4rem;
 			& p {
 				margin: 0;
 				margin-bottom: 0.5rem;
 				color: var(--fc-main);
 			}
-			& p:last-child {
+		}
+		& .date-group {
+			display: flex;
+			justify-content: space-between;
+			& p {
+				margin: 0;
+				margin-bottom: 0.5rem;
+				color: var(--fc-main);
+			}
+			/* & p:last-child {
 				font-size: 1rem;
 				color: var(--fc-light);
-			}
+			} */
 		}
 		& .detail-leader {
 			display: flex;
 			justify-content: space-between;
+			padding-bottom: 1rem;
 			& p {
 				font-size: 1rem;
 				margin: 0;
 			}
+			border-bottom: 1px solid var(--green-sha-1);
 		}
 		& .detail-schedule {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			font-size: 1.4rem;
-			border-bottom: 1px solid var(--green-sha-1);
 			& p {
 				margin: 0;
 				margin-bottom: 0.5rem;
