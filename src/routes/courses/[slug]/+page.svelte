@@ -90,16 +90,18 @@
 								</div>
 							</div>
 						</div>
-						<!-- {#if show == i} -->
+						{#if show == i}
 						<div class="body accordion-body" transition:slide>
 							<div class="detail">
-								<div class="row-1">
+								<!-- header -->
+								<div class="detail-header">
 									<p>In Person</p>
 									<p>refNo.</p>
 								</div>
-								<div class="row-2">
+								<!-- trainers list -->
+								<div class="detail-leader">
 									<p>
-										Leaded by:
+										<span class="bold">Leaded by:</span>
 										{#each item.in_person.leader as leader}
 											{#if leader != item.in_person.leader[item.in_person.leader.length - 1]}
 												<span>{leader.name}, </span>
@@ -108,15 +110,61 @@
 											{/if}
 										{/each}
 									</p>
-									<p>Group: {item.in_person.group}</p>
+									<p><span class="bold">Group:</span> {item.in_person.group}</p>
 								</div>
-								<p>{formatDateMonthName(item.in_person.start_date)}</p>
-								<p>{formatTime12(item.in_person.start_date)}</p>
-								<p>Group: {item.in_person.group}</p>
+								<!-- footer - week day & time-->
+								<div class="detail-schedule">
+									<p>{item.in_person.weekday}</p>
+									<div>
+										<span>{formatTime12(item.in_person.start_date)}</span>
+										<span class="schedule-spacer">-</span>
+										<span>{formatTime12(item.in_person.end_date)}</span>
+									</div>
+								</div>
 							</div>
-							<!-- <a href={`/courses/${course.slug}`}>View Course</a> -->
+							<div class="detail">
+								<!-- header -->
+								<div class="detail-header">
+									<p>Online</p>
+									<p>refNo.</p>
+								</div>
+								<!-- trainers list -->
+								<div class="detail-leader">
+									<p>
+										Leaded by:
+										{#each item.online.leader as leader}
+											{#if leader != item.online.leader[item.online.leader.length - 1]}
+												<span>{leader.name}, </span>
+											{:else}
+												<span>{leader.name}</span>
+											{/if}
+										{/each}
+									</p>
+									<p>Group: {item.online.group}</p>
+								</div>
+								<!-- footer - week day & time-->
+								<div class="detail-schedule">
+									<p>{item.online.weekday}</p>
+									<div>
+										<span>{formatTime12(item.online.start_date)}</span>
+										<span class="schedule-spacer">-</span>
+										<span>{formatTime12(item.online.end_date)}</span>
+									</div>
+								</div>
+							</div>
+							<div class="accordion-links">
+								<!-- download brochure -->
+								<a href={item.form.asset} target="_blank">
+									<span>download form</span>
+								</a>
+
+								<!-- apply online -->
+								<a href="#" target="_blank">
+									<span>apply online</span>
+								</a>
+							</div>
 						</div>
-						<!-- {/if} -->
+						{/if}
 					</div>
 				{/each}
 			</div>
@@ -312,35 +360,13 @@
 	aside {
 		grid-area: aside;
 	}
-	main {
-		grid-area: main;
-	}
-	/* 
-	.card {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		padding: 1.4rem;
-		border-radius: 1rem;
-		background: var(--gray-1);
-		min-width: 160px;
-		margin-bottom: 1rem;
-		&__info {
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			& p {
-				margin: 0;
-				margin-bottom: 0.5rem;
-				color: var(--fc-main);
-			}
-		}
-	} */
+	/* Accordion */
 	.accordion_item {
 		margin-bottom: 1rem;
-		background-color: var(--blue-light);
+		background-color: var(--green-light);
 		border-radius: 1rem;
 	}
+
 	.accordion-header {
 		padding: 1rem;
 		display: flex;
@@ -351,6 +377,8 @@
 
 		& p:first-child {
 			margin-bottom: 0;
+			font-size: 1.4rem;
+			color: var(--fc-main);
 		}
 
 		& p:not(:first-child) {
@@ -394,6 +422,92 @@
 		padding: 1rem;
 		margin-bottom: 1rem;
 		/* background-color: var(--blue-light); */
+		& .detail {
+			margin-bottom: 2rem;
+		}
+		& .detail-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: baseline;
+			font-size: 1.4rem;
+			& p {
+				margin: 0;
+				margin-bottom: 0.5rem;
+				color: var(--fc-main);
+			}
+			& p:last-child {
+				font-size: 1rem;
+				color: var(--fc-light);
+			}
+		}
+		& .detail-leader {
+			display: flex;
+			justify-content: space-between;
+			& p {
+				font-size: 1rem;
+				margin: 0;
+			}
+		}
+		& .detail-schedule {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 1.4rem;
+			border-bottom: 1px solid var(--green-sha-1);
+			& p {
+				margin: 0;
+				margin-bottom: 0.5rem;
+				color: var(--fc-main);
+			}
+			& div {
+				display: flex;
+				justify-content: space-between;
+				& span {
+					margin: 0;
+					margin-bottom: 0.5rem;
+					color: var(--fc-main);
+				}
+				& .schedule-spacer {
+					padding-inline: 0.5rem;
+				}
+			}
+		}
+		& .accordion-links {
+			display: flex;
+			justify-content: space-around;
+			min-width: 160px;
+			padding-bottom: 1rem;
+			& a {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0.7rem 1.4rem;
+				font-family: var(--ff-gilroy-m);
+				text-transform: uppercase;
+				text-decoration: none;
+				font-size: 1rem;
+				line-height: 1;
+				color: var(--text-base);
+				margin: 0;
+				border: 2px solid var(--green-sha-1);
+				border-radius: 10rem;
+				background: var(--green);
+				transition: all 0.3s ease-in-out;
+				&:hover {
+					text-decoration: none;
+					/* color: var(--gray-1); */
+					border: 2px solid var(--green-sha-1);
+					background-color: var(--green-sha-1);
+				}
+			}
+		}
+		& .bold {
+			font-family: var(--ff-gilroy-m);
+		}
+	}
+
+	main {
+		grid-area: main;
 	}
 
 	/* Media Query */

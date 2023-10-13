@@ -38,7 +38,7 @@ function formatTime12(date) {
 		hours = d.getHours(),
 		minutes = d.getMinutes();
 	// Check whether AM or PM
-	let newformat = hours >= 12 ? 'PM' : 'AM';
+	let am_pm = hours >= 12 ? 'PM' : 'AM';
 	// Find current hour in AM-PM Format
 	hours = hours % 12;
 	// To display "0" as "12"
@@ -48,7 +48,7 @@ function formatTime12(date) {
 	// @ts-ignore
 	if (minutes.toString().length < 2) minutes = '0' + minutes.toString();
 
-	return `${[hours, minutes].join(':')}${newformat}`;
+	return `${[hours, minutes].join(':')}${am_pm}`;
 }
 /**
  * @param {string | number | Date} date
