@@ -1,9 +1,10 @@
 <script>
 	import ArrowOpen from '$lib/components/icons/ArrowOpen.svelte';
+	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import { PortableText } from '@portabletext/svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers';
-	import { PortableText } from '@portabletext/svelte';
 	import { cubicOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
 
@@ -46,7 +47,10 @@
 		// }
 	}
 </script>
-
+<svelte:head >
+  <title>{title}</title>
+  <meta name="description" content={excerpt} />
+</svelte:head>
 <div class="page__c">
 	<!-- hero -->
 	<!-- TODO: update other Heros based on this principle 4 rows without 2-cols wrapper -->
@@ -77,7 +81,7 @@
 		<div class="link">
 			<div class="link-desc__w">
 				<p class="small-title">Brochure</p>
-				<p>Feel free to access our course brochure in PDF format</p>
+				<p class="limited-char">Feel free to access our course brochure in PDF format</p>
 			</div>
 			<a href={brochure} target="_blank">
 				<div class="link-icon">
@@ -93,12 +97,26 @@
 		<aside>
 			{#if openForApplication.length == 0}
 				<div class="no-course">
-					<p>We are sorry but in this venue are currently no SHEP courses open for applications.</p>
-
-					<p>
-						You can sign to our newsletter to be notified when new Shep courses will open for
-						applications.
-					</p>
+					<div class="content">
+						<p>
+							We are sorry but this course in not currently open for applications in any facilities.
+						</p>
+						<p>
+							You can sign to our newsletter to be notified when new Shep courses will open for
+							applications.
+						</p>
+					</div>
+					<div class="nlr-link">
+						<div class="dots">
+							<DotsCorner width={24} height={24} />
+						</div>
+						<div>
+							<p>Sign to newsletter</p>
+							<a href="/newsletter">
+								<LinkCircle width={60} height={60} />
+							</a>
+						</div>
+					</div>
 				</div>
 			{:else}
 				<div class="accordion">
@@ -213,7 +231,7 @@
 											{/if}
 										</div>
 									{/if}
-									<!--  -->
+									<!-- TODO: responsiveness when form is narrow fold buttons in column -->
 									<div class="accordion-links">
 										<!-- download brochure -->
 										<a href={item.form.asset} target="_blank">
@@ -233,6 +251,7 @@
 			{/if}
 		</aside>
 		<!-- main -->
+		<!-- TODO: expand main content to last column on -->
 		<main>
 			<PortableText
 				value={content}
@@ -284,13 +303,6 @@
 </div>
 
 <style>
-	.link-icon {
-		transition: all 0.3s ease-in-out;
-	}
-	.rotate {
-		transform: rotate(180deg);
-		transition: all 0.3s ease-in-out;
-	}
 	.page__c {
 		max-width: 1680px;
 		margin: 0 auto;
@@ -357,7 +369,9 @@
 			}
 		}
 	}
-
+.limited-char{
+	width: 16ch;
+}
 	/* Brochure */
 	.link {
 		grid-area: hero-btn;
@@ -369,20 +383,6 @@
 		color: var(--fc-light);
 		background: var(--blue-light);
 		min-width: 160px;
-		/* & a {
-			text-decoration: none;
-			color: var(--text-base);
-			font-size: 1rem;
-			border: 2px solid var(--gray-1);
-			border-radius: 1rem;
-			transition: all 0.3s ease-in-out;
-			&:hover {
-				text-decoration: none;
-				color: var(--text-base);
-				background: var(--blue-light);
-				border: 2px solid var(--blue-sha-2);
-			}
-		} */
 	}
 	.small-title {
 		position: relative;
@@ -405,7 +405,6 @@
 		display: flex;
 		justify-content: right;
 		align-items: center;
-		/* border: 1px solid var(--fc-light); */
 	}
 
 	.link-desc__w {
@@ -432,17 +431,40 @@
 	}
 	/* Accordion */
 	.no-course {
+		position: relative;
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 		padding: 2rem;
 		border-radius: 1rem;
 		background: var(--red-sha-1);
 		& p {
 			margin: 0;
-			margin-bottom: 1rem;
+			margin-bottom: 0.5rem;
 			color: var(--fc-main);
+		}
+		& .content {
+			margin-right: 2rem;
+		}
+		& .nlr-link {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: flex-end;
+			color: var(--red);
+			&:first-child {
+				margin-bottom: 1rem;
+			}
+			& p {
+				text-align: right;
+				font-size: var(--sm);
+				line-height: 1;
+				margin: 0;
+				margin-bottom: 0.5rem;
+				color: var(--fc-main);
+			}
+			& a {
+				display: flex;
+				justify-content: end;
+			}
 		}
 	}
 	.accordion_item {
@@ -456,8 +478,6 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		/* background-color: var(--blue-light); */
-		/* transition: background 200ms ease-in-out; */
 
 		& p:first-child {
 			margin-bottom: 0;
@@ -499,6 +519,11 @@
 			display: flex;
 			justify-content: right;
 			align-items: center;
+			transition: all 0.3s ease-in-out;
+		}
+		& .rotate {
+			transform: rotate(180deg);
+			transition: all 0.3s ease-in-out;
 		}
 	}
 
@@ -519,9 +544,6 @@
 			}
 		}
 		& .detail-header {
-			/* display: flex;
-			justify-content: space-between;
-			align-items: baseline; */
 			font-size: 1.4rem;
 			& p {
 				margin: 0;
@@ -537,10 +559,6 @@
 				margin-bottom: 0.5rem;
 				color: var(--fc-main);
 			}
-			/* & p:last-child {
-				font-size: 1rem;
-				color: var(--fc-light);
-			} */
 		}
 		& .detail-leader {
 			display: flex;
@@ -577,6 +595,8 @@
 		}
 		& .accordion-links {
 			display: flex;
+			flex-wrap: wrap-reverse;
+
 			justify-content: space-around;
 			min-width: 160px;
 			padding-bottom: 1rem;
@@ -611,9 +631,28 @@
 
 	main {
 		grid-area: main;
+		padding-inline: 1rem;
 	}
 
 	/* Media Query */
+	@media screen and (max-width: 1280px) {
+		.main__c {
+			grid-template-columns: subgrid;
+			grid-template-areas: 'aside aside aside main main main main main ';
+		}
+		.accordion .accordion-links a {
+			margin-bottom: 1rem;
+		}
+		.no-course {
+			display: block;
+		}
+		.no-course .nlr-link {
+			flex-direction: row;
+		}
+		.nlr-link .dots {
+			transform: rotate(180deg);
+		}
+	}
 
 	@media screen and (max-width: 996px) {
 		.hero {
@@ -630,6 +669,11 @@
 			grid-template-areas:
 				'main main main main main main main main'
 				'aside aside aside aside aside aside aside aside';
+			/* 'aside aside main main main main main main' */
+		}
+
+		.no-course {
+			display: block;
 		}
 	}
 	@media (max-width: 768px) {
@@ -642,6 +686,21 @@
 		}
 	}
 	@media (max-width: 576px) {
+		/* .hero {
+			grid-template-rows: repeat(4, minmax(100px, max-content));
+			grid-template-areas: 'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
+					'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
+				'hero-price hero-price hero-price hero-price hero-price hero-price hero-price hero-price'
+					'hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn';
+		} */
+		.main__c {
+			grid-template-columns: subgrid;
+			grid-template-areas:
+				'main main main main main main main main'
+				'aside aside aside aside aside aside aside aside';
+		}
+	}
+	@media (max-width: 480px) {
 		.hero {
 			grid-template-rows: repeat(4, minmax(100px, max-content));
 			grid-template-areas:
@@ -649,12 +708,6 @@
 				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
 				'hero-price hero-price hero-price hero-price hero-price hero-price hero-price hero-price'
 				'hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn';
-		}
-		.main__c {
-			grid-template-columns: subgrid;
-			grid-template-areas:
-				'main main main main main main main main'
-				'aside aside aside aside aside aside aside aside';
 		}
 	}
 </style>

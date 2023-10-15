@@ -1,33 +1,23 @@
 <script>
-	export let width = 70,
-		height = 70;
+	export let width = 64,
+		height = 64;
 </script>
 
-<svg {width} {height} viewBox="0 0 70 70" version="1.1" xmlns="http://www.w3.org/2000/svg">
-	<g transform="matrix(1,0,0,1,-2863.52,-7291.34)">
-		<g transform="matrix(0.6385,0,0,0.6385,2259.91,7126.79)">
-			<g transform="matrix(1.35453,0,0,1.35453,-447.879,-99.3032)">
-				<circle
-					cx="1069"
-					cy="304"
-					r="37"
-					style="fill:rgb(254,254,254);fill-opacity:0;stroke:black;stroke-width:2.31px;"
-				/>
-			</g>
-		</g>
-		<g transform="matrix(0.6385,0,0,0.6385,2259.91,7126.79)">
-			<g transform="matrix(1.38772,-1.38772,0.71852,0.695693,-373.466,1283.71)">
-				<g transform="matrix(0.555187,1.10745,-0.573404,1.10745,843.137,207.054)">
-					<path
-						d="M30.506,23.929L43.42,26.512L46.003,39.426"
-						style="fill:none;stroke:black;stroke-width:2px;stroke-linejoin:miter;stroke-miterlimit:10;"
-					/>
-					<path
-						d="M25.662,44.27C25.662,44.27 39.777,30.155 43.42,26.512"
-						style="fill:none;stroke:black;stroke-width:2px;"
-					/>
-				</g>
-			</g>
-		</g>
-	</g>
-</svg>
+<svg
+	{width}
+	{height}
+	xmlns="http://www.w3.org/2000/svg"
+	xml:space="preserve"
+	style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5"
+	viewBox="0 0 64 64"
+	><circle
+		cx="1069"
+		cy="304"
+		r="37"
+		fill="none"
+		style="fill:#fefefe;fill-opacity:0;stroke:#2c425d;stroke-width:2.39px"
+		transform="matrix(.83784 0 0 .83784 -863.644 -222.745)"
+	/><path style="fill:#2c425d"
+		d="M37.562 24.988 26.48 22.772a1 1 0 1 1 .392-1.961l13.568 2.713 2.714 13.568a1.001 1.001 0 0 1-1.962.392l-2.216-11.082-16.437 16.436a1 1 0 0 1-1.413-1.414l16.436-16.436Z"
+	/></svg
+>

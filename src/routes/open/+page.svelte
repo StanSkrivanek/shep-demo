@@ -122,7 +122,6 @@
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;
 		grid-template-areas: 'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-img';
-
 		grid-template-rows: auto;
 		gap: 1rem;
 	}
@@ -138,16 +137,16 @@
 	}
 	.hero-img {
 		grid-area: hero-img;
-		/* grid-column: 4 / -1; */
 		border-radius: 1rem;
 		background: var(--gray-1);
 		max-height: max-content;
 		& img {
+			display:block;
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
 			border-radius: 1rem;
-			aspect-ratio: 2.4/1;
+			aspect-ratio: 2.5/1;
 		}
 	}
 	.separator-heading {
@@ -230,7 +229,7 @@
 	}
 
 
-	@media (max-width: 996px) {
+	@media (max-width: 1000px) {
 		.hero-data {
 			flex-direction: row;
 			gap: 3rem;
@@ -249,7 +248,7 @@
 		}
 	}
 
-	@media (max-width: 500px) {
+	@media (max-width: 600px) {
 		.hero-data {
 			display: block;
 		}

@@ -11,7 +11,7 @@ function sanityClient() {
 	};
 	return createClient({ ...config });
 }
-
+// Venues
 export const getAllVenues = async () => {
 	const client = sanityClient();
 	const allVenuesQuery = `*[_type == "venue"]{
@@ -27,7 +27,7 @@ export const getAllVenues = async () => {
 	 website,
 	 excerpt,
 	 "logo": logo.asset->url,
-	 "main_img": main_image.asset->url,
+	 "image": main_img.asset->url,
 	  "content": content[] {
 		...,
     _type == "image" => {
@@ -41,6 +41,35 @@ export const getAllVenues = async () => {
 	return allVenues;
 };
 
+export const getSingleVenue = async (/** @type {undefined} */ slug) => {
+	const client = sanityClient();
+	const query = `*[_type == "venue" && slug.current == $slug][0]{
+	 _id,
+	 venue_name,
+	 "slug": slug.current,
+	 city,
+	 address_1,
+	 address_2,
+	 eircode,
+	 phone,
+	 email,
+	 website,
+	 excerpt,
+	 "logo": logo.asset->url,
+	 "image": main_img.asset->url,
+	  "content": content[] {
+		...,
+	 _type == "image" => {
+		  ...,
+		  "asset": asset->
+		} 
+	 }
+  }`;
+	const venue = await client.fetch(query, { slug });
+	return venue;
+};
+
+// Courses
 export const getAllCourses = async () => {
 	const client = sanityClient();
 	const allCoursesQuery = `*[_type == "course"]{
@@ -87,6 +116,7 @@ export const getSingleCourse = async (/** @type {undefined} */ slug) => {
 	return course;
 };
 
+// Open Courses
 export const getAllOpenCourses = async () => {
 	const client = sanityClient();
 	const allOpenCoursesQuery = `*[_type == "open_course" && is_active == true]{

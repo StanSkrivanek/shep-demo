@@ -108,6 +108,7 @@
 		margin: 0 auto;
 		display: grid;
 		grid-template-columns: 1fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.5fr 1fr;
+		padding-inline: 1rem;
 	}
 	.hero {
 		display: grid;
