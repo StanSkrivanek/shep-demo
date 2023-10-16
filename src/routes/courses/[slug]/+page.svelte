@@ -51,6 +51,7 @@
   <title>{title}</title>
   <meta name="description" content={excerpt} />
 </svelte:head>
+
 <div class="page__c">
 	<!-- hero -->
 	<!-- TODO: update other Heros based on this principle 4 rows without 2-cols wrapper -->
@@ -303,12 +304,7 @@
 </div>
 
 <style>
-	.page__c {
-		max-width: 1680px;
-		margin: 0 auto;
-		display: grid;
-		grid-template-columns: 1fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.5fr 1fr;
-	}
+
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -417,17 +413,21 @@
 
 	/* === MAIN CONTENT === */
 
-	.main__c {
+	/* .main__c {
 		display: grid;
 		grid-template-columns: subgrid;
 		grid-template-areas: 'aside aside aside main main main main ';
 		grid-column: 1/-1;
 		margin-bottom: 5rem;
 		gap: 1rem;
-	}
+	} */
 
 	aside {
 		grid-area: aside;
+	}
+		main {
+		grid-area: main;
+		padding-inline: 1rem;
 	}
 	/* Accordion */
 	.no-course {
@@ -629,10 +629,7 @@
 		}
 	}
 
-	main {
-		grid-area: main;
-		padding-inline: 1rem;
-	}
+
 
 	/* Media Query */
 	@media screen and (max-width: 1280px) {

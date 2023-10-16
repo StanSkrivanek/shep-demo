@@ -1,7 +1,14 @@
 <script>
-	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
+	import ArrowOpen from '$lib/components/icons/ArrowOpen.svelte';
+	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
+	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
+	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers.js';
 	import { PortableText } from '@portabletext/svelte';
+	import { slide } from 'svelte/transition';
+
 	export let data;
+	console.log('🚀 ~ file: +page.svelte:8 ~ data:', data);
 	const {
 		venue_name,
 		address_1,
@@ -16,38 +23,637 @@
 		logo,
 		image
 	} = data.venue;
+
+	const openForApplication = data.openForApplications;
+
+	/**
+	 * @type {number | boolean | null}
+	 */
+	let show = null;
+
+	const toggleActive = (/** @type {number | boolean | null} */ i) => {
+		i == show ? (show = null) : (show = i);
+	};
 </script>
 
-<main>
-	<h1>{venue_name}</h1>
-	<p>{address_1}</p>
-	<p>{address_2}</p>
-	<p>{city}</p>
-	<p>{eircode}</p>
-	<p>{email}</p>
-	<p>{phone}</p>
-	<p>{website}</p>
-	<p>{excerpt}</p>
-	<main>
-		<PortableText
-			value={content}
-			onMissingComponent={false}
-			components={{
-				block: {
-					// blockquote: Quote,
-					h1: CustomHeading,
-					h2: CustomHeading,
-					h3: CustomHeading,
-					h4: CustomHeading,
-					h5: CustomHeading,
-					normal: TextRte
-				},
-				types: {
-					image: ImageRte
+<div class="page__c">
+	<div class="hero">
+		<div class="hero-data">
+			<h1>{venue_name}</h1>
+			<p>
+				{excerpt}
+			</p>
+		</div>
+		<div class="hero-img">
+			<img src={image} alt="cover" />
+		</div>
+		<div class="box-small address">
+			<p class="small-title">Address</p>
+
+			<p>{address_1}</p>
+			{#if address_2 != null}
+				<p>{address_2}</p>
+			{:else}
+				<p>-</p>
+			{/if}
+			<p>{city}</p>
+			<p>{eircode}</p>
+		</div>
+		<div class="box-small link">
+			<p class="small-title">Our Website</p>
+			<p class="limited-char">Feel free to access our course brochure in PDF format</p>
+			<a href="https://{website}" target="_blank">
+				<div class="link-icon">
+					<LinkCircle width={52} height={52} />
+				</div>
+			</a>
+		</div>
+		<!-- </div> -->
+	</div>
+
+	<!-- wapper start -->
+	<div class="main__c">
+		<!-- aside -->
+		<aside>
+			{#if openForApplication.length == 0}
+				<div class="no-course">
+					<div class="content">
+						<p>
+							We are sorry but currently there are no open SHEP courses open for applications in our facilities.
+						</p>
+						<p>
+							You can sign to our newsletter to be notified when new Shep courses will open for
+							applications.
+						</p>
+					</div>
+					<div class="nlr-link">
+						<div class="dots">
+							<DotsCorner width={24} height={24} />
+						</div>
+						<div>
+							<p>Sign to newsletter</p>
+							<a href="/newsletter">
+								<LinkCircle width={60} height={60} />
+							</a>
+						</div>
+					</div>
+				</div>
+			{:else}
+				<div class="accordion">
+					{#each openForApplication as item, i}
+						<div
+							class="accordion_item card"
+							role="button"
+							tabindex={i}
+							on:click={() => toggleActive(i)}
+							on:keydown={() => toggleActive(i)}
+						>
+							<div class="accordion-header">
+								<div class="data">
+									<div class="location">
+										<a class="accordion-header--link" href="../courses/{item.course.slug.current}">{item.course.title}</a>
+										<p>{item.course.type}</p>
+										<p>{monthNameDateYear(item.in_person.start_date)}</p>
+										<p>{formatTime12(item.in_person.start_date)}</p>
+									</div>
+								</div>
+								<div class="link-icon" class:rotate={show == i}>
+									<ArrowOpen width={58} height={58} />
+								</div>
+							</div>
+							{#if show == i}
+								<div class="body accordion-body" transition:slide>
+									<div class="detail">
+										<!-- header -->
+										<div class="detail-header">
+											<p>In Person</p>
+											<!-- <p>refNo: {item.in_person.course_in_ref}</p> -->
+										</div>
+										{#if item.in_person.is_active == false}
+											<p>Not available</p>
+										{:else}
+											<div class="date-group">
+												<p class="small">
+													{monthNameDate(item.in_person.start_date)} - {monthNameDateYear(
+														item.in_person.end_date
+													)}
+												</p>
+												<p class="small"><span class="bold">Group:</span> {item.in_person.group}</p>
+											</div>
+											<div class="detail-schedule">
+												<p>{item.in_person.weekday}</p>
+												<div>
+													<span>{formatTime12(item.in_person.start_date)}</span>
+													<span class="schedule-spacer">-</span>
+													<span>{formatTime12(item.in_person.end_date)}</span>
+												</div>
+											</div>
+											<!-- trainers list -->
+											<div class="detail-leader">
+												<p>
+													<span class="bold">Leaded by:</span>
+													{#each item.in_person.leader as leader}
+														{#if leader != item.in_person.leader[item.in_person.leader.length - 1]}
+															<span>{leader.name}, </span>
+														{:else}
+															<span>{leader.name}</span>
+														{/if}
+													{/each}
+												</p>
+											</div>
+											<!-- footer - week day & time-->
+										{/if}
+									</div>
+
+									{#if item.online.is_active == false}
+										<!-- <p>We do not currently offer an online version for this course.</p> -->
+										<p />
+									{:else}
+										<div class="detail">
+											<!-- header -->
+											<div class="detail-header">
+												<p>Online</p>
+												<!-- <p>refNo: {item.in_person.course_in_ref}</p> -->
+											</div>
+											{#if item.online.is_active == false}
+												<p>Not available</p>
+											{:else}
+												<div class="date-group">
+													<p class="small">
+														{monthNameDate(item.online.start_date)} - {monthNameDateYear(
+															item.online.end_date
+														)}
+													</p>
+													<p class="small"><span class="bold">Group:</span> {item.online.group}</p>
+												</div>
+												<div class="detail-schedule">
+													<p>{item.online.weekday}</p>
+													<div>
+														<span>{formatTime12(item.online.start_date)}</span>
+														<span class="schedule-spacer">-</span>
+														<span>{formatTime12(item.online.end_date)}</span>
+													</div>
+												</div>
+												<!-- trainers list -->
+												<div class="detail-leader">
+													<p>
+														<span class="bold">Leaded by:</span>
+														{#each item.online.leader as leader}
+															{#if leader != item.online.leader[item.online.leader.length - 1]}
+																<span>{leader.name}, </span>
+															{:else}
+																<span>{leader.name}</span>
+															{/if}
+														{/each}
+													</p>
+												</div>
+												<!-- footer - week day & time-->
+											{/if}
+										</div>
+									{/if}
+									<!-- TODO: responsiveness when form is narrow fold buttons in column -->
+									<div class="accordion-links">
+										<!-- download brochure -->
+										<a href={item.form.asset} target="_blank">
+											<span>download form</span>
+										</a>
+
+										<!-- apply online -->
+										<a href="#" target="_blank">
+											<span>apply online</span>
+										</a>
+									</div>
+								</div>
+							{/if}
+						</div>
+					{/each}
+				</div>
+			{/if}
+		</aside>
+		<main>
+			<PortableText
+				value={content}
+				onMissingComponent={false}
+				components={{
+					block: {
+						// blockquote: Quote,
+						h1: CustomHeading,
+						h2: CustomHeading,
+						h3: CustomHeading,
+						h4: CustomHeading,
+						h5: CustomHeading,
+						normal: TextRte
+					},
+					types: {
+						image: ImageRte
+					}
+				}}
+			/>
+		</main>
+	</div>
+</div>
+
+<!-- <img src={logo} alt=""> -->
+<!-- <img src={image} alt=""> -->
+
+<style>
+	/* Hero */
+
+	.hero {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-template-rows: repeat(4, minmax(6rem, 1fr));
+		grid-column: 1/-1;
+		margin-bottom: 5rem;
+		gap: 1rem;
+		grid-template-areas:
+			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-price'
+			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-price'
+			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-btn'
+			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-btn';
+	}
+	.hero-data {
+		grid-area: hero-data;
+		display: flex;
+		flex-direction: column;
+		padding: 2rem;
+		border-radius: 1rem;
+		background: var(--green-light);
+	}
+	.hero-img {
+		grid-area: hero-img;
+		border-radius: 1rem;
+		background: var(--gray-1);
+		max-height: max-content;
+
+		& img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 1rem;
+			aspect-ratio: 2.4/1;
+		}
+	}
+	.box-small {
+		/* grid-area: hero-price; */
+		padding: 1.4rem;
+		border-radius: 1rem;
+		background: var(--gray-1);
+		min-width: 160px;
+		& p {
+			margin: 0;
+			/* margin-bottom: 0.5rem; */
+			color: var(--fc-main);
+			font-size: var(--sm);
+		}
+		& .small-title {
+			position: relative;
+			margin-top: 0;
+			margin-bottom: 1.2rem;
+			font-family: var(--ff-gilroy-m);
+			font-size: var(--sm);
+			color: var(--fc-main);
+			&::after {
+				content: '';
+				position: absolute;
+				bottom: -4px;
+				left: 0;
+				width: 75%;
+				height: 2px;
+				background: black;
+			}
+		}
+	}
+	.address {
+		grid-area: hero-price;
+	}
+	.link {
+		grid-area: hero-btn;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		color: var(--fc-light);
+		background: var(--blue-light);
+	}
+
+	.limited-char {
+		width: 16ch;
+	}
+
+	.link-icon {
+		display: flex;
+		justify-content: right;
+		align-items: center;
+	}
+
+	/* === MAIN CONTENT === */
+
+	.main__c {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-template-areas: 'aside aside aside main main main main ';
+		grid-column: 1/-1;
+		margin-bottom: 5rem;
+		gap: 1rem;
+	}
+
+	aside {
+		grid-area: aside;
+	}
+	main {
+		grid-area: main;
+		padding-inline: 1rem;
+	}
+	/* Accordion */
+	.no-course {
+		position: relative;
+		display: flex;
+		padding: 2rem;
+		border-radius: 1rem;
+		background: var(--red-sha-1);
+		& p {
+			margin: 0;
+			margin-bottom: 0.5rem;
+			color: var(--fc-main);
+		}
+		& .content {
+			margin-right: 2rem;
+		}
+		& .nlr-link {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: flex-end;
+			color: var(--red);
+			&:first-child {
+				margin-bottom: 1rem;
+			}
+			& p {
+				text-align: right;
+				font-size: var(--sm);
+				line-height: 1;
+				margin: 0;
+				margin-bottom: 0.5rem;
+				color: var(--fc-main);
+			}
+			& a {
+				display: flex;
+				justify-content: end;
+			}
+		}
+	}
+	.accordion_item {
+		margin-bottom: 1rem;
+		background-color: var(--green-light);
+		border-radius: 1rem;
+	}
+
+	.accordion-header {
+		padding: 1rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		& .accordion-header--link{
+			/* text-decoration: none; */
+			color: var(--blue);
+			font-size: 1.4rem;
+			font-family: var(--ff-gilroy-m);
+			transition: all 0.3s ease-in-out;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+		& p:first-child {
+			margin-bottom: 0;
+			font-size: 1.4rem;
+			color: var(--fc-main);
+		}
+
+		& p:not(:first-child) {
+			margin: 0;
+			color: var(--fc-main);
+			/* margin-bottom: 0.5rem; */
+			font-size: var(--sm);
+		}
+		& p:nth-child(2) {
+			color: var(--fc-light);
+			margin-bottom: 0.5rem;
+		}
+		& .city {
+			color: var(--fc-light);
+			font-size: 1rem;
+		}
+		& .datetime {
+			font-size: var(--sm);
+			/* display: flex;
+			flex-direction: column;
+			justify-content: space-between; */
+			& p {
+				margin: 0;
+				/* margin-bottom: 0.5rem; */
+				color: var(--fc-main);
+			}
+		}
+		& .link {
+			display: flex;
+			justify-content: right;
+			align-items: center;
+		}
+		& .link-icon {
+			display: flex;
+			justify-content: right;
+			align-items: center;
+			transition: all 0.3s ease-in-out;
+		}
+		& .rotate {
+			transform: rotate(180deg);
+			transition: all 0.3s ease-in-out;
+		}
+	}
+
+	.accordion-body {
+		padding: 1rem;
+		margin-bottom: 1rem;
+		/* background-color: var(--blue-light); */
+		& .detail {
+			margin-bottom: 2rem;
+			& p {
+				margin: 0;
+				margin-bottom: 0.5rem;
+				color: var(--fc-main);
+			}
+			& .small {
+				font-size: var(--sm);
+				/* color: var(--fc-light); */
+			}
+		}
+		& .detail-header {
+			font-size: 1.4rem;
+			& p {
+				margin: 0;
+				margin-bottom: 0.5rem;
+				color: var(--fc-main);
+			}
+		}
+		& .date-group {
+			display: flex;
+			justify-content: space-between;
+			& p {
+				margin: 0;
+				margin-bottom: 0.5rem;
+				color: var(--fc-main);
+			}
+		}
+		& .detail-leader {
+			display: flex;
+			justify-content: space-between;
+			padding-bottom: 1rem;
+			& p {
+				font-size: 1rem;
+				margin: 0;
+			}
+			border-bottom: 1px solid var(--green-sha-1);
+		}
+		& .detail-schedule {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 1.4rem;
+			& p {
+				margin: 0;
+				margin-bottom: 0.5rem;
+				color: var(--fc-main);
+			}
+			& div {
+				display: flex;
+				justify-content: space-between;
+				& span {
+					margin: 0;
+					margin-bottom: 0.5rem;
+					color: var(--fc-main);
 				}
-			}}
-		/>
-	</main>
-	<!-- <img src={logo} alt=""> -->
-	<!-- <img src={image} alt=""> -->
-</main>
+				& .schedule-spacer {
+					padding-inline: 0.5rem;
+				}
+			}
+		}
+		& .accordion-links {
+			display: flex;
+			flex-wrap: wrap-reverse;
+
+			justify-content: space-around;
+			min-width: 160px;
+			padding-bottom: 1rem;
+			& a {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 0.7rem 1.4rem;
+				font-family: var(--ff-gilroy-m);
+				text-transform: uppercase;
+				text-decoration: none;
+				font-size: 1rem;
+				line-height: 1;
+				color: var(--text-base);
+				margin: 0;
+				border: 2px solid var(--green-sha-1);
+				border-radius: 10rem;
+				background: var(--green);
+				transition: all 0.3s ease-in-out;
+				&:hover {
+					text-decoration: none;
+					/* color: var(--gray-1); */
+					border: 2px solid var(--green-sha-1);
+					background-color: var(--green-sha-1);
+				}
+			}
+		}
+		& .bold {
+			font-family: var(--ff-gilroy-m);
+		}
+	}
+
+	/* Media Query */
+	@media screen and (max-width: 1280px) {
+		.content {
+			grid-template-columns: subgrid;
+			grid-template-areas: 'aside aside aside main main main main main ';
+		}
+		.accordion .accordion-links a {
+			margin-bottom: 1rem;
+		}
+		.no-course {
+			display: block;
+		}
+		.no-course .nlr-link {
+			flex-direction: row;
+		}
+		.nlr-link .dots {
+			transform: rotate(180deg);
+		}
+	}
+
+	@media screen and (max-width: 1024px) {
+		.hero {
+			/* grid-template-columns: subgrid; */
+			grid-template-rows: repeat(4, minmax(6rem, 1fr));
+			grid-template-areas:
+				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
+				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
+				'hero-data hero-data hero-data hero-data hero-data hero-data hero-price hero-price'
+				'hero-data hero-data hero-data hero-data hero-data hero-data hero-btn hero-btn';
+		}
+		.main__c {
+			grid-template-columns: subgrid;
+			grid-template-areas:
+				'main main main main main main main main'
+				'aside aside aside aside aside aside aside aside';
+			/* 'aside aside main main main main main main' */
+		}
+
+		.no-course {
+			display: block;
+		}
+	}
+	@media (max-width: 768px) {
+		.hero {
+			grid-template-rows: repeat(3, minmax(6rem, max-content));
+			grid-template-areas:
+				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
+				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
+				'hero-price hero-price hero-price hero-price hero-btn hero-btn hero-btn hero-btn';
+		}
+	}
+	@media (max-width: 640px) {
+		/* .hero {
+			grid-template-rows: repeat(4, minmax(100px, max-content));
+			grid-template-areas: 'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
+					'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
+				'hero-price hero-price hero-price hero-price hero-price hero-price hero-price hero-price'
+					'hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn';
+		} */
+		.main__c {
+			grid-template-columns: subgrid;
+			grid-template-areas:
+				'main main main main main main main main'
+				'aside aside aside aside aside aside aside aside';
+		}
+	}
+	@media (max-width: 480px) {
+		.hero {
+			grid-template-rows: repeat(4, minmax(100px, max-content));
+			grid-template-areas:
+				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
+				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
+				'hero-price hero-price hero-price hero-price hero-price hero-price hero-price hero-price'
+				'hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn';
+		}
+	}
+
+	/* .container {
+		display: grid;
+		grid-column: 1/-1;
+		grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+		gap: 1rem;
+	} */
+</style>

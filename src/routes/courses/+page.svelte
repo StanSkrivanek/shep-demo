@@ -6,7 +6,7 @@
 	const { course, online, in_person, venue, form } = data.allCourses;
 </script>
 
-<div class="conetnt">
+<div class="page__c">
 	<div class="hero">
 		<div class="hero-col-2__c">
 			<div class="hero-data">
@@ -103,13 +103,6 @@
 </div>
 
 <style>
-	.conetnt {
-		max-width: 1680px;
-		margin: 0 auto;
-		display: grid;
-		grid-template-columns: 1fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.5fr 1fr;
-		padding-inline: 1rem;
-	}
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;

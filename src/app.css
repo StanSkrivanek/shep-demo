@@ -95,11 +95,33 @@
 	--bg-base: #fafafa;
 }
 
-/* html {
-	font-family: var(--ff-gilroy);
-	font-size: var(--base-size);
-	line-height: var(--lineHeight);
-} */
+/* MEDIA QUERIES */
+/**
+* 640px - sm - small devices (mobile) 
+* 768px - md - medium devices (tablet)
+* 1024px - lg - large devices (desktops)
+* 1280px - xl - extra large devices (large desktops)
+* 1536px - xxl - extra extra large devices (larger desktops)
+*/
+
+/* GLOBAL */
+/* MAIM PAGE GRID */
+.page__c {
+	max-width: 1680px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.5fr 1fr;
+}
+/* ASIDE & MAIN */
+.main__c {
+	display: grid;
+	grid-template-columns: subgrid;
+	grid-template-areas: 'aside aside aside main main main main ';
+	grid-column: 1/-1;
+	margin-bottom: 5rem;
+	gap: 1rem;
+}
+
 body {
 	margin: 0;
 	padding: 0;

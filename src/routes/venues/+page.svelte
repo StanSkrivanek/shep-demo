@@ -5,7 +5,7 @@
 	// const { venue_name } = data.venues;
 </script>
 
-<div class="content">
+<div class="page__c">
 	<div class="hero">
 		<div class="hero-col-2__c">
 			<div class="hero-data">
@@ -56,14 +56,7 @@
 </div>
 
 <style>
-	/* TODO: style use SUBGRID that is not supported in older browsers */
-	.content {
-		max-width: 1680px;
-		margin: 0 auto;
-		display: grid;
-		grid-template-columns: 1fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.5fr 1fr;
-		padding-inline: 1rem;
-	}
+
 	/* Hero */
 	.hero {
 		display: grid;
@@ -179,8 +172,18 @@
 			}
 		}
 	}
-
-	@media (max-width: 1000px) {
+	/* 640px - sm - small devices (mobile)  */
+	@media (max-width: 640px) {
+		.hero-data {
+			display: block;
+		}
+		.hero-data h1 {
+			margin-bottom: 2rem;
+		}
+	}
+	
+	/* 1024px - lg - large devices (desktops) */
+	@media (max-width: 1024px) {
 		.hero-data {
 			flex-direction: row;
 			gap: 3rem;
@@ -197,22 +200,14 @@
 				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
 				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
 		}
-	}
-	@media (max-width: 600px) {
-		.hero-data {
-			display: block;
-		}
-		.hero-data h1 {
-			margin-bottom: 2rem;
-		}
 		.container {
 			grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 		}
-		.card {
-			display: block;
-		}
 		.thumbnail img {
 			border-radius: 1rem 1rem 0 0;
+		}
+		.card {
+			display: block;
 		}
 	}
 </style>

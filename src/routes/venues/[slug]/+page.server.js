@@ -1,10 +1,12 @@
-import { getSingleVenue } from "$lib/server/sanity";
-
+import { getSingleVenue, getAllOpenCoursesforCurrentVenue } from '$lib/server/sanity';
 
 export async function load({ params }) {
-   // @ts-ignore
-   const venue = await getSingleVenue(params.slug);
-   return {
-      venue
-   };
+	// @ts-ignore
+	const venue = await getSingleVenue(params.slug);
+	// @ts-ignore
+	const openForApplications = await getAllOpenCoursesforCurrentVenue(params.slug);
+	return {
+		venue,
+		openForApplications
+	};
 }
