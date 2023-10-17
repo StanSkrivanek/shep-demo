@@ -139,7 +139,7 @@
 									</div>
 								</div>
 								<div class="link-icon" class:rotate={show == i}>
-									<ArrowOpen width={58} height={58} />
+									<ArrowOpen width={50} height={50} />
 								</div>
 							</div>
 							{#if show == i}

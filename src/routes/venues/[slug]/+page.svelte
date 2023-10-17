@@ -79,7 +79,8 @@
 				<div class="no-course">
 					<div class="content">
 						<p>
-							We are sorry but currently there are no open SHEP courses open for applications in our facilities.
+							We are sorry but currently there are no open SHEP courses open for applications in our
+							facilities.
 						</p>
 						<p>
 							You can sign to our newsletter to be notified when new Shep courses will open for
@@ -93,7 +94,7 @@
 						<div>
 							<p>Sign to newsletter</p>
 							<a href="/newsletter">
-								<LinkCircle width={60} height={60} />
+								<LinkCircle width={48} height={48} />
 							</a>
 						</div>
 					</div>
@@ -111,14 +112,16 @@
 							<div class="accordion-header">
 								<div class="data">
 									<div class="location">
-										<a class="accordion-header--link" href="../courses/{item.course.slug.current}">{item.course.title}</a>
+										<a class="accordion-header--link" href="../courses/{item.course.slug.current}"
+											>{item.course.title}</a
+										>
 										<p>{item.course.type}</p>
 										<p>{monthNameDateYear(item.in_person.start_date)}</p>
 										<p>{formatTime12(item.in_person.start_date)}</p>
 									</div>
 								</div>
 								<div class="link-icon" class:rotate={show == i}>
-									<ArrowOpen width={58} height={58} />
+									<ArrowOpen width={48} height={48} />
 								</div>
 							</div>
 							{#if show == i}
@@ -126,7 +129,7 @@
 									<div class="detail">
 										<!-- header -->
 										<div class="detail-header">
-											<p>In Person</p>
+											<p class="acc-type">In Person</p>
 											<!-- <p>refNo: {item.in_person.course_in_ref}</p> -->
 										</div>
 										{#if item.in_person.is_active == false}
@@ -172,7 +175,7 @@
 										<div class="detail">
 											<!-- header -->
 											<div class="detail-header">
-												<p>Online</p>
+												<p class="acc-type">Online</p>
 												<!-- <p>refNo: {item.in_person.course_in_ref}</p> -->
 											</div>
 											{#if item.online.is_active == false}
@@ -413,7 +416,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		& .accordion-header--link{
+		& .accordion-header--link {
 			/* text-decoration: none; */
 			color: var(--blue);
 			font-size: 1.4rem;
@@ -439,6 +442,7 @@
 			color: var(--fc-light);
 			margin-bottom: 0.5rem;
 		}
+
 		& .city {
 			color: var(--fc-light);
 			font-size: 1rem;
@@ -493,6 +497,23 @@
 				margin: 0;
 				margin-bottom: 0.5rem;
 				color: var(--fc-main);
+			}
+			& .acc-type {
+				position: relative;
+				z-index: 1;
+				display: inline-block;
+				&::after {
+					content: '';
+					display: block;
+					position: absolute;
+					bottom: 20%;
+					left: 0;
+					width: 100%;
+					height: 40px;
+					border-bottom: 0.5em solid #f9dd94;
+					transform: skew(-12deg) translateX(10%);
+					z-index: -1;
+				}
 			}
 		}
 		& .date-group {
