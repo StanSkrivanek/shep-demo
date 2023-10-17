@@ -136,7 +136,7 @@ export const getAllOpenCoursesforCurrentVenue = async (/** @type {undefined} */ 
 		_type == 'reference' => @->{title, type, form, in_person, online, slug}   
 	},
 		'venue': venue {
-		_type == 'reference' => @->{venue_name, city}    
+		_type == 'reference' => @->{venue_name, city, slug}    
 	},
 
 	'form': application_form {
@@ -171,7 +171,7 @@ export const getAllOpenCourses = async () => {
 		_type == 'reference' => @->{title, type, excerpt, slug}    
 	},
 		'venue': venue {
-		_type == 'reference' => @->{venue_name, city}    
+		_type == 'reference' => @->{venue_name, city, slug}    
 	},
 
    'form': application_form {
@@ -205,7 +205,7 @@ export const getAllOpenCoursesForCurrentCourse = async (/** @type {undefined} */
 		_type == 'reference' => @->{title, type, excerpt, slug}    
 	},
 		'venue': venue {
-		_type == 'reference' => @->{venue_name, city}    
+		_type == 'reference' => @->{venue_name, city, slug}    
 	},
 
 	'form': application_form {

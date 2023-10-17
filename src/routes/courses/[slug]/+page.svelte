@@ -9,6 +9,7 @@
 	import { slide } from 'svelte/transition';
 
 	export let data;
+	console.log("🚀 ~ file: +page.svelte:12 ~ data:", data)
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
 		data.course;
 	const openForApplication = data.allOpenCourses;
@@ -86,7 +87,7 @@
 			</div>
 			<a href={brochure} target="_blank">
 				<div class="link-icon">
-					<LinkCircle width={60} height={60} />
+					<LinkCircle width={48} height={48} />
 				</div>
 			</a>
 		</div>
@@ -114,7 +115,7 @@
 						<div>
 							<p>Sign to newsletter</p>
 							<a href="/newsletter">
-								<LinkCircle width={60} height={60} />
+								<LinkCircle width={48} height={48} />
 							</a>
 						</div>
 					</div>
@@ -132,14 +133,17 @@
 							<div class="accordion-header">
 								<div class="data">
 									<div class="location">
-										<p>{item.venue.venue_name}</p>
+										<!-- <p>{item.venue.venue_name}</p> -->
+											<a class="accordion-header--link" href="/venues/{item.venue.slug.current}"
+											>{item.venue.venue_name}</a
+										>
 										<p>{item.venue.city}</p>
 										<p>{monthNameDateYear(item.in_person.start_date)}</p>
 										<p>{formatTime12(item.in_person.start_date)}</p>
 									</div>
 								</div>
 								<div class="link-icon" class:rotate={show == i}>
-									<ArrowOpen width={50} height={50} />
+									<ArrowOpen width={48} height={48} />
 								</div>
 							</div>
 							{#if show == i}
@@ -147,7 +151,7 @@
 									<div class="detail">
 										<!-- header -->
 										<div class="detail-header">
-											<p>In Person</p>
+											<p class="back-underline-tilt">In Person</p>
 											<!-- <p>refNo: {item.in_person.course_in_ref}</p> -->
 										</div>
 										{#if item.in_person.is_active == false}
@@ -193,7 +197,7 @@
 										<div class="detail">
 											<!-- header -->
 											<div class="detail-header">
-												<p>Online</p>
+												<p class="back-underline-tilt">Online</p>
 												<!-- <p>refNo: {item.in_person.course_in_ref}</p> -->
 											</div>
 											{#if item.online.is_active == false}
@@ -429,7 +433,9 @@
 		grid-area: main;
 		padding-inline: 1rem;
 	}
+
 	/* Accordion */
+
 	.no-course {
 		position: relative;
 		display: flex;
@@ -466,11 +472,19 @@
 				justify-content: end;
 			}
 		}
+		& .dots {
+			color: var(--clr-red);
+			/* transform: rotate(180deg); */
+		}
 	}
 	.accordion_item {
+		--_base-color-private: var(--item-color, var(--clr-base));
+		/* changing value of `--item-color` will change colors of each child element that contain `--_base-color-private`  */
+		--item-color: var(--clr-purple);
 		margin-bottom: 1rem;
-		background-color: var(--green-light);
+		background-color: var(--_bkc-color);
 		border-radius: 1rem;
+		background: color-mix(in oklab, var(--_base-color-private) 16%, white);
 	}
 
 	.accordion-header {
@@ -478,36 +492,44 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-
+		& .accordion-header--link {
+			/* --item-color: var(--clr-green); */
+			/* text-decoration: none; */
+			color: color-mix(in oklab, var(--_base-color-private) 80%, black);
+			font-size: 1.4rem;
+			font-family: var(--ff-gilroy-m);
+			transition: all 0.3s ease-in-out;
+			&:hover {
+				text-decoration: underline;
+				color: color-mix(in oklab, var(--_base-color-private) 100%, white);
+			}
+		}
 		& p:first-child {
 			margin-bottom: 0;
 			font-size: 1.4rem;
-			color: var(--fc-main);
+			color: color-mix(in oklab, var(--_base-color-private) 100%, white);
 		}
 
 		& p:not(:first-child) {
 			margin: 0;
-			color: var(--fc-main);
+			color: color-mix(in oklab, var(--_base-color-private) 100%, white);
 			/* margin-bottom: 0.5rem; */
 			font-size: var(--sm);
 		}
 		& p:nth-child(2) {
-			color: var(--fc-light);
+			color: color-mix(in oklab, var(--_base-color-private) 85%, white);
 			margin-bottom: 0.5rem;
 		}
+
 		& .city {
-			color: var(--fc-light);
+			color: color-mix(in oklab, var(--_base-color-private) 60%, white);
 			font-size: 1rem;
 		}
 		& .datetime {
 			font-size: var(--sm);
-			/* display: flex;
-			flex-direction: column;
-			justify-content: space-between; */
 			& p {
 				margin: 0;
-				/* margin-bottom: 0.5rem; */
-				color: var(--fc-main);
+				color: color-mix(in oklab, var(--_base-color-private) 80%, black);
 			}
 		}
 		& .link {
@@ -530,17 +552,17 @@
 	.accordion-body {
 		padding: 1rem;
 		margin-bottom: 1rem;
-		/* background-color: var(--blue-light); */
+		border-radius: 0 0 1rem 1rem;
 		& .detail {
 			margin-bottom: 2rem;
 			& p {
 				margin: 0;
 				margin-bottom: 0.5rem;
-				color: var(--fc-main);
+				color: color-mix(in oklab, var(--_base-color-private) 80%, black);
 			}
 			& .small {
 				font-size: var(--sm);
-				/* color: var(--fc-light); */
+				color: color-mix(in oklab, var(--_base-color-private) 80%, black);
 			}
 		}
 		& .detail-header {
@@ -548,7 +570,24 @@
 			& p {
 				margin: 0;
 				margin-bottom: 0.5rem;
-				color: var(--fc-main);
+				color: color-mix(in oklab, var(--_base-color-private) 60%, black);
+			}
+			& .back-underline-tilt {
+				position: relative;
+				z-index: 1;
+				display: inline-block;
+				&::after {
+					content: '';
+					display: block;
+					position: absolute;
+					bottom: 20%;
+					left: 0;
+					width: 100%;
+					height: 40px;
+					border-bottom: 0.5em solid color-mix(in oklab, var(--_base-color-private) 40%, white); /*#f9dd94*/
+					transform: skew(-12deg) translateX(10%);
+					z-index: -1;
+				}
 			}
 		}
 		& .date-group {
@@ -557,7 +596,7 @@
 			& p {
 				margin: 0;
 				margin-bottom: 0.5rem;
-				color: var(--fc-main);
+				color: color-mix(in oklab, var(--_base-color-private) 80%, white);
 			}
 		}
 		& .detail-leader {
@@ -567,8 +606,9 @@
 			& p {
 				font-size: 1rem;
 				margin: 0;
+				color: color-mix(in oklab, var(--_base-color-private) 85%, white);
 			}
-			border-bottom: 1px solid var(--green-sha-1);
+			border-bottom: 1px solid color-mix(in oklab, var(--_base-color-private) 36%, white);
 		}
 		& .detail-schedule {
 			display: flex;
@@ -578,7 +618,7 @@
 			& p {
 				margin: 0;
 				margin-bottom: 0.5rem;
-				color: var(--fc-main);
+				color: color-mix(in oklab, var(--_base-color-private) 80%, black);
 			}
 			& div {
 				display: flex;
@@ -586,7 +626,7 @@
 				& span {
 					margin: 0;
 					margin-bottom: 0.5rem;
-					color: var(--fc-main);
+					color: color-mix(in oklab, var(--_base-color-private) 80%, black);
 				}
 				& .schedule-spacer {
 					padding-inline: 0.5rem;
@@ -610,17 +650,17 @@
 				text-decoration: none;
 				font-size: 1rem;
 				line-height: 1;
-				color: var(--text-base);
 				margin: 0;
-				border: 2px solid var(--green-sha-1);
 				border-radius: 10rem;
-				background: var(--green);
-				transition: all 0.3s ease-in-out;
+				transition: all 0.3s linear;
+				color: color-mix(in oklab, var(--_base-color-private) 80%, black);
+				border: 2px solid color-mix(in oklab, var(--_base-color-private) 40%, white);
+				background-color: color-mix(in oklab, var(--_base-color-private) 30%, white);
 				&:hover {
 					text-decoration: none;
-					/* color: var(--gray-1); */
-					border: 2px solid var(--green-sha-1);
-					background-color: var(--green-sha-1);
+					border: 2px solid color-mix(in oklab, var(--_base-color-private) 60%, white);
+					background: color-mix(in oklab, var(--_base-color-private) 60%, white);
+					color: var(--fc-white);
 				}
 			}
 		}
@@ -628,7 +668,6 @@
 			font-family: var(--ff-gilroy-m);
 		}
 	}
-
 
 
 	/* Media Query */

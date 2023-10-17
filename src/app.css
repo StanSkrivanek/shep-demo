@@ -60,8 +60,24 @@
 	--fc-light: #787676;
 	--fc-mid: #48475e;
 	--fc-main: #24242d;
+	--fc-white: #fafafa;
 
 	/* Colors */
+	--clr-base: hsl(0, 0%, 50%);
+	--clr-green: hsl(160, 50%, 50%);
+	--clr-blue: hsl(220, 80%, 50%);
+	--clr-red: hsl(0, 50%, 50%);
+	--clr-yellow: hsl(53, 50%, 50%); /*#f9dd94*/
+	--clr-orange: hsl(25, 50%, 50%);
+	--clr-pink: hsl(300, 50%, 50%);
+	--clr-purple: hsl(260, 50%, 50%);
+	--clr-cyan: hsl(180, 50%, 50%);
+	--clr-gray: hsl(0, 0%, 50%);
+	--clr-white: hsl(0, 0%, 100%);
+	--clr-black: hsl(0, 0%, 0%);
+	--clr-transparent: transparent;
+	
+	/* Variations */
 	--gray-1: #fafafa;
 	--gray-2: #e8e8e9;
 	--gray-3: #7a828b;
@@ -72,13 +88,15 @@
 
 	--yellow: #f7e486;
 	--orange: #fac7a3;
-	--orange-sha-1: #f0cfb7;
-	--orange-sha-2: #fff5ed;
-	--green: #b2ebd1;
+	--orange-sha-1: hsl(25, 66%, 83%); /* #ffe3d0; */
+	--orange-sha-2: hsl(27, 100%, 96%); /* #fff7f0; */
+	--green-200: #7bc9a6;
+	--green-600: hsl(153, 100%, 50%);
+	--green: hsl(152, 58%, 81%);
 	--green-sha-1: #c2efdc;
 	--pink: #fca9f0;
 	--pink-sha-1: #ffdcf8;
-	--red: #f292a4;
+	--red: 349 79% 76%; /* #ff9aa2; */
 	--red-sha-1: #ffcbd7;
 	--blue: #64a5dd;
 	--blue-sha-1: #b9dcfa;
@@ -157,7 +175,7 @@ h1,
 h2,
 h3 {
 	font-family: var(--ff-gunterhaus);
-	font-weight: 100;
+	font-weight: 200;
 	line-height: 1;
 	letter-spacing: -0.025em;
 	color: rgb(75, 77, 82);

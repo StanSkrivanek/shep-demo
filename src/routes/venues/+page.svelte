@@ -45,7 +45,7 @@
 							<p>SHEP courses open for application in our facilities</p>
 						</div>
 						<div class="link-icon">
-							<LinkCircle width={52} height={52} />
+							<LinkCircle width={48} height={48} />
 						</div>
 					</a>
 				</div>
