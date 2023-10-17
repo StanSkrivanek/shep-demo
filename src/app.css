@@ -76,7 +76,7 @@
 	--clr-white: hsl(0, 0%, 100%);
 	--clr-black: hsl(0, 0%, 0%);
 	--clr-transparent: transparent;
-	
+
 	/* Variations */
 	--gray-1: #fafafa;
 	--gray-2: #e8e8e9;
@@ -139,7 +139,9 @@
 	margin-bottom: 5rem;
 	gap: 1rem;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 body {
 	margin: 0;
 	padding: 0;
@@ -160,8 +162,7 @@ a:hover {
 	text-decoration: underline;
 	color: lightseagreen;
 }
-h1
-{
+h1 {
 	font-family: var(--ff-gunterhaus);
 	font-weight: 200;
 	line-height: 1;
@@ -170,7 +171,7 @@ h1
 	margin-block: 0;
 }
 h2,
-h3 ,
+h3,
 h4,
 h5,
 h6 {
@@ -181,7 +182,6 @@ h6 {
 	color: rgb(75, 77, 82);
 	margin-block: 0;
 }
-
 
 h1,
 .h1 {
