@@ -218,3 +218,45 @@ export const getAllOpenCoursesForCurrentCourse = async (/** @type {undefined} */
 	const getAllOpenCoursesForCurrentCourse = await client.fetch(allOpenCoursesQuery, { slug });
 	return getAllOpenCoursesForCurrentCourse;
 };
+
+// Blog posts
+export const getAllPosts = async () => {
+	const client = sanityClient();
+	const allPostsQuery = `*[_type == "post"]{
+	...,
+	"content": post_body[] {
+		...,
+		_type == "image" => {
+			...,
+			"asset": asset->
+		}
+	}
+}`;
+
+	const allPosts = await client.fetch(allPostsQuery);
+	return allPosts;
+};
+
+// Single Article
+export const getSingleArticle = async (/** @type {undefined} */ id) => {
+	// 772b1b99-4d2e-4e21-8029-89be6fb6294b
+	const client = sanityClient();
+	const query = `*[_type == "post" && _id == $id][0]{
+	...,
+	"content": post_body[] {
+		...,
+		_type == "image" => {
+			...,
+			"asset": asset->
+		}
+	},
+	"toc_headings": post_body[style == "h2" || style == "h3"] {
+		"key": _key,
+  		"style": style,
+  		'title': children[0].text
+	}
+}`;
+
+	const article = await client.fetch(query, { id });
+	return article;
+};

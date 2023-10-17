@@ -13,7 +13,8 @@
 		ptBlocks[indexInParent - 1]?.style
 	);
 	
-	$: anchorId = `heading-${value._key}`;
+	// $: anchorId = `heading-${value._key}`;
+	$: anchorId = `${value._key}`;
 </script>
 
 <div class="relative {precededByHeading ? 'mt-10' : 'mt-4'}" id={anchorId}>
@@ -21,15 +22,15 @@
 		<span class="sr-only">Link to this heading</span>
 	</a> -->
 	{#if style === 'h1'}
-		<h1><slot /></h1>
+		<h1 id={anchorId}><slot /></h1>
 	{:else if style === 'h2'}
-		<h2><slot /></h2>
+		<h2 id={anchorId}><slot /></h2>
 	{:else if style === 'h3'}
-		<h3><slot /></h3>
+		<h3 id={anchorId}><slot /></h3>
 	{:else if style === 'h4'}
-		<h4><slot /></h4>
+		<h4 id={anchorId}><slot /></h4>
 	{:else}
-		<h5><slot /></h5>
+		<h5 id={anchorId}><slot /></h5>
 	{/if}
 </div>
 

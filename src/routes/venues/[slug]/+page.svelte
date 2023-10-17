@@ -8,7 +8,7 @@
 	import { slide } from 'svelte/transition';
 
 	export let data;
-	console.log('🚀 ~ file: +page.svelte:8 ~ data:', data);
+	
 	const {
 		venue_name,
 		address_1,
