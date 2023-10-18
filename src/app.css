@@ -69,6 +69,7 @@
 	--clr-red: hsl(0, 50%, 50%);
 	--clr-yellow: hsl(53, 50%, 50%); /*#f9dd94*/
 	--clr-orange: hsl(25, 50%, 50%);
+	--clr-orange-600: hsl(25, 96%, 44%);
 	--clr-pink: hsl(300, 50%, 50%);
 	--clr-purple: hsl(260, 50%, 50%);
 	--clr-cyan: hsl(180, 50%, 50%);
@@ -83,8 +84,8 @@
 	--gray-3: #7a828b;
 	--gray-4: #54595f;
 
-	--bluegray: #607891;
-	--darkblue: #2c425d;
+	--clr-gray-400: #607891;
+	--clr-gray-600: #2c425d;
 
 	--yellow: #f7e486;
 	--orange: #fac7a3;
