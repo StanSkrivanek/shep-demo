@@ -109,8 +109,11 @@
 	--color-primary: #1a1a1a;
 	--color-secondary: #f2f2f2;
 	--color-tertiary: #e5e5e5;
-	--color-accent: #ff0000;
+	--clr-accent: #ff0000;
 	--bg-base: #fafafa;
+
+	/* SVG */
+
 }
 
 /* MEDIA QUERIES */
@@ -123,6 +126,9 @@
 */
 
 /* GLOBAL */
+	svg {
+		display: block;
+	}
 /* MAIM PAGE GRID */
 .page__c {
 	max-width: 1680px;
