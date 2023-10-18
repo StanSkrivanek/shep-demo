@@ -1,13 +1,34 @@
 <script>
 	import Toc from '$lib/components/icons/Toc.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
+	import clickOutside from '$lib/utils/clickoutside.js';
 	import { PortableText } from '@portabletext/svelte';
 	import { quintOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
 	export let data;
 	const post = data.post;
 	// console.log('🚀 ~ file: +page.svelte:6 ~ Article:', data);
-	let isTocOpen = true;
+	let isTocOpen = false;
+	$: console.log('🚀 ~ file: +page.svelte:12 ~ isTocOpen:', isTocOpen);
+
+	// 	/**
+	// 	 * @param {HTMLDivElement} node
+	// 	 * @param {{ (): boolean; (): void; }} runFunction
+	// 	 */
+	// function clickOutside(node, runFunction) {
+	//   const handleClick = (/** @type {{ target: Node | null; }} */ event) => {
+	//     if (!node.contains(event.target )) {
+	//       if (runFunction) runFunction();
+	//     }
+	//   }
+
+	//   document.addEventListener("click", handleClick, true);
+	//   return {
+	//     destroy() {
+	//       document.removeEventListener("click", handleClick, true);
+	//     }
+	//   }
+	// }
 </script>
 
 <h1 id="top">Article Page</h1>
@@ -15,10 +36,15 @@
 <div>
 	<h2>{post.article_title}</h2>
 </div>
+<!-- 	use:clickOutside={() => (isTocOpen = false)} -->
 <main>
 	{#if isTocOpen}
-		<div class="toc" transition:fly={{ duration: 600, easing: quintOut, x: 300 }}>
-         <p class="toc-header">Table Of Content</p>
+		<div
+			class="toc"
+			transition:fly={{ duration: 600, easing: quintOut, x: 300 }}
+			use:clickOutside={() => (isTocOpen = false)}
+		>
+			<p class="toc-header">Table Of Content</p>
 			<ul class="toc__c">
 				{#each post.content as item}
 					{#if item.style == 'h2' || item.style == 'h3'}
@@ -47,15 +73,18 @@
 			</div>
 		</div>
 	{/if}
-	<div
-		class="toc-icon__w"
-		role="button"
-		tabindex="0"
-		on:click={() => (isTocOpen = !isTocOpen)}
-		on:keyup={() => (isTocOpen = !isTocOpen)}
-	>
-		<Toc width={48} height={48} />
-	</div>
+	{#if !isTocOpen}
+		<div
+			class="toc-icon__w"
+			role="button"
+			tabindex="0"
+			on:click={() => (isTocOpen = !isTocOpen)}
+			on:keyup={() => (isTocOpen = !isTocOpen)}
+		>
+			<Toc width={48} height={48} />
+		</div>
+	{/if}
+
 	<PortableText
 		value={post.content}
 		onMissingComponent={false}
@@ -89,22 +118,22 @@
 		background: var(--clr-white);
 		border-radius: 1rem 0 0 0;
 		border: 1px solid var(--gray-2);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      & p{
-         margin: 0;
-         padding:0;
-         margin-bottom:0.5rem;
-         font-size: 1.1rem;
-        color: var(--fc-main);
-         &::after{
-            content: '';
-            display: block;
-            width: 100%;
-            height: 1px;
-            background: var(--gray-2);
-            margin-top: 0.5rem;
-         }
-      }
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		& p {
+			margin: 0;
+			padding: 0;
+			margin-bottom: 0.5rem;
+			font-size: 1.1rem;
+			color: var(--fc-main);
+			&::after {
+				content: '';
+				display: block;
+				width: 100%;
+				height: 1px;
+				background: var(--gray-2);
+				margin-top: 0.5rem;
+			}
+		}
 		& ul {
 			list-style: none;
 			padding: 0;
@@ -121,7 +150,7 @@
 			font-weight: 500;
 			&:hover {
 				color: var(--clr-orange-600);
-            text-decoration: underline;
+				text-decoration: underline;
 			}
 		}
 	}
@@ -141,6 +170,5 @@
 		z-index: 2;
 		border-radius: 200px;
 		cursor: pointer;
-
 	}
 </style>
