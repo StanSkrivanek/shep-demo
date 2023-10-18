@@ -13,6 +13,9 @@
 	const post = data.post;
 
 	let isTocOpen = false;
+
+
+
 	onMount(() => {
 		//  create observer
 		const observer = new IntersectionObserver(
@@ -46,19 +49,29 @@
 		});
 
 		// run observer on toc-icon click
-		document.querySelector('.toc-icon__w').addEventListener('click', () => {
-         console.log("first click");
-         
+		// document.querySelector('.toc-icon__w').addEventListener('click', () => {
+		//    console.log("first click");
+		// post.content.forEach((/** @type {{ style: string; _key: any; }} */ item) => {
+		//    if (item.style == 'h2' || item.style == 'h3') {
+		//       let heading = document.getElementById(item._key);
+		// 		// get url hash
+		// 		let hash = window.location.hash;
+		// 		console.log("🚀 ~ file: +page.svelte:57 ~ post.content.forEach ~ hash:", hash)
+
+		// 		observer.observe(heading);
+		// 	}
+		// });
+		// });
+		function runObserver() {
+			console.log('runObserver');
 			post.content.forEach((/** @type {{ style: string; _key: any; }} */ item) => {
-            if (item.style == 'h2' || item.style == 'h3') {
-               let heading = document.getElementById(item._key);
-               
-               console.log(item.children[0].text);
-					
-					observer.observe(heading);
+				if (item.style == 'h2' || item.style == 'h3') {
+					let heading = document.getElementById(item._key);
+					// console.log(item);
+					return observer.observe(heading);
 				}
 			});
-		});
+		}
 	});
 </script>
 
@@ -108,7 +121,10 @@
 			class="toc-icon__w"
 			role="button"
 			tabindex="0"
-			on:click={() => (isTocOpen = !isTocOpen)}
+			on:click={() => {
+				isTocOpen = !isTocOpen;
+				// runObserver();
+			}}
 			on:keyup={() => (isTocOpen = !isTocOpen)}
 		>
 			<Toc width={48} height={48} />
@@ -205,8 +221,4 @@
 		border-radius: 200px;
 		cursor: pointer;
 	}
-	/* ul li a.active{
-      color: var(--clr-red) !important;
-      text-decoration: underline;
-   } */
 </style>

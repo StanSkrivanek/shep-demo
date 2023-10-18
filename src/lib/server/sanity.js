@@ -260,3 +260,47 @@ export const getSingleArticle = async (/** @type {undefined} */ id) => {
 	const article = await client.fetch(query, { id });
 	return article;
 };
+
+export const getArticleBySlug = async (/** @type {undefined} */ slug) => {
+	const client = sanityClient();
+	const query = `*[_type == "post" && slug.current == $slug ][0]{
+	...,
+	"content": post_body[] {
+		...,
+		_type == "image" => {
+			...,
+			"asset": asset->
+		}
+	},
+	"toc_headings": post_body[style == "h2" || style == "h3"] {
+		"key": _key,
+  		"style": style,
+  		'title': children[0].text
+	}
+}`;
+
+	const article = await client.fetch(query, { slug });
+	return article;
+}
+
+// (/** @type {undefined} */ slug) => {
+// 	const client = sanityClient();
+// 	const query = `*[_type == "post" && slug.current == $slug][0]{
+// 	...,
+// 	"content": post_body[] {
+// 		...,
+// 		_type == "image" => {
+// 			...,
+// 			"asset": asset->
+// 		}
+// 	},
+// 	"toc_headings": post_body[style == "h2" || style == "h3"] {
+// 		"key": _key,
+//   		"style": style,
+//   		'title': children[0].text
+// 	}
+// }`;
+
+// 	const article = await client.fetch(query, { slug });
+// 	return article;
+// }
