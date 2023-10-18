@@ -1,34 +1,65 @@
 <script>
+	// @ts-nocheck
+
 	import Toc from '$lib/components/icons/Toc.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
 	import clickOutside from '$lib/utils/clickoutside.js';
 	import { PortableText } from '@portabletext/svelte';
+	import { onMount } from 'svelte';
 	import { quintOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
+
 	export let data;
 	const post = data.post;
-	// console.log('🚀 ~ file: +page.svelte:6 ~ Article:', data);
+
 	let isTocOpen = false;
-	$: console.log('🚀 ~ file: +page.svelte:12 ~ isTocOpen:', isTocOpen);
+	onMount(() => {
+		//  create observer
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					const id = entry.target.getAttribute('id');
+					if (entry.isIntersecting) {
+						// console.log('intersecting');
 
-	// 	/**
-	// 	 * @param {HTMLDivElement} node
-	// 	 * @param {{ (): boolean; (): void; }} runFunction
-	// 	 */
-	// function clickOutside(node, runFunction) {
-	//   const handleClick = (/** @type {{ target: Node | null; }} */ event) => {
-	//     if (!node.contains(event.target )) {
-	//       if (runFunction) runFunction();
-	//     }
-	//   }
+						document.querySelector(`.toc__item a[href="#${id}"]`)?.classList.add('toc-active');
+					} else {
+						document.querySelector(`.toc__item a[href="#${id}"]`)?.classList.remove('toc-active');
+					}
+				});
+			},
+			{
+				// rootMargin: '0px 0px -50% 0px',
+				// root: main,
+				rootMargin: '0px 0px -60% 0px',
+				threshold: 0.25
+			}
+		);
 
-	//   document.addEventListener("click", handleClick, true);
-	//   return {
-	//     destroy() {
-	//       document.removeEventListener("click", handleClick, true);
-	//     }
-	//   }
-	// }
+		//  observe content
+		post.content.forEach((/** @type {{ style: string; _key: any; }} */ item) => {
+			if (item.style == 'h2' || item.style == 'h3') {
+				let heading = document.getElementById(item._key);
+				// console.log(item);
+				observer.observe(heading);
+			}
+		});
+
+		// run observer on toc-icon click
+		document.querySelector('.toc-icon__w').addEventListener('click', () => {
+         console.log("first click");
+         
+			post.content.forEach((/** @type {{ style: string; _key: any; }} */ item) => {
+            if (item.style == 'h2' || item.style == 'h3') {
+               let heading = document.getElementById(item._key);
+               
+               console.log(item.children[0].text);
+					
+					observer.observe(heading);
+				}
+			});
+		});
+	});
 </script>
 
 <h1 id="top">Article Page</h1>
@@ -36,7 +67,6 @@
 <div>
 	<h2>{post.article_title}</h2>
 </div>
-<!-- 	use:clickOutside={() => (isTocOpen = false)} -->
 <main>
 	{#if isTocOpen}
 		<div
@@ -152,6 +182,10 @@
 				color: var(--clr-orange-600);
 				text-decoration: underline;
 			}
+			/* & .active{
+            color: var(--clr-red) !important;
+            text-decoration: underline;
+         } */
 		}
 	}
 
@@ -171,4 +205,8 @@
 		border-radius: 200px;
 		cursor: pointer;
 	}
+	/* ul li a.active{
+      color: var(--clr-red) !important;
+      text-decoration: underline;
+   } */
 </style>
