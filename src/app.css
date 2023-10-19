@@ -135,6 +135,7 @@ ul li a.toc-active {
 }
 /* MAIM PAGE GRID */
 .page__c {
+	padding: 1rem;
 	max-width: 1680px;
 	margin: 0 auto;
 	display: grid;
@@ -149,6 +150,17 @@ ul li a.toc-active {
 	margin-bottom: 5rem;
 	gap: 1rem;
 }
+/* .toc-open {
+	animation: slide 0.5s forwards;
+}
+@keyframes slide {
+	0% {
+		transform: translateX(100%);
+	}
+	100% {
+		transform: translateX(0%);
+	}
+} */
 html {
 	scroll-behavior: smooth;
 }
@@ -231,7 +243,9 @@ ul {
 	list-style-type: square;
 	margin-bottom: 2rem;
 }
-ul,
+/* li {
+	margin-bottom: 0.5rem;
+} */
 p {
 	line-height: 1.4;
 	margin-bottom: 1rem;

@@ -55,7 +55,7 @@
 			// get all toc links
 			let heading = document.querySelector(`.toc__item a[href="${hash}"]`);
 			console.log(heading);
-			// heading?.classList.add('toc-active');
+			heading?.classList.add('toc-active');
 		});
 	});
 	async function handleTocClick() {
@@ -64,7 +64,7 @@
 		// wait for dom to update (add TOC to DOM)
 		await tick();
 		// toggle class  toc-open
-		// document.querySelector('.toc').classList.toggle('toc-open');
+		document.querySelector('.toc').classList.toggle('toc-open');
 		// get toc link with hash and add `toc-active` class
 		document.querySelector(`.toc__item a[href="${hash}"]`).classList.add('toc-active');
 		//  remove class on window scroll
@@ -80,7 +80,6 @@
 		<!-- {#if isTocOpen} -->
 		<div
 			class="toc"
-			class:toc-open={isTocOpen}
 			transition:fly={{ duration: 600, easing: quintOut, x: 300 }}
 			use:clickOutside={() => (isTocOpen = false)}
 		>
@@ -117,21 +116,20 @@
 			<div>
 				<h2>{post.article_title}</h2>
 			</div>
-
-			{#if !isTocOpen}
-				<div
-					class="toc-icon__w"
-					role="button"
-					tabindex="0"
-					on:click={() => {
-						isTocOpen = !isTocOpen;
-						handleTocClick();
-					}}
-					on:keyup={() => (isTocOpen = !isTocOpen)}
-				>
-					<Toc width={48} height={48} />
-				</div>
-			{/if}
+			<!-- {#if !isTocOpen} -->
+			<div
+				class="toc-icon__w"
+				role="button"
+				tabindex="0"
+				on:click={() => {
+					isTocOpen = !isTocOpen;
+					handleTocClick();
+				}}
+				on:keyup={() => (isTocOpen = !isTocOpen)}
+			>
+				<Toc width={48} height={48} />
+			</div>
+			<!-- {/if} -->
 
 			<PortableText
 				value={post.content}
@@ -270,17 +268,7 @@
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 			transform: translateX(100%);
 		}
-		.toc-open {
-			animation: slide 0.5s forwards;
-		}
-		@keyframes slide {
-			0% {
-				transform: translateX(100%);
-			}
-			100% {
-				transform: translateX(0%);
-			}
-		}
+		
 		.toc-icon__w {
 			display: block;
 		}
