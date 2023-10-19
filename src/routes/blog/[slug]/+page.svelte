@@ -20,10 +20,11 @@
 			(entries) => {
 				entries.forEach((entry) => {
 					const id = entry.target.getAttribute('id');
-					if (entry.isIntersecting) {
-						// console.log('intersecting');
-
+					// console.log("ENTRY ",entry);
+					
+					if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
 						document.querySelector(`.toc__item a[href="#${id}"]`)?.classList.add('toc-active');
+						updateHistory(`#${id}`);
 					} else {
 						document.querySelector(`.toc__item a[href="#${id}"]`)?.classList.remove('toc-active');
 					}
@@ -31,8 +32,6 @@
 			},
 			{
 				rootMargin: '0% 0px -10% 0px',
-				// root: main,
-				// rootMargin: '0px',
 				threshold: 0.5
 			}
 		);
@@ -45,19 +44,28 @@
 				observer.observe(heading);
 			}
 		});
-
-		// run observer on toc-icon click
-		document.querySelector('.toc-icon__w').addEventListener('click', async () => {
-			const hash = window.location.hash;
-			// console.log('first click');
-			await tick();
-			// get hash from url
-			// get all toc links
-			let heading = document.querySelector(`.toc__item a[href="${hash}"]`);
-			console.log(heading);
-			// heading?.classList.add('toc-active');
-		});
 	});
+
+
+/* Update the window URL on swipe, this is throttled so that the history doesn't get filled with useless entries*/
+function updateHistory(hash) {
+  clearTimeout(updateHistory.timeout);
+  updateHistory.timeout = setTimeout(function () {
+    if (window.location.hash !== hash) {
+      if (location.hash !== '') {
+        history.pushState({}, window.title, hash);
+		  console.log(history);
+		  
+      } else {
+        
+        // On first page load update the URL in place
+        history.replaceState({}, window.title, hash);
+      }
+    }
+  }, 1000);
+}
+
+
 	async function handleTocClick() {
 		// get hash from url
 		const hash = window.location.hash;
@@ -75,7 +83,7 @@
 <div class="page__c">
 	<h1 id="top">Article Page</h1>
 	<div class="main__c">
-		<!-- {#if isTocOpen} -->
+
 		<div
 			class="toc"
 			class:toc-open={isTocOpen}
@@ -110,7 +118,7 @@
 				</li>
 			</ul>
 		</div>
-		<!-- {/if} -->
+
 		<main>
 			<div>
 				<h2>{post.article_title}</h2>
