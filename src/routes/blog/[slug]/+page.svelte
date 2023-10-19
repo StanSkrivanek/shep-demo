@@ -21,7 +21,6 @@
 				entries.forEach((entry) => {
 					const id = entry.target.getAttribute('id');
 					// console.log("ENTRY ",entry);
-					
 					if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
 						document.querySelector(`.toc__item a[href="#${id}"]`)?.classList.add('toc-active');
 						updateHistory(`#${id}`);
@@ -40,31 +39,25 @@
 		post.content.forEach((/** @type {{ style: string; _key: any; }} */ item) => {
 			if (item.style == 'h2' || item.style == 'h3') {
 				let heading = document.getElementById(item._key);
-				// console.log(item);
 				observer.observe(heading);
 			}
 		});
 	});
 
-
-/* Update the window URL on swipe, this is throttled so that the history doesn't get filled with useless entries*/
-function updateHistory(hash) {
-  clearTimeout(updateHistory.timeout);
-  updateHistory.timeout = setTimeout(function () {
-    if (window.location.hash !== hash) {
-      if (location.hash !== '') {
-        history.pushState({}, window.title, hash);
-		  console.log(history);
-		  
-      } else {
-        
-        // On first page load update the URL in place
-        history.replaceState({}, window.title, hash);
-      }
-    }
-  }, 1000);
-}
-
+	/* Update the window URL `#hash` on scroll, this is throttled so that the history doesn't get filled with useless entries*/
+	function updateHistory(hash) {
+		clearTimeout(updateHistory.timeout);
+		updateHistory.timeout = setTimeout(function () {
+			if (window.location.hash !== hash) {
+				if (location.hash !== '') {
+					history.pushState({}, window.title, hash);
+				} else {
+					// On first page load update the URL in place
+					history.replaceState({}, window.title, hash);
+				}
+			}
+		}, 1000);
+	}
 
 	async function handleTocClick() {
 		// get hash from url
@@ -83,8 +76,7 @@ function updateHistory(hash) {
 <div class="page__c">
 	<h1 id="top">Article Page</h1>
 	<div class="main__c">
-
-		<div
+		<aside
 			class="toc"
 			class:toc-open={isTocOpen}
 			transition:fly={{ duration: 600, easing: quintOut, x: 300 }}
@@ -117,7 +109,7 @@ function updateHistory(hash) {
 					>
 				</li>
 			</ul>
-		</div>
+		</aside>
 
 		<main>
 			<div>
@@ -158,6 +150,7 @@ function updateHistory(hash) {
 				}}
 			/>
 		</main>
+		<aside class="news">NEWS</aside>
 	</div>
 </div>
 
@@ -165,7 +158,7 @@ function updateHistory(hash) {
 	.main__c {
 		display: grid;
 		grid-template-columns: subgrid;
-		grid-template-areas: 'aside aside aside main main main main --- ';
+		grid-template-areas: 'aside aside main main main main latest latest ';
 		grid-column: 1/-1;
 		margin-bottom: 5rem;
 		gap: 1rem;
@@ -229,7 +222,6 @@ function updateHistory(hash) {
 				}
 			}
 		}
-
 	}
 	.toc__c__bottom {
 		display: flex;
@@ -248,7 +240,11 @@ function updateHistory(hash) {
 		cursor: pointer;
 		display: none;
 	}
-
+	.news {
+		grid-area: latest;
+		padding-inline: 1rem;
+		background: lightgray;
+	}
 	/* Media Query */
 	@media screen and (max-width: 1280px) {
 		/* doostuff */
