@@ -5,7 +5,7 @@
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
 	import clickOutside from '$lib/utils/clickoutside.js';
 	import { PortableText } from '@portabletext/svelte';
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import { quintOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
 
@@ -13,8 +13,6 @@
 	const post = data.post;
 
 	let isTocOpen = false;
-
-
 
 	onMount(() => {
 		//  create observer
@@ -34,7 +32,7 @@
 			{
 				// rootMargin: '0px 0px -50% 0px',
 				// root: main,
-				rootMargin: '0px 0px -60% 0px',
+				rootMargin: '0px 0px -65% 0px',
 				threshold: 0.25
 			}
 		);
@@ -49,30 +47,30 @@
 		});
 
 		// run observer on toc-icon click
-		// document.querySelector('.toc-icon__w').addEventListener('click', () => {
-		//    console.log("first click");
-		// post.content.forEach((/** @type {{ style: string; _key: any; }} */ item) => {
-		//    if (item.style == 'h2' || item.style == 'h3') {
-		//       let heading = document.getElementById(item._key);
-		// 		// get url hash
-		// 		let hash = window.location.hash;
-		// 		console.log("🚀 ~ file: +page.svelte:57 ~ post.content.forEach ~ hash:", hash)
-
-		// 		observer.observe(heading);
-		// 	}
-		// });
-		// });
-		function runObserver() {
-			console.log('runObserver');
-			post.content.forEach((/** @type {{ style: string; _key: any; }} */ item) => {
-				if (item.style == 'h2' || item.style == 'h3') {
-					let heading = document.getElementById(item._key);
-					// console.log(item);
-					return observer.observe(heading);
-				}
-			});
-		}
+		document.querySelector('.toc-icon__w').addEventListener('click', async () => {
+			const hash = window.location.hash;
+			// console.log('first click');
+			await tick();
+			// get hash from url
+			// get all toc links
+			let heading = document.querySelector(`.toc__item a[href="${hash}"]`);
+			console.log(heading);
+			heading?.classList.add('toc-active');
+		});
 	});
+	async function handleTocClick() {
+		// get hash from url
+		const hash = window.location.hash;
+		// wait for dom to update (add TOC to DOM)
+		await tick();
+		// get toc link with hash and add `toc-active` class
+		 document.querySelector(`.toc__item a[href="${hash}"]`).classList.add('toc-active');
+		//  remove class on window scroll
+		window.addEventListener('scroll', () => {
+			document.querySelector(`.toc__item a[href="${hash}"]`).classList.remove('toc-active');
+		});
+	}
+
 </script>
 
 <h1 id="top">Article Page</h1>
@@ -123,7 +121,7 @@
 			tabindex="0"
 			on:click={() => {
 				isTocOpen = !isTocOpen;
-				// runObserver();
+				handleTocClick();
 			}}
 			on:keyup={() => (isTocOpen = !isTocOpen)}
 		>
