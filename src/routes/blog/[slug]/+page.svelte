@@ -30,7 +30,7 @@
 				});
 			},
 			{
-				rootMargin: '-10% 0px -30% 0px',
+				rootMargin: '0% 0px -10% 0px',
 				// root: main,
 				// rootMargin: '0px',
 				threshold: 0.5
@@ -63,8 +63,6 @@
 		const hash = window.location.hash;
 		// wait for dom to update (add TOC to DOM)
 		await tick();
-		// toggle class  toc-open
-		// document.querySelector('.toc').classList.toggle('toc-open');
 		// get toc link with hash and add `toc-active` class
 		document.querySelector(`.toc__item a[href="${hash}"]`).classList.add('toc-active');
 		//  remove class on window scroll
@@ -210,19 +208,20 @@
 			margin: 0;
 			& li {
 				padding-block: 0.25rem;
+				& a {
+					display: block;
+					text-decoration: none;
+					color: var(--clr-gray-600);
+					font-size: 1rem;
+					font-weight: 500;
+					&:hover {
+						color: var(--clr-orange-600);
+						text-decoration: underline;
+					}
+				}
 			}
 		}
-		& a {
-			display: block;
-			text-decoration: none;
-			color: var(--clr-gray-600);
-			font-size: 1rem;
-			font-weight: 500;
-			&:hover {
-				color: var(--clr-orange-600);
-				text-decoration: underline;
-			}
-		}
+
 	}
 	.toc__c__bottom {
 		display: flex;
