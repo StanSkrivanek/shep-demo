@@ -40,7 +40,7 @@
 					<p>{course.excerpt}</p>
 				</div>
 				<div class="card-footer">
-					<a class="btn-link" href="courses/{course.slug}">
+					<a class="btn-link" href="/courses/{course.slug}">
 						<LinkCircle width={48} height={48} />
 					</a>
 				</div>

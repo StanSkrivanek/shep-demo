@@ -5,7 +5,7 @@
    <a href="/venues">Venues</a>
    <a href="/open">Open for applications</a>
    <a href="/blog">Blog</a>
-   <a href="/blog/shep-counselling">Article</a>
+   <a href="blog/positive-mindset/everything-you-need-to-know-about-bipolar-disorder">Article</a>
 </nav>
 
 <style>

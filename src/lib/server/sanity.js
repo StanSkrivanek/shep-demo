@@ -223,7 +223,15 @@ export const getAllOpenCoursesForCurrentCourse = async (/** @type {undefined} */
 export const getAllPosts = async () => {
 	const client = sanityClient();
 	const allPostsQuery = `*[_type == "post"]{
-	...,
+		"title": article_title,
+	"excerpt": post_excerpt,
+	"slug": slug.current,
+	"main_img": hero_image.asset->url,
+	"category": post_category->blog_category,
+  	"category_slug": post_category->slug.current,
+	"author": post_author[] {
+		_type == 'reference' => @->{name}    
+        },
 	"content": post_body[] {
 		...,
 		_type == "image" => {
@@ -290,6 +298,52 @@ export const getArticleBySlug = async (/** @type {undefined} */ slug) => {
 	const article = await client.fetch(query, { slug });
 	return article;
 }
+// get all articles with same category but not the current article
+
+export const getAllArticlesByCategory = async (/** @type {undefined} */ category_slug, /** @type {undefined} */ slug) => {
+	const client = sanityClient();
+	const query = `*[_type == "post" && slug.current != $slug && post_category->slug.current == $category_slug]{
+	"title": article_title,
+	"excerpt": post_excerpt,
+	"slug": slug.current,
+	"main_img": hero_image.asset->url,
+	"category": post_category->blog_category,
+  	"category_slug": post_category->slug.current,
+	"author": post_author[] {
+		_type == 'reference' => @->{name}    
+		  },
+}`;
+
+	const articles = await client.fetch(query, { category_slug, slug });
+	return articles;
+};
+
+
+// export const getAllArticlesByCategory = async (/** @type {undefined} */ slug) => {
+// 	const client = sanityClient();
+// 	const query = `*[_type == "post" && post_category->slug.current == $slug && slug.current != $slug]{
+// 	"title": article_title,
+// 	"excerpt": post_excerpt,
+// 	"slug": slug.current,
+// 	"main_img": hero_image.asset->url,
+// 	"category": post_category->blog_category,
+//   	"category_slug": post_category->slug.current,
+// 	"author": post_author[] {
+// 		_type == 'reference' => @->{name}    
+// 		  },
+// 	"content": post_body[] {
+// 		...,
+// 		_type == "image" => {
+// 			...,
+// 			"asset": asset->
+// 		}
+// 	}
+// }`;
+
+// 	const articles = await client.fetch(query, { slug });
+// 	return articles;
+// }
+
 
 // (/** @type {undefined} */ slug) => {
 // 	const client = sanityClient();

@@ -4,6 +4,7 @@ import { getAllPosts } from '$lib/server/sanity';
 
 export async function load() {
 	const posts = await getAllPosts();
+
 	return {
 		posts
 	};
