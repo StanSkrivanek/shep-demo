@@ -9,6 +9,7 @@
 <h1>Blog Page</h1>
 
 {#each posts as post}
+
 	<div>
 		<h2>{post.article_title}</h2>
 	</div>

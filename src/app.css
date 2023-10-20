@@ -111,7 +111,7 @@
 	--color-secondary: #f2f2f2;
 	--color-tertiary: #e5e5e5;
 	--clr-accent: #ff0000;
-	--bg-base: #fafafa;
+	--bg-base: hsl(0, 0%, 98%);
 
 	/* SVG */
 }
@@ -199,35 +199,35 @@ h6 {
 
 h1,
 .h1 {
-	font-size: clamp(2.441rem, calc(2.441rem + 1vw), 3.052rem);
-	margin-bottom: var(--h2);
+	font-size: clamp(1.953rem, calc(1.4rem + 1vw), 3.052rem);
+	margin-bottom: 1.6rem;
 }
 
 h2,
 .h2 {
-	font-size: clamp(1.953rem, calc(1.953rem + 1vw), 2.441rem);
+	font-size: clamp(1.536rem, calc(1.2rem + 1vw), 2.441rem);
 	margin-bottom: var(--h3);
 }
 
 h3,
 .h3 {
-	font-size: clamp(1.536rem, calc(1.536rem + 1vw), 1.993rem);
+	font-size: clamp(1.536rem, calc(1rem + 1vw), 1.993rem);
 	margin-bottom: var(--h4);
 }
 
 h4,
 .h4 {
-	font-size: clamp(1.25rem, calc(1.25rem + 1vw), 1.563rem);
+	font-size: clamp(1.25rem, calc(.9rem + 1vw), 1.563rem);
 	margin-bottom: var(--h5);
 }
 h5,
 .h5 {
-	font-size: clamp(1rem, calc(1rem + 1vw), 1.25rem);
+	font-size: clamp(1rem, calc(.8rem + 1vw), 1.25rem);
 	margin-bottom: var(--h6);
 }
 h6,
 .h6 {
-	font-size: clamp(1rem, calc(1rem + 0.5vw), 1rem);
+	font-size: clamp(1rem, calc(.8rem + 0.5vw), 1rem);
 	margin-bottom: var(--base-size);
 }
 

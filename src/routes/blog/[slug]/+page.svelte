@@ -6,11 +6,13 @@
 	import clickOutside from '$lib/utils/clickoutside.js';
 	import { PortableText } from '@portabletext/svelte';
 	import { onMount, tick } from 'svelte';
-	import { quintOut } from 'svelte/easing';
-	import { fly } from 'svelte/transition';
+	// import { fly } from 'svelte/transition';
 
 	export let data;
-	const post = data.post;
+	// const post = data.post;
+	const { title, excerpt, main_img, category, category_slug, content, author, slug, toc_headings } =
+		data.post;
+	// console.log('🚀 ~ file: +page.svelte:14 ~ post:', post);
 
 	let isTocOpen = false;
 
@@ -36,7 +38,7 @@
 		);
 
 		//  observe content
-		post.content.forEach((/** @type {{ style: string; _key: any; }} */ item) => {
+		content.forEach((/** @type {{ style: string; _key: any; }} */ item) => {
 			if (item.style == 'h2' || item.style == 'h3') {
 				let heading = document.getElementById(item._key);
 				observer.observe(heading);
@@ -74,17 +76,25 @@
 </script>
 
 <div class="page__c">
-	<h1 id="top">Article Page</h1>
+	<div class="hero" id="top">
+		<div class="hero-col-2__c">
+			<div class="hero-data">
+				<div>
+					<h1><span>{title}</span></h1>
+					<p class="excerpt">{excerpt}</p>
+				</div>
+				<p class="article_cat">{category}</p>
+			</div>
+			<div class="hero-img">
+				<img src={main_img} alt={title} />
+			</div>
+		</div>
+	</div>
 	<div class="main__c">
-		<aside
-			class="toc"
-			class:toc-open={isTocOpen}
-			transition:fly={{ duration: 600, easing: quintOut, x: 300 }}
-			use:clickOutside={() => (isTocOpen = false)}
-		>
+		<aside class="toc" class:toc-open={isTocOpen} use:clickOutside={() => (isTocOpen = false)}>
 			<ul class="toc__c">
 				<li class="toc-header">Table Of Content</li>
-				{#each post.content as item}
+				{#each content as item}
 					{#if item.style == 'h2' || item.style == 'h3'}
 						<li class="toc__item">
 							<a
@@ -112,10 +122,6 @@
 		</aside>
 
 		<main>
-			<div>
-				<h2>{post.article_title}</h2>
-			</div>
-
 			{#if !isTocOpen}
 				<div
 					class="toc-icon__w"
@@ -132,7 +138,7 @@
 			{/if}
 
 			<PortableText
-				value={post.content}
+				value={content}
 				onMissingComponent={false}
 				components={{
 					block: {
@@ -150,22 +156,107 @@
 				}}
 			/>
 		</main>
-		<aside class="news">NEWS</aside>
+
+		<aside class="news">
+			<h4>Latest Articles</h4>
+			<p>latest etc.</p>
+			<p>most popular</p>
+			<p>make it sticky and on mobile under article</p>
+		</aside>
 	</div>
 </div>
 
 <style>
-	.main__c {
-		display: grid;
-		grid-template-columns: subgrid;
-		grid-template-areas: 'aside aside main main main main latest latest ';
-		grid-column: 1/-1;
-		margin-bottom: 5rem;
-		gap: 1rem;
-	}
 	main {
 		grid-area: main;
 		padding-inline: 1rem;
+	}
+	.hero {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1/-1;
+		margin-bottom: 5rem;
+	}
+	.hero-col-2__c {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1/-1;
+		grid-template-areas: 'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
+		grid-template-rows: auto;
+	}
+	.hero-data {
+		position: relative;
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1/-1;
+		grid-row: 1/-1;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 2rem;
+		border-radius: 1rem 0 0 1rem;
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(
+				90deg,
+				rgba(21, 24, 48, 0.4) 0%,
+				rgba(21, 24, 48, 0.3) 50%,
+				rgba(11, 11, 11, 0.1) 100%
+			);
+			border-radius: 1rem;
+			z-index: -1;
+		}
+		& h1 {
+			color: var(--fc-white);
+			max-width: 20ch;
+		}
+		& .excerpt {
+			max-width: 40ch;
+			color: var(--fc-white);
+			font-size: 1.1rem;
+		}
+		& .article_cat {
+			padding: 0.5rem 1rem;
+			border-radius: 100px;
+			border: 1px solid var(--gray-2);
+			text-transform: uppercase;
+			letter-spacing: 0.07rem;
+			color: var(--gray-2);
+			font-size: 0.9rem;
+			font-weight: 500;
+			align-self: flex-start;
+		}
+	}
+	.hero-img {
+		grid-area: hero-img;
+		position: relative;
+		border-radius: 1rem;
+		background: var(--gray-1);
+		max-height: 480px;
+		& img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: top;
+			border-radius: 1rem;
+		}
+	}
+
+	.main__c {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-template-areas: 'aside aside main main main main news news ';
+		grid-template-rows: auto;
+		grid-column: 1/-1;
+		margin-bottom: 5rem;
+		gap: 1rem;
 	}
 	/* TOC */
 	.toc {
@@ -241,23 +332,37 @@
 		display: none;
 	}
 	.news {
-		grid-area: latest;
+		grid-area: news;
+		border-left: 1px solid var(--gray-2);
 		padding-inline: 1rem;
-		background: lightgray;
+		/* background: lightgray; */
 	}
+
 	/* Media Query */
 	@media screen and (max-width: 1280px) {
 		/* doostuff */
 		.main__c {
-			grid-template-areas: 'aside aside aside main main main main main ';
+			grid-template-areas:
+				'aside aside aside main main main main main '
+				'news news news news news news news news ';
 		}
 	}
 	@media screen and (max-width: 1024px) {
 		/* doostuff */
 	}
 	@media (max-width: 768px) {
+		.hero-data::before {
+			background: linear-gradient(
+				90deg,
+				rgba(21, 24, 48, 0.4) 0%,
+				rgba(21, 24, 48, 0.3) 80%,
+				rgba(11, 11, 11, 0.1) 100%
+			);
+		}
 		.main__c {
-			grid-template-areas: 'main main main main main main main main ';
+			grid-template-areas:
+				'main main main main main main main main '
+				'news news news news news news news news ';
 		}
 		.toc {
 			position: fixed;
@@ -290,6 +395,23 @@
 	}
 	@media screen and (max-width: 640px) {
 		/* doostuff */
+		.hero-data::before {
+			background: linear-gradient(
+				90deg,
+				rgba(21, 24, 48, 0.4) 0%,
+				rgba(21, 24, 48, 0.3) 80%,
+				rgba(11, 11, 11, 0.1) 100%
+			);
+		}
+		.hero-data h1 {
+			max-width: 24ch;
+		}
+		.hero-data .excerpt {
+			max-width: 32ch;
+		}
+		.hero-img {
+			max-height: 100%;
+		}
 	}
 	@media screen and (max-width: 480px) {
 		/* doostuff */

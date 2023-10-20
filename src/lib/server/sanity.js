@@ -264,7 +264,15 @@ export const getSingleArticle = async (/** @type {undefined} */ id) => {
 export const getArticleBySlug = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
 	const query = `*[_type == "post" && slug.current == $slug ][0]{
-	...,
+	"title": article_title,
+	"excerpt": post_excerpt,
+	"slug": slug.current,
+	"main_img": hero_image.asset->url,
+	"category": post_category->blog_category,
+  	"category_slug": post_category->slug.current,
+	"author": post_author[] {
+		_type == 'reference' => @->{name}    
+        },
 	"content": post_body[] {
 		...,
 		_type == "image" => {
