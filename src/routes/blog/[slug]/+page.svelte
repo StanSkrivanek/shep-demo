@@ -157,11 +157,43 @@
 			/>
 		</main>
 
-		<aside class="news">
-			<h4>Latest Articles</h4>
-			<p>latest etc.</p>
-			<p>most popular</p>
-			<p>make it sticky and on mobile under article</p>
+		<aside class="side-links">
+			<div class="links__c">
+				<h4>Latest Articles</h4>
+				<div class="link__w">
+					<p>link 1</p>
+				</div>
+				<div class="link__w">
+					<p>link 2</p>
+				</div>
+				<div class="link__w">
+					<p>link 3</p>
+				</div>
+			</div>
+			<div class="links__c">
+				<h4>Featured Articles</h4>
+				<div class="link__w">
+					<p>link 1</p>
+				</div>
+				<div class="link__w">
+					<p>link 2</p>
+				</div>
+				<div class="link__w">
+					<p>link 3</p>
+				</div>
+			</div>
+			<div class="links__c">
+				<h4>Most popular</h4>
+				<div class="link__w">
+					<p>link 1</p>
+				</div>
+				<div class="link__w">
+					<p>link 2</p>
+				</div>
+				<div class="link__w">
+					<p>link 3</p>
+				</div>
+			</div>
 		</aside>
 	</div>
 </div>
@@ -331,11 +363,24 @@
 		cursor: pointer;
 		display: none;
 	}
-	.news {
+
+	/* ASIDE LINKS */
+
+	.side-links {
 		grid-area: news;
-		border-left: 1px solid var(--gray-2);
-		padding-inline: 1rem;
 		/* background: lightgray; */
+	}
+	
+	.links__c {
+		padding-inline: 1rem;
+		border-left: 1px solid var(--gray-2);
+		margin-bottom:2rem;
+		/* dostuff */
+	}
+
+	.link__w {
+		/* dostuff */
+		border-bottom: 1px solid var(--clr-gray-600);
 	}
 
 	/* Media Query */
