@@ -1,6 +1,6 @@
 //  fetch single article by slug
 
-import { getAllArticlesByCategory, getArticleBySlug } from '$lib/server/sanity.js';
+import { getRelatedArticles, getArticleBySlug } from '$lib/server/sanity.js';
 // import { redirect } from '@sveltejs/kit';
 export async function load({ params }) {
 	// log params
@@ -8,10 +8,8 @@ export async function load({ params }) {
 	// @ts-ignore
 	const post = await getArticleBySlug(params.slug);
 	// @ts-ignore
-	let catArticles = await getAllArticlesByCategory(params.slug, params.category);
+	let catArticles = await getRelatedArticles(params.slug, params.category);
 	return {
-		// @ts-ignore
-
 		post,
 		catArticles,
 	};

@@ -11,8 +11,6 @@
 	export let data;
 	$: post = data.post;
 
-	console.log('🚀 ~ file: +page.svelte:14 ~ post:', post);
-
 	let isTocOpen = false;
 
 	afterUpdate(() => {
@@ -47,7 +45,6 @@
 
 	/* Update the window URL `#hash` on scroll, this is throttled so that the history doesn't get filled with useless entries*/
 	function updateHistory(hash) {
-		console.log('🚀 ~ file: +page.svelte:65 ~ hash', hash);
 		clearTimeout(updateHistory.timeout);
 		updateHistory.timeout = setTimeout(function () {
 			if (window.location.hash !== hash) {
@@ -83,7 +80,7 @@
 					<h1><span>{post.title}</span></h1>
 					<p class="excerpt">{post.excerpt}</p>
 				</div>
-				<p class="article_cat">{post.category}</p>
+				<a class="article_cat" href="/blog/{post.category_slug}">{post.category}</a>
 			</div>
 			<div class="hero-img">
 				<img src={post.main_img} alt={post.title} />
@@ -236,15 +233,18 @@
 			font-size: 1.1rem;
 		}
 		& .article_cat {
-			padding: 0.5rem 1rem;
+			padding: 0.8rem 1.6rem;
 			border-radius: 100px;
-			border: 1px solid var(--gray-2);
+			text-decoration: none;
+			line-height: 1;
+			/* border: 1px solid var(--gray-2); */
 			text-transform: uppercase;
 			letter-spacing: 0.07rem;
-			color: var(--gray-2);
+			color: var(--gray-1);
 			font-size: 0.9rem;
 			font-weight: 500;
 			align-self: flex-start;
+			background: hsla(0, 0%, 100%, 0.3);
 		}
 	}
 	.hero-img {

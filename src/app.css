@@ -1,4 +1,3 @@
-
 @font-face {
 	font-family: 'Gilroy';
 	src: url('/fonts/gilroy/Gilroy-Regular.ttf') format('truetype');
@@ -7,8 +6,21 @@
 	font-style: normal;
 }
 @font-face {
+	font-family: 'Gilroy-l';
+	src: url('/fonts/gilroy/Gilroy-Light.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
 	font-family: 'Gilroy-m';
 	src: url('/fonts/gilroy/Gilroy-Medium.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Gilroy-smb';
+	src: url('/fonts/gilroy/Gilroy-SemiBold.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -18,7 +30,6 @@
 	font-weight: normal;
 	font-style: normal;
 }
-
 
 :root {
 	/* Fonts */
@@ -42,6 +53,8 @@
 	--ff-inter: 'Inter', sans-serif;
 	--ff-gilroy: 'Gilroy', sans-serif;
 	--ff-gilroy-m: 'Gilroy-m', sans-serif;
+	--ff-gilroy-light: 'Gilroy-l', sans-serif;
+	--ff-gilroy-semiblod: 'Gilroy-smb', sans-serif;
 	--ff-gunterhaus: 'Gunterhaus', sans-serif;
 	--ff-montreux: 'Montreux', sans-serif;
 
@@ -115,9 +128,6 @@
 */
 
 /* GLOBAL */
-svg {
-	display: block;
-}
 /* MAIM PAGE GRID */
 /* Page smooth scroll */
 html {
@@ -135,7 +145,16 @@ body {
 	line-height: var(--lineHeight);
 	color: rgb(73, 76, 82);
 }
-
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+svg {
+	display: block;
+}
+p strong {
+	font-family: var(--ff-gilroy-light);
+}
 .page__c {
 	padding: 1rem;
 	max-width: 1680px;
@@ -153,11 +172,9 @@ body {
 	gap: 1rem;
 }
 
-
 a {
 	/* text-decoration: none; */
 	color: rgb(55, 56, 58);
-
 }
 
 a:hover {
@@ -206,17 +223,17 @@ h3,
 
 h4,
 .h4 {
-	font-size: clamp(1.25rem, calc(.9rem + 1vw), 1.563rem);
+	font-size: clamp(1.25rem, calc(0.9rem + 1vw), 1.563rem);
 	margin-bottom: var(--h5);
 }
 h5,
 .h5 {
-	font-size: clamp(1rem, calc(.8rem + 1vw), 1.25rem);
+	font-size: clamp(1rem, calc(0.8rem + 1vw), 1.25rem);
 	margin-bottom: var(--h6);
 }
 h6,
 .h6 {
-	font-size: clamp(1rem, calc(.8rem + 0.5vw), 1rem);
+	font-size: clamp(1rem, calc(0.8rem + 0.5vw), 1rem);
 	margin-bottom: var(--base-size);
 }
 
@@ -238,6 +255,6 @@ p:last-child {
 /* global classes */
 .toc-active {
 	color: var(--clr-orange) !important;
-	text-decoration: underline ;
+	text-decoration: underline;
 	/* background: var(--gray-1); */
 }
