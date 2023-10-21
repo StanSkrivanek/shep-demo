@@ -7,28 +7,26 @@
 	import clickOutside from '$lib/utils/clickoutside.js';
 	import { PortableText } from '@portabletext/svelte';
 	import { onMount, tick } from 'svelte';
-	
+
 	// import { fly } from 'svelte/transition';
 
 	export let data;
-	console.log('🚀 ~ file: +page.svelte:12 ~ data:', data);
-
-	// const post = data.post;
-	const { title, excerpt, main_img, category, category_slug, content, author, slug, toc_headings } =
-		data.post;
-	// console.log('🚀 ~ file: +page.svelte:14 ~ post:', post);
+	$: post = data.post;
+	// let { title, excerpt, main_img, category, category_slug, content, author, slug, toc_headings } =
+	// 	data.post;
+	console.log('🚀 ~ file: +page.svelte:14 ~ post:', post);
 
 	let isTocOpen = false;
 
 	onMount(() => {
 		//  create observer
-		const observer = new IntersectionObserver(
+		let observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
-					const id = entry.target.getAttribute('id');
-					// console.log("ENTRY ",entry);
+					let id = entry.target.getAttribute('id');
 					if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
 						document.querySelector(`.toc__item a[href="#${id}"]`)?.classList.add('toc-active');
+
 						updateHistory(`#${id}`);
 					} else {
 						document.querySelector(`.toc__item a[href="#${id}"]`)?.classList.remove('toc-active');
@@ -42,7 +40,7 @@
 		);
 
 		//  observe content
-		content.forEach((/** @type {{ style: string; _key: any; }} */ item) => {
+		post.content.forEach((/** @type {{ style: string; _key: any; }} */ item) => {
 			if (item.style == 'h2' || item.style == 'h3') {
 				let heading = document.getElementById(item._key);
 				observer.observe(heading);
@@ -51,7 +49,8 @@
 	});
 
 	/* Update the window URL `#hash` on scroll, this is throttled so that the history doesn't get filled with useless entries*/
-	function updateHistory(hash) {
+function updateHistory(hash) {
+		console.log('🚀 ~ file: +page.svelte:65 ~ hash', hash);
 		clearTimeout(updateHistory.timeout);
 		updateHistory.timeout = setTimeout(function () {
 			if (window.location.hash !== hash) {
@@ -64,7 +63,7 @@
 			}
 		}, 1000);
 	}
-
+	
 	async function handleTocClick() {
 		// get hash from url
 		const hash = window.location.hash;
@@ -84,13 +83,13 @@
 		<div class="hero-col-2__c">
 			<div class="hero-data">
 				<div>
-					<h1><span>{title}</span></h1>
-					<p class="excerpt">{excerpt}</p>
+					<h1><span>{post.title}</span></h1>
+					<p class="excerpt">{post.excerpt}</p>
 				</div>
-				<p class="article_cat">{category}</p>
+				<p class="article_cat">{post.category}</p>
 			</div>
 			<div class="hero-img">
-				<img src={main_img} alt={title} />
+				<img src={post.main_img} alt={post.title} />
 			</div>
 		</div>
 	</div>
@@ -98,7 +97,7 @@
 		<aside class="toc" class:toc-open={isTocOpen} use:clickOutside={() => (isTocOpen = false)}>
 			<ul class="toc__c">
 				<li class="toc-header">Table Of Content</li>
-				{#each content as item}
+				{#each post.content as item}
 					{#if item.style == 'h2' || item.style == 'h3'}
 						<li class="toc__item">
 							<a
@@ -142,7 +141,7 @@
 			{/if}
 
 			<PortableText
-				value={content}
+				value={post.content}
 				onMissingComponent={false}
 				components={{
 					block: {
@@ -172,17 +171,9 @@
 							<p>{post.title}</p>
 							<div class="link-excerpt">
 								<p>{post.excerpt}</p>
-								<!-- TODO: why it doesn't redirect -->
-								<!-- <a class="btn-link" href="/blog/{category_slug}/{post.slug} "> -->
-									<!-- <a class="btn-link" href="./{post.slug} "> -->
-									<!-- redirect to new url and refresh -->
-									<a class="btn-link" href="./{post.slug} " rel="prefetch">
+								<!-- TODO: why it doesn't redirect - data-sveltekit-reload -->
 
-
-
-
-
-
+								<a href={`../${post.category_slug}/${post.slug}`} >
 									<LinkCircle width={48} height={48} />
 								</a>
 							</div>

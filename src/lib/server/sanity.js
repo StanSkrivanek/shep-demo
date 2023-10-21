@@ -300,7 +300,10 @@ export const getArticleBySlug = async (/** @type {undefined} */ slug) => {
 }
 // get all articles with same category but not the current article
 
-export const getAllArticlesByCategory = async (/** @type {undefined} */ category_slug, /** @type {undefined} */ slug) => {
+export const getAllArticlesByCategory = async (
+	/** @type {undefined} */ slug,
+	/** @type {undefined} */ category_slug
+) => {
 	const client = sanityClient();
 	const query = `*[_type == "post" && slug.current != $slug && post_category->slug.current == $category_slug]{
 	"title": article_title,
@@ -314,8 +317,8 @@ export const getAllArticlesByCategory = async (/** @type {undefined} */ category
 		  },
 }`;
 
-	const articles = await client.fetch(query, { category_slug, slug });
-	return articles;
+	let articlesByCategory = await client.fetch(query, { slug, category_slug });
+	return articlesByCategory;
 };
 
 

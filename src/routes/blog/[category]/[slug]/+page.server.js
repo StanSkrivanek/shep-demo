@@ -2,20 +2,17 @@
 
 import { getAllArticlesByCategory, getArticleBySlug } from '$lib/server/sanity.js';
 // import { redirect } from '@sveltejs/kit';
-export async function load({ params, }) {
+export async function load({ params }) {
+	// log params
+	console.log("🚀 ~ file: +page.server.js:7 ~ load ~ params", params)
 	// @ts-ignore
 	const post = await getArticleBySlug(params.slug);
-	const catArticles = await getAllArticlesByCategory(  post.category_slug, post.slug);
+	// @ts-ignore
+	let catArticles = await getAllArticlesByCategory(params.slug, params.category);
 	return {
+		// @ts-ignore
+
 		post,
-		catArticles
+		catArticles,
 	};
 }
-
-// export const actions = {
-// 	refresh: async ({ params }) => {
-// 		// @ts-ignore
-// 		const post = await getArticleBySlug(params.slug);
-// 		throw redirect(307, `/blog/${post.slug}`);
-// 	}
-// };
