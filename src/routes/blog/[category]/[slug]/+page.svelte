@@ -8,12 +8,9 @@
 	import { PortableText } from '@portabletext/svelte';
 	import { afterUpdate, tick } from 'svelte';
 
-	// import { fly } from 'svelte/transition';
-
 	export let data;
 	$: post = data.post;
-	// let { title, excerpt, main_img, category, category_slug, content, author, slug, toc_headings } =
-	// 	data.post;
+
 	console.log('🚀 ~ file: +page.svelte:14 ~ post:', post);
 
 	let isTocOpen = false;
@@ -22,13 +19,12 @@
 		const io = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
-					console.log(entry.target);
-
 					let id = entry.target.getAttribute('id');
 					if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
 						document.querySelector(`.toc__item a[href="#${id}"]`)?.classList.add('toc-active');
 
 						updateHistory(`#${id}`);
+					
 					} else {
 						document.querySelector(`.toc__item a[href="#${id}"]`)?.classList.remove('toc-active');
 					}
@@ -172,8 +168,6 @@
 							<p>{post.title}</p>
 							<div class="link-excerpt">
 								<p>{post.excerpt}</p>
-								<!-- TODO: why it doesn't redirect -->
-
 								<a href={`../${post.category_slug}/${post.slug}`}>
 									<LinkCircle width={48} height={48} />
 								</a>
