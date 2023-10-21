@@ -6,7 +6,7 @@
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
 	import clickOutside from '$lib/utils/clickoutside.js';
 	import { PortableText } from '@portabletext/svelte';
-	import { onMount, tick } from 'svelte';
+	import { afterUpdate, tick } from 'svelte';
 
 	// import { fly } from 'svelte/transition';
 
@@ -18,11 +18,12 @@
 
 	let isTocOpen = false;
 
-	onMount(() => {
-		//  create observer
-		let observer = new IntersectionObserver(
+	afterUpdate(() => {
+		const io = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {
+					console.log(entry.target);
+
 					let id = entry.target.getAttribute('id');
 					if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
 						document.querySelector(`.toc__item a[href="#${id}"]`)?.classList.add('toc-active');
@@ -43,13 +44,13 @@
 		post.content.forEach((/** @type {{ style: string; _key: any; }} */ item) => {
 			if (item.style == 'h2' || item.style == 'h3') {
 				let heading = document.getElementById(item._key);
-				observer.observe(heading);
+				io.observe(heading);
 			}
 		});
 	});
 
 	/* Update the window URL `#hash` on scroll, this is throttled so that the history doesn't get filled with useless entries*/
-function updateHistory(hash) {
+	function updateHistory(hash) {
 		console.log('🚀 ~ file: +page.svelte:65 ~ hash', hash);
 		clearTimeout(updateHistory.timeout);
 		updateHistory.timeout = setTimeout(function () {
@@ -63,7 +64,7 @@ function updateHistory(hash) {
 			}
 		}, 1000);
 	}
-	
+
 	async function handleTocClick() {
 		// get hash from url
 		const hash = window.location.hash;
@@ -171,9 +172,9 @@ function updateHistory(hash) {
 							<p>{post.title}</p>
 							<div class="link-excerpt">
 								<p>{post.excerpt}</p>
-								<!-- TODO: why it doesn't redirect - data-sveltekit-reload -->
+								<!-- TODO: why it doesn't redirect -->
 
-								<a href={`../${post.category_slug}/${post.slug}`} >
+								<a href={`../${post.category_slug}/${post.slug}`}>
 									<LinkCircle width={48} height={48} />
 								</a>
 							</div>
