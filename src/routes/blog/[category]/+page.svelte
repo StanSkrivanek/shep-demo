@@ -8,6 +8,7 @@
 
 <div class="page__c">
 	<h1 class="page-header">{catArticles[0].category}</h1>
+	
 	<main class="container">
 		{#each catArticles as post}
 			<div class="card">

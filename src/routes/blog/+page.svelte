@@ -1,46 +1,169 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
-import {trimText} from '$lib/utils/globalhelpers.js';
+	import { trimText } from '$lib/utils/globalhelpers.js';
+	// import { reset } from '__sveltekit/paths';
+	// import { get } from 'svelte/store';
 	export let data;
-	let posts = data.posts;
+	let { posts, categories } = data;
 
+	let filteredPosts = posts;
+	// filter categories for unique values
+	// let uniqueCategories = categories.filter((v, i, a) => a.findIndex(t => (t.category === v.category)) === i);
+
+	let uniqueCategories = categories.filter(
+		(
+			/** @type {{ category: Text; slug: Text }} */ v,
+			/** @type {number} */ i,
+			/** @type {Array<Object>} */ a
+		) => {
+			let cat = posts.filter(
+				(/** @type {{ category: any; }} */ post) => post.category === v.category
+			);
+			if (cat.length > 0) {
+				return cat;
+			}
+		}
+	);
+
+	//  filter posts for unique categories
+	// let uniquePosts = posts.filter((v, i, a) => a.findIndex((t) => t.category === v.category) === i);
+	const uniquePosts = (/** @type {Text} */ category) => {
+		let filtered = posts.filter(
+			(/** @type {{ category: Text; }} */ post) => post.category === category
+		);
+	
+		filteredPosts = filtered;
+	};
+
+	const allposts = () => {
+		console.log("POSTS",posts);
+		filteredPosts = posts;
+	};
 </script>
 
 <div class="page__c">
-	<h1>All Blog Posts</h1>
-	<main class="container">
-		{#each posts as post}
-			<div class="card">
-				<!-- TODO: use Sanity image optimisation settings -> ?max=fit&xxx-->
-				<div class="card-subheading">
-					<a class="btn-link" href={`./blog/${post.category_slug}`}>{post.category}</a>
-				</div>
-				<div class="card-img">
-					<img src={post.main_img} alt={post.title} />
-				</div>
-				<div class="card-header">
-					<p>{post.title}</p>
-				</div>
-				<div class="card-body">
-					<!-- <p>{post.author[0].name}</p> -->
-					<p>{trimText(post.excerpt, 140)}</p>
-				</div>
-				<div class="card-footer">
-					<a class="btn-link" href={`./blog/${post.category_slug}/${post.slug}`}>
-						<LinkCircle width={40} height={40} />
-					</a>
-				</div>
+	<h1 class="page-header">All Articles</h1>
+	<div class="main__c">
+		<aside>
+			<p>Categories</p>
+			<div class="tags">
+				<button class="btn-tag" on:click={() => allposts()}>All</button>
+				{#each uniqueCategories as category}
+					<button class="btn-tag" type="button" on:click={() => uniquePosts(category.category)}>
+						{category.category}
+					</button>
+				{/each}
 			</div>
-		{/each}
-	</main>
+		</aside>
+		<main class="container">
+			{#each filteredPosts as post}
+				<div class="posts">
+					<div class="card">
+						<!-- TODO: use Sanity image optimisation settings -> ?max=fit&xxx-->
+						<div class="card-subheading">
+							<a class="btn-link" href={`./blog/${post.category_slug}`}>{post.category}</a>
+						</div>
+						<div class="card-img">
+							<img src={post.main_img} alt={post.title} />
+						</div>
+						<div class="card-header">
+							<p>{post.title}</p>
+						</div>
+						<div class="card-body">
+							<!-- <p>{post.author[0].name}</p> -->
+							<p>{trimText(post.excerpt, 140)}</p>
+						</div>
+						<div class="card-footer">
+							<a class="btn-link" href={`./blog/${post.category_slug}/${post.slug}`}>
+								<LinkCircle width={40} height={40} />
+							</a>
+						</div>
+					</div>
+				</div>
+			{/each}
+		</main>
+	</div>
 </div>
 
 <style>
-	.container {
+	aside {
+		grid-area: aside;
+		/* border-right: 1px solid var(--gray-2); */
+		& p {
+			margin: 0;
+			margin-bottom: 1rem;
+			padding-bottom: 0.5rem;
+			/* font-size: var(--xs); */
+			line-height: 1;
+			border-bottom: 1px solid var(--gray-2);
+			color: var(--gray-3);
+		}
+	}
+	main {
+		grid-area: main;
+		padding-inline: 1rem;
+	}
+	.main__c {
 		display: grid;
+		grid-template-columns: subgrid;
+		grid-template-areas: 'aside main main main main main main main';
 		grid-column: 1/-1;
+		margin-bottom: 5rem;
+		gap: 1rem;
+	}
+	.page-header {
+		grid-column: 1/4;
+	}
+	.container {
+		grid-area: main;
+		display: grid;
+		/* grid-column: 1/-1; */
 		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 		gap: 1rem;
+	}
+
+	.tags {
+		/* grid-area: aside; */
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		max-width: 300px;
+		/* border-right: 1px solid var(--gray-2); */
+		& .btn-tag {
+			margin: 0;
+			font-size: var(--xs);
+			line-height: 1;
+			pointer-events: all;
+			color: var(--gray-3);
+			border: none;
+			border: 1px solid var(--gray-2);
+			padding: 0.25rem 0.5rem;
+			border-radius: 0.25rem;
+			background: var(--clr-white);
+			transition: all 0.2s ease-in-out;
+			&:hover {
+				color: var(--clr-white);
+				background-color: var(--clr-cyan);
+				border-color: transparent;
+			}
+		}
+		/* & .btn-tag{
+			margin: 0;
+			font-size: var(--xs);
+			line-height: 1;
+			pointer-events: all;
+			color: var(--gray-3);
+			border: 1px solid var(--gray-2);
+			padding: 0.25rem 0.5rem;
+			border-radius: 0.25rem;
+			text-decoration: none;
+			transition: all 0.3s ease-in-out;
+			&:hover {
+				color: var(--clr-white);
+				background-color: var(--clr-cyan);
+				border-color: transparent;
+			}
+		} */
 	}
 	.card {
 		display: grid;

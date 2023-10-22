@@ -342,3 +342,24 @@ export const getRelatedArticles = async (
 	let relatedArticles = await client.fetch(query, { slug, category_slug });
 	return relatedArticles;
 };
+
+export const getAllCategories = async () => {
+	const client = sanityClient();
+	const query = `*[_type == "blogcategories"]{
+	"category": blog_category,
+	"slug": slug.current,
+}`;
+
+	let allCategories = await client.fetch(query);
+	return allCategories;
+}
+// export const getAllCategories = async () => {
+// 	const client = sanityClient();
+// 	const query = `*[_type == "blog_category"]{
+// 	"category": blog_category,
+// 	"slug": slug.current,
+// }`;
+
+// 	let allCategories = await client.fetch(query);
+// 	return allCategories;
+// }

@@ -2,14 +2,14 @@
 	import ArrowOpen from '$lib/components/icons/ArrowOpen.svelte';
 	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
-	import { PortableText } from '@portabletext/svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers';
+	import { PortableText } from '@portabletext/svelte';
 	import { cubicOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
 
 	export let data;
-	console.log("🚀 ~ file: +page.svelte:12 ~ data:", data)
+	console.log('🚀 ~ file: +page.svelte:12 ~ data:', data);
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
 		data.course;
 	const openForApplication = data.allOpenCourses;
@@ -48,9 +48,10 @@
 		// }
 	}
 </script>
-<svelte:head >
-  <title>{title}</title>
-  <meta name="description" content={excerpt} />
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="description" content={excerpt} />
 </svelte:head>
 
 <div class="page__c">
@@ -134,7 +135,7 @@
 								<div class="data">
 									<div class="location">
 										<!-- <p>{item.venue.venue_name}</p> -->
-											<a class="accordion-header--link" href="/venues/{item.venue.slug.current}"
+										<a class="accordion-header--link" href="/venues/{item.venue.slug.current}"
 											>{item.venue.venue_name}</a
 										>
 										<p>{item.venue.city}</p>
@@ -308,7 +309,6 @@
 </div>
 
 <style>
-
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -369,9 +369,9 @@
 			}
 		}
 	}
-.limited-char{
-	width: 16ch;
-}
+	.limited-char {
+		width: 16ch;
+	}
 	/* Brochure */
 	.link {
 		grid-area: hero-btn;
@@ -429,7 +429,7 @@
 	aside {
 		grid-area: aside;
 	}
-		main {
+	main {
 		grid-area: main;
 		padding-inline: 1rem;
 	}
@@ -668,7 +668,6 @@
 			font-family: var(--ff-gilroy-m);
 		}
 	}
-
 
 	/* Media Query */
 	@media screen and (max-width: 1280px) {
