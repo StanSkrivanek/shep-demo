@@ -7,9 +7,11 @@
 	let { posts, categories } = data;
 
 	let filteredPosts = posts;
-	// filter categories for unique values
+	//  check these functions
 	// let uniqueCategories = categories.filter((v, i, a) => a.findIndex(t => (t.category === v.category)) === i);
+	// let uniquePosts = posts.filter((v, i, a) => a.findIndex((t) => t.category === v.category) === i);
 
+	// filter categories for unique values (render only categories that have posts)
 	let uniqueCategories = categories.filter(
 		(
 			/** @type {{ category: Text; slug: Text }} */ v,
@@ -25,24 +27,42 @@
 		}
 	);
 
-	//  filter posts for unique categories
-	// let uniquePosts = posts.filter((v, i, a) => a.findIndex((t) => t.category === v.category) === i);
+	//  filter posts by category
 	const uniquePosts = (/** @type {Text} */ category) => {
 		let filtered = posts.filter(
 			(/** @type {{ category: Text; }} */ post) => post.category === category
 		);
-	
+
 		filteredPosts = filtered;
 	};
 
+	// show all posts - reset filter
 	const allposts = () => {
-		console.log("POSTS",posts);
+		console.log('POSTS', posts);
 		filteredPosts = posts;
 	};
 </script>
 
 <div class="page__c">
-	<h1 class="page-header">All Articles</h1>
+	<div class="hero">
+		<div class="hero-col-2__c">
+			<div class="hero-data">
+				<h1>All Articles</h1>
+				<p>
+					Dive into our enriching collection of articles, meticulously crafted to guide you through
+					the labyrinth of mental health and well-being. Explore topics like mindfulness, self-care,
+					and positive psychology, and embark on a transformative experience toward a healthier mind
+					and a happier life.
+				</p>
+			</div>
+			<div class="hero-img">
+				<img
+					src="https://cdn.sanity.io/images/gkez65br/production/e839df8e4afd7bb9a69fa6ff57ff852dbfcdcfc2-800x400.jpg"
+					alt="man on paper ship looking into binocular"
+				/>
+			</div>
+		</div>
+	</div>
 	<div class="main__c">
 		<aside>
 			<p>Categories</p>
@@ -101,7 +121,7 @@
 	}
 	main {
 		grid-area: main;
-		padding-inline: 1rem;
+		/* padding-inline: 1rem; */
 	}
 	.main__c {
 		display: grid;
@@ -111,9 +131,47 @@
 		margin-bottom: 5rem;
 		gap: 1rem;
 	}
-	.page-header {
-		grid-column: 1/4;
+
+	.hero {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1/-1;
+		margin-bottom: 5rem;
 	}
+	.hero-col-2__c {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1/-1;
+		grid-template-areas: 'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-img';
+		grid-template-rows: auto;
+		gap: 1rem;
+	}
+	.hero-data {
+		display: flex;
+		flex-direction: column;
+		grid-column: 1 / 4;
+		grid-row: 1/1;
+		grid-area: hero-data;
+		padding: 2rem;
+		border-radius: 1rem;
+		background: var(--blue-light);
+	}
+	.hero-img {
+		grid-column: 4 / -1;
+		grid-area: hero-img;
+		border-radius: 1rem;
+		background: var(--gray-1);
+		max-height: max-content;
+
+		& img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 1rem;
+			aspect-ratio: 2.4/1;
+		}
+	}
+
 	.container {
 		grid-area: main;
 		display: grid;
@@ -141,29 +199,13 @@
 			border-radius: 0.25rem;
 			background: var(--clr-white);
 			transition: all 0.2s ease-in-out;
+			word-wrap: none;
 			&:hover {
 				color: var(--clr-white);
 				background-color: var(--clr-cyan);
 				border-color: transparent;
 			}
 		}
-		/* & .btn-tag{
-			margin: 0;
-			font-size: var(--xs);
-			line-height: 1;
-			pointer-events: all;
-			color: var(--gray-3);
-			border: 1px solid var(--gray-2);
-			padding: 0.25rem 0.5rem;
-			border-radius: 0.25rem;
-			text-decoration: none;
-			transition: all 0.3s ease-in-out;
-			&:hover {
-				color: var(--clr-white);
-				background-color: var(--clr-cyan);
-				border-color: transparent;
-			}
-		} */
 	}
 	.card {
 		display: grid;
@@ -266,5 +308,54 @@
 	}
 	.btn-link {
 		pointer-events: all;
+	}
+
+	/* Media Query */
+
+	@media screen and (max-width: 1024px) {
+		.hero-data h1 {
+			margin-bottom: 0;
+		}
+		.hero-data p {
+			margin-bottom: 0;
+			max-width: 56ch;
+		}
+		.hero-col-2__c {
+			grid-template-areas:
+				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
+				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
+		}
+		.main__c {
+			display: block;
+		}
+		.tags {
+			margin-bottom: 1.6rem;
+		}
+	}
+
+	@media screen and (max-width: 480px) {
+		.hero-data {
+			display: block;
+		}
+		.hero-data h1 {
+			margin-bottom: 2rem;
+		}
+		.card {
+			grid-template-areas:
+				'subHeader '
+				/* 'image' */
+				'header '
+				'body '
+				'footer ';
+			grid-template-rows:
+				[subHeader] 2rem
+				/* [image] 10rem */
+				[header] 3.6rem
+				[body] auto
+				[footer] 2.6rem;
+		}
+		.card-img {
+			display: none;
+		}
 	}
 </style>
