@@ -1,5 +1,6 @@
 <script>
-	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import Arrow from '$lib/components/icons/Arrow.svelte';
+import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { trimText } from '$lib/utils/globalhelpers.js';
 	// import { reset } from '__sveltekit/paths';
 	// import { get } from 'svelte/store';
@@ -96,6 +97,7 @@
 						<div class="card-footer">
 							<a class="btn-link" href={`./blog/${post.category_slug}/${post.slug}`}>
 								<LinkCircle width={40} height={40} />
+								<!-- <Arrow width={21} height={21} /> -->
 							</a>
 						</div>
 					</div>

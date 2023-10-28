@@ -224,7 +224,7 @@
 	}
 
 
-	@media (max-width: 1000px) {
+	@media (max-width: 1024px) {
 		.hero-data {
 			flex-direction: row;
 			gap: 3rem;
@@ -243,7 +243,7 @@
 		}
 	}
 
-	@media (max-width: 600px) {
+	@media (max-width: 480px) {
 		.hero-data {
 			display: block;
 		}
