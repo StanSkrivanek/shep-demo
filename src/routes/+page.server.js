@@ -1,9 +1,12 @@
-import { getAllOpenCourses, getAllVenues } from '$lib/server/sanity';
+import { getLogos } from '$lib/server/sanity';
 export async function load() {
-	const venues = await getAllVenues();
-	const allOpenCourses = await getAllOpenCourses();
+	// const logos = import.meta.glob('/src/lib/assets/logos/*.svg');
+	const logos = await getLogos();
+	// const venues = await getAllVenues();
+	// const allOpenCourses = await getAllOpenCourses();
 	return {
-		venues,
-		allOpenCourses
+		// venues,
+		// allOpenCourses,
+		logos
 	};
 }

@@ -353,6 +353,20 @@ export const getAllCategories = async () => {
 	let allCategories = await client.fetch(query);
 	return allCategories;
 }
+
+
+export const getLogos = async () => {
+	const client = sanityClient();
+	const query = `*[_type == "logoScroller" && is_featured == true]{
+	"url": logo.asset->url,
+	"title": name,
+}`;
+
+	let logos = await client.fetch(query);
+	return logos;
+}
+
+
 // export const getAllCategories = async () => {
 // 	const client = sanityClient();
 // 	const query = `*[_type == "blog_category"]{
