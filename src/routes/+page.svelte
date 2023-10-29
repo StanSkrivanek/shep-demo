@@ -8,6 +8,31 @@
 </script>
 
 <div class="page__c">
+	<div class="hero">
+		<div class="title">
+			<!-- <span class="subtitle">SHEP</span> -->
+			<h1><span>The place where your mental health flourishes</span></h1>
+			<p>We help building a healthy, loving, socially-just and sustainable way of living</p>
+		</div>
+		<div class="img">
+			<img
+				src="https://cdn.sanity.io/images/gkez65br/production/1a823e800e23ac51c17affffb8858b6248869609-800x533.jpg"
+				alt="pinky theme"
+			/>
+		</div>
+		<div class="section-sm">
+			<img
+				src="https://cdn.sanity.io/images/gkez65br/production/8e3acee681de61aa2a8d5ea3656c553dfcd7269f-568x673.jpg"
+				alt=""
+			/>
+			<div>
+				<h4>SHEP</h4>
+				<p>
+					SHEP is a unique, not-for-profit, community-based training and development organisation
+				</p>
+			</div>
+		</div>
+	</div>
 	<div class="sec-2">
 		<div class="links">
 			<div class="decorative_link_c">
@@ -215,6 +240,111 @@
 		display: grid;
 		grid-column: 1/-1;
 	} */
+	.hero {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-template-areas: 'data data data img img img img';
+		grid-column: 1/-1;
+		/* grid-row: 1/-1; */
+		gap: 1rem;
+		margin-bottom: 5rem;
+
+		& .title {
+			grid-area: hero;
+			display: grid;
+			grid-template-columns: subgrid;
+			grid-column: 1 / span 3;
+			display: flex;
+			flex-direction: column;
+			justify-content: start;
+			z-index: 1;
+			grid-column: 1/4;
+			grid-row: 1/-1;
+			padding-top: 3rem;
+			& .subtitle {
+				font-size: var(--sm);
+				color: var(--gray-3);
+				margin-bottom: 1rem;
+			}
+			& h1 {
+				margin: 0;
+				margin-bottom: 1rem;
+				/* text-align: right; */
+				& span {
+					padding: 0.25em 0.25em;
+					border-radius: 0.65rem;
+					/* font-family: var(--ff-gilroy-l); */
+					line-height: 1.25;
+					/* text-transform: uppercase; */
+					background: var(--orange-sha-2);
+					-webkit-box-decoration-break: clone;
+					-o-box-decoration-break: clone;
+					box-decoration-break: clone;
+				}
+			}
+			& p {
+				margin: 0;
+				font-size: var(--sm);
+				color: var(--gray-3);
+				max-width: 24ch;
+			}
+		}
+		& .img {
+			position: relative;
+			grid-column: 2 / span 5;
+			grid-row: 1/-1;
+			border-radius: 1rem;
+			overflow: hidden;
+			width:95%;
+			/* padding-right: 2rem;  */
+			& img {
+				/* position: absolute; */
+				/* grid-column: 2 / span 4; */
+				width: 100%;
+				height: 100%;
+				aspect-ratio: 3/2;
+				object-fit: cover;
+				/* aspect-ratio: 1.2/1; */
+			}
+		}
+		& .section-sm {
+			display: flex;
+			flex-direction: column;
+			gap: 0;
+			justify-content: space-between;
+			grid-column: 7/-1;
+			grid-row: 1/-1;
+			& img {
+				width: 100%;
+				/* height: 100%; */
+				/* aspect-ratio: 1/2; */
+				object-fit: cover;
+				border-radius: 1rem;
+				margin-bottom: 1rem;
+			}
+			& h4 {
+				margin: 0;
+				/* margin-bottom: .5rem; */
+				display: inline-block;
+				&:after {
+					content: '';
+					display: block;
+					width: 5rem;
+					height: 2px;
+					background: var(--clr-gray-600);
+					border-radius: 1rem;
+					margin-bottom: 0.5rem;
+				}
+			}
+			& p {
+				margin: 0;
+				font-size: var(--sm);
+				color: var(--gray-3);
+				max-width: 32ch;
+			}
+		}
+	}
+
 	.sec-2 {
 		display: grid;
 		grid-template-columns: subgrid;

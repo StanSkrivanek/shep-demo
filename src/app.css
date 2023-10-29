@@ -157,7 +157,7 @@ p strong {
 }
 .page__c {
 	padding: 1rem;
-	max-width: 1536px;
+	max-width: 1474px;
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: 1fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.5fr 1fr;
