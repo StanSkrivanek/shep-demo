@@ -3,54 +3,47 @@
 
 	import { onMount } from 'svelte';
 
-	// import { scroller } from 'src/lib/utils';
-
-	// export let direction = 'forwards'; // forwards, reverse,
-	export let duration = 30;
+	export let direction = 'forwards'; // forwards, reverse,
+	export let duration = 60;
 	export let gap = 1;
+	let isAnimated = true;
 	/**
 	 * @type {any[]}
 	 */
 	export let data = [];
-	// export let onStart = () => {};
-	// export let onEnd = () => {};
+
 	onMount(() => {
 		const scroller = document.querySelector('.scroller');
-		const scrollerInner = document.querySelector('.scroller__inner');
-		const leftSideOfScroller = scroller?.getBoundingClientRect().left;
-
-		// get site `rem` value
-		const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
-		scrollerInner.style.gap = `${gap}rem`;
-
-		let currentLeftValue = 0;
-
-		function animationLoop() {
-			const firstItem = scrollerInner?.firstElementChild;
-			// console.log("🚀 ~ file: Scroller.svelte:30 ~ animationLoop ~ firstItem:", firstItem)
-			const firstItemRight = firstItem?.getBoundingClientRect()?.right;
-
-			if (firstItemRight < leftSideOfScroller) {
-				currentLeftValue = -1;
-				scrollerInner?.appendChild(firstItem);
-			}
-			scrollerInner.style.marginLeft = `${currentLeftValue + gap * rem}px`;
-			currentLeftValue--;
-		}
 
 		if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-			window.setInterval(animationLoop, duration);
+			scroller.setAttribute('data-animated', isAnimated);
+			addAnimation();
 		} else {
-			scroller.style.mask = 'none';
-			scrollerInner.style.flexWrap = 'wrap';
-			scrollerInner.style.width = '90%';
-			scrollerInner.style.margin = '0 auto';
+			scroller.setAttribute('data-animated', !isAnimated);
+		}
+
+		function addAnimation() {
+			// Make an array from the elements within `.scroller-inner`
+			const scrollerInner = scroller.querySelector('.scroller__inner');
+			const scrollerContent = Array.from(scrollerInner.children);
+
+			// Duplicate the elements within `.scroller-inner`
+			scrollerContent.forEach((item) => {
+				const duplicatedItem = item.cloneNode(true);
+				duplicatedItem.setAttribute('aria-hidden', true);
+				scrollerInner.appendChild(duplicatedItem);
+			});
 		}
 	});
 </script>
 
-<div class="scroller">
-	<div class="scroller__inner">
+<div class="scroller" data-animated={isAnimated}>
+	<div
+		class="scroller__inner"
+		style="--gap:{gap}rem; --duration:{duration}s; --direction:{direction};"
+		data-direction={direction}
+		data-duration={duration}
+	>
 		{#each data as item}
 			<div class="scroller__item">
 				<img src={item.url} alt={item.title} />
@@ -60,31 +53,61 @@
 </div>
 
 <style>
-	.scroller {
-		/* display: grid;
-		grid-template-columns: subgrid; */
+	/* OS Reduced motion ON*/
+	.scroller[data-animated='false'] {
+		display: grid;
+		grid-column: 1/-1;
+		& .scroller__inner {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: var(--gap);
+			& .scroller__item {
+				border: 1px solid var(--gray-2);
+				border-radius: 0.75rem;
+				overflow: hidden;
+				max-width: 300px;
+				& img {
+					width: 100%;
+					height: 100%;
+					display: block;
+				}
+			}
+		}
+	}
+	/* OS Reduced motion OFF*/
+	.scroller[data-animated='true'] {
 		padding-block: 5rem;
 		grid-column: 1/-1;
 		mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
 		-webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
 		overflow-x: hidden;
-	}
-	.scroller__inner {
-		width: max-content;
-		display: flex;
-		/* gap: 1rem; */
-		width: max-content;
-		flex-wrap: nowrap;
-		& .scroller__item {
-			border: 1px solid var(--gray-2);
-			border-radius: 0.75rem;
-			overflow: hidden;
-			max-width: 300px;
-			& img {
-				width: 100%;
-				height: 100%;
-				display: block;
+		& .scroller__inner {
+			width: max-content;
+			display: flex;
+			gap: var(--gap);
+			width: max-content;
+			flex-wrap: nowrap;
+			& .scroller__item {
+				border: 1px solid var(--gray-2);
+				border-radius: 0.75rem;
+				overflow: hidden;
+				max-width: 300px;
+				& img {
+					width: 100%;
+					height: 100%;
+					display: block;
+				}
 			}
+		}
+	}
+
+	[data-animated='true'] .scroller__inner {
+		animation: scroll var(--duration) var(--direction) linear infinite;
+	}
+
+	@keyframes scroll {
+		to {
+			transform: translate(calc(-50% - 0.5rem));
 		}
 	}
 </style>

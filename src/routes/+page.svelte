@@ -236,14 +236,12 @@ import Arrow from '$lib/components/icons/Arrow.svelte';
 			</div>
 		</div>
 	</div>
-	<Scroller data={data.logos} duration={30} gap={1.5} />
+
+	<Scroller data={data.logos} duration={60} gap={1} direction={"forwards"} />
+
 </div>
 
 <style>
-	/* .container {
-		display: grid;
-		grid-column: 1/-1;
-	} */
 
 	.hero {
 		display: grid;
