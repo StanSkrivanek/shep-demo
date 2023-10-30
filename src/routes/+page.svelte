@@ -236,8 +236,8 @@ import Arrow from '$lib/components/icons/Arrow.svelte';
 			</div>
 		</div>
 	</div>
-
-	<Scroller data={data.logos} duration={60} gap={1} direction={"forwards"} />
+<h4>Our partners</h4>
+	<Scroller data={data.logos} duration={40} gap={1} direction={"forwards"} />
 
 </div>
 

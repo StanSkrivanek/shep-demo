@@ -76,7 +76,7 @@
 	}
 	/* OS Reduced motion OFF*/
 	.scroller[data-animated='true'] {
-		padding-block: 5rem;
+		padding-block: 2rem;
 		grid-column: 1/-1;
 		mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
 		-webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
@@ -107,7 +107,21 @@
 
 	@keyframes scroll {
 		to {
-			transform: translate(calc(-50% - 0.5rem));
+			transform: translateX(calc(-50% - var(--gap)));
 		}
 	}
+	/* @keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-50% - var(--gap)));
+  }
+} */
 </style>
+
+
+<!-- +page.svelte -->
+<!-- Duration gap and direction are predefined but thy can be set on Scroller individually   -->
+<!-- 	<Scroller data={data.logos} duration={60} gap={1} direction={"forwards"} /> -->
