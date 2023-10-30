@@ -1,10 +1,12 @@
 <script>
-	import Arrow from '$lib/components/icons/Arrow.svelte';
+	import Scroller from '$lib/components/Scroller.svelte';
+import Arrow from '$lib/components/icons/Arrow.svelte';
 	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 
 	// import { formatDate, formatTime12, monthNameDateYear } from '$lib/utils/datehelpers.js';
-	// export let data;
+	export let data;
+	console.log('🚀 ~ file: +page.svelte:8 ~ data:', data);
 </script>
 
 <div class="page__c">
@@ -33,6 +35,7 @@
 			</div>
 		</div>
 	</div>
+<Scroller data={data.logos} duration={25} gap={1.5} />
 	<div class="sec-2">
 		<div class="links">
 			<div class="decorative_link_c">
@@ -240,6 +243,7 @@
 		display: grid;
 		grid-column: 1/-1;
 	} */
+
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -295,7 +299,7 @@
 			grid-row: 1/-1;
 			border-radius: 1rem;
 			overflow: hidden;
-			width:95%;
+			width: 95%;
 			/* padding-right: 2rem;  */
 			& img {
 				/* position: absolute; */

@@ -366,14 +366,3 @@ export const getLogos = async () => {
 	return logos;
 }
 
-
-// export const getAllCategories = async () => {
-// 	const client = sanityClient();
-// 	const query = `*[_type == "blog_category"]{
-// 	"category": blog_category,
-// 	"slug": slug.current,
-// }`;
-
-// 	let allCategories = await client.fetch(query);
-// 	return allCategories;
-// }
