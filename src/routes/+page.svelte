@@ -35,7 +35,7 @@ import Arrow from '$lib/components/icons/Arrow.svelte';
 			</div>
 		</div>
 	</div>
-<Scroller data={data.logos} duration={25} gap={1.5} />
+
 	<div class="sec-2">
 		<div class="links">
 			<div class="decorative_link_c">
@@ -236,6 +236,7 @@ import Arrow from '$lib/components/icons/Arrow.svelte';
 			</div>
 		</div>
 	</div>
+	<Scroller data={data.logos} duration={30} gap={1.5} />
 </div>
 
 <style>
