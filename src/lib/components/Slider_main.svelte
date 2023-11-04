@@ -1,0 +1,169 @@
+<script>
+	import LinkCircle from './icons/LinkCircle.svelte';
+
+	/**
+	 * @type {any[]}
+	 */
+	export let slides = [];
+	/**
+	 * @type {number}
+	 */
+	export let duration = 3000;
+
+	let currentSlide = 0;
+	// $: console.log('🚀 ~ file: Slider_main.svelte:12 ~ currentSlide:', currentSlide);
+
+	const nextSlide = () => {
+		currentSlide++;
+		if (currentSlide >= slides.length) {
+			currentSlide = 0;
+		}
+		timer();
+	};
+	const prevSlide = () => {
+		currentSlide--;
+		if (currentSlide < 0) {
+			currentSlide = slides.length - 1;
+		}
+		timer();
+	};
+	const goToSlide = (/** @type {number} */ i) => {
+		currentSlide = i;
+		timer();
+	};
+	/**
+	 * @type {number | undefined}
+	 */
+	let interval;
+	// $: console.log('🚀 ~ file: Slider_main.svelte:36 ~ interval:', interval);
+	const timer = () => {
+		clearInterval(interval);
+		interval = setInterval(nextSlide, duration);
+	};
+	timer();
+
+	// console.log('🚀 ~ file: Slider_main.svelte:13 ~ ON_MOUNT slides:', slides);
+	// onMount(() => {
+	// });
+</script>
+
+<div class="slider">
+	{#each slides as slide, i}
+		{#if currentSlide === i}
+			<div class="slide">
+				<div class="slide-image">
+					<img src={slide.main_img} alt="" />
+				</div>
+				<div class="slide__content__w">
+					<div class="slide__content">
+						<h2 class="slide__title">{slide.title}</h2>
+						<p class="slide__description">{slide.excerpt}</p>
+					</div>
+
+					<div class="slide-footer">
+						<a class="btn-link" href="./blog/{slide.category_slug}/{slide.slug}">
+							<LinkCircle width={48} height={48} />
+						</a>
+					</div>
+				</div>
+			</div>
+		{/if}
+	{/each}
+	<div class="slider__controls">
+		<button class="slider__button" on:click={nextSlide}>Next</button>
+		<button class="slider__button" on:click={prevSlide}>PREV</button>
+	</div>
+</div>
+
+<style>
+	.slider {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		/* border: 2px solid lightcoral; */
+		& .slider__controls {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			display: flex;
+			justify-content: space-between;
+			max-width: 100%;
+			padding: 1rem;
+			z-index: 1;
+			background: red;
+			& .slider__button {
+				background: transparent;
+				border: none;
+				color: white;
+				font-size: 2rem;
+				cursor: pointer;
+				&:hover {
+					color: #ccc;
+				}
+			}
+		}
+		& .slide {
+			display: grid;
+			grid-template-columns: 1.4fr 2fr;
+			gap: 1rem;
+			width: 100%;
+			height: 100%;
+
+			& .slide-image {
+				grid-column: 1/1;
+				border-radius: 1rem;
+				overflow: hidden;
+				& img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+			}
+			& .slide__content__w {
+				grid-column: 2/2;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				padding: 2rem;
+				background: var(--gray-1);
+				border-radius: 1rem;
+				& .slide__content {
+					/* border: 2px solid lightcoral; */
+					grid-column: 2/2;
+					color: var(--fc-main);
+					& h2 {
+						margin: 0;
+						text-transform: uppercase;
+						line-height: 1.1;
+						margin-bottom: 1.5rem;
+						border-bottom: 1px solid var(--gray-2);
+						font-family: var(--ff-gilroy-l);
+					}
+					& p {
+						margin: 0;
+						color: var(--fc-light);
+					}
+				}
+				& .slide-footer{
+					display: flex;
+					justify-content: flex-end;
+					/* border: 2px solid lightcoral; */
+					& .btn-link {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						/* width: 4rem;
+						height: 4rem; */
+						/* border-radius: 50%; */
+						/* background: var(--gray-2); */
+						transition: all 0.3s ease;
+				
+					}
+				}
+			}
+		}
+	}
+
+	
+</style>

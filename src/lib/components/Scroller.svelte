@@ -10,8 +10,9 @@
 	/**
 	 * @type {any[]}
 	 */
-	export let data = [];
-
+	export let logos = [];
+	// console.log("🚀 ~ file: Scroller.svelte:14 ~ data:", logos)
+	
 	onMount(() => {
 		const scroller = document.querySelector('.scroller');
 
@@ -44,9 +45,9 @@
 		data-direction={direction}
 		data-duration={duration}
 	>
-		{#each data as item}
+		{#each logos as logo}
 			<div class="scroller__item">
-				<img src={item.url} alt={item.title} />
+				<img src={logo.url} alt={logo.title} />
 			</div>
 		{/each}
 	</div>

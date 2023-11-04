@@ -245,6 +245,24 @@ export const getAllPosts = async () => {
 	return allPosts;
 };
 
+export const getPostsForSlider = async () => {
+	const client = sanityClient();
+	const query = `*[_type == "post"][0...5]{
+		"title": article_title,
+	"excerpt": post_excerpt,
+	"slug": slug.current,
+	"main_img": hero_image.asset->url,
+	"category": post_category->blog_category,
+  	"category_slug": post_category->slug.current,
+	"author": post_author[] {
+		_type == 'reference' => @->{name}    
+		  },
+}`;
+
+	const allPosts = await client.fetch(query);
+	return allPosts;
+}
+
 // Single Article
 export const getSingleArticle = async (/** @type {undefined} */ id) => {
 	// 772b1b99-4d2e-4e21-8029-89be6fb6294b

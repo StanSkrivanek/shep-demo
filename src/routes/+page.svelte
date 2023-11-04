@@ -1,12 +1,16 @@
 <script>
+	// import Carousel_01 from '$lib/components/Carousel_01.svelte';
 	import Scroller from '$lib/components/Scroller.svelte';
-import Arrow from '$lib/components/icons/Arrow.svelte';
+	import SliderMain from '$lib/components/Slider_main.svelte';
+	import Arrow from '$lib/components/icons/Arrow.svelte';
 	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 
 	// import { formatDate, formatTime12, monthNameDateYear } from '$lib/utils/datehelpers.js';
 	export let data;
-	console.log('🚀 ~ file: +page.svelte:8 ~ data:', data);
+	let { logos, slides } = data;
+	console.log('🚀 ~ file: +page.svelte:11 ~ slides:', slides);
+	// console.log("🚀 ~ file: +page.svelte:11 ~ logos:", logos)
 </script>
 
 <div class="page__c">
@@ -95,34 +99,11 @@ import Arrow from '$lib/components/icons/Arrow.svelte';
 				</div>
 			</div>
 		</div>
-		<div class="slider">
-			<div class="slider-img">
-				<img
-					src="https://cdn.sanity.io/images/gkez65br/production/37507325793fdabad0ffe8e210e91f92c0b70a0d-800x400.jpg?w=600"
-					alt=""
-				/>
-			</div>
-			<div class="card">
-				<div class="card-body">
-					<p>Personal Stories</p>
-					<p>
-						Read personal stories from community members who've shared how they managed to find
-						their way through difficult times.
-					</p>
-				</div>
-				<div class="card-footer">
-					<a class="btn-link" href="./courses">
-						<LinkCircle width={48} height={48} />
-					</a>
-				</div>
-			</div>
-			<!-- <div class="slider-content">
-				<h3>Slider Title</h3>
-				<p>
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. labore praesentium! Ab numquam
-					temporibus, odit error cum eveniet reiciendis iste ullam debitis.
-				</p>
-			</div> -->
+
+		<!-- <Carousel_01 {slides} duration={5000} /> -->
+
+		<div class="slider__c">
+			<SliderMain {slides} duration={5000} />
 		</div>
 	</div>
 	<div class="sec-3">
@@ -236,13 +217,11 @@ import Arrow from '$lib/components/icons/Arrow.svelte';
 			</div>
 		</div>
 	</div>
-<h4>Our partners</h4>
-	<Scroller data={data.logos} duration={40} gap={1} direction={"forwards"} />
-
+	<h4>Our partners</h4>
+	<Scroller {logos} duration={40} gap={1} direction={'forwards'} />
 </div>
 
 <style>
-
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -359,40 +338,9 @@ import Arrow from '$lib/components/icons/Arrow.svelte';
 			grid-area: links;
 			/* border-bottom: 1px solid #ccc; */
 		}
-		& .slider {
+		& .slider__c {
 			grid-area: slider;
 			display: flex;
-			/* display: grid;
-			grid-template-columns: subgrid;
-			grid-template-areas: 'img img content content content'; */
-			gap: 1rem;
-			& .slider-img {
-				grid-area: img;
-				& img {
-					width: 100%;
-					height: 100%;
-					aspect-ratio: 2/1;
-					object-fit: cover;
-					border-radius: 0.5rem;
-					/* min-height: 360px; */
-					display: block;
-				}
-			}
-			& .card {
-				grid-area: content;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				& h3 {
-					margin: 0;
-					margin-bottom: 1rem;
-				}
-				& p {
-					margin: 0;
-					font-size: var(--sm);
-					color: var(--gray-3);
-				}
-			}
 		}
 	}
 
