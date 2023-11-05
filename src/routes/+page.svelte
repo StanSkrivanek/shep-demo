@@ -9,7 +9,7 @@
 	// import { formatDate, formatTime12, monthNameDateYear } from '$lib/utils/datehelpers.js';
 	export let data;
 	let { logos, slides } = data;
-	console.log('🚀 ~ file: +page.svelte:11 ~ slides:', slides);
+	// console.log('🚀 ~ file: +page.svelte:11 ~ slides:', slides);
 	// console.log("🚀 ~ file: +page.svelte:11 ~ logos:", logos)
 </script>
 
@@ -42,10 +42,10 @@
 
 	<div class="sec-2">
 		<div class="links">
-			<div class="decorative_link_c">
+			<a href="./courses" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
-						<DotsCorner width={24} height={24} currentColor="#b9dcfa" />
+						<DotsCorner width={24} height={24} currentColor="#b3ebd0" />
 					</div>
 					<div class="link-body">
 						<h3>Short Courses</h3>
@@ -55,8 +55,9 @@
 				<div class="link">
 					<Arrow width={24} height={24} />
 				</div>
-			</div>
-			<div class="decorative_link_c">
+			</a>
+
+			<a href="./trainings" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
 						<DotsCorner width={24} height={24} currentColor="#b9dcfa" />
@@ -69,11 +70,11 @@
 				<div class="link">
 					<Arrow width={24} height={24} />
 				</div>
-			</div>
-			<div class="decorative_link_c">
+			</a>
+			<a href="./counselling" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
-						<DotsCorner width={24} height={24} currentColor="#b9dcfa" />
+						<DotsCorner width={24} height={24} currentColor="#ffdcf8" />
 					</div>
 					<div class="link-body">
 						<h3>Counselling</h3>
@@ -83,11 +84,11 @@
 				<div class="link">
 					<Arrow width={24} height={24} />
 				</div>
-			</div>
-			<div class="decorative_link_c">
+			</a>
+			<a href="./advocacy" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
-						<DotsCorner width={24} height={24} currentColor="#b9dcfa" />
+						<DotsCorner width={24} height={24} currentColor="#fac7a3" />
 					</div>
 					<div class="link-body">
 						<h3>Advocacy Project</h3>
@@ -97,11 +98,8 @@
 				<div class="link">
 					<Arrow width={24} height={24} />
 				</div>
-			</div>
+			</a>
 		</div>
-
-		<!-- <Carousel_01 {slides} duration={5000} /> -->
-
 		<div class="slider__c">
 			<SliderMain {slides} duration={5000} />
 		</div>
@@ -143,7 +141,7 @@
 			</div>
 		</div>
 		<div class="links">
-			<div class="decorative_link_c">
+			<a href="./team" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
 						<DotsCorner width={24} height={24} currentColor="#b9dcfa" />
@@ -156,8 +154,8 @@
 				<div class="link">
 					<Arrow width={24} height={24} />
 				</div>
-			</div>
-			<div class="decorative_link_c">
+			</a>
+			<a href="./partners" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
 						<DotsCorner width={24} height={24} currentColor="#b9dcfa" />
@@ -170,8 +168,8 @@
 				<div class="link">
 					<Arrow width={24} height={24} />
 				</div>
-			</div>
-			<div class="decorative_link_c">
+			</a>
+			<a href="./activities" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
 						<DotsCorner width={24} height={24} currentColor="#b9dcfa" />
@@ -184,7 +182,7 @@
 				<div class="link">
 					<Arrow width={24} height={24} />
 				</div>
-			</div>
+			</a>
 		</div>
 	</div>
 	<div class="sec-4">
@@ -245,7 +243,8 @@
 			padding-top: 3rem;
 			& .subtitle {
 				font-size: var(--sm);
-				color: var(--gray-3);
+				/* color: var(--gray-3); */
+				color: var(--gray-500);
 				margin-bottom: 1rem;
 			}
 			& h1 {
@@ -258,7 +257,7 @@
 					/* font-family: var(--ff-gilroy-l); */
 					line-height: 1.25;
 					/* text-transform: uppercase; */
-					background: var(--orange-sha-2);
+					background: var(--green-100);
 					-webkit-box-decoration-break: clone;
 					-o-box-decoration-break: clone;
 					box-decoration-break: clone;
@@ -267,7 +266,7 @@
 			& p {
 				margin: 0;
 				font-size: var(--sm);
-				color: var(--gray-3);
+				color: var(--gray-500);
 				max-width: 24ch;
 			}
 		}
@@ -313,7 +312,7 @@
 					display: block;
 					width: 5rem;
 					height: 2px;
-					background: var(--clr-gray-600);
+					background: var(--gray-500);
 					border-radius: 1rem;
 					margin-bottom: 0.5rem;
 				}
@@ -321,7 +320,7 @@
 			& p {
 				margin: 0;
 				font-size: var(--sm);
-				color: var(--gray-3);
+				color: var(--gray-500);
 				max-width: 32ch;
 			}
 		}
@@ -367,7 +366,7 @@
 		}
 		& .card-mission {
 			grid-area: card;
-			background-color: var(--blue-sha-2);
+			background-color: var(--blue-50);
 			padding: 2.4rem;
 			border-radius: 1rem;
 			& .aside * p {
@@ -396,7 +395,7 @@
 					}
 					& p:last-child {
 						font-size: var(--sm);
-						color: var(--gray-3);
+						color: var(--gray-400);
 					}
 				}
 			}
@@ -404,6 +403,7 @@
 		& .links {
 			grid-area: links;
 			/* border-bottom: 1px solid #ccc; */
+			/* color: var(--clr-gray-400); */
 		}
 	}
 	.sec-4 {
@@ -418,7 +418,7 @@
 	.intro {
 		grid-area: intro;
 		padding: 2.4rem;
-		background: var(--green-light);
+		background: var(--green-50);
 		border-radius: 0.5rem;
 	}
 	.sec-img {

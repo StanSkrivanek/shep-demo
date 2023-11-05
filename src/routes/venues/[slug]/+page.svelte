@@ -8,7 +8,7 @@
 	import { slide } from 'svelte/transition';
 
 	export let data;
-	
+
 	const {
 		venue_name,
 		address_1,
@@ -89,7 +89,7 @@
 					</div>
 					<div class="nlr-link">
 						<div class="dots">
-							<DotsCorner width={24} height={24} />
+							<DotsCorner width={24} height={24} currentColor="#f58585"/>
 						</div>
 						<div>
 							<p>Sign to newsletter</p>
@@ -282,15 +282,19 @@
 		flex-direction: column;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: color-mix(in oklab, var(--clr-green) 16%, white);
+		background: color-mix(in oklab, var(--green-200) 16%, white);
 		& h1 {
 			margin-bottom: 1rem;
+		}
+		& p{
+		
+			color: var(--gray-500);
 		}
 	}
 	.hero-img {
 		grid-area: hero-img;
 		border-radius: 1rem;
-		background: var(--gray-1);
+		background: color-mix(in oklab, var(--blue-200) 16%, white);
 		max-height: max-content;
 
 		& img {
@@ -305,7 +309,7 @@
 		/* grid-area: hero-price; */
 		padding: 1.4rem;
 		border-radius: 1rem;
-		background: var(--gray-1);
+		background: color-mix(in oklab, var(--blue-200) 16%, white);
 		min-width: 160px;
 		& p {
 			margin: 0;
@@ -332,6 +336,7 @@
 	}
 	.address {
 		grid-area: hero-price;
+		/* background: var(--gray-50); */
 	}
 	.link {
 		grid-area: hero-btn;
@@ -339,7 +344,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		color: var(--fc-light);
-		background: color-mix(in oklab, var(--clr-blue) 16%, white);
+		background: color-mix(in oklab, var(--pink-200) 16%, white);
 	}
 
 	.limited-char {
@@ -377,7 +382,7 @@
 		display: flex;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: var(--red-sha-1);
+		background: var(--red-300);
 		& p {
 			margin: 0;
 			margin-bottom: 0.5rem;
@@ -391,10 +396,21 @@
 			flex-direction: column;
 			justify-content: space-between;
 			align-items: flex-end;
-			color: var(--red);
-			&:first-child {
-				margin-bottom: 1rem;
+			color: var(--red-100);
+			& .dots {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				/* transform: rotate(90deg); */
+				transition: all 0.3s ease-in-out;
+				& svg{
+					/* transform: rotate(90deg); */
+					fill: white;
+				}
 			}
+			/* &:first-child {
+				margin-bottom: 1rem;
+			} */
 			& p {
 				text-align: right;
 				font-size: var(--sm);
@@ -408,15 +424,14 @@
 				justify-content: end;
 			}
 		}
-		& .dots {
-			color: var(--clr-red);
-			/* transform: rotate(180deg); */
-		}
 	}
+
+
+	/* TODO: investigate and learn used principles of private variables */
 	.accordion_item {
 		--_base-color-private: var(--item-color, var(--clr-base));
 		/* changing value of `--item-color` will change colors of each child element that contain `--_base-color-private`  */
-		--item-color: var(--clr-purple);
+		--item-color: var(--gray-600);
 		margin-bottom: 1rem;
 		background-color: var(--_bkc-color);
 		border-radius: 1rem;

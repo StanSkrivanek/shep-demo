@@ -62,7 +62,7 @@
 			[body] auto
 			[footer] 2.6rem;
 
-		border: 1px solid var(--gray-2);
+		border: 1px solid var(--gray-100);
 		border-radius: 1rem;
 		padding: 1rem;
 		transition: all 0.3s ease-in-out;
@@ -72,7 +72,7 @@
 
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
-		box-shadow: 8px 10px 15px -3px var(--gray-2);
+		box-shadow: 8px 10px 15px -3px var(--gray-100);
 		/* background: var(--green-light); */
 	}
 	.card-header {
@@ -98,21 +98,21 @@
 			margin: 0;
 			font-size: var(--xs);
 			line-height: 2;
-			color: var(--gray-3);
+			color: var(--gray-400);
 		}
-		& a {
+		/* & a {
 			font-size: var(--sm);
 			line-height: 2;
 			pointer-events: all;
-			color: var(--gray-3);
+			color: var(--gray-400);
 			text-decoration: none;
 			&:hover {
-				color: var(--clr-green);
-			}
+				color: var(--cyan-200);
+			} */
 			/* padding: 1rem 0; */
 			/* border: 1px solid var(--gray-3); */
 			/* border-radius: 50px; */
-		}
+		/* } */
 	}
 	.card-img {
 		grid-area: image;
@@ -137,7 +137,7 @@
 			margin: 0;
 			font-size: 0.9rem;
 			line-height: 1.1;
-			color: var(--gray-3);
+			color: var(--gray-400);
 		}
 	}
 	.card-footer {

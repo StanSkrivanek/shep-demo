@@ -81,13 +81,13 @@
 		grid-area: hero-data;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: var(--orange-light);
+		background: var(--orange-50);
 		/* max-height: max-content; */
 	}
 	.hero-img {
 		grid-area: hero-img;
 		border-radius: 1rem;
-		background: var(--gray-1);
+		background: var(--gray-100);
 		max-height: max-content;
 		& img {
 			display: block;
@@ -110,12 +110,12 @@
 		grid-template-areas: 'thumbnail body';
 		grid-template-columns: repeat(2, 1fr);
 
-		border: 1px solid var(--gray-2);
+		border: 1px solid var(--gray-100);
 		border-radius: 1rem;
 		pointer-events: none;
 		transition: all 0.3s ease-in-out;
 		&:hover {
-			box-shadow: 8px 10px 15px -3px var(--gray-2);
+			box-shadow: 8px 10px 15px -3px var(--gray-100);
 			/* background: var(--green-light); */
 		}
 	}
@@ -123,7 +123,7 @@
 	.thumbnail {
 		grid-area: thumbnail;
 		border-radius: 1rem;
-		background: var(--gray-1);
+		background: var(--gray-100);
 		max-height: max-content;
 		& img {
 			display: block;
@@ -144,7 +144,7 @@
 			& p {
 				font-size: var(--sm);
 				margin: 0 0 0.25rem 0;
-				color: var(--gray-3);
+				color: var(--gray-400);
 			}
 			& h2 {
 				font-size: var(--h4);
@@ -160,7 +160,7 @@
 			pointer-events: auto;
 			& .link-desc__w {
 				width: 20ch;
-				color: var(--gray-3);
+				color: var(--gray-400);
 				& p {
 					padding: 0;
 					margin: 0;

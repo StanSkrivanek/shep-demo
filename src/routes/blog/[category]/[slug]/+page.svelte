@@ -244,14 +244,14 @@
 			font-size: 0.9rem;
 			font-weight: 500;
 			align-self: flex-start;
-			background: hsla(0, 0%, 100%, 0.3);
+			background: hsla(0, 0%, 100%, 0.4);
 		}
 	}
 	.hero-img {
 		grid-area: hero-img;
 		position: relative;
 		border-radius: 1rem;
-		background: var(--gray-1);
+		background: var(--gray-100);
 		max-height: 480px;
 		& img {
 			display: block;
@@ -304,7 +304,7 @@
 				display: block;
 				width: 100%;
 				height: 1px;
-				background: var(--gray-2);
+				background: var(--gray-200);
 				margin-top: 0.5rem;
 			}
 		}
@@ -317,11 +317,11 @@
 				& a {
 					display: block;
 					text-decoration: none;
-					color: var(--clr-gray-600);
+					color: var(--gray-500);
 					font-size: 1rem;
 					font-weight: 500;
 					&:hover {
-						color: var(--clr-orange-600);
+						color: var(--orange-600);
 						text-decoration: underline;
 					}
 				}
@@ -355,14 +355,14 @@
 
 	.links__c {
 		padding-inline: 1rem;
-		border-left: 1px solid var(--gray-2);
+		border-left: 1px solid var(--gray-100);
 		margin-bottom: 2rem;
 		/* dostuff */
 	}
 
 	.link__w {
 		/* dostuff */
-		border-bottom: 1px solid var(--clr-gray-600);
+		border-bottom: 1px solid var(--gray-400);
 		& p {
 			font-size: 1rem;
 			color: var(--clr-black);
@@ -380,7 +380,7 @@
 				font-size: 0.9rem;
 				line-height: 1.3;
 				text-transform: none;
-				color: var(--clr-gray-400);
+				color: var(--gray-500);
 				max-width: 34ch;
 			}
 		}

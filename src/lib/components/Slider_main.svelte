@@ -93,7 +93,7 @@
 			max-width: 100%;
 			padding: 1rem;
 			z-index: 1;
-			background: red;
+			background: var(--red-500);
 			& .slider__button {
 				background: transparent;
 				border: none;
@@ -160,7 +160,7 @@
 					}
 					& p {
 						margin: 0;
-						color: var(--fc-light);
+							color: var(--clr-gray-400);
 					}
 				}
 				& .slide-footer {

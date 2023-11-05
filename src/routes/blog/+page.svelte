@@ -156,13 +156,13 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 		grid-area: hero-data;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: var(--blue-light);
+		background: var(--cyan-100);
 	}
 	.hero-img {
 		grid-column: 4 / -1;
 		grid-area: hero-img;
 		border-radius: 1rem;
-		background: var(--gray-1);
+		background: var(--gray-100);
 		max-height: max-content;
 
 		& img {
@@ -194,9 +194,9 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 			font-size: var(--xs);
 			line-height: 1;
 			pointer-events: all;
-			color: var(--gray-3);
+			color: var(--gray-500);
 			border: none;
-			border: 1px solid var(--gray-2);
+			border: 1px solid var(--gray-100);
 			padding: 0.25rem 0.5rem;
 			border-radius: 0.25rem;
 			background: var(--clr-white);
@@ -204,7 +204,7 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 			word-wrap: none;
 			&:hover {
 				color: var(--clr-white);
-				background-color: var(--clr-cyan);
+				background-color: var(--cyan-500);
 				border-color: transparent;
 			}
 		}
@@ -224,7 +224,7 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 			[body] auto
 			[footer] 2.6rem;
 
-		border: 1px solid var(--gray-2);
+		border: 1px solid var(--gray-100);
 		border-radius: 1rem;
 		padding: 1rem;
 		transition: all 0.3s ease-in-out;
@@ -234,7 +234,7 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
-		box-shadow: 8px 10px 15px -3px var(--gray-2);
+		box-shadow: 8px 10px 15px -3px var(--gray-100);
 		/* background: var(--green-light); */
 	}
 	.card-header {
@@ -257,7 +257,7 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 		justify-content: space-between;
 		& p {
 			font-size: var(--xs);
-			color: var(--gray-3);
+			/* color: var(--cyan-50); */
 			line-height: 2;
 		}
 		& a {
@@ -265,9 +265,9 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 			font-size: var(--xs);
 			line-height: 2;
 			pointer-events: all;
-			color: var(--gray-3);
+			color: var(--gray-400);
 			&:hover {
-				color: var(--clr-green);
+				color: var(--cyan-400);
 			}
 		}
 	}
@@ -294,7 +294,7 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 			margin: 0;
 			font-size: 0.9rem;
 			line-height: 1.1;
-			color: var(--gray-3);
+			color: var(--gray-500);
 		}
 	}
 	.card-footer {
