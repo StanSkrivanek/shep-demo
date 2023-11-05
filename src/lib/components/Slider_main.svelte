@@ -1,6 +1,7 @@
 <script>
+	import { fade } from 'svelte/transition';
 	import LinkCircle from './icons/LinkCircle.svelte';
-
+	// import { quintOut, bounceInOut } from 'svelte/easing';
 	/**
 	 * @type {any[]}
 	 */
@@ -51,10 +52,11 @@
 	{#each slides as slide, i}
 		{#if currentSlide === i}
 			<div class="slide">
-				<div class="slide-image">
+				<div class="slide-image" transition:fade={{ delay: 250, duration: 1000 }}>
 					<img src={slide.main_img} alt="" />
+					<span> {i +1} / {slides.length}</span>
 				</div>
-				<div class="slide__content__w">
+				<div class="slide__content__w" transition:fade={{ delay: 250, duration: 1000 }}>
 					<div class="slide__content">
 						<h2 class="slide__title">{slide.title}</h2>
 						<p class="slide__description">{slide.excerpt}</p>
@@ -69,23 +71,23 @@
 			</div>
 		{/if}
 	{/each}
-	<div class="slider__controls">
+	<!-- <div class="slider__controls">
 		<button class="slider__button" on:click={nextSlide}>Next</button>
 		<button class="slider__button" on:click={prevSlide}>PREV</button>
-	</div>
+	</div> -->
 </div>
 
 <style>
 	.slider {
 		position: relative;
 		width: 100%;
-		height: 100%;
+		/* height: 100%; */
 		overflow: hidden;
 		/* border: 2px solid lightcoral; */
 		& .slider__controls {
 			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
+			top: 100%;
+			transform: translateY(-100%);
 			display: flex;
 			justify-content: space-between;
 			max-width: 100%;
@@ -104,6 +106,9 @@
 			}
 		}
 		& .slide {
+			position: absolute;
+			top: 0;
+			left: 0;
 			display: grid;
 			grid-template-columns: 1.4fr 2fr;
 			gap: 1rem;
@@ -111,6 +116,7 @@
 			height: 100%;
 
 			& .slide-image {
+				position: relative;
 				grid-column: 1/1;
 				border-radius: 1rem;
 				overflow: hidden;
@@ -118,6 +124,18 @@
 					width: 100%;
 					height: 100%;
 					object-fit: cover;
+				}
+				& span {
+					position: absolute;
+					top: 1rem;
+					left: 1rem;
+					padding: 0.25rem 0.5rem;
+					background: hsla(0, 0%, 0%, 0.2);
+					border-radius: calc(1rem - 0.5rem);
+					color: var(--fc-white);
+					font-size: 0.8rem;
+					/* font-weight: 600; */
+					z-index: 1;
 				}
 			}
 			& .slide__content__w {
@@ -145,7 +163,7 @@
 						color: var(--fc-light);
 					}
 				}
-				& .slide-footer{
+				& .slide-footer {
 					display: flex;
 					justify-content: flex-end;
 					/* border: 2px solid lightcoral; */
@@ -158,12 +176,9 @@
 						/* border-radius: 50%; */
 						/* background: var(--gray-2); */
 						transition: all 0.3s ease;
-				
 					}
 				}
 			}
 		}
 	}
-
-	
 </style>
