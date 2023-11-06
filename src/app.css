@@ -275,6 +275,7 @@ p strong {
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: 1fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.5fr 1fr;
+	/* gap:2rem; */
 }
 /* ASIDE & MAIN */
 .main__c {
