@@ -1,0 +1,32 @@
+<script>
+	export let width = 48,
+		height = 48,
+		currentColor = '#212931';
+</script>
+
+<!-- <svg {width} {height} viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"> -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" {width} {height}
+	><path
+		fill="none"
+		stroke={currentColor}
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		stroke-miterlimit="10"
+		stroke-width="3"
+		d="M41.5,21.1v-4.6c0-5.5-4.5-10-10-10h-15c-5.5,0-10,4.5-10,10v3"
+	/><path
+		fill="none"
+		stroke={currentColor}
+		stroke-linecap="round"
+		stroke-linejoin="round"
+		stroke-miterlimit="10"
+		stroke-width="3"
+		d="M6.5,25.6v5.9c0,5.5,4.5,10,10,10h15c5.5,0,10-4.5,10-10v-4.6"
+	/><path
+		fill="none"
+		stroke={currentColor}
+		stroke-miterlimit="10"
+		stroke-width="3"
+		d="M24,15.5c-4.7,0-8.5,3.8-8.5,8.5s3.8,8.5,8.5,8.5s8.5-3.8,8.5-8.5S28.7,15.5,24,15.5z"
+	/><path d="M34,12c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S35.1,12,34,12z" /></svg
+>

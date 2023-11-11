@@ -53,7 +53,7 @@
 		{#if currentSlide === i}
 			<div class="slide">
 				<div class="slide-image" transition:fade={{ delay: 250, duration: 1000 }}>
-					<img src={slide.main_img} alt="" />
+					<img src={slide.main_img} alt={slide.title} />
 					<span> {i +1} / {slides.length}</span>
 				</div>
 				<div class="slide__content__w" transition:fade={{ delay: 250, duration: 1000 }}>
@@ -64,7 +64,7 @@
 
 					<div class="slide-footer">
 						<a class="btn-link" href="./blog/{slide.category_slug}/{slide.slug}">
-							<LinkCircle width={48} height={48} />
+							<LinkCircle width={56} height={56} />
 						</a>
 					</div>
 				</div>
@@ -127,8 +127,8 @@
 				}
 				& span {
 					position: absolute;
-					top: 1rem;
-					left: 1rem;
+					bottom: 1rem;
+					right: 1rem;
 					padding: 0.25rem 0.5rem;
 					background: hsla(0, 0%, 0%, 0.2);
 					border-radius: calc(1rem - 0.5rem);

@@ -1,4 +1,9 @@
 <script>
+	import Facebook from './icons/Facebook.svelte';
+	import Instagram from './icons/Instagram.svelte';
+	import MainLogo from './icons/MainLogo.svelte';
+	import Twitter from './icons/Twitter.svelte';
+
 	// do stuff
 </script>
 
@@ -7,11 +12,25 @@
 <div class="footer__w">
 	<div class="footer__section">
 		<!-- <h3 class="footer__title">SHEP</h3> -->
-		<img
+		<!-- <img
 			src="https://cdn.sanity.io/images/gkez65br/production/d4881aa85a12a4b55de32a576068e958057fd27c-263x265.svg"
 			alt="SHEP logo"
-		/>
-		<p>Facebook, twitter, instagram</p>
+		/> -->
+		<div class="logo__w">
+			<MainLogo />
+			<div class="social">
+				<a href="#">
+					<Instagram />
+				</a>
+				<a href="#">
+					<Facebook />
+				</a>
+				<a href="#">
+					<Twitter />
+				</a>
+			</div>
+		</div>
+		<!-- <p>Facebook, twitter, instagram</p> -->
 	</div>
 	<div class="footer__section">
 		<!-- <h3 class="footer__title">Contact</h3> -->
@@ -46,7 +65,12 @@
 		</div>
 		<div class="group">
 			<h5>Accreditation</h5>
-			<p>HSE logo</p>
+			<div class="img__w">
+				<img
+					src="https://cdn.sanity.io/images/gkez65br/production/fc6eb5bb90867b44c5bc99c430f66ec856077b04-450x250.jpg"
+					alt="hse logo"
+				/>
+			</div>
 		</div>
 	</div>
 	<div class="footer__section">
@@ -87,6 +111,21 @@
 		border: 1px solid var(--gray-100);
 		& .group {
 			margin-bottom: 1rem;
+			& h5 {
+				margin-bottom: 0.5rem;
+				font-family: var(--ff-gilroy-smb);
+			}
+			& .img__w {
+				max-width: 100%;
+				padding-inline: 1rem;
+				/* border: 1px solid var(--gray-100); */
+				/* border-radius: 1rem; */
+				& img {
+					display: block;
+					width: 100%;
+					object-fit: cover;
+				}
+			}
 		}
 		& p {
 			margin: 0;
@@ -118,4 +157,19 @@
 	.footer__link:hover {
 		color: #f26a2e;
 	}
+	.logo__w {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 1rem;
+		height: 100%;
+      & .social {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		margin-top: 2rem
+	}
+	}
+	
 </style>

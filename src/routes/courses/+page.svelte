@@ -41,7 +41,7 @@
 				</div>
 				<div class="card-footer">
 					<a class="btn-link" href="/courses/{course.slug}">
-						<LinkCircle width={48} height={48} />
+						<LinkCircle width={56} height={56} />
 					</a>
 				</div>
 

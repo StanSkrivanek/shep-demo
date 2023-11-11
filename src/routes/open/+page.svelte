@@ -43,7 +43,7 @@
 				<div class="card-footer">
 					<p>{course.course.type}</p>
 					<a class="btn-link" href="courses/{course.course.slug.current}">
-						<LinkCircle width={48} height={48}/>
+						<LinkCircle width={56} height={56} />
 					</a>
 				</div>
 
@@ -105,7 +105,6 @@
 </div>
 
 <style>
-
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -136,7 +135,7 @@
 		background: var(--gray-1);
 		max-height: max-content;
 		& img {
-			display:block;
+			display: block;
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
@@ -210,11 +209,11 @@
 		grid-area: footer;
 		display: flex;
 		justify-content: space-between;
-		/* border: 1px solid var(--gray-2); */
-
+		align-items: end;
 		& p {
 			align-self: flex-end;
 			margin: 0;
+			line-height: 1;
 			font-size: var(--xs);
 			color: var(--gray-3);
 		}
@@ -222,7 +221,6 @@
 			pointer-events: all;
 		}
 	}
-
 
 	@media (max-width: 1024px) {
 		.hero-data {

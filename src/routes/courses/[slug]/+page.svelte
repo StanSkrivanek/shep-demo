@@ -330,12 +330,12 @@
 		flex-direction: column;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: var(--green-light);
+		background: var(--green-100);
 	}
 	.hero-img {
 		grid-area: hero-img;
 		border-radius: 1rem;
-		background: var(--gray-1);
+		background: var(--gray-50);
 		max-height: max-content;
 
 		& img {
@@ -350,7 +350,7 @@
 		grid-area: hero-price;
 		padding: 1.4rem;
 		border-radius: 1rem;
-		background: var(--gray-1);
+		background: var(--blue-50);
 	}
 
 	/* Fee */
@@ -381,7 +381,7 @@
 		padding: 1.4rem;
 		border-radius: 1rem;
 		color: var(--fc-light);
-		background: var(--blue-light);
+		background: var(--orange-100);
 		min-width: 160px;
 	}
 	.small-title {
@@ -441,7 +441,7 @@
 		display: flex;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: var(--red-sha-1);
+		background: var(--red-200);
 		& p {
 			margin: 0;
 			margin-bottom: 0.5rem;
@@ -480,7 +480,7 @@
 	.accordion_item {
 		--_base-color-private: var(--item-color, var(--clr-base));
 		/* changing value of `--item-color` will change colors of each child element that contain `--_base-color-private`  */
-		--item-color: var(--clr-purple);
+		--item-color: var(--purple-800);
 		margin-bottom: 1rem;
 		background-color: var(--_bkc-color);
 		border-radius: 1rem;
