@@ -27,18 +27,23 @@
 			/>
 		</div>
 		<div class="section-sm">
-			<div>
-				<h4>who are we</h4>
-				<p>
-					SHEP is a unique, not-for-profit, community-based training and development organisation
-				</p>
+			<div class="header__c">
+				<div class="txt__w">
+					<h4>Who Are We</h4>
+					<p>
+						SHEP is a unique, not-for-profit, community-based training and development organisation
+					</p>
+				</div>
+				<a href="/about" class="link-and-txt__w">
+					<span>More about us</span>
+					<LinkCircle width={56} height={56} />
+				</a>
 			</div>
-			<div>
-				<img
-					src="https://cdn.sanity.io/images/gkez65br/production/8e3acee681de61aa2a8d5ea3656c553dfcd7269f-568x673.jpg"
-					alt=""
-				/>
-			</div>
+
+			<img
+				src="https://cdn.sanity.io/images/gkez65br/production/8e3acee681de61aa2a8d5ea3656c553dfcd7269f-568x673.jpg"
+				alt=""
+			/>
 		</div>
 	</div>
 
@@ -106,50 +111,14 @@
 			</a>
 		</div>
 	</div>
-	<div class="stories">
-		<div class="info">
-			<div>
-				<h2 class="page-header">Mental Health & Wellbeing</h2>
-				<p>
-					When it comes to mental health, we all have our own unique stories to tell. But no matter
-					what we are going through, there are other people experiencing it too.
-				</p>
-				<!-- <p>Personal Stories</p> -->
-				<p>
-					Read personal stories from community members who've shared how they managed to find their
-					way through difficult times.
-				</p>
-			</div>
-			<div class="card-footer">
-				<a class="btn-link" href="./courses">
-					<LinkCircle width={56} height={56} />
-				</a>
-			</div>
-			<!-- <p>Reading their stories of recovery can help you imagine your own journey.</p> -->
-		</div>
-		<div class="sec-img">
+
+	<div class="mission">
+		<div class="img_w">
 			<img
-				src="https://cdn.sanity.io/images/gkez65br/production/1c2329656e503c3c7f9a503f36bdeec39f143db3-695x522.jpg?w=600&fit=max&auto=format"
-				alt="Mindful woman portrait"
+				src="https://cdn.sanity.io/images/gkez65br/production/e22f9e770dc564915d3eceb55450eb06c24ecba0-849x829.jpg"
+				alt=""
 			/>
 		</div>
-		<!-- <div class="card">
-			<div class="card-body">
-				<p>Personal Stories</p>
-				<p>
-					Read personal stories from community members who've shared how they managed to find their
-					way through difficult times.
-				</p>
-			</div>
-			<div class="card-footer">
-				<a class="btn-link" href="./courses">
-					<LinkCircle width={48} height={48} />
-				</a>
-			</div>
-		</div> -->
-	</div>
-	<div class="mission">
-
 		<div class="card-mission">
 			<div class="body">
 				<h2 class="body-header">Our Mission</h2>
@@ -209,10 +178,32 @@
 				</div>
 			</a>
 		</div>
-				<div class="img_w">
+	</div>
+	<div class="stories">
+		<div class="info">
+			<div>
+				<h2 class="page-header">Mental Health & Wellbeing</h2>
+				<p>
+					When it comes to mental health, we all have our own unique stories to tell. But no matter
+					what we are going through, there are other people experiencing it too.
+				</p>
+				<!-- <p>Personal Stories</p> -->
+				<p>
+					Read personal stories from community members who've shared how they managed to find their
+					way through difficult times.
+				</p>
+			</div>
+			<div class="card-footer">
+				<a class="btn-link" href="./stories">
+					<LinkCircle width={56} height={56} />
+				</a>
+			</div>
+			<!-- <p>Reading their stories of recovery can help you imagine your own journey.</p> -->
+		</div>
+		<div class="sec-img">
 			<img
-				src="https://cdn.sanity.io/images/gkez65br/production/e22f9e770dc564915d3eceb55450eb06c24ecba0-849x829.jpg"
-				alt=""
+				src="https://cdn.sanity.io/images/gkez65br/production/1c2329656e503c3c7f9a503f36bdeec39f143db3-695x522.jpg?w=600&fit=max&auto=format"
+				alt="Mindful woman portrait"
 			/>
 		</div>
 	</div>
@@ -253,7 +244,7 @@
 		grid-column: 1/-1;
 		/* grid-row: 1/-1; */
 		gap: 1rem;
-		margin-bottom: 5rem;
+		margin-bottom: 3rem;
 
 		& .title {
 			grid-area: hero;
@@ -316,11 +307,29 @@
 		& .section-sm {
 			display: flex;
 			flex-direction: column;
-			gap: 0;
+			gap: 1rem;
 			justify-content: end;
 			grid-column: 7/-1;
-			/* padding-inline:1rem; */
-
+			& .header__c {
+				display: flex;
+				gap: 1rem;
+			}
+			& .link-and-txt__w {
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				align-items: end;
+				text-decoration: none;
+				gap: 1rem;
+				& span {
+					font-size: var(--xs);
+					color: var(--gray-900);
+					font-family: var(--ff-gilroy-smb);
+					max-width: 10ch;
+					line-height: 1;
+					text-align: right;
+				}
+			}
 			& img {
 				display: block;
 				width: 100%;
@@ -332,8 +341,8 @@
 				margin: 0;
 				margin-bottom: 0.5rem;
 				display: inline-block;
-				text-transform: uppercase;
-				&:after {
+				/* text-transform: uppercase; */
+				/* &:after {
 					content: '';
 					display: block;
 					width: 5rem;
@@ -341,7 +350,7 @@
 					background: var(--gray-500);
 					border-radius: 1rem;
 					margin-bottom: 0.5rem;
-				}
+				} */
 			}
 			& p {
 				margin: 0;
@@ -352,14 +361,13 @@
 			}
 		}
 	}
-
 	.links-with-slider {
 		display: grid;
 		grid-template-columns: subgrid;
 		grid-template-areas: 'slider slider slider slider slider links links links ';
 		grid-column: 1/-1;
 		gap: 1rem;
-		margin-bottom: 5rem;
+		margin-bottom: 3rem;
 		& .links {
 			grid-area: links;
 			/* border-bottom: 1px solid #ccc; */
@@ -374,11 +382,13 @@
 		display: grid;
 		grid-template-columns: subgrid;
 		grid-template-areas:
-			' card card card	--- img img img img '
-			' links links links --- img img img img ';
+			/* ' card card card	--- img img img img '
+			' links links links --- img img img img '; */
+			' img img img img --- card card card '
+			' img img img img --- links links links ';
 		grid-column: 1/-1;
 		gap: 1rem;
-		margin-bottom: 5rem;
+		margin-bottom: 3rem;
 		& .img_w {
 			grid-area: img;
 			& img {
@@ -437,10 +447,10 @@
 	.stories {
 		display: grid;
 		grid-template-columns: subgrid;
-		grid-template-areas: 'img img img img img intro intro intro';
+		grid-template-areas: 'intro intro intro img img img img img ';
 		grid-column: 1/-1;
 		gap: 1rem;
-		margin-bottom: 5rem;
+		margin-bottom: 3rem;
 		& .sec-img {
 			grid-area: img;
 			& img {
@@ -476,7 +486,7 @@
 			'scroller scroller scroller scroller scroller scroller scroller scroller';
 		grid-column: 1/-1;
 		gap: 1rem;
-		margin-bottom: 5rem;
+		margin-bottom: 3rem;
 		& h4 {
 			grid-area: intro;
 			padding: 2.4rem;
@@ -497,7 +507,7 @@
 		grid-template-areas: ' img img img img img intro intro intro';
 		grid-column: 1/-1;
 		gap: 1rem;
-		margin-bottom: 5rem;
+		margin-bottom: 3rem;
 		& .info {
 			grid-area: intro;
 			display: flex;
@@ -525,7 +535,7 @@
 		}
 	}
 
-	.card {
+	/* .card {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -551,7 +561,7 @@
 			display: flex;
 			justify-content: flex-end;
 		}
-	}
+	} */
 	/* Media Query */
 	/**
 * 640px - sm - small devices (mobile) 

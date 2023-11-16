@@ -11,46 +11,38 @@
 
 <div class="footer__w">
 	<div class="footer__section">
-		<!-- <h3 class="footer__title">SHEP</h3> -->
-		<!-- <img
-			src="https://cdn.sanity.io/images/gkez65br/production/d4881aa85a12a4b55de32a576068e958057fd27c-263x265.svg"
-			alt="SHEP logo"
-		/> -->
 		<div class="logo__w">
 			<MainLogo />
 			<div class="social">
 				<a href="#">
-					<Instagram />
+					<Instagram currentColor="#3d4c5c" />
 				</a>
 				<a href="#">
-					<Facebook />
+					<Facebook currentColor="#3d4c5c" />
 				</a>
 				<a href="#">
-					<Twitter />
+					<Twitter currentColor="#3d4c5c" />
 				</a>
 			</div>
 		</div>
-		<!-- <p>Facebook, twitter, instagram</p> -->
 	</div>
 	<div class="footer__section">
-		<!-- <h3 class="footer__title">Contact</h3> -->
-		<!-- office -->
 		<div class="group">
 			<h5>Office</h5>
 			<p>The Old Primary School</p>
-			<p>Ardfoyle Avenue</p>
-			<p>Ballintemple</p>
-			<p>Co. Cork | T12 XDH2</p>
+			<p>Ardmore Avenue</p>
+			<p>Balinatemple</p>
+			<p>Co. Cork | T25 XYD7</p>
 		</div>
 		<div class="group">
 			<h5>PHONE</h5>
-			<p>Cork - (021) 466 6180</p>
-			<p>Mid-West - (086) 145 1408</p>
-			<p>Kerry - (087) 772 8089</p>
+			<p>Cork - (022) 12 4455</p>
+			<p>Mid-West - (081) 356 6698</p>
+			<p>Kerry - (083) 155 7887</p>
 		</div>
-		<div>
-			<h5>Email</h5>
-			<p>info@socialandhealth.com</p>
+		<div class="group">
+			<h5>EMAIL</h5>
+			<p>info@socialhealth.ie</p>
 		</div>
 	</div>
 	<div class="footer__section">
@@ -74,7 +66,6 @@
 		</div>
 	</div>
 	<div class="footer__section">
-		<!-- <h3 class="footer__title">Other</h3> -->
 		<div class="group">
 			<h5>Publications & Reports</h5>
 			<p>report and publications links</p>
@@ -87,8 +78,8 @@
 		</div>
 		<div class="group">
 			<form action="">
-				<label for="newsletter">Sign up for our newsletter</label>
-				<input type="email" name="newsletter" id="newsletter" placeholder="email address" />
+				<label for="newsletter">Sign up for newsletter</label>
+				<input type="email" name="newsletter" id="newsletter" placeholder="Your email address" />
 				<input type="submit" value="submit" />
 			</form>
 		</div>
@@ -112,8 +103,10 @@
 		& .group {
 			margin-bottom: 1rem;
 			& h5 {
-				margin-bottom: 0.5rem;
+				margin-bottom: 0.75rem;
 				font-family: var(--ff-gilroy-smb);
+            border-bottom: 1px solid var(--gray-50);
+            line-height: 1.6rem;
 			}
 			& .img__w {
 				max-width: 100%;
@@ -164,12 +157,44 @@
 		align-items: center;
 		margin-bottom: 1rem;
 		height: 100%;
-      & .social {
-		display: flex;
-		justify-content: center;
-		width: 100%;
-		margin-top: 2rem
+		& .social {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			margin-top: 2rem;
+		}
 	}
-	}
+
+   form{
+      width:100%;
+      /* border: 1px solid red; */
+      & label {
+         margin-bottom: 0.5rem;
+         font-family: var(--ff-gilroy-smb);
+      }
+		& input[type='email'] {
+         /* all: unset; */
+			width: 100%;
+       font-size: 1rem;
+			padding: 0.5rem;
+			border: 1px solid var(--gray-100);
+			border-radius: 0.25rem;
+			margin-bottom: 1rem;
+		}
+		& input[type='submit'] {
+			width: 100%;
+			padding: 0.5rem;
+			border: 1px solid var(--gray-100);
+			border-radius: 0.25rem;
+			background-color: var(--blue-600);
+			color: #fff;
+			font-weight: 600;
+			cursor: pointer;
+         text-transform: uppercase;
+		}
+		& input[type='submit']:hover {
+			background-color: var(--blue-800);
+		}
+   }
 	
 </style>

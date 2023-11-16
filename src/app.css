@@ -230,6 +230,8 @@
 	--gray-900: #2f3a47;
 	--gray-950: #212931;
 }
+
+
 /* SVG */
 
 /* MEDIA QUERIES */
@@ -259,7 +261,9 @@ body {
 	line-height: var(--lineHeight);
 	color: rgb(73, 76, 82);
 }
-* {
+
+*, *::before, *::after {
+	box-sizing: border-box;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -272,6 +276,7 @@ p strong {
 .page__c {
 	padding: 1rem;
 	max-width: 1474px;
+	/* max-width: 1400px; */
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: 1fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.5fr 1fr;
@@ -283,7 +288,7 @@ p strong {
 	grid-template-columns: subgrid;
 	grid-template-areas: 'aside aside aside main main main main ';
 	grid-column: 1/-1;
-	margin-bottom: 5rem;
+	/* margin-bottom: 5rem; */
 	gap: 1rem;
 }
 
