@@ -112,7 +112,7 @@
 		</div>
 	</div>
 
-<div class="mission">
+	<div class="mission">
 		<div class="img_w">
 			<img
 				src="https://cdn.sanity.io/images/gkez65br/production/e22f9e770dc564915d3eceb55450eb06c24ecba0-849x829.jpg"
@@ -144,38 +144,38 @@
 					</div>
 				</div>
 			</div>
+			<div class="links">
+				<a href="./team" class="decorative_link__c">
+					<div class="link-header">
+						<div class="dots">
+							<DotsCorner width={24} height={24} currentColor="#b9dcfa" />
+						</div>
+						<div class="link-body">
+							<h3>Our Team</h3>
+							<p>is here for you</p>
+						</div>
+					</div>
+					<div class="link">
+						<Arrow width={24} height={24} />
+					</div>
+				</a>
+				<a href="./venues" class="decorative_link__c">
+					<div class="link-header">
+						<div class="dots">
+							<DotsCorner width={24} height={24} currentColor="#b9dcfa" />
+						</div>
+						<div class="link-body">
+							<h3>Our Partners</h3>
+							<p>who help us to provide courses across Ireland</p>
+						</div>
+					</div>
+					<div class="link">
+						<Arrow width={24} height={24} />
+					</div>
+				</a>
+			</div>
 		</div>
-		<div class="links">
-			<a href="./team" class="decorative_link__c">
-				<div class="link-header">
-					<div class="dots">
-						<DotsCorner width={24} height={24} currentColor="#b9dcfa" />
-					</div>
-					<div class="link-body">
-						<h3>Our Team</h3>
-						<p>is here for you</p>
-					</div>
-				</div>
-				<div class="link">
-					<Arrow width={24} height={24} />
-				</div>
-			</a>
-			<a href="./venues" class="decorative_link__c">
-				<div class="link-header">
-					<div class="dots">
-						<DotsCorner width={24} height={24} currentColor="#b9dcfa" />
-					</div>
-					<div class="link-body">
-						<h3>Collaborative Partners</h3>
-						<p>who help us to provide courses across Ireland</p>
-					</div>
-				</div>
-				<div class="link">
-					<Arrow width={24} height={24} />
-				</div>
-			</a>
-		</div>
-	</div> 
+	</div>
 	<div class="stories">
 		<div class="info">
 			<div>
@@ -393,10 +393,8 @@
 			& img {
 				width: 100%;
 				height: 100%;
-				/* aspect-ratio: 2/1; */
 				object-fit: cover;
 				border-radius: 0.5rem;
-				/* min-height: 360px; */
 				display: block;
 			}
 		}
@@ -419,6 +417,7 @@
 			& .footer {
 				display: flex;
 				gap: 2rem;
+				margin-bottom: 2rem;
 				& img {
 					border-radius: 1rem;
 				}
@@ -435,11 +434,17 @@
 					}
 				}
 			}
-		}
-		& .links {
-			grid-area: links;
-			/* border-bottom: 1px solid #ccc; */
-			/* color: var(--clr-gray-400); */
+			& .links {
+				grid-area: links;
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+				& a:last-child {
+					border-bottom: none;
+				}
+				/* border-bottom: 1px solid #ccc; */
+				/* color: var(--clr-gray-400); */
+			}
 		}
 	}
 
