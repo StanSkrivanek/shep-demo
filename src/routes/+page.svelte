@@ -476,6 +476,10 @@
 				flex-direction: column;
 				gap: 1rem;
 				margin-bottom: 0;
+				& a{
+					padding-bottom: .5rem;
+					/* border-bottom: none; */
+				}
 				& a:last-child {
 					border-bottom: none;
 				}
