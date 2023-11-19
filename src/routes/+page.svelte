@@ -364,7 +364,7 @@
 	.links-with-slider {
 		display: grid;
 		grid-template-columns: subgrid;
-		grid-template-areas: 'slider slider slider slider slider links links links ';
+		grid-template-areas: ' links links links slider slider slider slider slider';
 		grid-column: 1/-1;
 		gap: 1rem;
 		margin-bottom: 3rem;
@@ -382,8 +382,6 @@
 		display: grid;
 		grid-template-columns: subgrid;
 		grid-template-areas:
-			/* ' card card card	--- img img img img '
-			' links links links --- img img img img '; */
 			' img img img img --- card card card '
 			' img img img img --- links links links ';
 		grid-column: 1/-1;
@@ -459,7 +457,6 @@
 				aspect-ratio: 2/1;
 				object-fit: cover;
 				border-radius: 0.5rem;
-				/* min-height: 360px; */
 				display: block;
 			}
 		}
@@ -573,29 +570,37 @@
 	@media (max-width: 1280px) {
 		.stories {
 			grid-template-areas:
-				'img img img img intro intro intro intro '
-				' img img img img card card card card';
+				' intro intro intro img img img img img '
 		}
 	}
+	@media (max-width: 1024px) {
+		.links-with-slider {
+			/* magic */
+		}
+	.stories {
+			grid-template-areas:
+			' intro intro intro intro img img img img'
+				
+				
+		}
+	}
+
 	@media (max-width: 768px) {
 		.links-with-slider {
 			/* magic */
 		}
-		.stories {
+	.stories {
 			grid-template-areas:
-				'intro intro intro intro intro intro intro intro'
-				'img img img img card card card card';
+			'img img img img img img img img'
+			'intro intro intro intro intro intro intro intro'
+				
+				
 		}
 	}
-	@media (max-width: 480px) {
+	@media (max-width: 640px) {
 		.links-with-slider {
 			/* magic */
 		}
-		.stories {
-			grid-template-areas:
-				'intro intro intro intro intro intro intro intro'
-				'img img img img img img img img'
-				'card card card card card card card card';
-		}
+	
 	}
 </style>
