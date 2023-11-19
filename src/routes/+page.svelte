@@ -568,20 +568,20 @@
 * 1536px - xxl - extra extra large devices (larger desktops)
 */
 	@media (max-width: 1280px) {
-		.stories {
+		/* .stories {
 			grid-template-areas:
 				' intro intro intro img img img img img '
-		}
+		} */
 	}
 	@media (max-width: 1024px) {
 		.links-with-slider {
 			/* magic */
 		}
-	.stories {
-			grid-template-areas:
-			' intro intro intro intro img img img img'
-				
-				
+		.stories {
+			grid-template-areas: ' intro intro intro intro img img img img';
+		}
+		.activities {
+			grid-template-areas: ' img img img img intro intro intro intro';
 		}
 	}
 
@@ -589,18 +589,20 @@
 		.links-with-slider {
 			/* magic */
 		}
-	.stories {
+		.stories {
 			grid-template-areas:
-			'img img img img img img img img'
-			'intro intro intro intro intro intro intro intro'
-				
-				
+				'img img img img img img img img'
+				'intro intro intro intro intro intro intro intro';
+		}
+		.activities {
+			grid-template-areas:
+				'img img img img img img img img'
+				'intro intro intro intro intro intro intro intro';
 		}
 	}
 	@media (max-width: 640px) {
 		.links-with-slider {
 			/* magic */
 		}
-	
 	}
 </style>
