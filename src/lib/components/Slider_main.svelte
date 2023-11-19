@@ -54,7 +54,7 @@
 			<div class="slide">
 				<div class="slide-image" transition:fade={{ delay: 250, duration: 1000 }}>
 					<img src={slide.main_img} alt={slide.title} />
-					<span> {i +1} / {slides.length}</span>
+					<span> {i + 1} / {slides.length}</span>
 				</div>
 				<div class="slide__content__w" transition:fade={{ delay: 250, duration: 1000 }}>
 					<div class="slide__content">
@@ -81,9 +81,8 @@
 	.slider {
 		position: relative;
 		width: 100%;
-		/* height: 100%; */
-		overflow: hidden;
-		/* border: 2px solid lightcoral; */
+		height: 100%;
+		/* overflow: hidden; */
 		& .slider__controls {
 			position: absolute;
 			top: 100%;
@@ -146,6 +145,7 @@
 				padding: 2rem;
 				background: var(--gray-1);
 				border-radius: 1rem;
+				height: 100%;
 				& .slide__content {
 					/* border: 2px solid lightcoral; */
 					grid-column: 2/2;
@@ -160,12 +160,13 @@
 					}
 					& p {
 						margin: 0;
-							color: var(--clr-gray-400);
+						color: var(--clr-gray-400);
 					}
 				}
 				& .slide-footer {
 					display: flex;
 					justify-content: flex-end;
+
 					/* border: 2px solid lightcoral; */
 					& .btn-link {
 						display: flex;
@@ -179,6 +180,20 @@
 					}
 				}
 			}
+		}
+	}
+	@media (max-width: 768px) {
+		.slider .slide {
+			display: flex;
+			flex-direction: column;
+		}
+		.slide .slide-image {
+			grid-column: 1/-1;
+			flex-basis: 50%;
+		}
+		.slide .slide__content__w {
+			grid-column: 1/-1;
+			flex-basis: 50%;
 		}
 	}
 </style>

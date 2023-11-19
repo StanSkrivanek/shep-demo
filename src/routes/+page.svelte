@@ -47,10 +47,7 @@
 		</div>
 	</div>
 
-	<div class="links-with-slider">
-		<div class="slider__c">
-			<SliderMain {slides} duration={5000} />
-		</div>
+	<div class="links-and-slider">
 		<div class="links">
 			<a href="./courses" class="decorative_link__c">
 				<div class="link-header">
@@ -110,9 +107,12 @@
 				</div>
 			</a>
 		</div>
+		<div class="slider__c">
+			<SliderMain {slides} duration={5000} />
+		</div>
 	</div>
 
-	<div class="mission">
+	<!-- <div class="mission">
 		<div class="img_w">
 			<img
 				src="https://cdn.sanity.io/images/gkez65br/production/e22f9e770dc564915d3eceb55450eb06c24ecba0-849x829.jpg"
@@ -143,9 +143,6 @@
 						<p>Director</p>
 					</div>
 				</div>
-				<!-- <a class="btn-link" href="./courses">
-					<LinkCircle width={48} height={48} />
-				</a> -->
 			</div>
 		</div>
 		<div class="links">
@@ -178,7 +175,7 @@
 				</div>
 			</a>
 		</div>
-	</div>
+	</div> -->
 	<div class="stories">
 		<div class="info">
 			<div>
@@ -361,7 +358,7 @@
 			}
 		}
 	}
-	.links-with-slider {
+	.links-and-slider {
 		display: grid;
 		grid-template-columns: subgrid;
 		grid-template-areas: ' links links links slider slider slider slider slider';
@@ -370,11 +367,15 @@
 		margin-bottom: 3rem;
 		& .links {
 			grid-area: links;
-			/* border-bottom: 1px solid #ccc; */
 		}
 		& .slider__c {
+			/* position:relative; */
 			grid-area: slider;
-			display: flex;
+			display: block;
+
+			/* display: block; */
+			/* width: 100%; */
+			/* height: 100%; */
 		}
 	}
 
@@ -568,13 +569,28 @@
 * 1536px - xxl - extra extra large devices (larger desktops)
 */
 	@media (max-width: 1280px) {
-		/* .stories {
+		.links-and-slider {
+			/* position: relative; */
+			display: grid;
+			grid-template-columns: subgrid;
 			grid-template-areas:
-				' intro intro intro img img img img img '
-		} */
+				' links links links links links links links links'
+				' slider slider slider slider slider slider slider slider';
+			grid-column: 1/-1;
+			grid-template-rows: 1fr 1.6fr;
+
+			gap: 1rem;
+		}
+		.links {
+			grid-area: links;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1rem;
+			/* border-bottom: 1px solid #ccc; */
+		}
 	}
 	@media (max-width: 1024px) {
-		.links-with-slider {
+		.links-and-slider {
 			/* magic */
 		}
 		.stories {
@@ -586,9 +602,9 @@
 	}
 
 	@media (max-width: 768px) {
-		.links-with-slider {
-			/* magic */
-		}
+		.links {
+				grid-template-columns: 1fr;
+			}
 		.stories {
 			grid-template-areas:
 				'img img img img img img img img'
@@ -601,8 +617,6 @@
 		}
 	}
 	@media (max-width: 640px) {
-		.links-with-slider {
-			/* magic */
-		}
+
 	}
 </style>
