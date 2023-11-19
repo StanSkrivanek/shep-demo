@@ -390,8 +390,7 @@
 		margin-bottom: 3rem;
 		@media screen and (max-width: 1280px) {
 			grid-template-areas:
-				' img img img img img img img img '
-				' card card card card card card card card ';
+				' img img img card card card card card';
 		}
 		& .img_w {
 			grid-area: img;
@@ -399,7 +398,7 @@
 				width: 100%;
 				height: 100%;
 				aspect-ratio: 2/1;
-				object-fit: cover;
+				object-fit: contain;
 				border-radius: 0.5rem;
 				display: block;
 			}
