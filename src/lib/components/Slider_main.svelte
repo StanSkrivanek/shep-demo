@@ -147,7 +147,6 @@
 				border-radius: 1rem;
 				height: 100%;
 				& .slide__content {
-					/* border: 2px solid lightcoral; */
 					grid-column: 2/2;
 					color: var(--fc-main);
 					& h2 {
@@ -167,15 +166,10 @@
 					display: flex;
 					justify-content: flex-end;
 
-					/* border: 2px solid lightcoral; */
 					& .btn-link {
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						/* width: 4rem;
-						height: 4rem; */
-						/* border-radius: 50%; */
-						/* background: var(--gray-2); */
 						transition: all 0.3s ease;
 					}
 				}

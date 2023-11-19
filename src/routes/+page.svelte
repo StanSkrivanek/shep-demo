@@ -112,7 +112,7 @@
 		</div>
 	</div>
 
-	<!-- <div class="mission">
+<div class="mission">
 		<div class="img_w">
 			<img
 				src="https://cdn.sanity.io/images/gkez65br/production/e22f9e770dc564915d3eceb55450eb06c24ecba0-849x829.jpg"
@@ -175,7 +175,7 @@
 				</div>
 			</a>
 		</div>
-	</div> -->
+	</div> 
 	<div class="stories">
 		<div class="info">
 			<div>

@@ -293,7 +293,6 @@ p strong {
 }
 
 a {
-	/* text-decoration: none; */
 	color: rgb(55, 56, 58);
 }
 
@@ -302,14 +301,7 @@ a:hover {
 	color: lightseagreen;
 }
 
-/* h1 {
-	font-family: var(--ff-gunterhaus);
-	font-weight: 200;
-	line-height: 1;
-	letter-spacing: -0.025em;
-	color: rgb(75, 77, 82);
-	margin-block: 0;
-} */
+
 h1,
 h2,
 h3,
@@ -362,13 +354,11 @@ ul {
 	list-style-type: square;
 	margin-bottom: 2rem;
 }
-/* li {
-	margin-bottom: 0.5rem;
-} */
+
 p {
 	line-height: 1.4;
 	margin-bottom: 1rem;
-	/* padding-bottom: 1rem; */
+
 }
 p:last-child {
 	margin-bottom: 0;
@@ -378,7 +368,6 @@ p:last-child {
 .toc-active {
 	color: var(--cyan-500) !important;
 	text-decoration: underline;
-	/* background: var(--gray-1); */
 }
 /* LINKS */
 /* decorative - ed. on home page*/
