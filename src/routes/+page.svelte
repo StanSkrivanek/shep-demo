@@ -221,13 +221,16 @@
 			<div>
 				<h2 class="section-header">Our Activities</h2>
 				<p>
-				
-ChatGPT
-In addition to our primary initiatives, such as a distinctive training program, affordable counseling, and advocacy efforts, SHEP oversees several projects strategically crafted to advance our mission. These projects are executed by both SHEP staff and dedicated volunteers, with funding sourced from SHEP itself as well as other supporting organizations..
+					Besides our core initiatives, which include a unique training program, cost-effective
+					counseling, and advocacy endeavors, SHEP manages a range of strategically developed
+					projects aimed at furthering our mission.
 				</p>
+				<!-- <p>These projects are carried out by SHEP in
+					collaboration with partners, and funding is derived from SHEP's own resources as well as
+					support from other organizations.</p> -->
 			</div>
 			<div class="card-footer">
-				<a class="btn-link" href="./courses">
+				<a class="btn-link" href="./activities">
 					<LinkCircle width={56} height={56} />
 				</a>
 			</div>
@@ -420,7 +423,7 @@ In addition to our primary initiatives, such as a distinctive training program, 
 					gap: 1rem;
 				}
 				@media screen and (max-width: 640px) {
-					display: block
+					display: block;
 				}
 			}
 			& .body {
