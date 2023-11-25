@@ -122,7 +122,7 @@
 		<div class="card-mission">
 			<div class="content__w">
 				<div class="body">
-					<h2 class="body-header">Our Mission</h2>
+					<h2 class="section-header">Our Mission</h2>
 					<p>
 						In solidarity and partnership with others we seek to foster the well-being of people,
 						families, communities and the wider world and to contribute to building a healthy,
@@ -181,7 +181,7 @@
 	<div class="stories">
 		<div class="info">
 			<div>
-				<h2 class="page-header">Mental Health & Wellbeing</h2>
+				<h2 class="section-header">Mental Health & Wellbeing</h2>
 				<p>
 					When it comes to mental health, we all have our own unique stories to tell. But no matter
 					what we are going through, there are other people experiencing it too.
@@ -219,7 +219,7 @@
 		</div>
 		<div class="info">
 			<div>
-				<h2 class="page-header">Our Activities</h2>
+				<h2 class="section-header">Our Activities</h2>
 				<p>
 					When it comes to mental health, we all have our own unique stories to tell. But no matter
 					what we are going through, there are other people experiencing it too.
@@ -388,10 +388,10 @@
 		grid-column: 1/-1;
 		gap: 1rem;
 		margin-bottom: 3rem;
-		@media screen and (max-width: 1280px) {
+		/* @media screen and (max-width: 1280px) {
 			grid-template-areas:
 				' img img img card card card card card';
-		}
+		} */
 		& .img_w {
 			grid-area: img;
 			& img {
@@ -415,15 +415,18 @@
 			& .content__w {
 				display: flex;
 				flex-direction: column;
-				/* justify-content: space-between; */
 				@media screen and (max-width: 1280px) {
 					flex-direction: row;
 					gap: 1rem;
+				}
+				@media screen and (max-width: 640px) {
+					display: block
 				}
 			}
 			& .body {
 				height: min-content;
 				flex-basis: 50%;
+
 				& p {
 					font-size: var(--m);
 					margin-bottom: 1rem;
@@ -431,12 +434,12 @@
 				}
 			}
 			& .footer {
-				position:relative;
+				position: relative;
 				display: flex;
 				gap: 2rem;
 				margin-bottom: 2rem;
 				flex-basis: 50%;
-				&  > img {
+				& > img {
 					width: 100%;
 					aspect-ratio: 1/1;
 					object-fit: cover;
@@ -449,7 +452,7 @@
 					display: flex;
 					bottom: 0;
 					right: 0;
-					padding:1rem;
+					padding: 1rem;
 					justify-content: space-between;
 					align-items: center;
 					width: 100%;
@@ -458,13 +461,12 @@
 						height: 60px;
 						display: block;
 					}
-					& .credits__w{
+					& .credits__w {
 						padding: 0.25rem 0.5rem;
-						background-color: hsla(0, 0%, 0%, 0.4)	;
+						background-color: hsla(0, 0%, 0%, 0.4);
 						border-radius: 0.25rem;
 					}
 					& p {
-						
 						font-size: var(--sm);
 						color: var(--gray-100);
 					}
@@ -476,8 +478,8 @@
 				flex-direction: column;
 				gap: 1rem;
 				margin-bottom: 0;
-				& a{
-					padding-bottom: .5rem;
+				& a {
+					padding-bottom: 0.5rem;
 					/* border-bottom: none; */
 				}
 				& a:last-child {
@@ -494,6 +496,9 @@
 					& a:last-child {
 						border-bottom: 1px solid #ccc;
 					}
+				}
+				@media screen and (max-width: 768px) {
+					flex-direction: column;
 				}
 				/* border-bottom: 1px solid #ccc; */
 				/* color: var(--clr-gray-400); */
@@ -590,7 +595,10 @@
 			}
 		}
 	}
-
+	.section-header {
+		font-weight: 600;
+		margin-bottom: 1rem;
+	}
 	/* .card {
 		display: flex;
 		flex-direction: column;
@@ -644,13 +652,17 @@
 			grid-template-columns: repeat(2, 1fr);
 			gap: 1rem;
 			margin-bottom: 2rem;
-			/* border-bottom: 1px solid #ccc; */
 		}
 		.mission {
 			grid-template-areas: ' img img img card card card card card ';
 		}
 	}
 	@media (max-width: 1024px) {
+		.mission {
+			grid-template-areas:
+				'img img img img img img img img'
+				' card card card card card card card card ';
+		}
 		.stories {
 			grid-template-areas: ' intro intro intro intro img img img img';
 		}
