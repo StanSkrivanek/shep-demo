@@ -221,10 +221,10 @@
 			<div>
 				<h2 class="section-header">Our Activities</h2>
 				<p>
-					When it comes to mental health, we all have our own unique stories to tell. But no matter
-					what we are going through, there are other people experiencing it too.
+				
+ChatGPT
+In addition to our primary initiatives, such as a distinctive training program, affordable counseling, and advocacy efforts, SHEP oversees several projects strategically crafted to advance our mission. These projects are executed by both SHEP staff and dedicated volunteers, with funding sourced from SHEP itself as well as other supporting organizations..
 				</p>
-				<p>Reading their stories of recovery can help you imagine your own journey.</p>
 			</div>
 			<div class="card-footer">
 				<a class="btn-link" href="./courses">
