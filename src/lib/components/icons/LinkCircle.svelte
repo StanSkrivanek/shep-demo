@@ -14,7 +14,6 @@
 		cx="1069"
 		cy="304"
 		r="37"
-		fill="none"
 		style="fill:#fefefe;fill-opacity:0;stroke:#2c425d;stroke-width:2.39px"
 		transform="matrix(.83784 0 0 .83784 -863.644 -222.745)"
 	/><path style="fill:#2c425d"

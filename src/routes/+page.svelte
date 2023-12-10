@@ -3,7 +3,7 @@
 	import Scroller from '$lib/components/Scroller.svelte';
 	import SliderMain from '$lib/components/Slider_main.svelte';
 	import Arrow from '$lib/components/icons/Arrow.svelte';
-	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
+	import LeavesCorner from '$lib/components/icons/LeavesCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 
 	// import { formatDate, formatTime12, monthNameDateYear } from '$lib/utils/datehelpers.js';
@@ -17,16 +17,30 @@
 	<div class="hero">
 		<div class="title">
 			<!-- <span class="subtitle">SHEP</span> -->
-			<h1><span>The place where your mental health flourishes</span></h1>
-			<p>We help building a healthy, loving, socially-just and sustainable way of living</p>
+			<!-- <h1><span>The place where mental health flourishes</span></h1> -->
+			<h1>We help building a healthy, loving, socially-just and sustainable way of living</h1>
+			<!-- <p> 61 different courses for the Autumn season and the year ahead. The courses are running in various counties primarily in the Munster region.  100's of people will get to work on themselves or have the opportunity to be trained so they can help others</p> -->
+
+			<!-- <img
+				src="https://cdn.sanity.io/images/gkez65br/production/0d2dea9c07ff8295c035cb63abf6c6b147e95133-654x753.svg"
+				alt="logo"
+			/> -->
 		</div>
-		<div class="img">
+		<div class="img__w">
 			<img
 				src="https://cdn.sanity.io/images/gkez65br/production/1a823e800e23ac51c17affffb8858b6248869609-800x533.jpg"
 				alt="pinky theme"
 			/>
 		</div>
-		<div class="section-sm">
+	</div>
+	<div class="about">
+		<!-- <div class="img__w">
+			<img
+				src="https://cdn.sanity.io/images/gkez65br/production/0d2dea9c07ff8295c035cb63abf6c6b147e95133-654x753.svg"
+				alt="logo"
+			/>
+		</div>
+		<div class="card">
 			<div class="header__c">
 				<div class="txt__w">
 					<h4>Who Are We</h4>
@@ -44,7 +58,7 @@
 				src="https://cdn.sanity.io/images/gkez65br/production/8e3acee681de61aa2a8d5ea3656c553dfcd7269f-568x673.jpg"
 				alt=""
 			/>
-		</div>
+		</div> -->
 	</div>
 
 	<div class="links-and-slider">
@@ -52,7 +66,7 @@
 			<a href="./courses" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
-						<DotsCorner width={24} height={24} currentColor="#b3ebd0" />
+						<LeavesCorner width={24} height={24} currentColor="#ff7c56" />
 					</div>
 					<div class="link-body">
 						<h3>Short Courses</h3>
@@ -67,7 +81,7 @@
 			<a href="./trainings" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
-						<DotsCorner width={24} height={24} currentColor="#b9dcfa" />
+						<LeavesCorner width={24} height={24} currentColor="#ff7c56" />
 					</div>
 					<div class="link-body">
 						<h3>Intensive Training</h3>
@@ -81,7 +95,7 @@
 			<a href="./blog/counselling/shep-counselling" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
-						<DotsCorner width={24} height={24} currentColor="#ffdcf8" />
+						<LeavesCorner width={24} height={24} currentColor="#44E980" />
 					</div>
 					<div class="link-body">
 						<h3>Counselling</h3>
@@ -95,7 +109,7 @@
 			<a href="./advocacy" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
-						<DotsCorner width={24} height={24} currentColor="#fac7a3" />
+						<LeavesCorner width={24} height={24} currentColor="#DB84DA" />
 					</div>
 					<div class="link-body">
 						<h3>Advocacy Project</h3>
@@ -150,7 +164,7 @@
 				<a href="./team" class="decorative_link__c">
 					<div class="link-header">
 						<div class="dots">
-							<DotsCorner width={24} height={24} currentColor="#b9dcfa" />
+							<LeavesCorner width={24} height={24} currentColor="#6B9EF5" />
 						</div>
 						<div class="link-body">
 							<h3>Our Team</h3>
@@ -164,7 +178,7 @@
 				<a href="./venues" class="decorative_link__c">
 					<div class="link-header">
 						<div class="dots">
-							<DotsCorner width={24} height={24} currentColor="#b9dcfa" />
+							<LeavesCorner width={24} height={24} currentColor="#6B9EF5" />
 						</div>
 						<div class="link-body">
 							<h3>Our Partners</h3>
@@ -239,12 +253,12 @@
 </div>
 
 <style>
+	/* HERO */
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
-		grid-template-areas: 'data data data img img img img';
+		grid-template-areas: 'data data data img img img img img ';
 		grid-column: 1/-1;
-		/* grid-row: 1/-1; */
 		gap: 1rem;
 		margin-bottom: 3rem;
 
@@ -252,7 +266,6 @@
 			grid-area: hero;
 			display: grid;
 			grid-template-columns: subgrid;
-			grid-column: 1 / span 3;
 			display: flex;
 			flex-direction: column;
 			justify-content: start;
@@ -262,25 +275,26 @@
 			padding-top: 3rem;
 			& .subtitle {
 				font-size: var(--sm);
-				/* color: var(--gray-3); */
 				color: var(--gray-500);
 				margin-bottom: 1rem;
 			}
 			& h1 {
 				margin: 0;
 				margin-bottom: 2rem;
+				color: var(--gray-900);
+				font-weight: 400;
 				/* text-align: right; */
 				& span {
 					font-size: clamp(1.953rem, calc(1.6rem + 1vw), 3.52rem);
-					padding: 0.25em 0.25em;
-					border-radius: 0.65rem;
+					/* padding: 0.25em 0.25em; */
+					/* border-radius: 0.65rem; */
 					/* font-family: var(--ff-gilroy-l); */
-					line-height: 1.25;
+					/* line-height: 1.25; */
 					/* text-transform: uppercase; */
-					background: var(--green-100);
-					-webkit-box-decoration-break: clone;
-					-o-box-decoration-break: clone;
-					box-decoration-break: clone;
+					/* background: var(--green-100); */
+					/* -webkit-box-decoration-break: clone; */
+					/* -o-box-decoration-break: clone; */
+					/* box-decoration-break: clone; */
 				}
 			}
 			& p {
@@ -290,83 +304,34 @@
 				max-width: 24ch;
 			}
 		}
-		& .img {
+		& .img__w {
 			position: relative;
-			grid-column: 2 / span 5;
+			grid-column: 4/ -1;
 			grid-row: 1/-1;
 			& img {
 				border-radius: 1rem;
 				display: block;
-				/* position: absolute; */
-				/* grid-column: 2 / span 4; */
 				width: 100%;
-
-				aspect-ratio: 2.6/2;
+				height: 100%;
+				aspect-ratio: 2/1;
 				object-fit: cover;
-				/* aspect-ratio: 1.2/1; */
-			}
-		}
-		& .section-sm {
-			display: flex;
-			flex-direction: column;
-			gap: 1rem;
-			justify-content: end;
-			grid-column: 7/-1;
-			& .header__c {
-				display: flex;
-				gap: 1rem;
-			}
-			& .link-and-txt__w {
-				display: flex;
-				flex-direction: column;
-				justify-content: flex-end;
-				align-items: end;
-				text-decoration: none;
-				gap: 1rem;
-				& span {
-					font-size: var(--xs);
-					color: var(--gray-900);
-					font-family: var(--ff-gilroy-smb);
-					max-width: 10ch;
-					line-height: 1;
-					text-align: right;
-				}
-			}
-			& img {
-				display: block;
-				width: 100%;
-				object-fit: cover;
-				aspect-ratio: 1/1;
-				border-radius: 1rem;
-			}
-			& h4 {
-				margin: 0;
-				margin-bottom: 0.5rem;
-				display: inline-block;
-				/* text-transform: uppercase; */
-				/* &:after {
-					content: '';
-					display: block;
-					width: 5rem;
-					height: 2px;
-					background: var(--gray-500);
-					border-radius: 1rem;
-					margin-bottom: 0.5rem;
-				} */
-			}
-			& p {
-				margin: 0;
-				margin-bottom: 2rem;
-				font-size: var(--sm);
-				color: var(--gray-500);
-				max-width: 32ch;
 			}
 		}
 	}
+
+	/* ABOUT SECTION */
+	.about {
+		display: grid;
+		grid-template-columns: subgrid;
+		gap: 1rem;
+		justify-content: end;
+		grid-column: 1/-1;
+	}
+	/* SLIDER SECTION */
 	.links-and-slider {
 		display: grid;
 		grid-template-columns: subgrid;
-		grid-template-areas: ' links links links slider slider slider slider slider';
+		grid-template-areas: 'slider slider slider slider slider  links links links ';
 		grid-column: 1/-1;
 		gap: 1rem;
 		margin-bottom: 3rem;
@@ -374,20 +339,16 @@
 			grid-area: links;
 		}
 		& .slider__c {
-			/* position:relative; */
 			grid-area: slider;
 			display: block;
-
-			/* display: block; */
-			/* width: 100%; */
-			/* height: 100%; */
 		}
 	}
 
 	.mission {
 		display: grid;
 		grid-template-columns: subgrid;
-		grid-template-areas: ' img img img img img card card card ';
+		/* grid-template-areas: ' img img img img img card card card '; */
+		grid-template-areas: ' img img img card card card card card ';
 		grid-column: 1/-1;
 		gap: 1rem;
 		margin-bottom: 3rem;
@@ -418,10 +379,10 @@
 			& .content__w {
 				display: flex;
 				flex-direction: column;
-				@media screen and (max-width: 1280px) {
-					flex-direction: row;
-					gap: 1rem;
-				}
+				/* @media screen and (max-width: 1280px) { */
+				flex-direction: row;
+				gap: 1rem;
+				/* } */
 				@media screen and (max-width: 640px) {
 					display: block;
 				}
@@ -467,6 +428,7 @@
 					& .credits__w {
 						padding: 0.25rem 0.5rem;
 						background-color: hsla(0, 0%, 0%, 0.4);
+						background-color: hsl(219, 100%, 65%);
 						border-radius: 0.25rem;
 					}
 					& p {
@@ -478,33 +440,16 @@
 			& .links {
 				grid-area: links;
 				display: flex;
-				flex-direction: column;
 				gap: 1rem;
 				margin-bottom: 0;
 				& a {
 					padding-bottom: 0.5rem;
-					/* border-bottom: none; */
-				}
-				& a:last-child {
+					flex-basis: 50%;
 					border-bottom: none;
 				}
-				@media screen and (max-width: 1280px) {
-					flex-direction: row;
-					justify-content: space-between;
-					gap: 1rem;
-
-					& a {
-						flex-basis: 50%;
-					}
-					& a:last-child {
-						border-bottom: 1px solid #ccc;
-					}
-				}
-				@media screen and (max-width: 768px) {
+				@media screen and (max-width: 640px) {
 					flex-direction: column;
 				}
-				/* border-bottom: 1px solid #ccc; */
-				/* color: var(--clr-gray-400); */
 			}
 		}
 	}
@@ -656,9 +601,9 @@
 			gap: 1rem;
 			margin-bottom: 2rem;
 		}
-		.mission {
+		/* .mission {
 			grid-template-areas: ' img img img card card card card card ';
-		}
+		} */
 	}
 	@media (max-width: 1024px) {
 		.mission {
@@ -690,5 +635,32 @@
 		}
 	}
 	@media (max-width: 640px) {
+		.hero {
+			display: block;
+			position: relative;
+		}
+		.hero .title {
+			/* background-color: rgb(0,0,0,.4); */
+			/* inset: 45% 30% 1rem 1rem; */
+			/* position: absolute; */
+			/* position: relative; */
+			/* padding:1rem; */
+			/* border-radius: .5rem; */
+		}
+		.hero .title h1 {
+			max-width: 20ch;
+			/* z-index: 1; */
+			/* font-size: clamp(1rem, calc(1rem + 1vw), 2rem); */
+			/* color: white; */
+			/* padding: 0.25em 0.25em; */
+			/* border-radius: 0.65rem; */
+			/* font-family: var(--ff-gilroy-l); */
+			/* line-height: 1.25; */
+			/* text-transform: uppercase; */
+			/* background: var(--green-100); */
+			/* -webkit-box-decoration-break: clone; */
+			/* -o-box-decoration-break: clone; */
+			/* box-decoration-break: clone; */
+		}
 	}
 </style>

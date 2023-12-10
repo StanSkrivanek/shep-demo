@@ -1,7 +1,7 @@
 <script>
 	import Facebook from './icons/Facebook.svelte';
 	import Instagram from './icons/Instagram.svelte';
-	import MainLogo from './icons/MainLogo.svelte';
+	import MainLogo from './icons/MainLogoNew.svelte';
 	import Twitter from './icons/Twitter.svelte';
 
 	// do stuff
@@ -182,10 +182,10 @@
 		}
 		& input[type='submit'] {
 			width: 100%;
-			padding: 0.5rem;
+			padding: 1rem;
 			border: 1px solid var(--gray-100);
 			border-radius: 0.25rem;
-			background-color: var(--blue-600);
+			background-color: var(--shep-blue);
 			color: #fff;
 			font-weight: 600;
 			cursor: pointer;

@@ -61,7 +61,7 @@
 		</div>
 		<div class="box-small link">
 			<p class="small-title">Our Website</p>
-			<p class="limited-char">Feel free to access our course brochure in PDF format</p>
+			<p class="limited-char">To get more info about our activities visit our website</p>
 			<a href="https://{website}" target="_blank">
 				<div class="link-icon">
 					<LinkCircle width={48} height={48} />

@@ -67,17 +67,24 @@
 	/* Colors */
 	--clr-base: hsl(0, 0%, 50%);
 
-	/* --clr-green: #40bf95;
+/* SHEP RGB*/
+	--shep-orange: #ff7c56;
+	--shep-blue: #6B9EF5;
+	--shep-green: #44E980;
+	--shep-pink: #DB84DA;
+	--shep-yellow: #F5CE6B;
+	--shep-red: #FF4D6A;
 
-	--clr-blue: hsl(220, 80%, 50%);
-	--clr-red: hsl(0, 50%, 50%);
-	--clr-yellow: hsl(53, 50%, 50%); /*#f9dd94*/
-	/* --clr-orange: hsl(25, 50%, 50%); */
-	/* --clr-orange-600: hsl(25, 96%, 44%); */
-	/* --clr-pink: hwb(300 25% 25%); */
-	/* --clr-purple: #a178f2; */
-	/* --clr-cyan: #40bfbf; */
-	/* --clr-gray: hsl(0, 0%, 50%); */
+	/* SHEP HSL */
+	--clr-blue: hsl(218, 87%, 69%);
+	--clr-red: hsl(350, 100%, 65%);
+	--clr-yellow: hsl(43, 87%, 69%); 
+	--clr-orange: hsl(13, 100%, 67%);
+	--clr-pink: hsl(301, 55%, 69%);
+	--clr-green: hsl(142, 79%, 59%);
+	--clr-purple: hsl(260, 82%, 71%);
+	--clr-cyan: hsl(180, 50%, 50%);
+
 	--clr-white: hsl(0, 0%, 100%);
 	--clr-black: hsl(0, 0%, 0%);
 	--clr-transparent: transparent;
@@ -90,34 +97,6 @@
 
 	--clr-gray-400: #607891;
 	--clr-gray-600: #2c425d;
-
-	/* --yellow: #f7e486; */
-	/* --orange: #fac7a3; */
-	/* --orange-sha-1: hsl(25, 66%, 83%); #ffe3d0; */
-	/* --orange-sha-2: hsl(27, 100%, 96%); #fff7f0; */
-	/* --green-200: #7bc9a6;
-	--green-600: hsl(153, 100%, 50%); */
-	/* --green: #b3ebd0;
-	--green-sha-1: #c2efdc;
-	--green-sha-2: #ddf9ee;
-	--pink: #fca9f0;
-	--pink-sha-1: #ffdcf8; */
-	--red: 349 79% 76%; /* #ff9aa2; */
-	/* --red-sha-1: #ffcbd7;
-	--blue: #64a5dd;
-	--blue-sha-1: #b9dcfa;
-	--blue-sha-2: #cce5fc;
-	--blue-sha-3: #eff7ff;
-
-	--green-light: #e8fbf3;
-	--blue-light: #e8f3fd;
-	--orange-light: #fff5ed;
-
-	--color-primary: #1a1a1a;
-	--color-secondary: #f2f2f2;
-	--color-tertiary: #e5e5e5;
-	--clr-accent: #ff0000;
-	--bg-base: hsl(0, 0%, 98%); */
 
 	/* yellow */
 	--yellow-50: #fefcf5;

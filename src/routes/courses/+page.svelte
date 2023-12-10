@@ -170,20 +170,37 @@
 		padding: 1rem;
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
+				& svg {
+			& circle {
+				stroke: var(--shep-orange) !important;
+			}
+			& path {
+				fill: var(--shep-orange) !important;
+			}
+		}
 	}
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px var(--gray-2);
 		background: var(--green-light);
+		& svg {
+			& circle {
+				stroke: var(--shep-green) !important;
+			}
+			& path {
+				fill: var(--shep-green) !important;
+			}
+		}
 	}
+
 	.card-header {
 		grid-area: header;
 
 		& h3 {
 			font-size: 1.5rem;
-			font-weight: 16rem;
+			font-weight: 400;
+			color: var(--shep-orange)
 		}
-
 		& p {
 			margin: 0;
 		}
@@ -194,8 +211,7 @@
 		justify-content: space-between;
 		& p {
 			margin-bottom: 1rem;
-			font-size: var(--xs);
-			color: var(--gray-3);
+			font-size: var(--sm);
 		}
 	}
 	.card-body {
@@ -204,7 +220,7 @@
 		& p {
 			margin: 0;
 			font-size: 1rem;
-			color: var(--gray-3);
+			color: var(--fc-mid);
 		}
 	}
 	.card-footer {
