@@ -384,3 +384,27 @@ export const getLogos = async () => {
 	return logos;
 }
 
+
+// get team profiles
+export const getTeam = async () => {
+	const client = sanityClient();
+	const query = `*[_type == "profile"]{
+	"name": name,
+	"slug": slug.current,
+	"designation": designation,
+	"intro": intro,
+	"image": image.asset->url,
+	"alt": image.alt,
+	"bio": bio,
+	"phone": phone,
+	"email": email,
+	"linkedin": linkedin,
+	"twitter": twitter,
+	"instagram": instagram,
+	"facebook": facebook,
+
+}`;
+
+	let team = await client.fetch(query);
+	return team;
+}
