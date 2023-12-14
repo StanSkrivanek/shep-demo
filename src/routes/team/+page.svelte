@@ -18,65 +18,65 @@
 				<div class="thumbnail">
 					<img src={member.image} alt={member.alt} />
 				</div>
-				<div class="data">
-					<div class="data-header">
-						<h2>{member.name}</h2>
-						<p>{member.designation}</p>
-					</div>
-					<div class="data-intro">
-						<p>{member.intro}</p>
-					</div>
-					<div class="contact">
-						<!-- Phone -->
-						{#if member.phone}
-							<a class="link" href="tel:{member.phone}" target="_self">
-								<div class="link-icon">
-									<Phone width={20} height={20}/>
-								</div>
-							</a>
-						{/if}
-						<!-- Email -->
-						{#if member.email}
-							<a class="link" href="mailto:{member.email}">
-								<div class="link-icon">
-									<Mail width={20} height={20}/>
-								</div>
-							</a>
-						{/if}
-						<!-- LinkedIn -->
-						{#if member.linkedin}
-							<a class="link" href={member.linkedin} target="_blank">
-								<div class="link-icon">
-									<LinkedIn width={20} height={20}/>
-								</div>
-							</a>
-						{/if}
-						<!-- Facebook -->
-						{#if member.facebook}
-							<a class="link" href={member.facebook} target="_blank">
-								<div class="link-icon">
-									<Facebook width={20} height={20}/>
-								</div>
-							</a>
-						{/if}
-						<!-- Twitter -->
-						{#if member.instagram}
-							<a class="link" href={member.instagram} target="_blank">
-								<div class="link-icon">
-									<Instagram width={20} height={20}/>
-								</div>
-							</a>
-						{/if}
-						<!-- Instagram -->
-						{#if member.twitter}
-							<a class="link" href={member.twitter} target="_blank">
-								<div class="link-icon">
-									<Twitter width={20} height={20}/>
-								</div>
-							</a>
-						{/if}
-					</div>
+				<!-- <div class="data"> -->
+				<div class="data-header">
+					<h2>{member.name}</h2>
+					<p>{member.designation}</p>
 				</div>
+				<div class="data-intro">
+					<p>{member.intro}</p>
+				</div>
+				<div class="contact">
+					<!-- Phone -->
+					{#if member.phone}
+						<a class="link" href="tel:{member.phone}" target="_self">
+							<div class="link-icon">
+								<Phone width={20} height={20} />
+							</div>
+						</a>
+					{/if}
+					<!-- Email -->
+					{#if member.email}
+						<a class="link" href="mailto:{member.email}">
+							<div class="link-icon">
+								<Mail width={20} height={20} />
+							</div>
+						</a>
+					{/if}
+					<!-- LinkedIn -->
+					{#if member.linkedin}
+						<a class="link" href={member.linkedin} target="_blank">
+							<div class="link-icon">
+								<LinkedIn width={20} height={20} />
+							</div>
+						</a>
+					{/if}
+					<!-- Facebook -->
+					{#if member.facebook}
+						<a class="link" href={member.facebook} target="_blank">
+							<div class="link-icon">
+								<Facebook width={20} height={20} />
+							</div>
+						</a>
+					{/if}
+					<!-- Twitter -->
+					{#if member.instagram}
+						<a class="link" href={member.instagram} target="_blank">
+							<div class="link-icon">
+								<Instagram width={20} height={20} />
+							</div>
+						</a>
+					{/if}
+					<!-- Instagram -->
+					{#if member.twitter}
+						<a class="link" href={member.twitter} target="_blank">
+							<div class="link-icon">
+								<Twitter width={20} height={20} />
+							</div>
+						</a>
+					{/if}
+				</div>
+				<!-- </div> -->
 			</div>
 			<!-- <img src={venue.logo} alt=""> -->
 		{/each}
@@ -92,42 +92,39 @@
 	}
 	.card {
 		display: grid;
-		grid-template-areas: 'thumbnail' 'body';
-		grid-template-columns: repeat(1, 1fr);
-
+		grid-template-areas: 'thumbnail' 'header' 'intro' 'contact';
+		grid-template-rows:
+			[thumbnail] 16rem
+			[header] 4rem
+			[intro] auto
+			[contact] 2.6rem;
 		border: 1px solid var(--gray-100);
-		border-radius: 1rem;
-		pointer-events: none;
 		transition: all 0.3s ease-in-out;
+		border-radius: 1rem;
 		&:hover {
 			box-shadow: 8px 10px 15px -3px var(--gray-100);
-			/* background: var(--green-light); */
 		}
-	}
-
-	.thumbnail {
-		grid-area: thumbnail;
-		border-radius: 1rem;
-		background: var(--gray-100);
-		max-height: max-content;
-		& img {
-			display: block;
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			border-radius: 1rem 1rem 0 0;
-			aspect-ratio: 16/9;
+		& .thumbnail {
+			grid-area: thumbnail;
+			border-radius: 1rem;
+			background: var(--gray-100);
+			max-height: max-content;
+			& img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border-radius: 1rem 1rem 0 0;
+				aspect-ratio: 16/9;
+			}
 		}
-	}
-	.data {
-		padding: 1rem;
-		display: flex;
-		flex-direction: column;
-		text-align: center;
 
 		& .data-header {
+			grid-area: header;
+			padding: 1rem;
 			& h2 {
 				font-size: var(--h4);
+				color: var(--orange-700);
 				margin-bottom: 0;
 			}
 			& p {
@@ -136,7 +133,9 @@
 				color: var(--gray-400);
 			}
 		}
- & .data-intro {
+		& .data-intro {
+			grid-area: intro;
+			padding: 0 1rem;
 			& p {
 				font-size: var(--sm);
 				text-align: left;
@@ -149,10 +148,11 @@
 			align-items: center;
 			justify-content: center;
 			border-top: 1px solid var(--gray-100);
+			padding: 0 1rem;
 			& .link-icon {
 				margin-top: 0.5rem;
 				padding: 0 0.25rem;
-				& svg:hover path{
+				& svg:hover path {
 					width: 1.5rem;
 					height: 1.5rem;
 					stroke: var(--shep-orange);
@@ -160,4 +160,74 @@
 			}
 		}
 	}
+
+	/* .card {
+		display: grid;
+		grid-template-areas: 'thumbnail' 'subheqding' 'body';
+		grid-template-columns: repeat(1, 1fr);
+
+		border: 1px solid var(--gray-100);
+		border-radius: 1rem;
+		pointer-events: none;
+		transition: all 0.3s ease-in-out;
+		&:hover {
+			box-shadow: 8px 10px 15px -3px var(--gray-100);
+		} */
+
+	/* & .thumbnail {
+			grid-area: thumbnail;
+			border-radius: 1rem;
+			background: var(--gray-100);
+			max-height: max-content;
+			& img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border-radius: 1rem 1rem 0 0;
+				aspect-ratio: 16/9;
+			}
+		} */
+	/* .data {
+			padding: 1rem;
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+			
+			& .data-header {
+				& h2 {
+					font-size: var(--h4);
+					margin-bottom: 0;
+				}
+				& p {
+					font-size: var(--sm);
+					margin: 0 0 0.25rem 0;
+					color: var(--gray-400);
+				}
+			}
+			& .data-intro {
+				& p {
+					font-size: var(--sm);
+					text-align: left;
+					margin-bottom: 1rem;
+					color: var(--gray-600);
+				}
+			}
+			& .contact {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-top: 1px solid var(--gray-100);
+				& .link-icon {
+					margin-top: 0.5rem;
+					padding: 0 0.25rem;
+					& svg:hover path{
+						width: 1.5rem;
+						height: 1.5rem;
+						stroke: var(--shep-orange);
+					}
+				}
+			}
+		} */
+	/* } */
 </style>
