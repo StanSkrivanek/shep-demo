@@ -26,7 +26,7 @@
 			</div>
 		</div>
 	</div>
-	<h1 class="separator-heading">Open Courses</h1>
+	<h1 class="separator-heading">Upcoming</h1>
 	<main class="container">
 		{#each data.allOpenCourses as course}
 			<div class="card">
@@ -43,7 +43,7 @@
 				<div class="card-footer">
 					<p>{course.course.type}</p>
 					<a class="btn-link" href="courses/{course.course.slug.current}">
-						<LinkCircle width={56} height={56} />
+						<LinkCircle width={48} height={48} />
 					</a>
 				</div>
 

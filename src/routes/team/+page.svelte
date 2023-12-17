@@ -7,7 +7,7 @@
 	import Twitter from '$lib/components/icons/TwitterMember.svelte';
 
 	export let data;
-	console.log(data);
+
 </script>
 
 <div class="page__c">
@@ -37,6 +37,7 @@
 					{/if}
 					<!-- Email -->
 					{#if member.email}
+					<!-- {console.log("ENCODE",encodeURIComponent(member.email))} -->
 						<a class="link" href="mailto:{member.email}">
 							<div class="link-icon">
 								<Mail width={24} height={24} />

@@ -69,7 +69,9 @@ export const getSingleVenue = async (/** @type {undefined} */ slug) => {
 	return venue;
 };
 
-// Courses
+// --- SHORT COURSES ---
+
+// All Courses
 export const getAllCourses = async () => {
 	const client = sanityClient();
 	const allCoursesQuery = `*[_type == "course"]{
@@ -92,6 +94,7 @@ export const getAllCourses = async () => {
 	return allCourses;
 };
 
+// single course
 export const getSingleCourse = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
 	const query = `*[_type == "course" && slug.current == $slug][0]{
@@ -116,41 +119,7 @@ export const getSingleCourse = async (/** @type {undefined} */ slug) => {
 	return course;
 };
 
-export const getAllOpenCoursesforCurrentVenue = async (/** @type {undefined} */ slug) => {
-	const client = sanityClient();
-	const allOpenCoursesQuery = `*[_type == "open_course" && is_active == true && venue->slug.current == $slug]{
-	_id,
-	'in_person': in_person {
-		...,
-		'leader': course_leader[] {
-		_type == 'reference' => @->{name}    
-	},
-	},
-	'online': online {
-		...,
-		'leader': course_leader[] {
-		_type == 'reference' => @->{name}    
-		},
-	},
-	'course': course {
-		_type == 'reference' => @->{title, type, form, in_person, online, slug}   
-	},
-		'venue': venue {
-		_type == 'reference' => @->{venue_name, city, slug}    
-	},
-
-	'form': application_form {
-		'asset': asset->url
-  },
- 
-}
-`;
-
-	const allOpenCourses = await client.fetch(allOpenCoursesQuery, { slug });
-	return allOpenCourses;
-};
-
-// Open Courses
+// All UPCOMING Courses
 export const getAllOpenCourses = async () => {
 	const client = sanityClient();
 	const allOpenCoursesQuery = `*[_type == "open_course" && is_active == true]{
@@ -184,7 +153,41 @@ export const getAllOpenCourses = async () => {
 	const allOpenCourses = await client.fetch(allOpenCoursesQuery);
 	return allOpenCourses;
 };
+// All UPCOMING Courses for current venue
+export const getAllOpenCoursesforCurrentVenue = async (/** @type {undefined} */ slug) => {
+	const client = sanityClient();
+	const allOpenCoursesQuery = `*[_type == "open_course" && is_active == true && venue->slug.current == $slug]{
+	_id,
+	'in_person': in_person {
+		...,
+		'leader': course_leader[] {
+		_type == 'reference' => @->{name}    
+	},
+	},
+	'online': online {
+		...,
+		'leader': course_leader[] {
+		_type == 'reference' => @->{name}    
+		},
+	},
+	'course': course {
+		_type == 'reference' => @->{title, type, form, in_person, online, slug}   
+	},
+		'venue': venue {
+		_type == 'reference' => @->{venue_name, city, slug}    
+	},
 
+	'form': application_form {
+		'asset': asset->url
+  },
+ 
+}
+`;
+
+	const allOpenCourses = await client.fetch(allOpenCoursesQuery, { slug });
+	return allOpenCourses;
+};
+// All UPCOMING Courses for current course
 export const getAllOpenCoursesForCurrentCourse = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
 	const allOpenCoursesQuery = `*[_type == "open_course" && course->slug.current == $slug && is_active == true]{
@@ -219,11 +222,169 @@ export const getAllOpenCoursesForCurrentCourse = async (/** @type {undefined} */
 	return getAllOpenCoursesForCurrentCourse;
 };
 
-// Blog posts
+// --- INTENSIVE TRAININGS ---
+
+// All Trainings
+
+export const getAllTrainings = async () => {
+	const client = sanityClient();
+	const allTrainingsQuery = `*[_type == "training"]{
+	 "id": _id,
+	 title,
+	 "slug": slug.current,
+	 excerpt,
+	 type,
+	 "main_img": main_image.asset->url,
+	 "content": content[] {
+		...,
+	 _type == "image" => {
+		  ...,
+		  "asset": asset->
+		} 
+	 }
+  }`;
+
+	const allTrainings = await client.fetch(allTrainingsQuery);
+	return allTrainings;
+};
+
+//  single training
+export const getSingleTraining = async (/** @type {undefined} */ slug) => {
+	const client = sanityClient();
+	const query = `*[_type == "training" && slug.current == $slug][0]{
+	 _id,
+	 title,
+	 "slug": slug.current,
+	 type,
+	 full_price,
+	 funded_price,
+	 excerpt,
+	 "main_img": image.asset->url,
+	 "content": content[] {
+		...,
+	 _type == "image" => {
+		  ...,
+		  "asset": asset->
+		} 
+	 },
+	 "brochure": brochure.asset->url,
+  }`;
+	const training = await client.fetch(query, { slug });
+	return training;
+}
+
+// All UPCOMING Trainings
+export const getAllOpenTrainings = async () => {
+	const client = sanityClient();
+	const allOpenTrainingsQuery = `*[_type == "open_training" && is_active == true]{
+	_id,
+	'in_person': in_person {
+		...,
+				'leader': course_leader[] {
+		_type == 'reference' => @->{name}    
+	},
+	},
+	'online': online {
+		...,
+		'leader': course_leader[] {
+		_type == 'reference' => @->{name}    
+		},
+	},
+	'training': training {
+		_type == 'reference' => @->{title, type, excerpt, slug}    
+	},
+		'venue': venue {
+		_type == 'reference' => @->{venue_name, city, slug}    
+	},
+
+	'form': application_form {
+		'asset': asset->url
+  },
+ 
+}
+`;
+
+	const allOpenTrainings = await client.fetch(allOpenTrainingsQuery);
+	return allOpenTrainings;
+}
+
+// All UPCOMING Trainings for current venue
+export const getAllOpenTrainingsforCurrentVenue = async (/** @type {undefined} */ slug) => {
+	const client = sanityClient();
+	const allOpenTrainingsQuery = `*[_type == "open_training" && is_active == true && venue->slug.current == $slug]{
+	_id,
+	'in_person': in_person {
+		...,
+				'leader': course_leader[] {
+		_type == 'reference' => @->{name}    
+	},
+	},
+	'online': online {
+		...,
+		'leader': course_leader[] {
+		_type == 'reference' => @->{name}    
+		},
+	},
+	'training': training {
+		_type == 'reference' => @->{title, type, form, in_person, online, slug}   
+	},
+		'venue': venue {
+		_type == 'reference' => @->{venue_name, city, slug}    
+	},
+
+	'form': application_form {
+		'asset': asset->url
+  },
+ 
+}
+`;
+
+	const allOpenTrainings = await client.fetch(allOpenTrainingsQuery, { slug });
+	return allOpenTrainings;
+}
+
+// All UPCOMING Trainings for current training
+export const getAllOpenTrainingsForCurrentTraining = async (/** @type {undefined} */ slug) => {
+	const client = sanityClient();
+	const allOpenTrainingsQuery = `*[_type == "open_training" && training->slug.current == $slug && is_active == true]{
+	_id,
+	'in_person': in_person {
+		...,
+				'leader': training_leader[] {
+		_type == 'reference' => @->{name}    
+	},
+	},
+	'online': online {
+		...,
+		'leader': training_leader[] {
+		_type == 'reference' => @->{name}    
+		},
+	},
+	'training': training {
+		_type == 'reference' => @->{title, type, excerpt, slug}    
+	},
+		'venue': venue {
+		_type == 'reference' => @->{venue_name, city, slug}    
+	},
+
+	'form': application_form {
+		'asset': asset->url
+  },
+ 
+}
+`;
+
+	const getAllOpenTrainingsForCurrentTraining = await client.fetch(allOpenTrainingsQuery, { slug });
+	return getAllOpenTrainingsForCurrentTraining;
+}
+
+// --- BLOG ---
+
+// All Blog posts
 export const getAllPosts = async () => {
 	const client = sanityClient();
-	const allPostsQuery = `*[_type == "post"]{
-		"title": article_title,
+	const allPostsQuery = `*[_type == "post" && post_category->slug.current != "about-us"]{
+	"title": article_title,
 	"excerpt": post_excerpt,
 	"slug": slug.current,
 	"main_img": hero_image.asset->url,
@@ -249,6 +410,25 @@ export const getPostsForSlider = async () => {
 	const client = sanityClient();
 	const query = `*[_type == "post"][0...5]{
 		"title": article_title,
+	"excerpt": post_excerpt,
+	"slug": slug.current,
+	"main_img": hero_image.asset->url,
+	"category": post_category->blog_category,
+  	"category_slug": post_category->slug.current,
+	"author": post_author[] {
+		_type == 'reference' => @->{name}    
+		  },
+}`;
+
+	const allPosts = await client.fetch(query);
+	return allPosts;
+};
+
+//  get all posts from "about-us" category
+export const getAboutUsPosts = async () => {
+	const client = sanityClient();
+	const query = `*[_type == "post" && post_category->slug.current == "about-us"]{
+	"title": article_title,
 	"excerpt": post_excerpt,
 	"slug": slug.current,
 	"main_img": hero_image.asset->url,
@@ -315,12 +495,10 @@ export const getArticleBySlug = async (/** @type {undefined} */ slug) => {
 
 	const article = await client.fetch(query, { slug });
 	return article;
-}
+};
 // get all articles with same category but not the current article
 
-export const getAllArticlesByCategory = async (
-	/** @type {undefined} */ category_slug
-) => {
+export const getAllArticlesByCategory = async (/** @type {undefined} */ category_slug) => {
 	const client = sanityClient();
 	const query = `*[_type == "post" && post_category->slug.current == $category_slug]{
 	"title": article_title,
@@ -363,15 +541,14 @@ export const getRelatedArticles = async (
 
 export const getAllCategories = async () => {
 	const client = sanityClient();
-	const query = `*[_type == "blogcategories"]{
+	const query = `*[_type == "blogcategories" ]{
 	"category": blog_category,
 	"slug": slug.current,
 }`;
 
 	let allCategories = await client.fetch(query);
 	return allCategories;
-}
-
+};
 
 export const getLogos = async () => {
 	const client = sanityClient();
@@ -382,8 +559,7 @@ export const getLogos = async () => {
 
 	let logos = await client.fetch(query);
 	return logos;
-}
-
+};
 
 // get team profiles
 export const getTeam = async () => {
@@ -407,4 +583,4 @@ export const getTeam = async () => {
 
 	let team = await client.fetch(query);
 	return team;
-}
+};

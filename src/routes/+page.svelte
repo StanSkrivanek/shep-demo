@@ -106,7 +106,7 @@
 					<Arrow width={24} height={24} />
 				</div>
 			</a>
-			<a href="./advocacy" class="decorative_link__c">
+			<a href="./blog/advocacy/shep-advocacy" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
 						<LeavesCorner width={24} height={24} currentColor="#DB84DA" />
@@ -207,8 +207,8 @@
 				</p>
 			</div>
 			<div class="card-footer">
-				<a class="btn-link" href="./stories">
-					<LinkCircle width={56} height={56} />
+				<a class="btn-link" href="./blog/personal-stories">
+					<LinkCircle width={48} height={48} />
 				</a>
 			</div>
 			<!-- <p>Reading their stories of recovery can help you imagine your own journey.</p> -->
@@ -245,7 +245,7 @@
 			</div>
 			<div class="card-footer">
 				<a class="btn-link" href="./activities">
-					<LinkCircle width={56} height={56} />
+					<LinkCircle width={48} height={48} />
 				</a>
 			</div>
 		</div>
@@ -286,15 +286,6 @@
 				/* text-align: right; */
 				& span {
 					font-size: clamp(1.953rem, calc(1.6rem + 1vw), 3.52rem);
-					/* padding: 0.25em 0.25em; */
-					/* border-radius: 0.65rem; */
-					/* font-family: var(--ff-gilroy-l); */
-					/* line-height: 1.25; */
-					/* text-transform: uppercase; */
-					/* background: var(--green-100); */
-					/* -webkit-box-decoration-break: clone; */
-					/* -o-box-decoration-break: clone; */
-					/* box-decoration-break: clone; */
 				}
 			}
 			& p {

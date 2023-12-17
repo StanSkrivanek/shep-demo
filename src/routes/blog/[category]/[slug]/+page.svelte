@@ -22,7 +22,6 @@
 						document.querySelector(`.toc__item a[href="#${id}"]`)?.classList.add('toc-active');
 
 						updateHistory(`#${id}`);
-					
 					} else {
 						document.querySelector(`.toc__item a[href="#${id}"]`)?.classList.remove('toc-active');
 					}
@@ -166,7 +165,7 @@
 							<div class="link-excerpt">
 								<p>{post.excerpt}</p>
 								<a href={`../${post.category_slug}/${post.slug}`}>
-									<LinkCircle width={48} height={48} />
+									<LinkCircle width={40} height={40} />
 								</a>
 							</div>
 						</div>
@@ -275,20 +274,6 @@
 	/* TOC */
 	.toc {
 		grid-area: aside;
-		/* position: sticky;
-		top: 0; */
-		/* background-color: lightgrey; */
-		/* position: fixed;
-		bottom: 0;
-		right: 0;
-		overflow-y: auto;
-		padding: 1.4rem;
-		background: var(--color-bg);
-		z-index: 1;
-		background: var(--clr-white);
-		border-radius: 1rem 0 0 0;
-		border: 1px solid var(--gray-2);
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 		& .toc__c {
 			position: sticky;
 			top: 2rem;
@@ -382,6 +367,22 @@
 				text-transform: none;
 				color: var(--gray-500);
 				max-width: 34ch;
+			}
+			& a {
+				& circle {
+					stroke: var(--shep-orange) !important;
+				}
+				& path {
+					fill: var(--shep-orange) !important;
+				}
+				&:hover {
+					& circle {
+						stroke: var(--shep-green) !important;
+					}
+					& path {
+						fill: var(--shep-green) !important;
+					}
+				}
 			}
 		}
 	}

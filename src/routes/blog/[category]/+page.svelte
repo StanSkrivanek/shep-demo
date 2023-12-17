@@ -7,8 +7,26 @@
 </script>
 
 <div class="page__c">
-	<h1 class="page-header">{catArticles[0].category}</h1>
-	
+	<div class="hero">
+		<div class="hero-col-2__c">
+			<div class="hero-data">
+				<h1 class="page-header">{catArticles[0].category}</h1>
+				<!-- <h1>Short courses and workshops for Mental Health & Wellbeing</h1>
+				<p>
+					SHEP Courses and Trainings offer personalized learning experiences that prioritize
+					individual needs, creating a nurturing environment where participants are heard, fostering
+					a strong sense of belonging, safety, and respect within small, diverse groups.
+				</p> -->
+			</div>
+			<div class="hero-img">
+				<img
+					src="https://cdn.sanity.io/images/gkez65br/production/e839df8e4afd7bb9a69fa6ff57ff852dbfcdcfc2-800x400.jpg"
+					alt="man on paper ship looking into binocular"
+				/>
+			</div>
+		</div>
+	</div>
+
 	<main class="container">
 		{#each catArticles as post}
 			<div class="card">
@@ -28,7 +46,7 @@
 				</div>
 				<div class="card-footer">
 					<a class="btn-link" href={`./${post.category_slug}/${post.slug}`}>
-						<LinkCircle width={40} height={40} />
+						<LinkCircle width={48} height={48} />
 					</a>
 				</div>
 			</div>
@@ -37,6 +55,51 @@
 </div>
 
 <style>
+	.hero {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1/-1;
+		margin-bottom: 2rem;
+	}
+	.hero-col-2__c {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1/-1;
+		grid-template-areas: 'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-img';
+		grid-template-rows: auto;
+		gap: 1rem;
+	}
+	.hero-data {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		grid-column: 1 / 4;
+		grid-row: 1/1;
+		grid-area: hero-data;
+		padding: 2rem;
+		border-radius: 1rem;
+		background: var(--shep-orange);
+		& h1 {
+			color: var(--fc-white);
+			margin: 0;
+		}
+	}
+	.hero-img {
+		grid-column: 4 / -1;
+		grid-area: hero-img;
+		border-radius: 1rem;
+		background: var(--gray-100);
+		max-height: max-content;
+
+		& img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 1rem;
+			aspect-ratio: 2.4/1;
+		}
+	}
 	.container {
 		display: grid;
 		grid-column: 1/-1;
@@ -60,7 +123,7 @@
 			[image] 10rem
 			[header] 3.6rem
 			[body] auto
-			[footer] 2.6rem;
+			[footer] 3.1rem;
 
 		border: 1px solid var(--gray-100);
 		border-radius: 1rem;
@@ -77,12 +140,6 @@
 	}
 	.card-header {
 		grid-area: header;
-
-		& h3 {
-			font-size: 1.5rem;
-			font-weight: 16rem;
-		}
-
 		& p {
 			margin: 0;
 			line-height: 1.1;
@@ -99,20 +156,8 @@
 			font-size: var(--xs);
 			line-height: 2;
 			color: var(--gray-400);
+			color: var(--shep-orange);
 		}
-		/* & a {
-			font-size: var(--sm);
-			line-height: 2;
-			pointer-events: all;
-			color: var(--gray-400);
-			text-decoration: none;
-			&:hover {
-				color: var(--cyan-200);
-			} */
-			/* padding: 1rem 0; */
-			/* border: 1px solid var(--gray-3); */
-			/* border-radius: 50px; */
-		/* } */
 	}
 	.card-img {
 		grid-area: image;
@@ -144,12 +189,29 @@
 		grid-area: footer;
 		display: flex;
 		justify-content: flex-end;
+		align-items: center;
 		/* & p {
 			align-self: flex-end;
 			margin: 0;
 			font-size: var(--xs);
 			color: var(--gray-3);
 		} */
+		& svg {
+			& circle {
+				stroke: var(--shep-orange) !important;
+			}
+			& path {
+				fill: var(--shep-orange) !important;
+			}
+			&:hover {
+				& circle {
+					stroke: var(--shep-green) !important;
+				}
+				& path {
+					fill: var(--shep-green) !important;
+				}
+			}
+		}
 	}
 	.btn-link {
 		pointer-events: all;

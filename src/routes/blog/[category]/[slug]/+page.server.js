@@ -1,7 +1,5 @@
 //  fetch single article by slug
-
 import { getRelatedArticles, getArticleBySlug } from '$lib/server/sanity.js';
-// import { redirect } from '@sveltejs/kit';
 export async function load({ params }) {
 	// log params
 	console.log("🚀 ~ file: +page.server.js:7 ~ load ~ params", params)

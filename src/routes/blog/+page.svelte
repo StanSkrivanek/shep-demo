@@ -96,7 +96,7 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 						</div>
 						<div class="card-footer">
 							<a class="btn-link" href={`./blog/${post.category_slug}/${post.slug}`}>
-								<LinkCircle width={40} height={40} />
+								<LinkCircle width={48} height={48} />
 								<!-- <Arrow width={21} height={21} /> -->
 							</a>
 						</div>

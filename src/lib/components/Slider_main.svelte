@@ -64,7 +64,7 @@
 
 					<div class="slide-footer">
 						<a class="btn-link" href="./blog/{slide.category_slug}/{slide.slug}">
-							<LinkCircle width={56} height={56} />
+							<LinkCircle width={48} height={48} />
 						</a>
 					</div>
 				</div>
