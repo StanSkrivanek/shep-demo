@@ -13,7 +13,7 @@
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
 		data.trainings;
 	const openForApplication = data.allOpenTrainings;
-	console.log('🚀 ~ file: +page.svelte:3 ~ openForApplication:', openForApplication);
+	// console.log('🚀 ~ file: +page.svelte:3 ~ openForApplication:', openForApplication);
 
 	/**
 	 * @type {number | boolean | null}
@@ -37,15 +37,14 @@
 					`;
 			}
 		};
-		// return{
-		// 	duration,
-		// 	css:(/** @type {number} */ t)=>{
-		// 		const eased = cubicOut(t);
-		// 		return `
-		// 			transform: rotate(${eased * 180}deg);
-		// 		`;
-		// 	}
-		// }
+	}
+
+	/**
+	 * @param {any} node
+	 */
+	function storeCourseData(node) {
+		// console.log('🚀 ~ file: +page.svelte:65 ~ storeCourseData ~ node', node);
+		localStorage.setItem('courseData', JSON.stringify(node));
 	}
 </script>
 
@@ -246,7 +245,9 @@
 										</a>
 
 										<!-- apply online -->
-										<a href="#" target="_blank">
+										<!-- TODO: on click get data from this course and use these on Form page -->
+										<!-- Use STORE? Local storage? On submit send to google sheet and delete storage (store)-->
+										<a href="/trainings/{slug}/form"  on:click={()=> storeCourseData(item)}>
 											<span>apply online</span>
 										</a>
 									</div>

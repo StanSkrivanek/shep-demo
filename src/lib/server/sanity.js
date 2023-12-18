@@ -44,7 +44,7 @@ export const getAllVenues = async () => {
 export const getSingleVenue = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
 	const query = `*[_type == "venue" && slug.current == $slug][0]{
-	 _id,
+	 "id": _id,
 	 venue_name,
 	 "slug": slug.current,
 	 city,
@@ -98,7 +98,7 @@ export const getAllCourses = async () => {
 export const getSingleCourse = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
 	const query = `*[_type == "course" && slug.current == $slug][0]{
-	 _id,
+	 "id":_id,
 	 title,
 	 "slug": slug.current,
 	 type,
@@ -123,7 +123,7 @@ export const getSingleCourse = async (/** @type {undefined} */ slug) => {
 export const getAllOpenCourses = async () => {
 	const client = sanityClient();
 	const allOpenCoursesQuery = `*[_type == "open_course" && is_active == true]{
-	_id,
+	"id":_id,
 	'in_person': in_person {
 		...,
 				'leader': course_leader[] {
@@ -157,7 +157,7 @@ export const getAllOpenCourses = async () => {
 export const getAllOpenCoursesforCurrentVenue = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
 	const allOpenCoursesQuery = `*[_type == "open_course" && is_active == true && venue->slug.current == $slug]{
-	_id,
+	"id":_id,
 	'in_person': in_person {
 		...,
 		'leader': course_leader[] {
@@ -187,11 +187,12 @@ export const getAllOpenCoursesforCurrentVenue = async (/** @type {undefined} */ 
 	const allOpenCourses = await client.fetch(allOpenCoursesQuery, { slug });
 	return allOpenCourses;
 };
+
 // All UPCOMING Courses for current course
 export const getAllOpenCoursesForCurrentCourse = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
 	const allOpenCoursesQuery = `*[_type == "open_course" && course->slug.current == $slug && is_active == true]{
-	_id,
+	"id":_id,
 	'in_person': in_person {
 		...,
 				'leader': course_leader[] {
@@ -252,7 +253,7 @@ export const getAllTrainings = async () => {
 export const getSingleTraining = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
 	const query = `*[_type == "training" && slug.current == $slug][0]{
-	 _id,
+	 "id":_id,
 	 title,
 	 "slug": slug.current,
 	 type,
@@ -271,13 +272,13 @@ export const getSingleTraining = async (/** @type {undefined} */ slug) => {
   }`;
 	const training = await client.fetch(query, { slug });
 	return training;
-}
+};
 
 // All UPCOMING Trainings
 export const getAllOpenTrainings = async () => {
 	const client = sanityClient();
 	const allOpenTrainingsQuery = `*[_type == "open_training" && is_active == true]{
-	_id,
+	"id":_id,
 	'in_person': in_person {
 		...,
 				'leader': course_leader[] {
@@ -306,13 +307,13 @@ export const getAllOpenTrainings = async () => {
 
 	const allOpenTrainings = await client.fetch(allOpenTrainingsQuery);
 	return allOpenTrainings;
-}
+};
 
 // All UPCOMING Trainings for current venue
 export const getAllOpenTrainingsforCurrentVenue = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
 	const allOpenTrainingsQuery = `*[_type == "open_training" && is_active == true && venue->slug.current == $slug]{
-	_id,
+	"id":_id,
 	'in_person': in_person {
 		...,
 				'leader': course_leader[] {
@@ -341,13 +342,13 @@ export const getAllOpenTrainingsforCurrentVenue = async (/** @type {undefined} *
 
 	const allOpenTrainings = await client.fetch(allOpenTrainingsQuery, { slug });
 	return allOpenTrainings;
-}
+};
 
 // All UPCOMING Trainings for current training
 export const getAllOpenTrainingsForCurrentTraining = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
 	const allOpenTrainingsQuery = `*[_type == "open_training" && training->slug.current == $slug && is_active == true]{
-	_id,
+	"id":_id,
 	'in_person': in_person {
 		...,
 				'leader': training_leader[] {
@@ -376,7 +377,7 @@ export const getAllOpenTrainingsForCurrentTraining = async (/** @type {undefined
 
 	const getAllOpenTrainingsForCurrentTraining = await client.fetch(allOpenTrainingsQuery, { slug });
 	return getAllOpenTrainingsForCurrentTraining;
-}
+};
 
 // --- BLOG ---
 
@@ -441,7 +442,7 @@ export const getAboutUsPosts = async () => {
 
 	const allPosts = await client.fetch(query);
 	return allPosts;
-}
+};
 
 // Single Article
 export const getSingleArticle = async (/** @type {undefined} */ id) => {

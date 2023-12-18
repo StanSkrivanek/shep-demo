@@ -47,6 +47,13 @@
 		// 	}
 		// }
 	}
+		/**
+	 * @param {any} node
+	 */
+		function storeCourseData(node) {
+		console.log('🚀 ~ file: +page.svelte:65 ~ storeCourseData ~ node', node);
+		localStorage.setItem('courseData', JSON.stringify(node));
+	}
 </script>
 
 <svelte:head>
@@ -245,7 +252,7 @@
 										</a>
 
 										<!-- apply online -->
-										<a href="#" target="_blank">
+										<a href="/courses/{slug}/form" on:click={()=> storeCourseData(item)}>
 											<span>apply online</span>
 										</a>
 									</div>
