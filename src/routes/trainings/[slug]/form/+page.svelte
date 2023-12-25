@@ -148,7 +148,7 @@
 						{#if data.in_person.is_active === true}
 							<tr>
 								<td>
-									<label for="in-person">
+									<label for="in-person" class="thicker">
 										<input type="checkbox" id="in-person" name="in-person" value="in-person" />
 										In person</label
 									>
@@ -170,7 +170,7 @@
 						{#if data.online.is_active === true}
 							<tr>
 								<td
-									><label for="online">
+									><label for="online" class="thicker">
 										<input type="checkbox" id="online" name="online" value="online" />
 										Online</label
 									>
@@ -369,8 +369,12 @@
 						}
 					}
 				}
+				& .thicker {
+					font-weight: 600;
+				}
 			}
 		}
+
 		& .agreement {
 			display: flex;
 			flex-direction: column;
@@ -386,7 +390,7 @@
 
 		/* custom checkbox */
 		& input[type='checkbox'] {
-			--unit: 0.7rem;
+			--unit: 0.6rem;
 			position: relative;
 			appearance: none;
 			font-size: inherit;
@@ -410,7 +414,7 @@
 			position: absolute;
 			top: 40%;
 			left: 60%;
-			border: calc(var(--unit) * 0.3) solid var(--shep-blue);
+			border: calc(var(--unit) * 0.4) solid var(--shep-blue);
 			border-top-width: 0;
 			border-right-width: 0;
 			/* border-radius: calc(var(--unit) * 0.3);
