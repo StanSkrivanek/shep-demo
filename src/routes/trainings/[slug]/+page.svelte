@@ -42,7 +42,7 @@
 	/**
 	 * @param {any} node
 	 */
-	function storeCourseData(node) {
+ function storeCourseData(node) {
 		// console.log('🚀 ~ file: +page.svelte:65 ~ storeCourseData ~ node', node);
 		localStorage.setItem('courseData', JSON.stringify(node));
 	}

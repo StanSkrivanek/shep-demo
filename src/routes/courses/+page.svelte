@@ -11,10 +11,15 @@
 		<div class="hero-col-2__c">
 			<div class="hero-data">
 				<h1>Short courses and workshops for Mental Health & Wellbeing</h1>
-				<p>
+				<!-- <p>
 					SHEP Courses and Trainings offer personalized learning experiences that prioritize
 					individual needs, creating a nurturing environment where participants are heard, fostering
 					a strong sense of belonging, safety, and respect within small, diverse groups.
+				</p> -->
+				<p>
+					The SHEP programme of short Community Education course for Health & Wellbeing usually runs
+					around 70-80 courses each year spread across counties Cork, Kerry, Limerick, Clare and
+					Tipperary.
 				</p>
 			</div>
 			<div class="hero-img">
@@ -26,6 +31,31 @@
 		</div>
 	</div>
 	<!-- <h1 class="separator-heading">Courses</h1> -->
+	<div class="intro">
+		<!-- <h2>Upcoming Courses</h2> -->
+		<p>
+			The courses, meticulously organized by SHEP in collaboration with community group partners,
+			receive essential funding from esteemed organizations such as Cork ETB, Kerry ETB, and Healthy
+			Ireland.
+		</p>
+		<p>
+			These engaging sessions unfold in local community venues, spanning a duration of 20 hours and
+			spread across eight weekly sessions, each lasting 2.5 hours.
+		</p>
+		<p>
+			The learning experience is characterized by its emphasis on experiential learning within small
+			groups comprising 12-16 individuals, all guided by the expertise of SHEP-trained tutors. These
+			seasoned facilitators bring a wealth of experience to the sessions, ensuring a supportive and
+			enriching environment for participants.
+		</p>
+		<p>
+			One remarkable aspect of these courses is their accessibility, as there is no charge for
+			individuals eager to participate. Moreover, participants can choose between convenient online
+			options or in-person attendance. For those seeking information on courses in areas beyond
+			Cork, the website's short courses section provides details under specific county tabs,
+			facilitating a seamless application process for various geographic locations.
+		</p>
+	</div>
 	<main class="container">
 		{#each data.allCourses as course}
 			<div class="card">
@@ -123,7 +153,7 @@
 		grid-column: 1 / 4;
 		grid-row: 1/1;
 		grid-area: hero-data;
-		padding: 2rem;
+		padding: 2rem 0;
 		border-radius: 1rem;
 		background: var(--orange-light);
 	}
@@ -140,6 +170,18 @@
 			object-fit: cover;
 			border-radius: 1rem;
 			aspect-ratio: 2.4/1;
+		}
+	}
+	.intro {
+		grid-column: 1/-1;
+		margin-bottom: 2rem;
+		column-count: 2;
+		column-gap: 2rem;
+		& p {
+			margin-top: 0;
+		}
+		& p {
+			margin-bottom: 0.5rem;
 		}
 	}
 	.separator-heading {
@@ -256,6 +298,9 @@
 			grid-template-areas:
 				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
 				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
+		}
+		.intro {
+			column-count: 1;
 		}
 	}
 

@@ -46,6 +46,19 @@ function monthNameDate(date) {
 /**
  * @param {string | number | Date} date
  */
+function monthYear(date) {
+	var d = new Date(date),
+		month = '' + d.getMonth(),
+		year = d.getUTCFullYear();
+	if (month.length < 2) month = '0' + month;
+	// @ts-ignore
+	const monthStr = months[parseInt(month)];
+	return `${monthStr} ${year}`;
+}
+
+/**
+ * @param {string | number | Date} date
+ */
 function formatTime24(date) {
 	var d = new Date(date),
 		hours = '' + d.getHours(),
@@ -78,4 +91,4 @@ function formatTime12(date) {
 	return `${[hours, minutes].join(':')}${am_pm}`;
 }
 
-export { formatDate, monthNameDateYear, formatTime12, formatTime24, monthNameDate };
+export { formatDate, monthNameDateYear, formatTime12, formatTime24, monthNameDate, monthYear};
