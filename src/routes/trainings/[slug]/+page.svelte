@@ -3,18 +3,16 @@
 	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
+	import { singleTrainingStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers';
 	import { PortableText } from '@portabletext/svelte';
 	import { cubicOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
-
 	export let data;
 	// console.log('🚀 ~ file: +page.svelte:12 ~ data:', data);
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
 		data.trainings;
 	const openForApplication = data.allOpenTrainings;
-	// console.log('🚀 ~ file: +page.svelte:3 ~ openForApplication:', openForApplication);
-
 	/**
 	 * @type {number | boolean | null}
 	 */
@@ -42,9 +40,9 @@
 	/**
 	 * @param {any} node
 	 */
- function storeCourseData(node) {
-		// console.log('🚀 ~ file: +page.svelte:65 ~ storeCourseData ~ node', node);
-		localStorage.setItem('courseData', JSON.stringify(node));
+	function storeCourseData(node) {
+		$singleTrainingStore = node;
+		// console.log("🚀 ~ file: +page.svelte:45 ~ storeCourseData ~ $singleTrainingStore:", $singleTrainingStore)
 	}
 </script>
 
@@ -123,7 +121,6 @@
 			{:else}
 				<div class="accordion">
 					{#each openForApplication as item, i}
-					
 						<div
 							class="accordion_item card"
 							role="button"
@@ -247,7 +244,7 @@
 										<!-- apply online -->
 										<!-- TODO: on click get data from this course and use these on Form page -->
 										<!-- Use STORE? Local storage? On submit send to google sheet and delete storage (store)-->
-										<a href="/trainings/{slug}/form"  on:click={()=> storeCourseData(item)}>
+										<a href="/trainings/{slug}/form" on:click={() => storeCourseData(item)}>
 											<span>apply online</span>
 										</a>
 									</div>

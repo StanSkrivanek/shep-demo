@@ -1,11 +1,24 @@
 <script>
+	// @ts-nocheck
+
+	import { singleTrainingStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDateYear, monthYear } from '$lib/utils/datehelpers';
 	import { counties, source } from '$lib/utils/globalhelpers';
-	// get local storage
-	const local = localStorage.getItem('courseData');
-	// parse local storage
-	const data = local ? JSON.parse(local) : null;
-	console.log('Parsed', data);
+
+	export let form;
+
+	let courseData = $singleTrainingStore;
+	console.log('🚀 ~ file: +page.svelte:11 ~ singleTrainingStore:', $singleTrainingStore);
+
+	// add dataObj to form
+	form = { ...form, ...courseData };
+	console.log("🚀 ~ file: +page.svelte:25 ~ form:", form)
+
+
+	// Toggle value for checkbox input
+	function eventHandler(e) {
+		return (e.target.value = e.target.checked ? 'yes' : 'no');
+	}
 </script>
 
 <!-- <h1>FORM</h1> -->
@@ -13,17 +26,17 @@
     {JSON.stringify(data, null, 2)}
 </pre> -->
 <div class="page__c">
-	{#if data.training}
-		<form action="">
+	{#if courseData.training}
+		<form method="POST">
 			<div class="form-header">
-				<p>Application form for {data.training.type}</p>
-				<h1>{data.training.title}</h1>
+				<p>Application form for {courseData.training.type}</p>
+				<h1>{courseData.training.title}</h1>
 				<p>
-					In <b>{data.venue.venue_name}</b>, {data.venue.city} starting
-					<b>{monthYear(data.in_person.start_date)}<b /></b>
+					In <b>{courseData.venue.venue_name}</b>, {courseData.venue.city} starting
+					<b>{monthYear(courseData.in_person.start_date)}<b /></b>
 				</p>
 			</div>
-			<!-- personal data -->
+			<!-- personal coursedata -->
 			<div class="personal-data">
 				<h2>Personal data <span>(mandatory)</span></h2>
 				<!-- name  -->
@@ -53,13 +66,13 @@
 					</div>
 					<!-- Medical needs -->
 					<div class="input-group">
-						<label for="medical-needs"
+						<label for="medicalNeeds"
 							>Please specify if any special/medical needs that we should be aware of for practical
 							purposes</label
 						>
 						<textarea
 							id="medical-needs"
-							name="medical-needs"
+							name="medicalNeeds"
 							placeholder="Please specify if any special/medical needs that we should be aware of for practical purposes"
 							cols="30"
 							rows="10"
@@ -74,11 +87,11 @@
 							name="emergency"
 							placeholder="Emergency contact name.."
 						/>
-						<label for="emergency-phone">Emergency contact phone number</label>
+						<label for="emergencyPhone">Emergency contact phone number</label>
 						<input
 							type="tel"
 							id="emergency-phone"
-							name="emergency-phone"
+							name="emergencyPhone"
 							placeholder="Emergency contact phone number.."
 						/>
 					</div>
@@ -122,7 +135,7 @@
 			<div class="attending-opt">
 				<h2>
 					Attending options
-					{#if data.in_person.is_active === true && data.online.is_active === true}
+					{#if courseData.in_person.is_active === true && courseData.online.is_active === true}
 						<span>
 							Please select preferred option <span>( or both if you can attend either one )</span>
 						</span>
@@ -145,44 +158,56 @@
 						</tr>
 					</thead>
 					<tbody>
-						{#if data.in_person.is_active === true}
+						{#if courseData.in_person?.is_active === true}
 							<tr>
 								<td>
-									<label for="in-person" class="thicker">
-										<input type="checkbox" id="in-person" name="in-person" value="in-person" />
+									<label for="inPerson" class="ticker">
+										<input
+											type="checkbox"
+											id="in-person"
+											name="inPerson"
+											value="no"
+											on:change={eventHandler}
+										/>
 										In person</label
 									>
 								</td>
-								<!-- <td>{data.in_person.group}</td> -->
-								<td>{data.in_person.weekday}</td>
-								<td>{monthNameDateYear(data.in_person.start_date)}</td>
-								<td>{monthNameDateYear(data.in_person.end_date)}</td>
-								<td>{formatTime12(data.in_person.start_date)}</td>
-								<td>{formatTime12(data.in_person.end_date)}</td>
+								<!-- <td>{coursedata.in_person.group}</td> -->
+								<td>{courseData.in_person.weekday}</td>
+								<td>{monthNameDateYear(courseData.in_person.start_date)}</td>
+								<td>{monthNameDateYear(courseData.in_person.end_date)}</td>
+								<td>{formatTime12(courseData.in_person.start_date)}</td>
+								<td>{formatTime12(courseData.in_person.end_date)}</td>
 								<!-- <td>
-									{#each data.in_person.leader as trainer}
+									{#each courseData.in_person.leader as trainer}
 										<p>{trainer.name}</p>
 									{/each}
 								</td> -->
 							</tr>
 						{/if}
 						<tr />
-						{#if data.online.is_active === true}
+						{#if courseData.online?.is_active === true}
 							<tr>
 								<td
-									><label for="online" class="thicker">
-										<input type="checkbox" id="online" name="online" value="online" />
+									><label for="online" class="ticker">
+										<input
+											type="checkbox"
+											id="online"
+											name="online"
+											value="no"
+											on:change={eventHandler}
+										/>
 										Online</label
 									>
 								</td>
-								<!-- <td>{data.online.group}</td> -->
-								<td>{data.online.weekday}</td>
-								<td>{monthNameDateYear(data.online.start_date)}</td>
-								<td>{monthNameDateYear(data.online.end_date)}</td>
-								<td>{formatTime12(data.online.start_date)}</td>
-								<td>{formatTime12(data.online.end_date)}</td>
+								<!-- <td>{courseData.online.group}</td> -->
+								<td>{courseData.online.weekday}</td>
+								<td>{monthNameDateYear(courseData.online.start_date)}</td>
+								<td>{monthNameDateYear(courseData.online.end_date)}</td>
+								<td>{formatTime12(courseData.online.start_date)}</td>
+								<td>{formatTime12(courseData.online.end_date)}</td>
 								<!-- <td>
-									{#each data.online.leader as trainer}
+									{#each courseData.online.leader as trainer}
 										<p>{trainer.name}</p>
 									{/each}
 								</td> -->
@@ -193,16 +218,30 @@
 			</div>
 			<div class="agreement">
 				<label for="privacy">
-					<input type="checkbox" id="privacy" name="privacy" value="privacy" />
+					<input type="checkbox" id="privacy" name="privacy" value="agree" />
 					Yes, I have read SHEPs privacy guidelines and agree to them
 				</label>
 				<!-- </div> -->
 				<!-- <div class="agreement"> -->
 				<label for="consent">
-					<input type="checkbox" id="consent" name="consent" value="consent" />
+					<input type="checkbox" id="consent" name="consent" value="agree" />
 					Yes, I give consent to SHEP to hold these details for the purposes of sending information to
 					me on this upcoming course and other SHEP courses and events.
 				</label>
+				<!-- <input type="text" id="coursedata" name="coursedata" value={coursedata.id} > -->
+			</div>
+			<div hidden>
+				<input type="hidden" name="courseId" value={courseData.id} />
+				<input type="hidden" name="courseCity" value={courseData.venue.city} />
+				<input type="hidden" name="courseVenue" value={courseData.venue.venue_name} />
+				<input type="hidden" name="courseTitle" value={courseData.training.title} />
+				<input
+					type="hidden"
+					name="course_start"
+					value={monthYear(courseData.in_person.start_date)}
+				/>
+				<input type="hidden" name="courseGroup" value={courseData.online.group} />
+				<!-- <input type="hidden" name="courseData" value={courseData} /> -->
 			</div>
 			<div class="submit">
 				<button type="submit">Submit</button>
@@ -211,69 +250,8 @@
 	{/if}
 </div>
 
-<!--   {
-  "form": {
-    "asset": "https://cdn.sanity.io/files/gkez65br/production/a94fad3c6cc58d07aa40f23bfb3d4399f4afa447.pdf"
-  },
-  "id": "f51b75a5-f9e9-4281-b4d9-182e5f7f3128",
-  "in_person": {
-    "start_date": "2024-01-15T11:45:00.000Z",
-    "end_date": "2024-03-18T11:45:00.000Z",
-    "training_in_ref": "ITN-00600",
-    "training_leader": [
-      {
-        "_key": "833846f1cdf1",
-        "_ref": "eb996fa1-c950-46e6-98e6-1677fd7e4c36",
-        "_type": "reference"
-      }
-    ],
-    "is_active": true,
-    "weekday": "Monday",
-    "leader": [
-      {
-        "name": "Clara Kerrigan"
-      }
-    ],
-    "group": "1"
-  },
-  "online": {
-    "training_in_ref": "ITN-000868",
-    "leader": [
-      {
-        "name": "Andrea McSweeney "
-      }
-    ],
-    "training_leader": [
-      {
-        "_ref": "0ea99800-8984-4295-b8b2-2ddd91a57c7b",
-        "_type": "reference",
-        "_key": "09b9c3c93712"
-      }
-    ],
-    "is_active": true,
-    "weekday": "Thursday",
-    "group": "1",
-    "start_date": "2024-01-18T13:00:00.000Z",
-    "end_date": "2024-03-28T13:00:00.000Z"
-  },
-  "training": {
-    "title": "SHEP Certificate in Facilitation",
-    "type": "Facilitator Training",
-    "excerpt": "he SHEP Certificate in Facilitation Course is an intermediate training in group-work facilitation, intended for those who have completed foundation training in social and health education and who now wish to begin training to support other people in their development.",
-    "slug": {
-      "current": "shep-certificate-in-facilitation",
-      "_type": "slug"
-    }
-  },
-  "venue": {
-    "venue_name": "Shine Centre",
-    "city": "Midleton",
-    "slug": {
-      "current": "shine-centre",
-      "_type": "slug"
-    }
-  }
-} -->
+<!-- TODO: 1) validate inputs with ZOD -->
+<!-- TODO: 2) send data with action -->
 
 <style>
 	.page__c {
@@ -369,7 +347,7 @@
 						}
 					}
 				}
-				& .thicker {
+				& .ticker {
 					font-weight: 600;
 				}
 			}
