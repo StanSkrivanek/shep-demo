@@ -1,6 +1,8 @@
 <script>
    // get local storage
    const local = localStorage.getItem('courseData');
+
+
    // console.log("🚀 ~ file: +page.svelte:4 ~ local:", local)
    // parse local storage
    const data = local ? JSON.parse(local) : null;

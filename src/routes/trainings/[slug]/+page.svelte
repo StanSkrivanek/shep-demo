@@ -43,6 +43,7 @@
 	function storeCourseData(node) {
 		$singleTrainingStore = node;
 		// console.log("🚀 ~ file: +page.svelte:45 ~ storeCourseData ~ $singleTrainingStore:", $singleTrainingStore)
+		localStorage.setItem('singleTrainingStore', JSON.stringify(node));
 	}
 </script>
 

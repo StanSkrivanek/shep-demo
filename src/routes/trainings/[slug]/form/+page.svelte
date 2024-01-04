@@ -4,21 +4,21 @@
 	import { singleTrainingStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDateYear, monthYear } from '$lib/utils/datehelpers';
 	import { counties, source } from '$lib/utils/globalhelpers';
-
-	export let form;
+	import { onMount } from 'svelte';
 
 	let courseData = $singleTrainingStore;
-	console.log('🚀 ~ file: +page.svelte:11 ~ singleTrainingStore:', $singleTrainingStore);
-
-	// add dataObj to form
-	form = { ...form, ...courseData };
-	console.log("🚀 ~ file: +page.svelte:25 ~ form:", form)
-
 
 	// Toggle value for checkbox input
 	function eventHandler(e) {
 		return (e.target.value = e.target.checked ? 'yes' : 'no');
 	}
+
+	onMount(() => {
+		// if courseData is empty object get data from local storage
+		if (Object.keys(courseData).length === 0) {
+			courseData = JSON.parse(localStorage.getItem('singleTrainingStore'));
+		}
+	});
 </script>
 
 <!-- <h1>FORM</h1> -->
@@ -28,6 +28,7 @@
 <div class="page__c">
 	{#if courseData.training}
 		<form method="POST">
+			<!-- <form method="POST" on:submit|preventDefault={submitHandler()}> -->
 			<div class="form-header">
 				<p>Application form for {courseData.training.type}</p>
 				<h1>{courseData.training.title}</h1>
@@ -232,7 +233,11 @@
 			</div>
 			<div hidden>
 				<input type="hidden" name="courseId" value={courseData.id} />
-				<input type="hidden" name="courseCity" value={courseData.venue.city} />
+				<!-- NOTE:
+				Send open course ID to form and use it to get course data venue, course name etc. from DB
+				
+				-->
+				<!-- <input type="hidden" name="courseCity" value={courseData.venue.city} />
 				<input type="hidden" name="courseVenue" value={courseData.venue.venue_name} />
 				<input type="hidden" name="courseTitle" value={courseData.training.title} />
 				<input
@@ -240,7 +245,7 @@
 					name="course_start"
 					value={monthYear(courseData.in_person.start_date)}
 				/>
-				<input type="hidden" name="courseGroup" value={courseData.online.group} />
+				<input type="hidden" name="courseGroup" value={courseData.online.group} /> -->
 				<!-- <input type="hidden" name="courseData" value={courseData} /> -->
 			</div>
 			<div class="submit">
