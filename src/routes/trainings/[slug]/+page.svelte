@@ -13,6 +13,7 @@
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
 		data.trainings;
 	const openForApplication = data.allOpenTrainings;
+	console.log("🚀 ~ file: +page.svelte:16 ~ openForApplication:", openForApplication)
 	/**
 	 * @type {number | boolean | null}
 	 */
@@ -42,7 +43,6 @@
 	 */
 	function storeCourseData(node) {
 		$singleTrainingStore = node;
-		// console.log("🚀 ~ file: +page.svelte:45 ~ storeCourseData ~ $singleTrainingStore:", $singleTrainingStore)
 		localStorage.setItem('singleTrainingStore', JSON.stringify(node));
 	}
 </script>
@@ -122,6 +122,7 @@
 			{:else}
 				<div class="accordion">
 					{#each openForApplication as item, i}
+<!-- <p>{item.title}</p> -->
 						<div
 							class="accordion_item card"
 							role="button"

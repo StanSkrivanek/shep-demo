@@ -349,6 +349,7 @@ export const getAllOpenTrainingsForCurrentTraining = async (/** @type {undefined
 	const client = sanityClient();
 	const allOpenTrainingsQuery = `*[_type == "open_training" && training->slug.current == $slug && is_active == true]{
 	"id":_id,
+	"ref" : ref_name,
 	'in_person': in_person {
 		...,
 				'leader': training_leader[] {
@@ -378,6 +379,10 @@ export const getAllOpenTrainingsForCurrentTraining = async (/** @type {undefined
 	const getAllOpenTrainingsForCurrentTraining = await client.fetch(allOpenTrainingsQuery, { slug });
 	return getAllOpenTrainingsForCurrentTraining;
 };
+
+
+
+
 
 // --- BLOG ---
 

@@ -14,7 +14,6 @@ export { trimText };
 
 // source (how did you hear about this course)
 export const source = [
-	'-- select source --',
 	'Therapist',
 	'Counsellor',
 	'Local Newspaper',
@@ -26,7 +25,6 @@ export const source = [
 ];
 // irish counties
 export const counties = [
-	'-- select county --',
 	'Antrim',
 	'Armagh',
 	'Carlow',

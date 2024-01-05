@@ -4,12 +4,22 @@
 	import { singleTrainingStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDateYear, monthYear } from '$lib/utils/datehelpers';
 	import { counties, source } from '$lib/utils/globalhelpers';
+	import { courseFormSchema } from '$lib/utils/zodSchemas';
 	import { onMount } from 'svelte';
 
+	export let form;
+	// console.log('🚀 ~ file: +page.svelte:10 ~ form:', form);
+	$: data = form?.data;
+	$: errors = {} || form?.errors;
+	$: console.log('🚀 ~ file: +page.svelte:14 ~ errors:', errors);
+	// localStorage.setItem('singleTrainingStore', JSON.stringify(form));
 	let courseData = $singleTrainingStore;
 
 	// Toggle value for checkbox input
 	function eventHandler(e) {
+		canAttend = e.target.checked
+			? [...canAttend, e.target.name]
+			: canAttend.filter((name) => name !== e.target.name);
 		return (e.target.value = e.target.checked ? 'yes' : 'no');
 	}
 
@@ -21,10 +31,6 @@
 	});
 </script>
 
-<!-- <h1>FORM</h1> -->
-<!-- <pre>
-    {JSON.stringify(data, null, 2)}
-</pre> -->
 <div class="page__c">
 	{#if courseData.training}
 		<form method="POST">
@@ -39,27 +45,66 @@
 			</div>
 			<!-- personal coursedata -->
 			<div class="personal-data">
-				<h2>Personal data <span>(mandatory)</span></h2>
+				<h2>Personal data <span><i>( mandatory )</i></span></h2>
 				<!-- name  -->
+
 				<div class="form-group">
 					<div class="input-group">
 						<label for="name">Name</label>
-						<input type="text" id="name" name="name" placeholder="Your full name.." />
+						<input
+							type="text"
+							id="name"
+							name="name"
+							placeholder="Your full name.."
+							value={form?.data?.name || ''}
+							on:blur={(e) => {
+								// console.log(courseFormSchema.pick({ name: true }).parse({ name: e.target.value }))
+								try {
+									// check  value of input field against schema
+									courseFormSchema.pick({ name: true }).parse({ name: e.target.value });
+									// if errors update errors
+									errors = form?.errors;
+									// if no errors set data to form
+									data = { ...data, name: e.target.value };
+								} catch (error) {
+									// if errors flatten errors
+									const { fieldErrors } = error.flatten();
+									// update errors
+									errors = fieldErrors;
+								}
+							}}
+						/>
+						{#if errors?.name}
+							<span class="form-err-msg">{errors.name[0]}</span>
+						{/if}
 					</div>
 					<!-- email -->
 					<div class="input-group">
 						<label for="email">Email</label>
-						<input type="email" id="email" name="email" placeholder="Your email.." />
+						<input
+							type="email"
+							id="email"
+							name="email"
+							placeholder="Your email.."
+							value={form?.data?.email || ''}
+						/>
 					</div>
 					<!-- phone -->
 					<div class="input-group">
 						<label for="phone">Phone</label>
-						<input type="tel" id="phone" name="phone" placeholder="Your phone number.." />
+						<input
+							type="tel"
+							id="phone"
+							name="phone"
+							placeholder="Your phone number.."
+							value={form?.data?.phone || ''}
+						/>
 					</div>
 					<!-- address -->
 					<div class="input-group">
-						<label for="county">County you live in</label>
+						<label for="county">County you live in <span><i>( optional )</i></span></label>
 						<select name="county" id="county">
+							<option disabled selected value="">-- Select an Option --</option>
 							{#each counties as county}
 								<option value={county}>{county}</option>
 							{/each}
@@ -68,15 +113,16 @@
 					<!-- Medical needs -->
 					<div class="input-group">
 						<label for="medicalNeeds"
-							>Please specify if any special/medical needs that we should be aware of for practical
-							purposes</label
+							>Please specify if there are any special or medical needs that we should be aware of
+							for practical purposes <span><i>( optional )</i></span></label
 						>
 						<textarea
 							id="medical-needs"
 							name="medicalNeeds"
-							placeholder="Please specify if any special/medical needs that we should be aware of for practical purposes"
+							placeholder="Please specify or leave empty"
 							cols="30"
 							rows="10"
+							value={form?.data?.medicalNeeds || ''}
 						/>
 					</div>
 					<div class="input-group">
@@ -87,6 +133,7 @@
 							id="emergency"
 							name="emergency"
 							placeholder="Emergency contact name.."
+							value={form?.data?.emergency || ''}
 						/>
 						<label for="emergencyPhone">Emergency contact phone number</label>
 						<input
@@ -94,17 +141,19 @@
 							id="emergency-phone"
 							name="emergencyPhone"
 							placeholder="Emergency contact phone number.."
+							value={form?.data?.emergencyPhone || ''}
 						/>
 					</div>
 				</div>
 			</div>
 			<div class="additional-data">
-				<h2>Additional data</h2>
+				<h2>Additional data <span><i>( optional )</i></span></h2>
 				<!-- source -->
 				<div class="form-group">
 					<div class="input-group">
 						<label for="source">How did you hear about this course?</label>
 						<select name="source" id="source">
+							<option disabled selected value="">-- Select an Option --</option>
 							{#each source as source}
 								<option value={source}>{source}</option>
 							{/each}
@@ -117,7 +166,13 @@
 							>If referred to the course by another person please specify?<span>(optional)</span
 							></label
 						>
-						<input type="text" id="reference" name="reference" placeholder="person name" />
+						<input
+							type="text"
+							id="reference"
+							name="reference"
+							placeholder="person name"
+							value={form?.data?.reference || ''}
+						/>
 					</div>
 					<div class="input-group">
 						<label for="why">Why are you applying for the course?</label>
@@ -127,6 +182,7 @@
 							cols="30"
 							rows="10"
 							placeholder="Why are you applying for the course?"
+							value={form?.data?.why || ''}
 						/>
 					</div>
 				</div>
@@ -219,25 +275,24 @@
 			</div>
 			<div class="agreement">
 				<label for="privacy">
-					<input type="checkbox" id="privacy" name="privacy" value="agree" />
+					<input type="checkbox" id="privacy" name="privacy" value="yes" required />
 					Yes, I have read SHEPs privacy guidelines and agree to them
 				</label>
-				<!-- </div> -->
-				<!-- <div class="agreement"> -->
 				<label for="consent">
-					<input type="checkbox" id="consent" name="consent" value="agree" />
+					<input type="checkbox" id="consent" name="consent" value="yes" required />
 					Yes, I give consent to SHEP to hold these details for the purposes of sending information to
 					me on this upcoming course and other SHEP courses and events.
 				</label>
 				<!-- <input type="text" id="coursedata" name="coursedata" value={coursedata.id} > -->
 			</div>
 			<div hidden>
-				<input type="hidden" name="courseId" value={courseData.id} />
 				<!-- NOTE:
 				Send open course ID to form and use it to get course data venue, course name etc. from DB
 				
 				-->
-				<!-- <input type="hidden" name="courseCity" value={courseData.venue.city} />
+				<!-- <input type="hidden" name="courseId" value={courseData.id} /> -->
+				<input type="hidden" name="courseId" value={courseData.ref} />
+				<input type="hidden" name="courseCity" value={courseData.venue.city} />
 				<input type="hidden" name="courseVenue" value={courseData.venue.venue_name} />
 				<input type="hidden" name="courseTitle" value={courseData.training.title} />
 				<input
@@ -245,7 +300,7 @@
 					name="course_start"
 					value={monthYear(courseData.in_person.start_date)}
 				/>
-				<input type="hidden" name="courseGroup" value={courseData.online.group} /> -->
+				<input type="hidden" name="courseGroup" value={courseData.online.group} />
 				<!-- <input type="hidden" name="courseData" value={courseData} /> -->
 			</div>
 			<div class="submit">
@@ -423,5 +478,11 @@
 				cursor: pointer;
 			}
 		}
+	}
+
+	.form-err-msg {
+		color: var(--shep-red);
+		font-size: var(--xs);
+		font-weight: 400;
 	}
 </style>
