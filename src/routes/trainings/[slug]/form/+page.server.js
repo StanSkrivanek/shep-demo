@@ -1,12 +1,14 @@
 // @ts-nocheck
 import { courseFormSchema } from '$lib/utils/zodSchemas';
+import { fail, redirect } from '@sveltejs/kit';
 // svelte default actions
 export const actions = {
-	default: async ({ request }) => {
+	default: async ({ request, params }) => {
+	
 		const formData = Object.fromEntries(await request.formData());
 		if (!formData.inPerson) {
 			// if inPerson is not checked, add the key and set it to 'no'
-			formData.inPerson = 'no' ;
+			formData.inPerson = 'no';
 		}
 		if (!formData.online) {
 			// if online is not checked, set it to 'no'
@@ -20,33 +22,26 @@ export const actions = {
 		}
 
 		// send data to googleSheet
-
 		// const url = 'https://....";
-
-		// console.log('🚀 ~ file: +page.server.js:14 ~ default: ~ formData:', formData);
-
 		// validate form data
-		try {
-			const result = courseFormSchema.parse(formData);
-			console.log('SUCCESS');
-			console.log('ZOD PARSE RESULT', result);
 
-			// return{
-			// 	success: true,
-			// 	data: result
-			// }
-		} catch (err) {
-			const { fieldErrors: errors } = err.flatten();
-			console.log('🚀 ~ SERVER: ~ errors', errors);
-			return {
-				success: false,
-				data: formData,
-				errors
-			};
+		// applicant form object
+
+		const applicant = {
+			...formData
+		};
+
+		// zod validation using safeParse
+		const safeParse = courseFormSchema.safeParse(applicant);
+
+		if (!safeParse.success) {
+			return fail(400, {
+				data: applicant,
+				issues: safeParse.error.issues,
+				message: 'Validation failed'
+			});
 		}
-		// return {
-		// 	success: true,
-		// 	data: formData
-		// };
+
+		throw redirect(303, `/trainings/${params.slug}`);
 	}
 };

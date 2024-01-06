@@ -4,15 +4,14 @@
 	import { singleTrainingStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDateYear, monthYear } from '$lib/utils/datehelpers';
 	import { counties, source } from '$lib/utils/globalhelpers';
-	import { courseFormSchema } from '$lib/utils/zodSchemas';
 	import { onMount } from 'svelte';
 
+	// variable form contain the form `data` and `issues` from validation
 	export let form;
-	console.log('🚀 ~ file: +page.svelte:10 ~ form:', form);
-	// $: console.log('🚀 ~ file: +page.svelte:14 ~ errors:', errors);
-	// localStorage.setItem('singleTrainingStore', JSON.stringify(form));
+	console.log('🚀 ~ file: +page.svelte:10 ~ FORM CLIENT:', form);
+
 	let courseData = $singleTrainingStore;
-let canAttend = [];
+	let canAttend = [];
 	// Toggle value for checkbox input
 	function eventHandler(e) {
 		canAttend = e.target.checked
@@ -55,9 +54,10 @@ let canAttend = [];
 							name="name"
 							placeholder="Your full name.."
 							value={form?.data?.name || ''}
+							required
 						/>
 						{#if form?.errors?.name}
-							<span class="form-err-msg">{form?.errors.name[0]}</span>
+							<span class="form-err-msg">{form?.issues.message[0]}</span>
 						{/if}
 					</div>
 					<!-- email -->
@@ -69,6 +69,7 @@ let canAttend = [];
 							name="email"
 							placeholder="Your email.."
 							value={form?.data?.email || ''}
+							reqquired
 						/>
 					</div>
 					<!-- phone -->
@@ -80,6 +81,7 @@ let canAttend = [];
 							name="phone"
 							placeholder="Your phone number.."
 							value={form?.data?.phone || ''}
+							required
 						/>
 					</div>
 					<!-- address -->
@@ -254,14 +256,17 @@ let canAttend = [];
 						{/if}
 					</tbody>
 				</table>
+				{#if form?.errors?.inPerson}
+					<span class="form-err-msg">{form?.errors.inPerson[0]}</span>
+				{/if}
 			</div>
 			<div class="agreement">
 				<label for="privacy">
-					<input type="checkbox" id="privacy" name="privacy" value="yes" />
+					<input type="checkbox" id="privacy" name="privacy" value="yes" required />
 					Yes, I have read SHEPs privacy guidelines and agree to them
 				</label>
 				<label for="consent">
-					<input type="checkbox" id="consent" name="consent" value="yes" />
+					<input type="checkbox" id="consent" name="consent" value="yes" required />
 					Yes, I give consent to SHEP to hold these details for the purposes of sending information to
 					me on this upcoming course and other SHEP courses and events.
 				</label>
@@ -467,4 +472,62 @@ let canAttend = [];
 		font-size: var(--xs);
 		font-weight: 400;
 	}
+	select {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		outline: 0;
+		box-shadow: none;
+		border: 0 !important;
+		background-image: none;
+		background-color: transparent;
+		cursor: pointer;
+		font-size: 1.5rem;
+		font-weight: 400;
+		color: var(--fc-main);
+		margin-bottom: 1rem;
+		padding: 0.5rem;
+		border: 1px solid var(--gray-3) !important;
+		border-radius: 0.5rem;
+	}
+
+	/* custom select arrow */
+	select {
+		background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='var(--fc-main)'><polygon points='0,0 16,0 8,16'/></svg>");
+		background-repeat: no-repeat;
+		background-position: right 0.7em top 50%, 0 0;
+		background-size: 0.65em auto, 100%;
+	}
+
+	/* select::-ms-expand {
+		display: none;
+	} */
+
+	/* hover style */
+	/* select:hover {
+		border-color: var(--gray-2) !important;
+	} */
+
+	/* focus style */
+	/* select:focus {
+		border-color: var(--gray-2) !important;
+		box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7) !important;
+		box-shadow: 0 0 0 3px -moz-mac-focusring !important;
+		color: var(--fc-main);
+		outline: none;
+	} */
+
+	/* active style */
+	/* select:active {
+		border-color: var(--gray-2) !important;
+	} */
+
+	/* placeholder style */
+	/* select option[disabled] {
+		color: var(--gray-2);
+	} */
+
+	/* placeholder style */
+
+
 </style>

@@ -8,26 +8,28 @@ export const courseFormSchema = z
 			.trim(),
 		email: z
 			.string({ required_error: 'Email is required' })
-			.email({ message: 'Email must be a valid email address' }),
+			.email({ message: 'Email must be a valid email address' }).toLowerCase(),
 		phone: z
 			.string({ required_error: 'Phone number is required' })
 			.min(8, { message: 'Name must be at least 8 characters' })
 			.trim(),
-
-		inPerson: z.enum(['yes', 'no']).default('no'),
-		online: z.enum(['yes', 'no']).default('no'),
-		// inPerson: z.string().default('no'),
-		// online: z.string().default('no'),
-		// invalidate if checked is false
-
-		privacy: z.boolean().default(false),
-		consent: z.boolean().default(false)
+		medicalNeeds: z.string(),
+		emergency: z.string(),
+		emergencyPhone: z.string(),
+		reference: z.string(),
+		why: z.string().max(320, { message: 'Why must be less than 320 characters' }).trim(),
+		county: z.string(),
+		source: z.string(),
+		inPerson: z.string(),
+		online: z.string(),
+		privacy: z.string(),
+		consent: z.string()
 	})
-	.refine((data) => {
-		if (data.inPerson === 'no' && data.online === 'no') {
-			message: 'Please select at least one option';
-		}
+	.refine((data) => data.inPerson === 'yes' || data.online === 'yes', {
+		message: 'You must select at least one option',
+		path: ['inPerson', 'online']
 	});
+
 // export type CourseForm = z.infer<typeof courseFormSchema>;
 
 // on:blur={(e) => {
