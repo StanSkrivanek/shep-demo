@@ -8,13 +8,11 @@
 	import { onMount } from 'svelte';
 
 	export let form;
-	// console.log('🚀 ~ file: +page.svelte:10 ~ form:', form);
-	$: data = form?.data;
-	$: errors = {} || form?.errors;
-	$: console.log('🚀 ~ file: +page.svelte:14 ~ errors:', errors);
+	console.log('🚀 ~ file: +page.svelte:10 ~ form:', form);
+	// $: console.log('🚀 ~ file: +page.svelte:14 ~ errors:', errors);
 	// localStorage.setItem('singleTrainingStore', JSON.stringify(form));
 	let courseData = $singleTrainingStore;
-
+let canAttend = [];
 	// Toggle value for checkbox input
 	function eventHandler(e) {
 		canAttend = e.target.checked
@@ -57,25 +55,9 @@
 							name="name"
 							placeholder="Your full name.."
 							value={form?.data?.name || ''}
-							on:blur={(e) => {
-								// console.log(courseFormSchema.pick({ name: true }).parse({ name: e.target.value }))
-								try {
-									// check  value of input field against schema
-									courseFormSchema.pick({ name: true }).parse({ name: e.target.value });
-									// if errors update errors
-									errors = form?.errors;
-									// if no errors set data to form
-									data = { ...data, name: e.target.value };
-								} catch (error) {
-									// if errors flatten errors
-									const { fieldErrors } = error.flatten();
-									// update errors
-									errors = fieldErrors;
-								}
-							}}
 						/>
-						{#if errors?.name}
-							<span class="form-err-msg">{errors.name[0]}</span>
+						{#if form?.errors?.name}
+							<span class="form-err-msg">{form?.errors.name[0]}</span>
 						{/if}
 					</div>
 					<!-- email -->
@@ -117,7 +99,7 @@
 							for practical purposes <span><i>( optional )</i></span></label
 						>
 						<textarea
-							id="medical-needs"
+							id="medicalNeeds"
 							name="medicalNeeds"
 							placeholder="Please specify or leave empty"
 							cols="30"
@@ -138,7 +120,7 @@
 						<label for="emergencyPhone">Emergency contact phone number</label>
 						<input
 							type="tel"
-							id="emergency-phone"
+							id="emergencyPhone"
 							name="emergencyPhone"
 							placeholder="Emergency contact phone number.."
 							value={form?.data?.emergencyPhone || ''}
@@ -221,7 +203,7 @@
 									<label for="inPerson" class="ticker">
 										<input
 											type="checkbox"
-											id="in-person"
+											id="inPerson"
 											name="inPerson"
 											value="no"
 											on:change={eventHandler}
@@ -275,11 +257,11 @@
 			</div>
 			<div class="agreement">
 				<label for="privacy">
-					<input type="checkbox" id="privacy" name="privacy" value="yes" required />
+					<input type="checkbox" id="privacy" name="privacy" value="yes" />
 					Yes, I have read SHEPs privacy guidelines and agree to them
 				</label>
 				<label for="consent">
-					<input type="checkbox" id="consent" name="consent" value="yes" required />
+					<input type="checkbox" id="consent" name="consent" value="yes" />
 					Yes, I give consent to SHEP to hold these details for the purposes of sending information to
 					me on this upcoming course and other SHEP courses and events.
 				</label>
