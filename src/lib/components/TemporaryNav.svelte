@@ -5,9 +5,9 @@
    <a href="/trainings">Intensive Trainings</a>
    <a href="/venues">Venues</a>
    <a href="/open">Upcoming Courses</a>
-   <a href="/blog">Blog</a>
+   <!-- <a href="/blog">Blog</a>
    <a href="/blog/about/about-us">About</a>
-   <a href="blog/positive-mindset/everything-you-need-to-know-about-bipolar-disorder">Article</a>
+   <a href="blog/positive-mindset/everything-you-need-to-know-about-bipolar-disorder">Article</a> -->
 </nav>
 
 <style>

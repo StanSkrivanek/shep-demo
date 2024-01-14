@@ -9,11 +9,11 @@
 	import { cubicOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
 	export let data;
-	// console.log('🚀 ~ file: +page.svelte:12 ~ data:', data);
+	$: console.log('🚀 ~ file: +page.svelte:12 ~ CLIENT data:', data.trainings);
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
 		data.trainings;
 	const openForApplication = data.allOpenTrainings;
-	console.log("🚀 ~ file: +page.svelte:16 ~ openForApplication:", openForApplication)
+	$: console.log("🚀 ~ file: +page.svelte:16 ~ openForApplication:", openForApplication)
 	/**
 	 * @type {number | boolean | null}
 	 */
@@ -122,7 +122,8 @@
 			{:else}
 				<div class="accordion">
 					{#each openForApplication as item, i}
-<!-- <p>{item.title}</p> -->
+					
+
 						<div
 							class="accordion_item card"
 							role="button"

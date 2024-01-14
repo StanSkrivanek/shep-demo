@@ -23,7 +23,8 @@ export const courseFormSchema = z
 		inPerson: z.string(),
 		online: z.string(),
 		privacy: z.string(),
-		consent: z.string()
+		consent: z.string(),
+		sheet_url: z.string(),
 	})
 	.refine((data) => data.inPerson === 'yes' || data.online === 'yes', {
 		message: 'You must select at least one option',

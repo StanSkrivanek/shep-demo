@@ -146,7 +146,7 @@ export const getAllOpenCourses = async () => {
    'form': application_form {
       'asset': asset->url
   },
- 
+  'sheet_url':  sheet_url,
 }
 `;
 
@@ -180,6 +180,7 @@ export const getAllOpenCoursesforCurrentVenue = async (/** @type {undefined} */ 
 	'form': application_form {
 		'asset': asset->url
   },
+   'sheet_url':  sheet_url,
  
 }
 `;
@@ -215,7 +216,7 @@ export const getAllOpenCoursesForCurrentCourse = async (/** @type {undefined} */
 	'form': application_form {
 		'asset': asset->url
   },
- 
+  'sheet_url':  sheet_url,
 }
 `;
 
@@ -269,6 +270,7 @@ export const getSingleTraining = async (/** @type {undefined} */ slug) => {
 		} 
 	 },
 	 "brochure": brochure.asset->url,
+	 'sheet_url': sheet_url,
   }`;
 	const training = await client.fetch(query, { slug });
 	return training;
@@ -277,6 +279,7 @@ export const getSingleTraining = async (/** @type {undefined} */ slug) => {
 // All UPCOMING Trainings
 export const getAllOpenTrainings = async () => {
 	const client = sanityClient();
+	// getting URL
 	const allOpenTrainingsQuery = `*[_type == "open_training" && is_active == true]{
 	"id":_id,
 	'in_person': in_person {
@@ -301,6 +304,8 @@ export const getAllOpenTrainings = async () => {
 	'form': application_form {
 		'asset': asset->url
   },
+  'sheet_url': sheet_url,
+
  
 }
 `;
@@ -335,8 +340,8 @@ export const getAllOpenTrainingsforCurrentVenue = async (/** @type {undefined} *
 
 	'form': application_form {
 		'asset': asset->url
-  },
- 
+  }, 
+   'sheet_url': sheet_url,
 }
 `;
 
@@ -372,17 +377,13 @@ export const getAllOpenTrainingsForCurrentTraining = async (/** @type {undefined
 	'form': application_form {
 		'asset': asset->url
   },
- 
+  'sheet_url': sheet_url,
 }
 `;
 
 	const getAllOpenTrainingsForCurrentTraining = await client.fetch(allOpenTrainingsQuery, { slug });
 	return getAllOpenTrainingsForCurrentTraining;
 };
-
-
-
-
 
 // --- BLOG ---
 

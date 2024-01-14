@@ -8,9 +8,10 @@
 
 	// variable form contain the form `data` and `issues` from validation
 	export let form;
-	console.log('🚀 ~ file: +page.svelte:10 ~ FORM CLIENT:', form);
+	// console.log('🚀 ~ file: +page.svelte:10 ~ FORM CLIENT:', form);
 
 	let courseData = $singleTrainingStore;
+	$: console.log("🚀 ~ courseData:", courseData)
 	let canAttend = [];
 	// Toggle value for checkbox input
 	function eventHandler(e) {
@@ -189,13 +190,13 @@
 					<thead>
 						<tr>
 							<th>Option</th>
-							<!-- <th>Group</th> -->
+					
 							<th>Weekday</th>
 							<th>Starts</th>
 							<th>Ends</th>
 							<th>From</th>
 							<th>To</th>
-							<!-- <th>Trainers</th> -->
+					
 						</tr>
 					</thead>
 					<tbody>
@@ -213,17 +214,13 @@
 										In person</label
 									>
 								</td>
-								<!-- <td>{coursedata.in_person.group}</td> -->
+							
 								<td>{courseData.in_person.weekday}</td>
 								<td>{monthNameDateYear(courseData.in_person.start_date)}</td>
 								<td>{monthNameDateYear(courseData.in_person.end_date)}</td>
 								<td>{formatTime12(courseData.in_person.start_date)}</td>
 								<td>{formatTime12(courseData.in_person.end_date)}</td>
-								<!-- <td>
-									{#each courseData.in_person.leader as trainer}
-										<p>{trainer.name}</p>
-									{/each}
-								</td> -->
+
 							</tr>
 						{/if}
 						<tr />
@@ -241,17 +238,12 @@
 										Online</label
 									>
 								</td>
-								<!-- <td>{courseData.online.group}</td> -->
+					
 								<td>{courseData.online.weekday}</td>
 								<td>{monthNameDateYear(courseData.online.start_date)}</td>
 								<td>{monthNameDateYear(courseData.online.end_date)}</td>
 								<td>{formatTime12(courseData.online.start_date)}</td>
 								<td>{formatTime12(courseData.online.end_date)}</td>
-								<!-- <td>
-									{#each courseData.online.leader as trainer}
-										<p>{trainer.name}</p>
-									{/each}
-								</td> -->
 							</tr>
 						{/if}
 					</tbody>
@@ -308,6 +300,7 @@
 		/* padding: 1rem; */
 	}
 	form {
+
 		padding-bottom: 2rem;
 		& .form-header {
 			padding: 1rem;

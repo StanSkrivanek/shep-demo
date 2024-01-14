@@ -30,6 +30,7 @@ export const actions = {
 		const applicant = {
 			...formData
 		};
+		console.log("🚀 ~ default: ~ applicant:", applicant)
 
 		// zod validation using safeParse
 		const safeParse = courseFormSchema.safeParse(applicant);
