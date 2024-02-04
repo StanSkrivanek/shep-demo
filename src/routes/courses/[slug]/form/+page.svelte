@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
    // get local storage
    const local = localStorage.getItem('courseData');
 
@@ -15,4 +15,4 @@
 </pre>
 {#if data.course}
 <h1>{data.course.title}</h1>
-{/if}
+{/if} -->

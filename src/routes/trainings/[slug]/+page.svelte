@@ -9,11 +9,11 @@
 	import { cubicOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
 	export let data;
-	$: console.log('🚀 ~ file: +page.svelte:12 ~ CLIENT data:', data.trainings);
+	// $: console.log('🚀 ~ file: +page.svelte:12 ~ CLIENT data.trainings:', data.upcomingTraning);
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
-		data.trainings;
-	const openForApplication = data.allOpenTrainings;
-	$: console.log("🚀 ~ file: +page.svelte:16 ~ openForApplication:", openForApplication)
+		data.upcomingTraning;
+	const openForApplication = data.allUpcomingTrainings;
+	// $: console.log("🚀 ~ file: +page.svelte:16 ~ openForApplication:", openForApplication)
 	/**
 	 * @type {number | boolean | null}
 	 */

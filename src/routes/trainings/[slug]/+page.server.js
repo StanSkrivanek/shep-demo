@@ -1,11 +1,11 @@
-import { getAllOpenTrainingsForCurrentTraining, getSingleTraining } from '$lib/server/sanity';
+import { getAllUpcomingTrainingsForCurrentTraining, getSingleTraining } from '$lib/server/sanity';
 export async function load({ params }) {
 	// @ts-ignore
-	const allOpenTrainings = await getAllOpenTrainingsForCurrentTraining(params.slug);
+	const allUpcomingTrainings = await getAllUpcomingTrainingsForCurrentTraining(params.slug);
 	// @ts-ignore
-	const trainings = await getSingleTraining(params.slug);
+	const upcomingTraning = await getSingleTraining(params.slug);
 	return {
-		trainings,
-		allOpenTrainings
+		upcomingTraning,
+		allUpcomingTrainings
 	};
 }

@@ -9,11 +9,11 @@
 	import { slide } from 'svelte/transition';
 
 	export let data;
-	console.log('🚀 ~ file: +page.svelte:12 ~ data:', data);
+	// console.log('🚀 ~ file: +page.svelte:12 ~ data:', data);
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
 		data.course;
 	const openForApplication = data.allOpenCourses;
-	console.log('🚀 ~ file: +page.svelte:3 ~ openForApplication:', openForApplication);
+	// console.log('🚀 ~ file: +page.svelte:3 ~ openForApplication:', openForApplication);
 
 	/**
 	 * @type {number | boolean | null}
@@ -252,7 +252,8 @@
 										</a>
 
 										<!-- apply online -->
-										<a href="/courses/{slug}/form" on:click={()=> storeCourseData(item)}>
+										<!-- <a href="/courses/{slug}/form" on:click={()=> storeCourseData(item)}> -->
+										<a href="/courses/{slug}/form">
 											<span>apply online</span>
 										</a>
 									</div>

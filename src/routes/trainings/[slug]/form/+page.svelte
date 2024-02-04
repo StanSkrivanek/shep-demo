@@ -11,7 +11,7 @@
 	// console.log('🚀 ~ file: +page.svelte:10 ~ FORM CLIENT:', form);
 
 	let courseData = $singleTrainingStore;
-	$: console.log("🚀 ~ courseData:", courseData)
+	$: console.log("🚀 ~ FORM - courseData = $singleTrainingStore:", $singleTrainingStore)
 	let canAttend = [];
 	// Toggle value for checkbox input
 	function eventHandler(e) {
@@ -23,8 +23,10 @@
 
 	onMount(() => {
 		// if courseData is empty object get data from local storage
+		// need for refreshing form page without losing data
 		if (Object.keys(courseData).length === 0) {
 			courseData = JSON.parse(localStorage.getItem('singleTrainingStore'));
+			// courseData = $singleTrainingStore
 		}
 	});
 </script>
