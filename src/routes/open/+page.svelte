@@ -53,7 +53,7 @@
 				<div class="card-footer">
 					{#if course.training}
 						<p>{course.training.type}</p>
-						<a class="btn-link" href="courses/{course.training.slug.current}">
+						<a class="btn-link" href="trainings/{course.training.slug.current}">
 							<LinkCircle width={48} height={48} />
 						</a>
 					{:else}

@@ -374,6 +374,7 @@
 	.limited-char {
 		width: 16ch;
 	}
+	
 	/* Brochure */
 	.link {
 		grid-area: hero-btn;
@@ -419,14 +420,14 @@
 
 	/* === MAIN CONTENT === */
 
-	/* .main__c {
+	.main__c {
 		display: grid;
 		grid-template-columns: subgrid;
-		grid-template-areas: 'aside aside aside main main main main ';
+		grid-template-areas: 'aside aside aside main main main main main';
 		grid-column: 1/-1;
 		margin-bottom: 5rem;
 		gap: 1rem;
-	} */
+	}
 
 	aside {
 		grid-area: aside;
@@ -673,10 +674,10 @@
 
 	/* Media Query */
 	@media screen and (max-width: 1280px) {
-		.main__c {
+		/* .main__c {
 			grid-template-columns: subgrid;
-			grid-template-areas: 'aside aside aside main main main main main ';
-		}
+			grid-template-areas: 'aside aside aside main main main main main';
+		} */
 		.accordion .accordion-links a {
 			margin-bottom: 1rem;
 		}
