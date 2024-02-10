@@ -362,7 +362,7 @@
 	.main__c {
 		display: grid;
 		grid-template-columns: subgrid;
-		grid-template-areas: 'aside aside aside main main main main ';
+		grid-template-areas: 'aside aside aside main main main main main ';
 		grid-column: 1/-1;
 		margin-bottom: 5rem;
 		gap: 1rem;

@@ -3,7 +3,7 @@
 	export let data;
 	// console.log(data.allTrainings);
 	// const openCourse = data.allOpenCourses;
-	const { course, online, in_person, venue, form } = data.allTrainings;
+	const alUpcomingTrainings = data.allTrainings;
 </script>
 
 <div class="page__c">
@@ -27,7 +27,7 @@
 	</div>
 	<!-- <h1 class="separator-heading">Trainings</h1> -->
 	<main class="container">
-		{#each data.allTrainings as training}
+		{#each alUpcomingTrainings as training}
 			<div class="card">
 				<div class="card-subheading">
 					<p>{training.type}</p>
@@ -88,10 +88,10 @@
 			aspect-ratio: 2.4/1;
 		}
 	}
-	.separator-heading {
+	/* .separator-heading {
 		grid-column: 1/-1;
 		margin-bottom: 2rem;
-	}
+	} */
 	.container {
 		display: grid;
 		grid-column: 1/-1;

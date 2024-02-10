@@ -9,7 +9,7 @@
 	import { slide } from 'svelte/transition';
 
 	export let data;
-	// console.log('🚀 ~ file: +page.svelte:12 ~ data:', data);
+	console.log('🚀 ~ file: +page.svelte:12 ~ data:', data);
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
 		data.course;
 	const openForApplication = data.allOpenCourses;
@@ -425,14 +425,14 @@
 
 	/* === MAIN CONTENT === */
 
-	/* .main__c {
+	.main__c {
 		display: grid;
 		grid-template-columns: subgrid;
-		grid-template-areas: 'aside aside aside main main main main ';
+		grid-template-areas: 'aside aside aside main main main main main';
 		grid-column: 1/-1;
 		margin-bottom: 5rem;
 		gap: 1rem;
-	} */
+	}
 
 	aside {
 		grid-area: aside;
