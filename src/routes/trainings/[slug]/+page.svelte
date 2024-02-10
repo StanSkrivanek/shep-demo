@@ -12,8 +12,8 @@
 	// $: console.log('🚀 ~ file: +page.svelte:12 ~ CLIENT data.trainings:', data.upcomingTraning);
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
 		data.upcomingTraning;
-	const openForApplication = data.allUpcomingTrainings;
-	// $: console.log("🚀 ~ file: +page.svelte:16 ~ openForApplication:", openForApplication)
+	const upcoming = data.allUpcomingTrainings;
+	// $: console.log("🚀 ~ file: +page.svelte:16 ~ upcoming:", upcoming)
 	/**
 	 * @type {number | boolean | null}
 	 */
@@ -96,7 +96,7 @@
 	<div class="main__c">
 		<!-- aside -->
 		<aside>
-			{#if openForApplication.length == 0}
+			{#if upcoming.length == 0}
 				<div class="no-course">
 					<div class="content">
 						<p>
@@ -121,9 +121,9 @@
 				</div>
 			{:else}
 				<div class="accordion">
-					{#each openForApplication as item, i}
+					{#each upcoming as item, i}
 					
-
+{console.log('🚀 ~ file: +page.svelte:132 ~ item', item)}
 						<div
 							class="accordion_item card"
 							role="button"
@@ -135,7 +135,7 @@
 								<div class="data">
 									<div class="location">
 										<!-- <p>{item.venue.venue_name}</p> -->
-										<a class="accordion-header--link" href="/venues/{item.venue.slug.current}"
+										<a class="accordion-header--link" href="../venues/{item.venue.slug.current}"
 											>{item.venue.venue_name}</a
 										>
 										<p>{item.venue.city}</p>

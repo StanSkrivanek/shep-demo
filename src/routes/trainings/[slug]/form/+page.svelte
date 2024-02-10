@@ -11,7 +11,7 @@
 	// console.log('🚀 ~ file: +page.svelte:10 ~ FORM CLIENT:', form);
 
 	let courseData = $singleTrainingStore;
-	$: console.log("🚀 ~ FORM - courseData = $singleTrainingStore:", $singleTrainingStore)
+	// $: console.log("🚀 ~ FORM - courseData = $singleTrainingStore:", $singleTrainingStore)
 	let canAttend = [];
 	// Toggle value for checkbox input
 	function eventHandler(e) {
