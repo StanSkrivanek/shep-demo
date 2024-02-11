@@ -39,7 +39,7 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 
 	// show all posts - reset filter
 	const allposts = () => {
-		console.log('POSTS', posts);
+		// console.log('POSTS', posts);
 		filteredPosts = posts;
 	};
 </script>

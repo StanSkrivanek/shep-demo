@@ -9,7 +9,7 @@
 	import { slide } from 'svelte/transition';
 
 	export let data;
-	console.log('🚀 ~ file: +page.svelte:12 ~ data:', data);
+	// console.log('🚀 ~ file: +page.svelte:12 ~ data:', data);
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
 		data.course;
 	const openForApplication = data.allOpenCourses;
@@ -51,7 +51,7 @@
 	 * @param {any} node
 	 */
 		function storeCourseData(node) {
-		console.log('🚀 ~ file: +page.svelte:65 ~ storeCourseData ~ node', node);
+		// console.log('🚀 ~ file: +page.svelte:65 ~ storeCourseData ~ node', node);
 		localStorage.setItem('courseData', JSON.stringify(node));
 	}
 </script>

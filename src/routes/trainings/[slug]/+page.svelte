@@ -13,7 +13,7 @@
 	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
 		data.upcomingTraning;
 	const upcoming = data.allUpcomingTrainings;
-	// $: console.log("🚀 ~ file: +page.svelte:16 ~ upcoming:", upcoming)
+	$: console.log("🚀 UPCOMING", upcoming)
 	/**
 	 * @type {number | boolean | null}
 	 */
@@ -123,7 +123,7 @@
 				<div class="accordion">
 					{#each upcoming as item, i}
 					
-{console.log('🚀 ~ file: +page.svelte:132 ~ item', item)}
+<!-- {console.log('🚀 ~ file: +page.svelte:132 ~ item', item)} -->
 						<div
 							class="accordion_item card"
 							role="button"

@@ -3,6 +3,7 @@ import { getSingleVenue, getAllUpcomingCoursesforCurrentVenue } from '$lib/serve
 export async function load({ params }) {
 	// @ts-ignore
 	const venue = await getSingleVenue(params.slug);
+	// console.log("🚀 ~ load ~ venue:", venue)
 	// @ts-ignore
 	const openForApplications = await getAllUpcomingCoursesforCurrentVenue(params.slug);
 	return {

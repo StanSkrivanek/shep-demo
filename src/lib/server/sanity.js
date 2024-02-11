@@ -180,7 +180,7 @@ export const getAllUpcomingCoursesforCurrentVenue = async (/** @type {undefined}
 	'form': application_form {
 		'asset': asset->url
   },
-   'sheet_url':  sheet_url,
+   'sheetUrl':  sheet_url,
  
 }
 `;
@@ -304,7 +304,7 @@ export const getAllUpcomingTrainings = async () => {
 	'form': application_form {
 		'asset': asset->url
   },
-  'sheet_url': sheet_url,
+  'sheetUrl': sheet_url,
 
  
 }
@@ -321,7 +321,7 @@ export const getAllUpcomingTrainingsforCurrentVenue = async (/** @type {undefine
 	"id":_id,
 	'in_person': in_person {
 		...,
-				'leader': course_leader[] {
+		'leader': course_leader[] {
 		_type == 'reference' => @->{name}    
 	},
 	},
@@ -357,7 +357,7 @@ export const getAllUpcomingTrainingsForCurrentTraining = async (/** @type {undef
 	"ref" : ref_name,
 	'in_person': in_person {
 		...,
-				'leader': training_leader[] {
+		'leader': training_leader[] {
 		_type == 'reference' => @->{name}    
 	},
 	},
@@ -371,7 +371,7 @@ export const getAllUpcomingTrainingsForCurrentTraining = async (/** @type {undef
 		_type == 'reference' => @->{title, type, excerpt, slug}    
 	},
 		'venue': venue {
-		_type == 'reference' => @->{venue_name, city, slug}    
+		_type == 'reference' => @->{venue_name, city, slug}
 	},
 
 	'form': application_form {

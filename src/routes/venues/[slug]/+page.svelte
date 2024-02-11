@@ -8,6 +8,7 @@
 	import { slide } from 'svelte/transition';
 
 	export let data;
+	// console.log("🚀 ~ VENUE SLUG:", data)
 
 	const {
 		venue_name,

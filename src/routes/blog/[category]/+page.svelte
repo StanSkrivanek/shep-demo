@@ -1,7 +1,7 @@
 <script>
 	export let data;
 	let { catArticles } = data.props;
-	console.log('🚀 ~ file: +page.svelte:4 ~ catArticles:', catArticles);
+	// console.log('🚀 ~ file: +page.svelte:4 ~ catArticles:', catArticles);
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { trimText } from '$lib/utils/globalhelpers.js';
 </script>
