@@ -146,13 +146,14 @@ export const getAllUpcomingCourses = async () => {
    'form': application_form {
       'asset': asset->url
   },
-  'sheet_url':  sheet_url,
+  'sheetID':  sheet_id,
 }
 `;
 
 	const allUpcomingCourses = await client.fetch(allUpcomingCoursesQuery);
 	return allUpcomingCourses;
 };
+
 // All UPCOMING Courses for current venue
 export const getAllUpcomingCoursesforCurrentVenue = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
@@ -180,7 +181,7 @@ export const getAllUpcomingCoursesforCurrentVenue = async (/** @type {undefined}
 	'form': application_form {
 		'asset': asset->url
   },
-   'sheetUrl':  sheet_url,
+   'sheetID':  sheet_id,
  
 }
 `;
@@ -216,7 +217,7 @@ export const getAllUpcomingCoursesForCurrentCourse = async (/** @type {undefined
 	'form': application_form {
 		'asset': asset->url
   },
-  'sheet_url':  sheet_url,
+  'sheetID':  sheet_id,
 }
 `;
 
@@ -270,7 +271,7 @@ export const getSingleTraining = async (/** @type {undefined} */ slug) => {
 		} 
 	 },
 	 "brochure": brochure.asset->url,
-	 'sheet_url': sheet_url,
+	 'sheetID': sheet_id,
   }`;
 	const training = await client.fetch(query, { slug });
 	return training;
@@ -304,7 +305,7 @@ export const getAllUpcomingTrainings = async () => {
 	'form': application_form {
 		'asset': asset->url
   },
-  'sheetUrl': sheet_url,
+  'sheetID': sheet_id,
 
  
 }
@@ -341,7 +342,7 @@ export const getAllUpcomingTrainingsforCurrentVenue = async (/** @type {undefine
 	'form': application_form {
 		'asset': asset->url
   }, 
-   'sheet_url': sheet_url,
+   'sheetID': sheet_id,
 }
 `;
 
@@ -377,7 +378,7 @@ export const getAllUpcomingTrainingsForCurrentTraining = async (/** @type {undef
 	'form': application_form {
 		'asset': asset->url
   },
-  'sheet_url': sheet_url,
+  'sheetID': sheet_id,
 }
 `;
 

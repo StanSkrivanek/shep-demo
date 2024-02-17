@@ -11,6 +11,7 @@
 	// console.log('🚀 ~ file: +page.svelte:10 ~ FORM CLIENT:', form);
 
 	let courseData = $singleTrainingStore;
+	// console.log("🚀 ~ courseData:", courseData)
 	// $: console.log("🚀 ~ FORM - courseData = $singleTrainingStore:", $singleTrainingStore)
 	let canAttend = [];
 	// Toggle value for checkbox input
@@ -29,12 +30,18 @@
 			// courseData = $singleTrainingStore
 		}
 	});
+	
 </script>
 
 <div class="page__c">
 	{#if courseData.training}
-		<form method="POST">
-			<!-- <form method="POST" on:submit|preventDefault={submitHandler()}> -->
+		<!-- <form
+			method="POST"
+			on:submitpreventDefault={google.script.run.getData(this)}
+		> -->
+		<!-- <form method="POST" action="https://script.google.com/macros/s/AKfycbxAr4XfJ-T-r592Ixyaru2WXeWwi2jDPcZuEfC493xGrR9yVv9ilpancco2lmSuswIs9w/exec"> -->
+		<!-- <form method="POST" on:submit|preventDefault={submitHandler()}> -->
+		<form method="POST" action="?/sendToGoogle">
 			<div class="form-header">
 				<p>Application form for {courseData.training.type}</p>
 				<h1>{courseData.training.title}</h1>
@@ -188,68 +195,68 @@
 					{/if}
 				</h2>
 				<!-- table -->
-				<table>
-					<thead>
-						<tr>
-							<th>Option</th>
-					
-							<th>Weekday</th>
-							<th>Starts</th>
-							<th>Ends</th>
-							<th>From</th>
-							<th>To</th>
-					
-						</tr>
-					</thead>
-					<tbody>
-						{#if courseData.in_person?.is_active === true}
+				<div class="table__w">
+					<table>
+						<thead>
 							<tr>
-								<td>
-									<label for="inPerson" class="ticker">
-										<input
-											type="checkbox"
-											id="inPerson"
-											name="inPerson"
-											value="no"
-											on:change={eventHandler}
-										/>
-										In person</label
-									>
-								</td>
-							
-								<td>{courseData.in_person.weekday}</td>
-								<td>{monthNameDateYear(courseData.in_person.start_date)}</td>
-								<td>{monthNameDateYear(courseData.in_person.end_date)}</td>
-								<td>{formatTime12(courseData.in_person.start_date)}</td>
-								<td>{formatTime12(courseData.in_person.end_date)}</td>
+								<th>Option</th>
 
+								<th>Weekday</th>
+								<th>Starts</th>
+								<th>Ends</th>
+								<th>From</th>
+								<th>To</th>
 							</tr>
-						{/if}
-						<tr />
-						{#if courseData.online?.is_active === true}
-							<tr>
-								<td
-									><label for="online" class="ticker">
-										<input
-											type="checkbox"
-											id="online"
-											name="online"
-											value="no"
-											on:change={eventHandler}
-										/>
-										Online</label
-									>
-								</td>
-					
-								<td>{courseData.online.weekday}</td>
-								<td>{monthNameDateYear(courseData.online.start_date)}</td>
-								<td>{monthNameDateYear(courseData.online.end_date)}</td>
-								<td>{formatTime12(courseData.online.start_date)}</td>
-								<td>{formatTime12(courseData.online.end_date)}</td>
-							</tr>
-						{/if}
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{#if courseData.in_person?.is_active === true}
+								<tr>
+									<td>
+										<label for="inPerson" class="ticker">
+											<input
+												type="checkbox"
+												id="inPerson"
+												name="inPerson"
+												value="no"
+												on:change={eventHandler}
+											/>
+											In person</label
+										>
+									</td>
+
+									<td>{courseData.in_person.weekday}</td>
+									<td>{monthNameDateYear(courseData.in_person.start_date)}</td>
+									<td>{monthNameDateYear(courseData.in_person.end_date)}</td>
+									<td>{formatTime12(courseData.in_person.start_date)}</td>
+									<td>{formatTime12(courseData.in_person.end_date)}</td>
+								</tr>
+							{/if}
+							<tr />
+							{#if courseData.online?.is_active === true}
+								<tr>
+									<td
+										><label for="online" class="ticker">
+											<input
+												type="checkbox"
+												id="online"
+												name="online"
+												value="no"
+												on:change={eventHandler}
+											/>
+											Online</label
+										>
+									</td>
+
+									<td>{courseData.online.weekday}</td>
+									<td>{monthNameDateYear(courseData.online.start_date)}</td>
+									<td>{monthNameDateYear(courseData.online.end_date)}</td>
+									<td>{formatTime12(courseData.online.start_date)}</td>
+									<td>{formatTime12(courseData.online.end_date)}</td>
+								</tr>
+							{/if}
+						</tbody>
+					</table>
+				</div>
 				{#if form?.errors?.inPerson}
 					<span class="form-err-msg">{form?.errors.inPerson[0]}</span>
 				{/if}
@@ -282,7 +289,7 @@
 					value={monthYear(courseData.in_person.start_date)}
 				/>
 				<input type="hidden" name="courseGroup" value={courseData.online.group} />
-				<!-- <input type="hidden" name="courseData" value={courseData} /> -->
+				<input type="hidden" name="sheetID" value={courseData.sheetID} />
 			</div>
 			<div class="submit">
 				<button type="submit">Submit</button>
@@ -302,7 +309,6 @@
 		/* padding: 1rem; */
 	}
 	form {
-
 		padding-bottom: 2rem;
 		& .form-header {
 			padding: 1rem;
@@ -493,7 +499,9 @@
 		background-position: right 0.7em top 50%, 0 0;
 		background-size: 0.65em auto, 100%;
 	}
-
+	.table__w {
+		overflow-x: auto;
+	}
 	/* select::-ms-expand {
 		display: none;
 	} */
@@ -523,6 +531,4 @@
 	} */
 
 	/* placeholder style */
-
-
 </style>
