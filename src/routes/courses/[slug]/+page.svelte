@@ -3,6 +3,7 @@
 	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
+	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers';
 	import { PortableText } from '@portabletext/svelte';
 	import { cubicOut } from 'svelte/easing';
@@ -13,7 +14,7 @@
 	const { title, excerpt, full_price, funded_price, main_img, content, brochure, slug } =
 		data.course;
 	const upcoming = data.allOpenCourses;
-	// console.log('🚀 ~ file: +page.svelte:3 ~ upcoming:', upcoming);
+
 
 	/**
 	 * @type {number | boolean | null}
@@ -37,22 +38,13 @@
 					`;
 			}
 		};
-		// return{
-		// 	duration,
-		// 	css:(/** @type {number} */ t)=>{
-		// 		const eased = cubicOut(t);
-		// 		return `
-		// 			transform: rotate(${eased * 180}deg);
-		// 		`;
-		// 	}
-		// }
 	}
 		/**
 	 * @param {any} node
 	 */
 		function storeCourseData(node) {
-		// console.log('🚀 ~ file: +page.svelte:65 ~ storeCourseData ~ node', node);
-		localStorage.setItem('courseData', JSON.stringify(node));
+		$singleEventStore = node;
+		localStorage.setItem('singleEventStore', JSON.stringify(node));
 	}
 </script>
 
@@ -253,7 +245,7 @@
 
 										<!-- apply online -->
 										<!-- <a href="/courses/{slug}/form" on:click={()=> storeCourseData(item)}> -->
-										<a href="/courses/{slug}/form">
+										<a href="/courses/{slug}/form" on:click={() => storeCourseData(item)}>
 											<span>apply online</span>
 										</a>
 									</div>

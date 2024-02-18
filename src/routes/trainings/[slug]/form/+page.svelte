@@ -11,8 +11,7 @@
 	// console.log('🚀 ~ file: +page.svelte:10 ~ FORM CLIENT:', form);
 
 	let courseData = $singleEventStore;
-	// console.log("🚀 ~ courseData:", courseData)
-	// $: console.log("🚀 ~ FORM - courseData = $singleEventStore:", $singleEventStore)
+
 	let canAttend = [];
 	// Toggle value for checkbox input
 	function eventHandler(e) {
@@ -27,19 +26,12 @@
 		// need for refreshing form page without losing data
 		if (Object.keys(courseData).length === 0) {
 			courseData = JSON.parse(localStorage.getItem('singleEventStore'));
-			// courseData = $singleEventStore
 		}
 	});
 </script>
 
 <div class="page__c">
 	{#if courseData.event}
-		<!-- <form
-			method="POST"
-			on:submitpreventDefault={google.script.run.getData(this)}
-		> -->
-		<!-- <form method="POST" action="https://script.google.com/macros/s/AKfycbxAr4XfJ-T-r592Ixyaru2WXeWwi2jDPcZuEfC493xGrR9yVv9ilpancco2lmSuswIs9w/exec"> -->
-		<!-- <form method="POST" on:submit|preventDefault={submitHandler()}> -->
 		<form method="POST" action="?/sendToGoogle">
 			<div class="form-header">
 				<p>Application form for {courseData.event.type}</p>
