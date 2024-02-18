@@ -1,7 +1,7 @@
 <script>
 	// @ts-nocheck
 
-	import { singleTrainingStore } from '$lib/stores/forms';
+	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDateYear, monthYear } from '$lib/utils/datehelpers';
 	import { counties, source } from '$lib/utils/globalhelpers';
 	import { onMount } from 'svelte';
@@ -10,9 +10,9 @@
 	export let form;
 	// console.log('🚀 ~ file: +page.svelte:10 ~ FORM CLIENT:', form);
 
-	let courseData = $singleTrainingStore;
+	let courseData = $singleEventStore;
 	// console.log("🚀 ~ courseData:", courseData)
-	// $: console.log("🚀 ~ FORM - courseData = $singleTrainingStore:", $singleTrainingStore)
+	// $: console.log("🚀 ~ FORM - courseData = $singleEventStore:", $singleEventStore)
 	let canAttend = [];
 	// Toggle value for checkbox input
 	function eventHandler(e) {
@@ -26,15 +26,14 @@
 		// if courseData is empty object get data from local storage
 		// need for refreshing form page without losing data
 		if (Object.keys(courseData).length === 0) {
-			courseData = JSON.parse(localStorage.getItem('singleTrainingStore'));
-			// courseData = $singleTrainingStore
+			courseData = JSON.parse(localStorage.getItem('singleEventStore'));
+			// courseData = $singleEventStore
 		}
 	});
-	
 </script>
 
 <div class="page__c">
-	{#if courseData.training}
+	{#if courseData.event}
 		<!-- <form
 			method="POST"
 			on:submitpreventDefault={google.script.run.getData(this)}
@@ -43,8 +42,8 @@
 		<!-- <form method="POST" on:submit|preventDefault={submitHandler()}> -->
 		<form method="POST" action="?/sendToGoogle">
 			<div class="form-header">
-				<p>Application form for {courseData.training.type}</p>
-				<h1>{courseData.training.title}</h1>
+				<p>Application form for {courseData.event.type}</p>
+				<h1>{courseData.event.title}</h1>
 				<p>
 					In <b>{courseData.venue.venue_name}</b>, {courseData.venue.city} starting
 					<b>{monthYear(courseData.in_person.start_date)}<b /></b>
@@ -282,7 +281,7 @@
 				<input type="hidden" name="courseId" value={courseData.ref} />
 				<input type="hidden" name="courseCity" value={courseData.venue.city} />
 				<input type="hidden" name="courseVenue" value={courseData.venue.venue_name} />
-				<input type="hidden" name="courseTitle" value={courseData.training.title} />
+				<input type="hidden" name="courseTitle" value={courseData.event.title} />
 				<input
 					type="hidden"
 					name="course_start"

@@ -3,6 +3,7 @@
 	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
+	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers.js';
 	import { PortableText } from '@portabletext/svelte';
 	import { cubicOut } from 'svelte/easing';
@@ -48,22 +49,14 @@
 					`;
 			}
 		};
-		// return{
-		// 	duration,
-		// 	css:(/** @type {number} */ t)=>{
-		// 		const eased = cubicOut(t);
-		// 		return `
-		// 			transform: rotate(${eased * 180}deg);
-		// 		`;
-		// 	}
-		// }
 	}
 	/**
 	 * @param {any} node
 	 */
+
 	function storeCourseData(node) {
-		// console.log('🚀 ~ file: +page.svelte:65 ~ storeCourseData ~ node', node);
-		localStorage.setItem('courseData', JSON.stringify(node));
+		$singleEventStore = node;
+		localStorage.setItem('singleEventStore', JSON.stringify(node));
 	}
 </script>
 
@@ -271,11 +264,23 @@
 										<a href={item.form.asset} target="_blank">
 											<span>download form</span>
 										</a>
-
 										<!-- apply online -->
-										<a href="#" target="_blank">
-											<span>apply online</span>
-										</a>
+										{#if item.event.type == 'Short course'}
+											<a
+												href="../courses/{item.event.slug.current}/form"
+												on:click={() => storeCourseData(item)}
+												
+											>
+												<span>apply online</span>
+											</a>
+										{:else if item.event.type == 'Facilitator Training'}
+											<a
+												href="../trainings/{item.event.slug.current}/form"
+												on:click={() => storeCourseData(item)}
+											>
+												<span>apply online</span>
+											</a>
+										{/if}
 									</div>
 								</div>
 							{/if}
@@ -480,7 +485,7 @@
 	.accordion_item {
 		--_base-color-private: var(--item-color, var(--clr-base));
 		/* changing value of `--item-color` will change colors of each child element that contain `--_base-color-private`  */
-		--item-color: var(--gray-600);
+		--item-color: var(--purple-800);
 		margin-bottom: 1rem;
 		background-color: var(--_bkc-color);
 		border-radius: 1rem;

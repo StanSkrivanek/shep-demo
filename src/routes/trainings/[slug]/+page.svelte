@@ -3,7 +3,7 @@
 	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
-	import { singleTrainingStore } from '$lib/stores/forms';
+	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers';
 	import { PortableText } from '@portabletext/svelte';
 	import { cubicOut } from 'svelte/easing';
@@ -42,8 +42,8 @@
 	 * @param {any} node
 	 */
 	function storeCourseData(node) {
-		$singleTrainingStore = node;
-		localStorage.setItem('singleTrainingStore', JSON.stringify(node));
+		$singleEventStore = node;
+		localStorage.setItem('singleEventStore', JSON.stringify(node));
 	}
 </script>
 
