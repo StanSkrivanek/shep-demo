@@ -10,10 +10,10 @@
 	import { slide } from 'svelte/transition';
 	export let data;
 	// $: console.log('🚀 ~ file: +page.svelte:12 ~ CLIENT data.trainings:', data.upcomingTraning);
-	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
-		data.upcomingTraning;
+	const { title, excerpt, full_price, funded_price, main_img, content, brochure, slug } =
+		data.traning;
 	const upcoming = data.allUpcomingTrainings;
-	$: console.log("🚀 UPCOMING", upcoming)
+	// $: console.log("🚀 UPCOMING", upcoming)
 	/**
 	 * @type {number | boolean | null}
 	 */

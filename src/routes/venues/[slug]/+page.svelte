@@ -5,8 +5,8 @@
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers.js';
 	import { PortableText } from '@portabletext/svelte';
+	import { cubicOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
-
 	export let data;
 	// console.log("🚀 ~ VENUE :", data)
 
@@ -24,10 +24,8 @@
 		logo,
 		image
 	} = data.venue;
-
-	const upcomingCourses = data.upcomingCourses;
-	const upcomingTrainings = data.upcomingTrainings;
-	console.log("🚀 ~ upcomingTrainings:", upcomingTrainings)
+	const upcoming = data.allUpcomingEvents;
+	// console.log("🚀 ~ upcomingEvents:", upcoming)
 
 	/**
 	 * @type {number | boolean | null}
@@ -35,11 +33,44 @@
 	let show = null;
 
 	const toggleActive = (/** @type {number | boolean | null} */ i) => {
-		
 		i == show ? (show = null) : (show = i);
 	};
+	/**
+	 * @param {any} node
+	 */
+	function rotate180(node, { duration = 300 }) {
+		return {
+			duration,
+			css: (/** @type {number} */ t) => {
+				const eased = cubicOut(t);
+				return `
+						transform: rotate(${eased * 180}deg);
+					`;
+			}
+		};
+		// return{
+		// 	duration,
+		// 	css:(/** @type {number} */ t)=>{
+		// 		const eased = cubicOut(t);
+		// 		return `
+		// 			transform: rotate(${eased * 180}deg);
+		// 		`;
+		// 	}
+		// }
+	}
+	/**
+	 * @param {any} node
+	 */
+	function storeCourseData(node) {
+		// console.log('🚀 ~ file: +page.svelte:65 ~ storeCourseData ~ node', node);
+		localStorage.setItem('courseData', JSON.stringify(node));
+	}
 </script>
 
+<svelte:head>
+	<title>{venue_name}</title>
+	<meta name="description" content={excerpt} />
+</svelte:head>
 <div class="page__c">
 	<div class="hero">
 		<div class="hero-data">
@@ -79,7 +110,7 @@
 		<!-- aside -->
 		<aside>
 			<!-- Courses -->
-			{#if upcomingCourses.length == 0}
+			{#if upcoming.length == 0}
 				<div class="no-course">
 					<div class="content">
 						<p>
@@ -93,7 +124,7 @@
 					</div>
 					<div class="nlr-link">
 						<div class="dots">
-							<DotsCorner width={24} height={24} currentColor="#f58585"/>
+							<DotsCorner width={24} height={24} currentColor="#f58585" />
 						</div>
 						<div>
 							<p>Sign to newsletter</p>
@@ -105,7 +136,10 @@
 				</div>
 			{:else}
 				<div class="accordion">
-					{#each upcomingCourses as course, i}
+					{#each upcoming as item, i}
+						<!-- <pre>
+					 {JSON.stringify(item, null, 2)}
+				</pre> -->
 						<div
 							class="accordion_item card"
 							role="button"
@@ -116,170 +150,19 @@
 							<div class="accordion-header">
 								<div class="data">
 									<div class="location">
-										<a class="accordion-header--link" href="../courses/{course.course.slug.current}"
-											>{course.course.title}</a
-										>
-										<p>{course.course.type}</p>
-										<p>{monthNameDateYear(course.in_person.start_date)}</p>
-										<p>{formatTime12(course.in_person.start_date)}</p>
-									</div>
-								</div>
-								<div class="link-icon" class:rotate={show == i}>
-									<ArrowOpen width={48} height={48} />
-								</div>
-							</div>
-							{#if show == i}
-								<div class="body accordion-body" transition:slide>
-									<div class="detail">
-										<!-- header -->
-										<div class="detail-header">
-											<p class="back-underline-tilt">In Person</p>
-											<!-- <p>refNo: {course.in_person.course_in_ref}</p> -->
-										</div>
-										{#if course.in_person.is_active == false}
-											<p>Not available</p>
+										{#if item.event.type == 'Short course'}
+											<a class="accordion-header--link" href="../courses/{item.event.slug.current}"
+												>{item.event.title}</a
+											>
 										{:else}
-											<div class="date-group">
-												<p class="small">
-													{monthNameDate(course.in_person.start_date)} - {monthNameDateYear(
-														course.in_person.end_date
-													)}
-												</p>
-												<p class="small"><span class="bold">Group:</span> {course.in_person.group}</p>
-											</div>
-											<div class="detail-schedule">
-												<p>{course.in_person.weekday}</p>
-												<div>
-													<span>{formatTime12(course.in_person.start_date)}</span>
-													<span class="schedule-spacer">-</span>
-													<span>{formatTime12(course.in_person.end_date)}</span>
-												</div>
-											</div>
-											<!-- trainers list -->
-											<div class="detail-leader">
-												<p>
-													<span class="bold">Leaded by:</span>
-													{#each course.in_person.leader as leader}
-														{#if leader != course.in_person.leader[course.in_person.leader.length - 1]}
-															<span>{leader.name}, </span>
-														{:else}
-															<span>{leader.name}</span>
-														{/if}
-													{/each}
-												</p>
-											</div>
-											<!-- footer - week day & time-->
+											<a
+												class="accordion-header--link"
+												href="../trainings/{item.event.slug.current}">{item.event.title}</a
+											>
 										{/if}
-									</div>
-
-									{#if course.online.is_active == false}
-										<!-- <p>We do not currently offer an online version for this course.</p> -->
-										<p />
-									{:else}
-										<div class="detail">
-											<!-- header -->
-											<div class="detail-header">
-												<p class="back-underline-tilt">Online</p>
-												<!-- <p>refNo: {course.in_person.course_in_ref}</p> -->
-											</div>
-											{#if course.online.is_active == false}
-												<p>Not available</p>
-											{:else}
-												<div class="date-group">
-													<p class="small">
-														{monthNameDate(course.online.start_date)} - {monthNameDateYear(
-															course.online.end_date
-														)}
-													</p>
-													<p class="small"><span class="bold">Group:</span> {course.online.group}</p>
-												</div>
-												<div class="detail-schedule">
-													<p>{course.online.weekday}</p>
-													<div>
-														<span>{formatTime12(course.online.start_date)}</span>
-														<span class="schedule-spacer">-</span>
-														<span>{formatTime12(course.online.end_date)}</span>
-													</div>
-												</div>
-												<!-- trainers list -->
-												<div class="detail-leader">
-													<p>
-														<span class="bold">Leaded by:</span>
-														{#each course.online.leader as leader}
-															{#if leader != course.online.leader[course.online.leader.length - 1]}
-																<span>{leader.name}, </span>
-															{:else}
-																<span>{leader.name}</span>
-															{/if}
-														{/each}
-													</p>
-												</div>
-												<!-- footer - week day & time-->
-											{/if}
-										</div>
-									{/if}
-									<!-- TODO: responsiveness when form is narrow fold buttons in column -->
-									<div class="accordion-links">
-										<!-- download brochure -->
-										<a href={course.form.asset} target="_blank">
-											<span>download form</span>
-										</a>
-
-										<!-- apply online -->
-										<a href="#" target="_blank">
-											<span>apply online</span>
-										</a>
-									</div>
-								</div>
-							{/if}
-						</div>
-					{/each}
-				</div>
-			{/if}
-			<!-- Trainings -->
-			{#if upcomingTrainings.length == 0}
-				<div class="no-course">
-					<div class="content">
-						<p>
-							We are sorry but currently there are no open SHEP courses open for applications in our
-							facilities.
-						</p>
-						<p>
-							You can sign to our newsletter to be notified when new Shep courses will open for
-							applications.
-						</p>
-					</div>
-					<div class="nlr-link">
-						<div class="dots">
-							<DotsCorner width={24} height={24} currentColor="#f58585"/>
-						</div>
-						<div>
-							<p>Sign to newsletter</p>
-							<a href="/newsletter">
-								<LinkCircle width={48} height={48} />
-							</a>
-						</div>
-					</div>
-				</div>
-			{:else}
- 				<div class="accordion">
-					{#each upcomingTrainings as training, i}
-						<div
-							class="accordion_item card"
-							role="button"
-							tabindex={i}
-							on:click={() => toggleActive(i)}
-							on:keydown={() => toggleActive(i)}
-						>
-							<div class="accordion-header">
-								<div class="data">
-									<div class="location">
-										<a class="accordion-header--link" href="../trainings/{training.training.slug.current}"
-											>{training.training.title}</a
-										>
-										<p>{training.training.type}</p>
-										<p>{monthNameDateYear(training.in_person.start_date)}</p>
-										<p>{formatTime12(training.in_person.start_date)}</p>
+										<p>{item.event.type}</p>
+										<p>{monthNameDateYear(item.in_person.start_date)}</p>
+										<p>{formatTime12(item.in_person.start_date)}</p>
 									</div>
 								</div>
 								<div class="link-icon" class:rotate={show == i}>
@@ -294,77 +177,83 @@
 											<p class="back-underline-tilt">In Person</p>
 											<!-- <p>refNo: {training.in_person.course_in_ref}</p> -->
 										</div>
-										{#if training.in_person.is_active == false}
+										{#if item.in_person.is_active == false}
 											<p>Not available</p>
 										{:else}
 											<div class="date-group">
 												<p class="small">
-													{monthNameDate(training.in_person.start_date)} - {monthNameDateYear(
-														training.in_person.end_date
+													{monthNameDate(item.in_person.start_date)} - {monthNameDateYear(
+														item.in_person.end_date
 													)}
 												</p>
-												<p class="small"><span class="bold">Group:</span> {training.in_person.group}</p>
+												<p class="small">
+													<span class="bold">Group:</span>
+													{item.in_person.group}
+												</p>
 											</div>
 											<div class="detail-schedule">
-												<p>{training.in_person.weekday}</p>
+												<p>{item.in_person.weekday}</p>
 												<div>
-													<span>{formatTime12(training.in_person.start_date)}</span>
+													<span>{formatTime12(item.in_person.start_date)}</span>
 													<span class="schedule-spacer">-</span>
-													<span>{formatTime12(training.in_person.end_date)}</span>
+													<span>{formatTime12(item.in_person.end_date)}</span>
 												</div>
 											</div>
 											<!-- trainers list -->
 											<div class="detail-leader">
 												<p>
 													<span class="bold">Leaded by:</span>
-													<!-- {#each training.in_person.leader as leader}
-														{#if leader != training.in_person.leader[training.in_person.leader.length - 1]}
+													{#each item.in_person.leader as leader}
+														{#if leader != item.in_person.leader[item.in_person.leader.length - 1]}
 															<span>{leader.name}, </span>
 														{:else}
 															<span>{leader.name}</span>
 														{/if}
-													{/each} -->
+													{/each}
 												</p>
 											</div>
 											<!-- footer - week day & time-->
 										{/if}
 									</div>
 
-									{#if training.online.is_active == false}
-										<!-- <p>We do not currently offer an online version for this course.</p> -->
-										<p />
+									{#if item.online.is_active == false}
+										<p>We do not currently offer an online version for this course.</p>
+										<!-- <p /> -->
 									{:else}
 										<div class="detail">
 											<!-- header -->
 											<div class="detail-header">
 												<p class="back-underline-tilt">Online</p>
-												<!-- <p>refNo: {training.in_person.course_in_ref}</p> -->
+												<!-- <p>refNo: {item.in_person.course_in_ref}</p> -->
 											</div>
-											{#if training.online.is_active == false}
+											{#if item.online.is_active == false}
 												<p>Not available</p>
 											{:else}
 												<div class="date-group">
 													<p class="small">
-														{monthNameDate(training.online.start_date)} - {monthNameDateYear(
-															training.online.end_date
+														{monthNameDate(item.online.start_date)} - {monthNameDateYear(
+															item.online.end_date
 														)}
 													</p>
-													<p class="small"><span class="bold">Group:</span> {training.online.group}</p>
+													<p class="small">
+														<span class="bold">Group:</span>
+														{item.online.group}
+													</p>
 												</div>
 												<div class="detail-schedule">
-													<p>{training.online.weekday}</p>
+													<p>{item.online.weekday}</p>
 													<div>
-														<span>{formatTime12(training.online.start_date)}</span>
+														<span>{formatTime12(item.online.start_date)}</span>
 														<span class="schedule-spacer">-</span>
-														<span>{formatTime12(training.online.end_date)}</span>
+														<!-- <span>{formatTime12(item.online.end_date)}</span> -->
 													</div>
 												</div>
 												<!-- trainers list -->
 												<div class="detail-leader">
 													<p>
 														<span class="bold">Leaded by:</span>
-														{#each training.online.leader as leader}
-															{#if leader != training.online.leader[training.online.leader.length - 1]}
+														{#each item.online.leader as leader}
+															{#if leader != item.online.leader[item.online.leader.length - 1]}
 																<span>{leader.name}, </span>
 															{:else}
 																<span>{leader.name}</span>
@@ -379,7 +268,7 @@
 									<!-- TODO: responsiveness when form is narrow fold buttons in column -->
 									<div class="accordion-links">
 										<!-- download brochure -->
-										<a href={training.form.asset} target="_blank">
+										<a href={item.form.asset} target="_blank">
 											<span>download form</span>
 										</a>
 
@@ -448,8 +337,7 @@
 		& h1 {
 			margin-bottom: 1rem;
 		}
-		& p{
-		
+		& p {
 			color: var(--gray-500);
 		}
 	}
@@ -565,7 +453,7 @@
 				align-items: center;
 				/* transform: rotate(90deg); */
 				transition: all 0.3s ease-in-out;
-				& svg{
+				& svg {
 					/* transform: rotate(90deg); */
 					fill: white;
 				}
@@ -587,7 +475,6 @@
 			}
 		}
 	}
-
 
 	/* TODO: investigate and learn used principles of private variables */
 	.accordion_item {

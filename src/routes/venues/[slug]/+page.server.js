@@ -16,9 +16,14 @@ export async function load({ params }) {
 		const upcomingCourses = await getAllUpcomingCoursesforCurrentVenue(slug);
 		// @ts-ignore
 		const upcomingTrainings = await getAllUpcomingTrainingsforCurrentVenue(slug);
+
+		const allUpcomingEvents = await upcomingCourses.concat(upcomingTrainings);
+		console.log('🚀 ~ load ~ allUpcomingEvents:', upcomingTrainings);
+
 		return {
 			venue,
-			upcomingCourses,
-			upcomingTrainings
+			allUpcomingEvents
+			// upcomingCourses,
+			// upcomingTrainings
 		};
 }

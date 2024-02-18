@@ -3,7 +3,7 @@
 	export let data;
 	// console.log(data.allCourses);
 	// const openCourse = data.allOpenCourses;
-	const { course, online, in_person, venue, form } = data.allCourses;
+	const { event, online, in_person, venue, form } = data.allCourses;
 </script>
 
 <div class="page__c">

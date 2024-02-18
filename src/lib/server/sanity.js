@@ -5,7 +5,7 @@ function sanityClient() {
 	const config = {
 		projectId: env.SANITY_PROJECT_ID,
 		dataset: env.SANITY_PROJECT_DATASET,
-		apiVersion: '2021-10-21'
+		apiVersion: '2022-03-07'
 		// useCdn: true,
 		// token: env.SANITY_TOKEN,
 	};
@@ -136,7 +136,7 @@ export const getAllUpcomingCourses = async () => {
 		_type == 'reference' => @->{name}    
 		},
 	},
-	'course': course {
+	'event': course {
 		_type == 'reference' => @->{title, type, excerpt, slug}    
 	},
 		'venue': venue {
@@ -171,7 +171,7 @@ export const getAllUpcomingCoursesforCurrentVenue = async (/** @type {undefined}
 		_type == 'reference' => @->{name}    
 		},
 	},
-	'course': course {
+	'event': course {
 		_type == 'reference' => @->{title, type, form, in_person, online, slug}   
 	},
 		'venue': venue {
@@ -193,11 +193,11 @@ export const getAllUpcomingCoursesforCurrentVenue = async (/** @type {undefined}
 // All UPCOMING Courses for current course
 export const getAllUpcomingCoursesForCurrentCourse = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
-	const allOpenCoursesQuery = `*[_type == "open_course" && course->slug.current == $slug && is_active == true]{
+	const allOpenCoursesQuery = `*[_type == "open_course" && is_active == true && course->slug.current == $slug ]{
 	"id":_id,
 	'in_person': in_person {
 		...,
-				'leader': course_leader[] {
+		'leader': course_leader[] {
 		_type == 'reference' => @->{name}    
 	},
 	},
@@ -207,7 +207,7 @@ export const getAllUpcomingCoursesForCurrentCourse = async (/** @type {undefined
 		_type == 'reference' => @->{name}    
 		},
 	},
-	'course': course {
+	'event': course {
 		_type == 'reference' => @->{title, type, excerpt, slug}    
 	},
 		'venue': venue {
@@ -295,7 +295,7 @@ export const getAllUpcomingTrainings = async () => {
 		_type == 'reference' => @->{name}    
 		},
 	},
-	'training': training {
+	'event': training {
 		_type == 'reference' => @->{title, type, excerpt, slug}    
 	},
 		'venue': venue {
@@ -322,17 +322,17 @@ export const getAllUpcomingTrainingsforCurrentVenue = async (/** @type {undefine
 	"id":_id,
 	'in_person': in_person {
 		...,
-		'leader': course_leader[] {
+		'leader': training_leader[] {
 		_type == 'reference' => @->{name}    
 	},
 	},
 	'online': online {
 		...,
-		'leader': course_leader[] {
+		'leader': training_leader[] {
 		_type == 'reference' => @->{name}    
 		},
 	},
-	'training': training {
+	'event': training {
 		_type == 'reference' => @->{title, type, form, in_person, online, slug}   
 	},
 		'venue': venue {
@@ -353,7 +353,7 @@ export const getAllUpcomingTrainingsforCurrentVenue = async (/** @type {undefine
 // All UPCOMING Trainings for current training
 export const getAllUpcomingTrainingsForCurrentTraining = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
-	const allUpcomingTrainingsForCurrentTrainingQuery = `*[_type == "open_training" && training->slug.current == $slug && is_active == true]{
+	const allUpcomingTrainingsForCurrentTrainingQuery = `*[_type == "open_training" && is_active == true && training->slug.current == $slug ]{
 	"id":_id,
 	"ref" : ref_name,
 	'in_person': in_person {
@@ -368,7 +368,7 @@ export const getAllUpcomingTrainingsForCurrentTraining = async (/** @type {undef
 		_type == 'reference' => @->{name}    
 		},
 	},
-	'training': training {
+	'event': training {
 		_type == 'reference' => @->{title, type, excerpt, slug}    
 	},
 		'venue': venue {

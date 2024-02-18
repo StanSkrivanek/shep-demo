@@ -10,10 +10,10 @@
 
 	export let data;
 	// console.log('🚀 ~ file: +page.svelte:12 ~ data:', data);
-	const { title, excerpt, type, full_price, funded_price, main_img, content, brochure, slug } =
+	const { title, excerpt, full_price, funded_price, main_img, content, brochure, slug } =
 		data.course;
-	const openForApplication = data.allOpenCourses;
-	// console.log('🚀 ~ file: +page.svelte:3 ~ openForApplication:', openForApplication);
+	const upcoming = data.allOpenCourses;
+	// console.log('🚀 ~ file: +page.svelte:3 ~ upcoming:', upcoming);
 
 	/**
 	 * @type {number | boolean | null}
@@ -105,7 +105,7 @@
 	<div class="main__c">
 		<!-- aside -->
 		<aside>
-			{#if openForApplication.length == 0}
+			{#if upcoming.length == 0}
 				<div class="no-course">
 					<div class="content">
 						<p>
@@ -130,7 +130,7 @@
 				</div>
 			{:else}
 				<div class="accordion">
-					{#each openForApplication as item, i}
+					{#each upcoming as item, i}
 						<div
 							class="accordion_item card"
 							role="button"

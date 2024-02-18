@@ -2,11 +2,10 @@ import { getAllUpcomingTrainingsForCurrentTraining, getSingleTraining } from '$l
 export async function load({ params }) {
 	// @ts-ignore
 	const allUpcomingTrainings = await getAllUpcomingTrainingsForCurrentTraining(params.slug);
-	// console.log("🚀 ~ load ~ allUpcomingTrainings:", allUpcomingTrainings)
 	// @ts-ignore
-	const upcomingTraning = await getSingleTraining(params.slug);
+	const traning = await getSingleTraining(params.slug);
 	return {
-		upcomingTraning,
+		traning,
 		allUpcomingTrainings
 	};
 }
