@@ -265,15 +265,16 @@
 											<span>download form</span>
 										</a>
 										<!-- apply online -->
+										<!-- "type": "Short course" -->
 										{#if item.event.type == 'Short course'}
 											<a
 												href="../courses/{item.event.slug.current}/form"
 												on:click={() => storeCourseData(item)}
-												
 											>
 												<span>apply online</span>
 											</a>
-										{:else if item.event.type == 'Facilitator Training'}
+										{:else if item.event.type == 'Facilitator Training' || item.event.type == 'Fundation Training'}
+										<!-- "type": "Fundation Training" - "type": "Facilitator Training", -->
 											<a
 												href="../trainings/{item.event.slug.current}/form"
 												on:click={() => storeCourseData(item)}
