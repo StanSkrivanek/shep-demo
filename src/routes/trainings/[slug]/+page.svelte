@@ -122,8 +122,7 @@
 			{:else}
 				<div class="accordion">
 					{#each upcoming as item, i}
-					
-<!-- {console.log('🚀 ~ file: +page.svelte:132 ~ item', item)} -->
+						<!-- {console.log('🚀 ~ file: +page.svelte:132 ~ item', item)} -->
 						<div
 							class="accordion_item card"
 							role="button"
@@ -374,7 +373,7 @@
 	.limited-char {
 		width: 16ch;
 	}
-	
+
 	/* Brochure */
 	.link {
 		grid-area: hero-btn;
@@ -497,7 +496,7 @@
 		align-items: center;
 		& .accordion-header--link {
 			/* --item-color: var(--clr-green); */
-			/* text-decoration: none; */
+			text-decoration: none;
 			color: color-mix(in oklab, var(--_base-color-private) 80%, black);
 			font-size: 1.4rem;
 			font-family: var(--ff-gilroy-m);
@@ -545,6 +544,9 @@
 			justify-content: right;
 			align-items: center;
 			transition: all 0.3s ease-in-out;
+			& :hover {
+				cursor: pointer;
+			}
 		}
 		& .rotate {
 			transform: rotate(180deg);

@@ -502,13 +502,13 @@
 		align-items: center;
 		& .accordion-header--link {
 			/* --item-color: var(--clr-green); */
-			/* text-decoration: none; */
+			text-decoration: none;
 			color: color-mix(in oklab, var(--_base-color-private) 80%, black);
 			font-size: 1.4rem;
 			font-family: var(--ff-gilroy-m);
 			transition: all 0.3s ease-in-out;
 			&:hover {
-				text-decoration: underline;
+				/* text-decoration: underline; */
 				color: color-mix(in oklab, var(--_base-color-private) 100%, white);
 			}
 		}
@@ -550,6 +550,9 @@
 			justify-content: right;
 			align-items: center;
 			transition: all 0.3s ease-in-out;
+			& :hover {
+				cursor: pointer;
+			}
 		}
 		& .rotate {
 			transform: rotate(180deg);
