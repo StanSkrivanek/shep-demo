@@ -1,17 +1,50 @@
 <script>
+// @ts-nocheck
+
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	export let data;
-	console.log('🚀 ~ data:', data);
+	// console.log('🚀 ~ data:', data);
+	const cities = data.allUpcomingEvents.map(
+		(/** @type {{ venue: { city: string; }; }} */ event) => event.venue.city
+	);
+	const uniqueCities = [...new Set(cities)];
+	let city = '';
+	$: console.log("🚀 ~ let city:", city)
 
-	// console.log(data.allCourses);
-	// const openCourse = data.allOpenCourses;
-	// const { event, online, in_person, venue, form } = data.allCourses;
+	/**
+	 * @param {string} city
+	 */
+	function filterByCity(city) {
+		console.log('🚀 ~ city:', city);
+		city = city;
+	}
+	$: filteredList = data.allUpcomingEvents.filter(
+		(/** @type {{ venue: { city: string; }; }} */ event) => {
+			if (city === '') return true;
+			return event.venue.city === city;
+		}
+	);
+	$: console.log('🚀 ~ filteredList:', filteredList);
 </script>
 
 <div class="page__c">
-	ADD FILTER BY CITY
+	<!-- ADD FILTER BY CITY -->
+
+	{#if uniqueCities}
+		<div class="filter">
+			<label for="city">Filter by City</label>
+			<!-- <select id="city" on:change={(e) => filterByCity(e?.target?.value)}> -->
+			<select id="city" bind:value={city}>
+				<option value="">All</option>
+				{#each uniqueCities as city}
+					<option value={city}>{city}</option>
+				{/each}
+			</select>
+		</div>
+	{/if}
+
 	<main class="container">
-		{#each data.allUpcomingEvents as upcoming}
+		{#each filteredList as upcoming}
 			<div class="card">
 				<div class="card-subheading">
 					<p>{upcoming.event.type}</p>
@@ -37,8 +70,9 @@
 	.container {
 		display: grid;
 		grid-column: 1/-1;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 		gap: 1rem;
+		/* min-height: 80vh; */
 	}
 	.card {
 		display: grid;
