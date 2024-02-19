@@ -130,6 +130,7 @@ export const getAllUpcomingCourses = async () => {
 		_type == 'reference' => @->{name}    
 	},
 	},
+	"active": is_active,
 	'online': online {
 		...,
 		'leader': course_leader[] {

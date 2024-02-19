@@ -1,9 +1,10 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	export let data;
+	
 	// console.log(data.allCourses);
 	// const openCourse = data.allOpenCourses;
-	const { event, online, in_person, venue, form } = data.allCourses;
+	// const { event, online, in_person, venue, form } = data.allCourses;
 </script>
 
 <div class="page__c">
@@ -58,10 +59,9 @@
 	</div>
 	<main class="container">
 		{#each data.allCourses as course}
-			<div class="card">
-				<div class="card-subheading">
-					<p>{course.type}</p>
-					<!-- <p>{course.venue.city}</p> -->
+		<div class="card">
+			<div class="card-subheading">
+				<p>{course.type}</p>
 				</div>
 				<div class="card-header">
 					<h3>{course.title}</h3>
@@ -74,59 +74,6 @@
 						<LinkCircle width={48} height={48} />
 					</a>
 				</div>
-
-				<!-- <p>{course.venue.venue_name}</p> -->
-				<!-- <p>{course.course.type}</p> -->
-				<!-- {#if course.in_person.is_active}
-				<div>
-					<h4>In Person</h4>
-					<p>Group: {course.in_person.group}</p>
-					<p>Weekday: {course.in_person.weekday}</p>
-					<p>Starts: {formatDateMonthName(course.in_person.start_date)}</p>
-					<p>Ends:{formatDateMonthName(course.in_person.end_date)}</p>
-					<p>
-						From: {formatTime12(course.in_person.start_date)}
-					</p>
-					<p>
-						To: {formatTime12(course.in_person.end_date)}
-					</p>
-					<div class="trainers">
-						{#each course.in_person.leader as trainer}
-							<p>{trainer.name}</p>
-						{/each}
-					</div>
-					<p>refNo: {course.in_person.course_in_ref}</p>
-				</div>
-			{:else}
-				<p>Not In-Person Course provided</p>
-			{/if} -->
-				<!-- {#if course.online.is_active}
-				<div>
-					<h4>Online</h4>
-					<p>Group: {course.online.group}</p>
-					<p>weekday: {course.online.weekday}</p>
-					<p>
-						Starts: {formatDateMonthName(course.online.start_date)}
-					</p>
-					<p>
-						Ends: {formatDateMonthName(course.online.end_date)}
-					</p>
-					<p>
-						From: {formatTime12(course.online.start_date)}
-					</p>
-					<p>
-						To: {formatTime12(course.online.end_date)}
-					</p>
-					<div class="trainers">
-						{#each course.online.leader as trainer}
-							<p>{trainer.name}</p>
-						{/each}
-					</div>
-					<p>refNo: {course.online.course_in_ref}</p>
-				</div>
-			{:else}
-				<p>No Online course provided</p>
-			{/if} -->
 			</div>
 		{/each}
 	</main>

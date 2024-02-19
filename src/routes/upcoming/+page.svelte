@@ -1,158 +1,161 @@
-			<!-- Trainings -->
-			{#if upcomingTrainings.length == 0}
-				<div class="no-course">
-					<div class="content">
-						<p>
-							We are sorry but currently there are no open SHEP courses open for applications in our
-							facilities.
-						</p>
-						<p>
-							You can sign to our newsletter to be notified when new Shep courses will open for
-							applications.
-						</p>
-					</div>
-					<div class="nlr-link">
-						<div class="dots">
-							<DotsCorner width={24} height={24} currentColor="#f58585"/>
-						</div>
-						<div>
-							<p>Sign to newsletter</p>
-							<a href="/newsletter">
-								<LinkCircle width={48} height={48} />
-							</a>
-						</div>
-					</div>
-				</div>
-			{:else}
- 				<div class="accordion">
-					{#each upcomingTrainings as training, i}
-						<div
-							class="accordion_item card"
-							role="button"
-							tabindex={i}
-							on:click={() => toggleActive(i)}
-							on:keydown={() => toggleActive(i)}
-						>
-							<div class="accordion-header">
-								<div class="data">
-									<div class="location">
-										<a class="accordion-header--link" href="../trainings/{training.training.slug.current}"
-											>{training.training.title}</a
-										>
-										<p>{training.training.type}</p>
-										<p>{monthNameDateYear(training.in_person.start_date)}</p>
-										<p>{formatTime12(training.in_person.start_date)}</p>
-									</div>
-								</div>
-								<div class="link-icon" class:rotate={show == i}>
-									<ArrowOpen width={48} height={48} />
-								</div>
-							</div>
-							{#if show == i}
-								<div class="body accordion-body" transition:slide>
-									<div class="detail">
-										<!-- header -->
-										<div class="detail-header">
-											<p class="back-underline-tilt">In Person</p>
-											<!-- <p>refNo: {training.in_person.course_in_ref}</p> -->
-										</div>
-										{#if training.in_person.is_active == false}
-											<p>Not available</p>
-										{:else}
-											<div class="date-group">
-												<p class="small">
-													{monthNameDate(training.in_person.start_date)} - {monthNameDateYear(
-														training.in_person.end_date
-													)}
-												</p>
-												<p class="small"><span class="bold">Group:</span> {training.in_person.group}</p>
-											</div>
-											<div class="detail-schedule">
-												<p>{training.in_person.weekday}</p>
-												<div>
-													<span>{formatTime12(training.in_person.start_date)}</span>
-													<span class="schedule-spacer">-</span>
-													<span>{formatTime12(training.in_person.end_date)}</span>
-												</div>
-											</div>
-											<!-- trainers list -->
-											<div class="detail-leader">
-												<p>
-													<span class="bold">Leaded by:</span>
-													<!-- {#each training.in_person.leader as leader}
-														{#if leader != training.in_person.leader[training.in_person.leader.length - 1]}
-															<span>{leader.name}, </span>
-														{:else}
-															<span>{leader.name}</span>
-														{/if}
-													{/each} -->
-												</p>
-											</div>
-											<!-- footer - week day & time-->
-										{/if}
-									</div>
+<script>
+	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	export let data;
+	console.log('🚀 ~ data:', data);
 
-									{#if training.online.is_active == false}
-										<!-- <p>We do not currently offer an online version for this course.</p> -->
-										<p />
-									{:else}
-										<div class="detail">
-											<!-- header -->
-											<div class="detail-header">
-												<p class="back-underline-tilt">Online</p>
-												<!-- <p>refNo: {training.in_person.course_in_ref}</p> -->
-											</div>
-											{#if training.online.is_active == false}
-												<p>Not available</p>
-											{:else}
-												<div class="date-group">
-													<p class="small">
-														{monthNameDate(training.online.start_date)} - {monthNameDateYear(
-															training.online.end_date
-														)}
-													</p>
-													<p class="small"><span class="bold">Group:</span> {training.online.group}</p>
-												</div>
-												<div class="detail-schedule">
-													<p>{training.online.weekday}</p>
-													<div>
-														<span>{formatTime12(training.online.start_date)}</span>
-														<span class="schedule-spacer">-</span>
-														<span>{formatTime12(training.online.end_date)}</span>
-													</div>
-												</div>
-												<!-- trainers list -->
-												<div class="detail-leader">
-													<p>
-														<span class="bold">Leaded by:</span>
-														{#each training.online.leader as leader}
-															{#if leader != training.online.leader[training.online.leader.length - 1]}
-																<span>{leader.name}, </span>
-															{:else}
-																<span>{leader.name}</span>
-															{/if}
-														{/each}
-													</p>
-												</div>
-												<!-- footer - week day & time-->
-											{/if}
-										</div>
-									{/if}
-									<!-- TODO: responsiveness when form is narrow fold buttons in column -->
-									<div class="accordion-links">
-										<!-- download brochure -->
-										<a href={training.form.asset} target="_blank">
-											<span>download form</span>
-										</a>
+	// console.log(data.allCourses);
+	// const openCourse = data.allOpenCourses;
+	// const { event, online, in_person, venue, form } = data.allCourses;
+</script>
 
-										<!-- apply online -->
-										<a href="#" target="_blank">
-											<span>apply online</span>
-										</a>
-									</div>
-								</div>
-							{/if}
-						</div>
-					{/each}
+<div class="page__c">
+	ADD FILTER BY CITY
+	<main class="container">
+		{#each data.allUpcomingEvents as upcoming}
+			<div class="card">
+				<div class="card-subheading">
+					<p>{upcoming.event.type}</p>
+					<p>{upcoming.venue.city}</p>
 				</div>
-			{/if}
+				<div class="card-header">
+					<h3>{upcoming.event.title}</h3>
+				</div>
+				<div class="card-body">
+					<p>{upcoming.event.excerpt}</p>
+				</div>
+				<div class="card-footer">
+					<a class="btn-link" href="/courses/{upcoming.event.slug.current}">
+						<LinkCircle width={48} height={48} />
+					</a>
+				</div>
+			</div>
+		{/each}
+	</main>
+</div>
+
+<style>
+	.container {
+		display: grid;
+		grid-column: 1/-1;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1rem;
+	}
+	.card {
+		display: grid;
+		grid-template-areas:
+			'subHeader '
+			'header '
+			'body '
+			'footer ';
+		grid-template-rows:
+			[subHeader] 2.5rem
+			[header] 5.2rem
+			[body] auto
+			[footer] 4rem;
+
+		border: 1px solid var(--gray-2);
+		border-radius: 1rem;
+		padding: 1rem;
+		transition: all 0.3s ease-in-out;
+		pointer-events: none;
+		& svg {
+			& circle {
+				stroke: var(--shep-orange) !important;
+			}
+			& path {
+				fill: var(--shep-orange) !important;
+			}
+		}
+	}
+	.card:hover {
+		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
+		box-shadow: 8px 10px 15px -3px var(--gray-2);
+		background: var(--green-light);
+		& svg {
+			& circle {
+				stroke: var(--shep-green) !important;
+			}
+			& path {
+				fill: var(--shep-green) !important;
+			}
+		}
+	}
+
+	.card-header {
+		grid-area: header;
+
+		& h3 {
+			font-size: 1.5rem;
+			font-weight: 400;
+			color: var(--shep-orange);
+		}
+		& p {
+			margin: 0;
+		}
+	}
+	.card-subheading {
+		grid-area: subHeader;
+		display: flex;
+		justify-content: space-between;
+		& p {
+			margin-bottom: 1rem;
+			font-size: var(--sm);
+		}
+	}
+	.card-body {
+		grid-area: body;
+		margin-bottom: 0.5rem;
+		& p {
+			margin: 0;
+			font-size: 1rem;
+			color: var(--fc-mid);
+		}
+	}
+	.card-footer {
+		grid-area: footer;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		& p {
+			align-self: flex-end;
+			margin: 0;
+			font-size: var(--xs);
+			color: var(--gray-3);
+		}
+
+		& .btn-link {
+			pointer-events: all;
+		}
+	}
+
+	@media (max-width: 996px) {
+		.hero-data {
+			flex-direction: row;
+			gap: 3rem;
+		}
+		.hero-data h1 {
+			margin-bottom: 0;
+		}
+		.hero-data p {
+			margin-bottom: 0;
+			max-width: 75ch;
+		}
+		.hero-col-2__c {
+			grid-template-areas:
+				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
+				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
+		}
+		.intro {
+			column-count: 1;
+		}
+	}
+
+	@media (max-width: 500px) {
+		.hero-data {
+			display: block;
+		}
+		.hero-data h1 {
+			margin-bottom: 2rem;
+		}
+	}
+</style>
