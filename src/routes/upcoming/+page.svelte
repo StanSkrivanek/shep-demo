@@ -1,5 +1,5 @@
 <script>
-// @ts-nocheck
+	// @ts-nocheck
 
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	export let data;
@@ -9,7 +9,7 @@
 	);
 	const uniqueCities = [...new Set(cities)];
 	let city = '';
-	$: console.log("🚀 ~ let city:", city)
+	$: console.log('🚀 ~ let city:', city);
 
 	/**
 	 * @param {string} city
@@ -33,13 +33,14 @@
 	{#if uniqueCities}
 		<div class="filter">
 			<label for="city">Filter by City</label>
-			<!-- <select id="city" on:change={(e) => filterByCity(e?.target?.value)}> -->
-			<select id="city" bind:value={city}>
-				<option value="">All</option>
-				{#each uniqueCities as city}
-					<option value={city}>{city}</option>
-				{/each}
-			</select>
+			<div class="custom-select">
+				<select id="city" bind:value={city}>
+					<option value="">All</option>
+					{#each uniqueCities as city}
+						<option value={city}>{city}</option>
+					{/each}
+				</select>
+			</div>
 		</div>
 	{/if}
 
@@ -71,8 +72,10 @@
 		display: grid;
 		grid-column: 1/-1;
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		grid-template-rows: repeat(auto-fill, minmax(300px,1fr));
+		/* TODO: Refactor `min-heigh` to have footer on bottom if no upcoming or only 1row */
+		min-height: 25vh;
 		gap: 1rem;
-		/* min-height: 80vh; */
 	}
 	.card {
 		display: grid;
@@ -162,7 +165,62 @@
 		}
 	}
 
-	@media (max-width: 996px) {
+	select {
+		appearance: none;
+		/* safari */
+		-webkit-appearance: none;
+		/* other styles for aesthetics */
+		width: 100%;
+		font-size: 1.15rem;
+		padding: 0.675em 6em 0.675em 1em;
+		background-color: #fff;
+		border: 1px solid #caced1;
+		border-radius: 0.25rem;
+		color: #000;
+		cursor: pointer;
+		position: relative;
+	}
+
+	.custom-select {
+		position: relative;
+		min-width: 300px;
+		height: 3rem;
+		border: 1px solid var(--shep-orange);
+		border-radius: 0.25rem;
+		overflow: hidden;
+		background-color: #fff;
+		cursor: pointer;
+		/* display: flex; */
+		margin-bottom: 1rem;
+
+	}
+	.custom-select::before,
+	.custom-select::after {
+		--size: 0.5rem;
+		position: absolute;
+		content: '';
+		right: .5rem;
+		pointer-events: none;
+	}
+
+	/* .custom-select::before {
+		border-left: var(--size) solid transparent;
+		border-right: var(--size) solid transparent;
+		border-bottom: var(--size) solid rgb(231, 139, 0);
+		border-radius: 0.25rem;
+		top: 10%;
+	} */
+	
+	.custom-select::after {
+		border-left: var(--size) solid transparent;
+		border-right: var(--size) solid transparent;
+		border-top: var(--size) solid var(--shep-orange);
+		border-radius: 1rem;
+		top: 50%;
+	}
+
+	/* Media Quiries */
+	/* @media (max-width: 996px) {
 		.hero-data {
 			flex-direction: row;
 			gap: 3rem;
@@ -191,5 +249,5 @@
 		.hero-data h1 {
 			margin-bottom: 2rem;
 		}
-	}
+	} */
 </style>

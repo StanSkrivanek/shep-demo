@@ -35,8 +35,10 @@ export const actions = {
 		// `url` is link to google script that will trigger function to add data to google sheet
 		const scriptUrl = API3_URL;
 
-		console.log(`Please hold ${applicant.name}, we are Sending your application...`);
+		console.log(`Please hold ${applicant.name}, we are sending your application data`);
 		try {
+
+			// TODO: add toast
 			// run sending data toast
 
 			const response = await fetch(scriptUrl, {

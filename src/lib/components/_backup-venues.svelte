@@ -1,4 +1,6 @@
 <script>
+	import LinkCircle from "./icons/LinkCircle.svelte";
+
 	// import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	// export let data
 	// console.log('🚀 ~ file: +page.svelte:3 ~ data:', data);

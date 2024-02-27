@@ -47,7 +47,6 @@
 			<div class="personal-data">
 				<h2>Personal data <span><i>( mandatory )</i></span></h2>
 				<!-- name  -->
-
 				<div class="form-group">
 					<div class="input-group">
 						<label for="name">Name</label>
