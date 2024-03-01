@@ -313,16 +313,9 @@
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
-		/* grid-template-rows: repeat(4, minmax(6rem, 1fr)); */
-		/* grid-template-rows: repeat(4, 1fr); */
 		grid-column: 1/-1;
 		margin-bottom: 5rem;
 		gap: 1rem;
-		/* grid-template-areas:
-			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-price'
-			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-price'
-			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-btn'
-			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-btn'; */
 	}
 
 	/* Hero */
@@ -729,15 +722,7 @@
 	}
 
 	@media screen and (max-width: 996px) {
-		.hero {
-			/* grid-template-columns: subgrid; */
-			/* grid-template-rows: repeat(4, minmax(6rem, 1fr)); */
-			/* grid-template-areas:
-				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-				'hero-data hero-data hero-data hero-data hero-data hero-data hero-price hero-price'
-				'hero-data hero-data hero-data hero-data hero-data hero-data hero-btn hero-btn'; */
-		}
+
 		.main__c {
 			grid-template-columns: subgrid;
 			grid-template-areas:
@@ -767,22 +752,10 @@
 			grid-column: 5/-1;
 			grid-row: 3/5;
 		}
-		/* .hero {
-			grid-template-rows: repeat(3, minmax(6rem, max-content));
-			grid-template-areas:
-				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
-				'hero-price hero-price hero-price hero-price hero-btn hero-btn hero-btn hero-btn';
-		} */
+
 	}
 	@media (max-width: 576px) {
-		/* .hero {
-			grid-template-rows: repeat(4, minmax(100px, max-content));
-			grid-template-areas: 'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-					'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
-				'hero-price hero-price hero-price hero-price hero-price hero-price hero-price hero-price'
-					'hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn';
-		} */
+
 		.main__c {
 			grid-template-columns: subgrid;
 			grid-template-areas:
@@ -791,14 +764,7 @@
 		}
 	}
 	@media (max-width: 480px) {
-		/* .hero {
-			grid-template-rows: repeat(4, minmax(100px, max-content));
-			grid-template-areas:
-				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
-				'hero-price hero-price hero-price hero-price hero-price hero-price hero-price hero-price'
-				'hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn';
-		} */
+
 		.hero-img {
 			grid-column: 1/-1;
 			grid-row: 1/2;

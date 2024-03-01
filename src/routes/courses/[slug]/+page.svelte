@@ -15,7 +15,6 @@
 		data.course;
 	const upcoming = data.allOpenCourses;
 
-
 	/**
 	 * @type {number | boolean | null}
 	 */
@@ -39,10 +38,10 @@
 			}
 		};
 	}
-		/**
+	/**
 	 * @param {any} node
 	 */
-		function storeCourseData(node) {
+	function storeCourseData(node) {
 		$singleEventStore = node;
 		localStorage.setItem('singleEventStore', JSON.stringify(node));
 	}
@@ -312,28 +311,26 @@
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
-		grid-template-rows: repeat(4, minmax(6rem, 1fr));
 		grid-column: 1/-1;
 		margin-bottom: 5rem;
 		gap: 1rem;
-		grid-template-areas:
-			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-price'
-			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-price'
-			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-btn'
-			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-btn';
 	}
 
 	/* Hero */
 	.hero-data {
-		grid-area: hero-data;
+		/* grid-area: hero-data; */
+		grid-column: 1 / 4;
+		grid-row: 1/5;
 		display: flex;
 		flex-direction: column;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: var(--green-100);
+		background: var(--cyan-200);
 	}
 	.hero-img {
-		grid-area: hero-img;
+		/* grid-area: hero-img; */
+		grid-column: 4 / 8;
+		grid-row: 1/5;
 		border-radius: 1rem;
 		background: var(--gray-50);
 		max-height: max-content;
@@ -347,7 +344,9 @@
 		}
 	}
 	.hero-info__price {
-		grid-area: hero-price;
+		/* grid-area: hero-price; */
+		grid-column: 8/-1;
+		grid-row: 1/3;
 		padding: 1.4rem;
 		border-radius: 1rem;
 		background: var(--blue-50);
@@ -374,7 +373,9 @@
 	}
 	/* Brochure */
 	.link {
-		grid-area: hero-btn;
+		/* grid-area: hero-btn; */
+		grid-column: 8/-1;
+		grid-row: 3/5;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -678,6 +679,22 @@
 			grid-template-columns: subgrid;
 			grid-template-areas: 'aside aside aside main main main main main ';
 		}
+		.hero-img {
+			grid-column: 1/-1;
+			grid-row: 1/2;
+		}
+		.hero-data {
+			grid-column: 1/7;
+			grid-row: 3/5;
+		}
+		.hero-info__price {
+			grid-column: 7/-1;
+			grid-row: 3/4;
+		}
+		.link {
+			grid-column: 7/-1;
+			grid-row: 4/5;
+		}
 		.accordion .accordion-links a {
 			margin-bottom: 1rem;
 		}
@@ -693,15 +710,6 @@
 	}
 
 	@media screen and (max-width: 996px) {
-		.hero {
-			/* grid-template-columns: subgrid; */
-			grid-template-rows: repeat(4, minmax(6rem, 1fr));
-			grid-template-areas:
-				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-				'hero-data hero-data hero-data hero-data hero-data hero-data hero-price hero-price'
-				'hero-data hero-data hero-data hero-data hero-data hero-data hero-btn hero-btn';
-		}
 		.main__c {
 			grid-template-columns: subgrid;
 			grid-template-areas:
@@ -715,22 +723,24 @@
 		}
 	}
 	@media (max-width: 768px) {
-		.hero {
-			grid-template-rows: repeat(3, minmax(6rem, max-content));
-			grid-template-areas:
-				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
-				'hero-price hero-price hero-price hero-price hero-btn hero-btn hero-btn hero-btn';
+		.hero-img {
+			grid-column: 1/-1;
+			grid-row: 1/2;
+		}
+		.hero-data {
+			grid-column: 1/-1;
+			grid-row: 2/3;
+		}
+		.hero-info__price {
+			grid-column: 1/5;
+			grid-row: 3/5;
+		}
+		.link {
+			grid-column: 5/-1;
+			grid-row: 3/5;
 		}
 	}
 	@media (max-width: 576px) {
-		/* .hero {
-			grid-template-rows: repeat(4, minmax(100px, max-content));
-			grid-template-areas: 'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-					'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
-				'hero-price hero-price hero-price hero-price hero-price hero-price hero-price hero-price'
-					'hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn';
-		} */
 		.main__c {
 			grid-template-columns: subgrid;
 			grid-template-areas:
@@ -739,13 +749,21 @@
 		}
 	}
 	@media (max-width: 480px) {
-		.hero {
-			grid-template-rows: repeat(4, minmax(100px, max-content));
-			grid-template-areas:
-				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
-				'hero-price hero-price hero-price hero-price hero-price hero-price hero-price hero-price'
-				'hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn';
+		.hero-img {
+			grid-column: 1/-1;
+			grid-row: 1/2;
+		}
+		.hero-data {
+			grid-column: 1/-1;
+			grid-row: 2/3;
+		}
+		.hero-info__price {
+			grid-column: 1/-1;
+			grid-row: 3/4;
+		}
+		.link {
+			grid-column: 1/-1;
+			grid-row: 4/5;
 		}
 	}
 </style>
