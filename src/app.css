@@ -255,11 +255,11 @@ p strong {
 .page__c {
 	padding: 1rem;
 	max-width: 1474px;
-	/* max-width: 1400px; */
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: 1fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.5fr 1fr;
-	/* gap:2rem; */
+	/* grid-template-rows: 1fr; */
+
 }
 /* ASIDE & MAIN */
 .main__c {
@@ -345,7 +345,7 @@ p:last-child {
 /* global classes */
 /* Table of content  */
 .toc-active {
-	color: var(--cyan-500) !important;
+	color: var(--orange-800) !important;
 	text-decoration: underline;
 }
 /* LINKS */

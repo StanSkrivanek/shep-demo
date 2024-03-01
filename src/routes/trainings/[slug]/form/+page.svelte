@@ -297,7 +297,7 @@
 		display: flex;
 		flex-direction: column;
 		background-color: var(--fc-white);
-		/* padding: 1rem; */
+		
 	}
 	form {
 		padding-bottom: 2rem;
