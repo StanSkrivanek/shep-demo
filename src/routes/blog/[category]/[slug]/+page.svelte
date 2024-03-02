@@ -154,8 +154,8 @@
 		</main>
 
 		<aside class="side-links">
+			<h4>Related Articles</h4>
 			<div class="links__c">
-				<h4>Related Articles</h4>
 				{#if data.catArticles.length == 0}
 					<p>There are no related articles yet</p>
 				{:else}
@@ -332,7 +332,16 @@
 	}
 
 	/* ASIDE LINKS */
+	aside > h4 {
+		/* margin-top: 2rem; */
+		/* text-align: center; */
+		text-transform: uppercase;
+		letter-spacing: 0.1rem;
+		font-size: 1.6rem;
+		font-weight: 600;
+		color: var(--fc-main);
 
+	}
 	.side-links {
 		grid-area: news;
 		/* background: lightgray; */
@@ -342,12 +351,18 @@
 		padding-inline: 1rem;
 		border-left: 1px solid var(--gray-100);
 		margin-bottom: 2rem;
-		/* dostuff */
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 1rem;
+		position: relative;
 	}
 
 	.link__w {
-		/* dostuff */
+		position: relative;
 		border-bottom: 1px solid var(--gray-400);
+		display: flex;
+		flex-direction: column;
+
 		& p {
 			font-size: 1rem;
 			color: var(--clr-black);
@@ -355,7 +370,6 @@
 			margin-bottom: 1rem;
 		}
 		& .link-excerpt {
-			/* dostuff */
 			display: flex;
 			justify-content: space-between;
 			align-items: end;
@@ -366,9 +380,13 @@
 				line-height: 1.3;
 				text-transform: none;
 				color: var(--gray-500);
-				max-width: 34ch;
+				max-width: 27ch;
+				text-wrap: balance;
 			}
 			& a {
+				position: absolute;
+				bottom: 1rem;
+				right: 0.5rem;
 				& circle {
 					stroke: var(--shep-orange) !important;
 				}
@@ -395,6 +413,16 @@
 				'aside aside aside main main main main main '
 				'news news news news news news news news ';
 		}
+		.links__c {
+			/* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+			border-left: none;
+		}
+		aside > h4 {
+		margin-top: 2rem;
+		text-align: center;
+			font-size: 2rem;
+
+	}
 	}
 	@media screen and (max-width: 1024px) {
 		/* doostuff */
@@ -460,6 +488,10 @@
 		}
 		.hero-img {
 			max-height: 100%;
+		}
+		aside >h4{
+			font-size: 1.6rem;
+		
 		}
 	}
 	@media screen and (max-width: 480px) {
