@@ -10,6 +10,7 @@
 
 	export let data;
 	$: post = data.post;
+	$: console.log(data);
 
 	let isTocOpen = false;
 
@@ -159,16 +160,19 @@
 				{#if data.catArticles.length == 0}
 					<p>There are no related articles yet</p>
 				{:else}
-					{#each data.catArticles as post}
-						<div class="link__w">
-							<p>{post.title}</p>
-							<div class="link-excerpt">
-								<p>{post.excerpt}</p>
-								<a href={`../${post.category_slug}/${post.slug}`}>
-									<LinkCircle width={40} height={40} />
-								</a>
+					{#each data.catArticles as post, i}
+						<!-- max 3 related articles -->
+						{#if post.slug !== data.post.slug && i < 3}
+							<div class="link__w">
+								<p>{post.title}</p>
+								<div class="link-excerpt">
+									<p>{post.excerpt}</p>
+									<a href={`../${post.category_slug}/${post.slug}`}>
+										<LinkCircle width={40} height={40} />
+									</a>
+								</div>
 							</div>
-						</div>
+						{/if}
 					{/each}
 				{/if}
 			</div>
@@ -340,7 +344,6 @@
 		font-size: 1.6rem;
 		font-weight: 600;
 		color: var(--fc-main);
-
 	}
 	.side-links {
 		grid-area: news;
@@ -418,11 +421,10 @@
 			border-left: none;
 		}
 		aside > h4 {
-		margin-top: 2rem;
-		text-align: center;
+			margin-top: 2rem;
+			text-align: center;
 			font-size: 2rem;
-
-	}
+		}
 	}
 	@media screen and (max-width: 1024px) {
 		/* doostuff */
@@ -489,9 +491,8 @@
 		.hero-img {
 			max-height: 100%;
 		}
-		aside >h4{
+		aside > h4 {
 			font-size: 1.6rem;
-		
 		}
 	}
 	@media screen and (max-width: 480px) {
