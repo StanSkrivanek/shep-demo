@@ -80,6 +80,7 @@ export const getAllCourses = async () => {
 	 "slug": slug.current,
 	 excerpt,
 	 type,
+	 
 	 "main_img": main_image.asset->url,
 	 "content": content[] {
 		...,
@@ -137,6 +138,7 @@ export const getAllUpcomingCourses = async () => {
 		_type == 'reference' => @->{name}    
 		},
 	},
+	'globalType' : "course",
 	'event': course {
 		_type == 'reference' => @->{title, type, excerpt, slug}    
 	},
@@ -238,6 +240,7 @@ export const getAllTrainings = async () => {
 	 "slug": slug.current,
 	 excerpt,
 	 type,
+	 "globalType" => _type,
 	 "main_img": main_image.asset->url,
 	 "content": content[] {
 		...,
@@ -290,6 +293,7 @@ export const getAllUpcomingTrainings = async () => {
 		_type == 'reference' => @->{name}    
 	},
 	},
+	'globalType' : "training",
 	'online': online {
 		...,
 		'leader': course_leader[] {

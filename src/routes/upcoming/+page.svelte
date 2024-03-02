@@ -3,28 +3,28 @@
 
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	export let data;
-	// console.log('🚀 ~ data:', data);
+	console.log('🚀 ~ data:', data);
 	const cities = data.allUpcomingEvents.map(
 		(/** @type {{ venue: { city: string; }; }} */ event) => event.venue.city
 	);
 	const uniqueCities = [...new Set(cities)];
 	let city = '';
-	$: console.log('🚀 ~ let city:', city);
+	// $: console.log('🚀 ~ let city:', city);
 
 	/**
 	 * @param {string} city
 	 */
-	function filterByCity(city) {
-		console.log('🚀 ~ city:', city);
-		city = city;
-	}
+	// function filterByCity(city) {
+		// console.log('🚀 ~ city:', city);
+		// city = city;
+	// }
 	$: filteredList = data.allUpcomingEvents.filter(
 		(/** @type {{ venue: { city: string; }; }} */ event) => {
 			if (city === '') return true;
 			return event.venue.city === city;
 		}
 	);
-	$: console.log('🚀 ~ filteredList:', filteredList);
+	// $: console.log('🚀 ~ filteredList:', filteredList);
 </script>
 
 <div class="page__c">
@@ -58,9 +58,22 @@
 					<p>{upcoming.event.excerpt}</p>
 				</div>
 				<div class="card-footer">
-					<a class="btn-link" href="/courses/{upcoming.event.slug.current}">
+					<!-- TODO: Improve type to be `course` or `training` -->
+					{#if upcoming.globalType == 'course'}
+						<a class="btn-link" href="/courses/{upcoming.event.slug.current}">
+							<LinkCircle width={48} height={48} />
+						</a>
+					{/if}
+					{#if upcoming.globalType === 'training'}
+						<a class="btn-link" href="/trainings/{upcoming.event.slug.current}">
+							<LinkCircle width={48} height={48} />
+						</a>
+					{/if}
+
+
+					<!-- <a class="btn-link" href="/courses/{upcoming.event.slug.current}">
 						<LinkCircle width={48} height={48} />
-					</a>
+					</a> -->
 				</div>
 			</div>
 		{/each}

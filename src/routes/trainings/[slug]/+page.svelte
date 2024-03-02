@@ -54,7 +54,6 @@
 
 <div class="page__c">
 	<!-- hero -->
-	<!-- TODO: update other Heros based on this principle 4 rows without 2-cols wrapper -->
 	<div class="hero">
 		<div class="hero-data">
 			<h1>{title}</h1>
@@ -122,7 +121,6 @@
 			{:else}
 				<div class="accordion">
 					{#each upcoming as item, i}
-						<!-- {console.log('🚀 ~ file: +page.svelte:132 ~ item', item)} -->
 						<div
 							class="accordion_item card"
 							role="button"
@@ -186,7 +184,6 @@
 													{/each}
 												</p>
 											</div>
-											<!-- footer - week day & time-->
 										{/if}
 									</div>
 
@@ -281,32 +278,7 @@
 		</main>
 	</div>
 
-	<!-- wrapper end -->
 
-	<!-- footer -->
-
-	<!-- <h1>{title}</h1> -->
-	<!--TODO: take alt from original image name -->
-	<!-- <img src={main_img} alt="course cover" /> -->
-	<!-- <p>{excerpt}</p> -->
-	<!-- <PortableText
-		value={content}
-		onMissingComponent={false}
-		components={{
-			block: {
-				// blockquote: Quote,
-				h1: CustomHeading,
-				h2: CustomHeading,
-				h3: CustomHeading,
-				h4: CustomHeading,
-				h5: CustomHeading,
-				normal: TextRte
-			},
-			types: {
-				image: ImageRte
-			}
-		}}
-		/> -->
 </div>
 
 <style>
