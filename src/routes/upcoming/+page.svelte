@@ -58,8 +58,7 @@
 					<p>{upcoming.event.excerpt}</p>
 				</div>
 				<div class="card-footer">
-					<!-- TODO: Improve type to be `course` or `training` -->
-					{#if upcoming.globalType == 'course'}
+					{#if upcoming.globalType === 'course'}
 						<a class="btn-link" href="/courses/{upcoming.event.slug.current}">
 							<LinkCircle width={48} height={48} />
 						</a>
