@@ -65,7 +65,7 @@
 			<img src={main_img} alt="cover" />
 		</div>
 
-		<div class="hero-info__price">
+		<div class="hero-sm-box-top">
 			<p class="small-title">Course Fee</p>
 			<div class="fee">
 				{#if full_price != 'No Charge'}
@@ -78,7 +78,7 @@
 				{/if}
 			</div>
 		</div>
-		<div class="link">
+		<div class="hero-sm-box-bottom">
 			<div class="link-desc__w">
 				<p class="small-title">Brochure</p>
 				<p class="limited-char">Feel free to access our course brochure in PDF format</p>
@@ -277,8 +277,6 @@
 			/>
 		</main>
 	</div>
-
-
 </div>
 
 <style>
@@ -299,7 +297,7 @@
 		flex-direction: column;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: var(--cyan-200);
+		background: color-mix(in oklab, var(--purple-300) 50%, white);
 	}
 	.hero-img {
 		/* grid-area: hero-img; */
@@ -317,38 +315,46 @@
 			aspect-ratio: 2.4/1;
 		}
 	}
-	.hero-info__price {
-		/* grid-area: hero-price; */
+	.hero-sm-box-top {
 		grid-column: 8/-1;
 		grid-row: 1/3;
 		padding: 1.4rem;
 		border-radius: 1rem;
-		background: var(--blue-50);
-	}
-
-	/* Fee */
-	.fee {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
+		background: color-mix(in oklab, var(--cyan-300) 50%, white);
 		& p {
 			display: flex;
 			justify-content: space-between;
 			margin: 0;
+			color: var(--fc-main);
+			font-size: var(--sm);
 			margin-bottom: 0.5rem;
 			color: var(--fc-main);
-			& span {
+			/* & span {
 				color: var(--fc-light);
+				
+			} */
+		}
+		& .small-title {
+			position: relative;
+			margin-top: 0;
+			margin-bottom: 1.2rem;
+			font-family: var(--ff-gilroy-m);
+			font-size: var(--sm);
+			color: var(--fc-main);
+			width: fit-content;
+			&::after {
+				content: '';
+				position: absolute;
+				bottom: -4px;
+				left: 0;
+				width: 100%;
+				height: 2px;
+				background: black;
 			}
 		}
 	}
-	.limited-char {
-		width: 16ch;
-	}
 
-	/* Brochure */
-	.link {
-		/* grid-area: hero-btn; */
+	.hero-sm-box-bottom {
 		grid-column: 8/-1;
 		grid-row: 3/5;
 		display: flex;
@@ -357,26 +363,36 @@
 		padding: 1.4rem;
 		border-radius: 1rem;
 		color: var(--fc-light);
-		background: var(--orange-100);
 		min-width: 160px;
-	}
-	.small-title {
-		position: relative;
-		margin-top: 0;
-		/* margin-bottom: 1.2rem; */
-		font-family: var(--ff-gilroy-m);
-		font-size: var(--sm);
-		color: var(--fc-main);
-		&::after {
-			content: '';
-			position: absolute;
-			bottom: -4px;
-			left: 0;
-			width: 75%;
-			height: 2px;
-			background: black;
+		background: color-mix(in oklab, var(--purple-300) 50%, white);
+		& p {
+			margin: 0;
+			color: var(--fc-main);
+			font-size: var(--sm);
+		}
+		& .small-title {
+			position: relative;
+			margin-top: 0;
+			margin-bottom: 1.2rem;
+			font-family: var(--ff-gilroy-m);
+			font-size: var(--sm);
+			color: var(--fc-main);
+			width: fit-content;
+			&::after {
+				content: '';
+				position: absolute;
+				bottom: -4px;
+				left: 0;
+				width: 100%;
+				height: 2px;
+				background: black;
+			}
 		}
 	}
+	.limited-char {
+		width: 16ch;
+	}
+
 	.link-icon {
 		display: flex;
 		justify-content: right;
@@ -671,11 +687,11 @@
 			grid-column: 1/7;
 			grid-row: 3/5;
 		}
-		.hero-info__price {
+		.hero-sm-box-top {
 			grid-column: 7/-1;
 			grid-row: 3/4;
 		}
-		.link {
+		.hero-sm-box-bottom {
 			grid-column: 7/-1;
 			grid-row: 4/5;
 		}
@@ -694,7 +710,6 @@
 	}
 
 	@media screen and (max-width: 996px) {
-
 		.main__c {
 			grid-template-columns: subgrid;
 			grid-template-areas:
@@ -716,18 +731,16 @@
 			grid-column: 1/-1;
 			grid-row: 2/3;
 		}
-		.hero-info__price {
+		.hero-sm-box-top {
 			grid-column: 1/5;
 			grid-row: 3/5;
 		}
-		.link {
+		.hero-sm-box-bottom {
 			grid-column: 5/-1;
 			grid-row: 3/5;
 		}
-
 	}
 	@media (max-width: 576px) {
-
 		.main__c {
 			grid-template-columns: subgrid;
 			grid-template-areas:
@@ -736,7 +749,6 @@
 		}
 	}
 	@media (max-width: 480px) {
-
 		.hero-img {
 			grid-column: 1/-1;
 			grid-row: 1/2;
@@ -745,11 +757,11 @@
 			grid-column: 1/-1;
 			grid-row: 2/3;
 		}
-		.hero-info__price {
+		.hero-sm-box-top {
 			grid-column: 1/-1;
 			grid-row: 3/4;
 		}
-		.link {
+		.hero-sm-box-bottom {
 			grid-column: 1/-1;
 			grid-row: 4/5;
 		}

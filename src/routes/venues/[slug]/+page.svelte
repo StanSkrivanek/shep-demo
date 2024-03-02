@@ -10,6 +10,7 @@
 	import { slide } from 'svelte/transition';
 	export let data;
 	// console.log("🚀 ~ VENUE :", data)
+	let isTraining = false;
 
 	const {
 		venue_name,
@@ -26,7 +27,7 @@
 		image
 	} = data.venue;
 	const upcoming = data.allUpcomingEvents;
-	// console.log("🚀 ~ upcomingEvents:", upcoming)
+	console.log('🚀 ~ upcomingEvents:', upcoming);
 
 	/**
 	 * @type {number | boolean | null}
@@ -75,7 +76,7 @@
 		<div class="hero-img">
 			<img src={image} alt="cover" />
 		</div>
-		<div class="box-small address">
+		<div class="hero-sm-box-top">
 			<p class="small-title">Address</p>
 
 			<p>{address_1}</p>
@@ -87,7 +88,7 @@
 			<p>{city}</p>
 			<p>{eircode}</p>
 		</div>
-		<div class="box-small link">
+		<div class="hero-sm-box-bottom">
 			<p class="small-title">Our Website</p>
 			<p class="limited-char">To get more info about our activities visit our website</p>
 			<a href="https://{website}" target="_blank">
@@ -134,6 +135,8 @@
 					 {JSON.stringify(item, null, 2)}
 				</pre> -->
 						<div
+							class:training={item.generalType == 'training'}
+							class:course={item.generalType == 'course'}
 							class="accordion_item card"
 							role="button"
 							tabindex={i}
@@ -323,23 +326,18 @@
 		/* --_base-color-private: var(--item-color, var(--clr-base)); */
 		display: grid;
 		grid-template-columns: subgrid;
-		grid-template-rows: repeat(4, minmax(6rem, 1fr));
 		grid-column: 1/-1;
 		margin-bottom: 5rem;
 		gap: 1rem;
-		grid-template-areas:
-			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-price'
-			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-price'
-			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-btn'
-			'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-btn';
 	}
 	.hero-data {
-		grid-area: hero-data;
+		grid-column: 1 / 4;
+		grid-row: 1/5;
 		display: flex;
 		flex-direction: column;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: color-mix(in oklab, var(--green-200) 16%, white);
+		background: color-mix(in oklab, var(--cyan-200) 70%, white);
 		& h1 {
 			margin-bottom: 1rem;
 		}
@@ -348,10 +346,12 @@
 		}
 	}
 	.hero-img {
-		grid-area: hero-img;
+		grid-column: 4 / 8;
+		grid-row: 1/5;
 		border-radius: 1rem;
-		background: color-mix(in oklab, var(--blue-200) 16%, white);
+		background: var(--gray-50);
 		max-height: max-content;
+		/* background: color-mix(in oklab, var(--blue-200) 16%, white); */
 
 		& img {
 			width: 100%;
@@ -361,12 +361,50 @@
 			aspect-ratio: 2.4/1;
 		}
 	}
-	.box-small {
-		/* grid-area: hero-price; */
+	.hero-sm-box-top {
+		grid-column: 8/-1;
+		grid-row: 1/3;
 		padding: 1.4rem;
 		border-radius: 1rem;
-		background: color-mix(in oklab, var(--blue-200) 16%, white);
+		background: color-mix(in oklab, var(--blue-200) 70%, white);
+		& p {
+			margin: 0;
+			color: var(--fc-main);
+			font-size: var(--sm);
+			/* width:fit-content; */
+		}
+		& .small-title {
+			position: relative;
+			margin-top: 0;
+			margin-bottom: 1.2rem;
+			font-family: var(--ff-gilroy-m);
+			font-size: var(--sm);
+			color: var(--fc-main);
+			width: fit-content;
+			&::after {
+				content: '';
+				position: absolute;
+				bottom: -4px;
+				left: 0;
+				width: 100%;
+				height: 2px;
+				background: black;
+			}
+		}
+	}
+
+	.hero-sm-box-bottom {
+		grid-column: 8/-1;
+		grid-row: 3/5;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 1.4rem;
+		border-radius: 1rem;
+		color: var(--fc-light);
+		background: var(--orange-100);
 		min-width: 160px;
+		background: color-mix(in oklab, var(--cyan-200) 70%, white);
 		& p {
 			margin: 0;
 			color: var(--fc-main);
@@ -379,28 +417,17 @@
 			font-family: var(--ff-gilroy-m);
 			font-size: var(--sm);
 			color: var(--fc-main);
+			width: fit-content;
 			&::after {
 				content: '';
 				position: absolute;
 				bottom: -4px;
 				left: 0;
-				width: 75%;
+				width: 100%;
 				height: 2px;
 				background: black;
 			}
 		}
-	}
-	.address {
-		grid-area: hero-price;
-		/* background: var(--gray-50); */
-	}
-	.link {
-		grid-area: hero-btn;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		color: var(--fc-light);
-		background: color-mix(in oklab, var(--pink-200) 16%, white);
 	}
 
 	.limited-char {
@@ -481,17 +508,23 @@
 			}
 		}
 	}
-
-	/* TODO: investigate and learn used principles of private variables */
-	.accordion_item {
-		--_base-color-private: var(--item-color, var(--clr-base));
-		/* changing value of `--item-color` will change colors of each child element that contain `--_base-color-private`  */
-		--item-color: var(--purple-800);
+	.course {
+		--item-color: var(--shep-orange);
+		--_base-color-private: var(--item-color, var(--gray-500));
 		margin-bottom: 1rem;
-		background-color: var(--_bkc-color);
+		background-color: var(--item-color);
 		border-radius: 1rem;
-		background: color-mix(in oklab, var(--_base-color-private) 16%, white);
+		background: color-mix(in oklab, var(--item-color) 20%, white);
 	}
+	.training {
+		--item-color: var(--purple-800);
+		--_base-color-private: var(--item-color, var(--gray-500));
+		margin-bottom: 1rem;
+		background-color: var(--item-color);
+		border-radius: 1rem;
+		background: color-mix(in oklab, var(--item-color) 20%, white);
+	}
+	/* TODO: investigate and learn used principles of private variables */
 
 	.accordion-header {
 		padding: 1rem;
@@ -551,6 +584,14 @@
 			& :hover {
 				cursor: pointer;
 			}
+			& svg {
+			& circle {
+				stroke: color-mix(in oklab, var(--_base-color-private) 80%, black) !important;
+			}
+			& path {
+				stroke: color-mix(in oklab, var(--_base-color-private) 80%, black) !important;
+			}
+		}
 		}
 		& .rotate {
 			transform: rotate(180deg);
@@ -684,6 +725,22 @@
 			grid-template-columns: subgrid;
 			grid-template-areas: 'aside aside aside main main main main main ';
 		}
+		.hero-img {
+			grid-column: 1/-1;
+			grid-row: 1/2;
+		}
+		.hero-data {
+			grid-column: 1/7;
+			grid-row: 3/5;
+		}
+		.hero-sm-box-top {
+			grid-column: 7/-1;
+			grid-row: 3/4;
+		}
+		.hero-sm-box-bottom {
+			grid-column: 7/-1;
+			grid-row: 4/5;
+		}
 		.accordion .accordion-links a {
 			margin-bottom: 1rem;
 		}
@@ -698,16 +755,7 @@
 		}
 	}
 
-	@media screen and (max-width: 1024px) {
-		.hero {
-			/* grid-template-columns: subgrid; */
-			grid-template-rows: repeat(4, minmax(6rem, 1fr));
-			grid-template-areas:
-				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-				'hero-data hero-data hero-data hero-data hero-data hero-data hero-price hero-price'
-				'hero-data hero-data hero-data hero-data hero-data hero-data hero-btn hero-btn';
-		}
+	@media screen and (max-width: 996px) {
 		.main__c {
 			grid-template-columns: subgrid;
 			grid-template-areas:
@@ -721,22 +769,24 @@
 		}
 	}
 	@media (max-width: 768px) {
-		.hero {
-			grid-template-rows: repeat(3, minmax(6rem, max-content));
-			grid-template-areas:
-				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
-				'hero-price hero-price hero-price hero-price hero-btn hero-btn hero-btn hero-btn';
+		.hero-img {
+			grid-column: 1/-1;
+			grid-row: 1/2;
+		}
+		.hero-data {
+			grid-column: 1/-1;
+			grid-row: 2/3;
+		}
+		.hero-sm-box-top {
+			grid-column: 1/5;
+			grid-row: 3/5;
+		}
+		.hero-sm-box-bottom {
+			grid-column: 5/-1;
+			grid-row: 3/5;
 		}
 	}
-	@media (max-width: 640px) {
-		/* .hero {
-			grid-template-rows: repeat(4, minmax(100px, max-content));
-			grid-template-areas: 'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-					'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
-				'hero-price hero-price hero-price hero-price hero-price hero-price hero-price hero-price'
-					'hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn';
-		} */
+	@media (max-width: 576px) {
 		.main__c {
 			grid-template-columns: subgrid;
 			grid-template-areas:
@@ -745,20 +795,21 @@
 		}
 	}
 	@media (max-width: 480px) {
-		.hero {
-			grid-template-rows: repeat(4, minmax(100px, max-content));
-			grid-template-areas:
-				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img'
-				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
-				'hero-price hero-price hero-price hero-price hero-price hero-price hero-price hero-price'
-				'hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn hero-btn';
+		.hero-img {
+			grid-column: 1/-1;
+			grid-row: 1/2;
+		}
+		.hero-data {
+			grid-column: 1/-1;
+			grid-row: 2/3;
+		}
+		.hero-sm-box-top {
+			grid-column: 1/-1;
+			grid-row: 3/4;
+		}
+		.hero-sm-box-bottom {
+			grid-column: 1/-1;
+			grid-row: 4/5;
 		}
 	}
-
-	/* .container {
-		display: grid;
-		grid-column: 1/-1;
-		grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-		gap: 1rem;
-	} */
 </style>

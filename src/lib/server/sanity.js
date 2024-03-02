@@ -162,6 +162,7 @@ export const getAllUpcomingCoursesforCurrentVenue = async (/** @type {undefined}
 	const client = sanityClient();
 	const allUpcomingCoursesQuery = `*[_type == "open_course" && is_active == true && venue->slug.current == $slug]{
 	"id":_id,
+	'generalType' : "course",
 	'in_person': in_person {
 		...,
 		'leader': course_leader[] {
@@ -325,6 +326,7 @@ export const getAllUpcomingTrainingsforCurrentVenue = async (/** @type {undefine
 	const client = sanityClient();
 	const allUpcomingTrainingsQuery = `*[_type == "open_training" && is_active == true && venue->slug.current == $slug]{
 	"id":_id,
+	'generalType': "training",
 	'in_person': in_person {
 		...,
 		'leader': training_leader[] {
