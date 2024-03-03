@@ -351,11 +351,11 @@
 	}
 
 	.links__c {
-		padding-inline: 1rem;
+		padding-inline: .5rem;
 		border-left: 1px solid var(--gray-100);
 		margin-bottom: 2rem;
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 		gap: 1rem;
 		position: relative;
 	}
@@ -389,7 +389,7 @@
 			& a {
 				position: absolute;
 				bottom: 1rem;
-				right: 0.5rem;
+				right: 1rem;
 				& circle {
 					stroke: var(--shep-orange) !important;
 				}
