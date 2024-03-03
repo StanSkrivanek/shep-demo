@@ -2,31 +2,40 @@
 	import { onMount } from 'svelte';
 	// MEGAMENU
 
+	let isSubmenuOpen = false;
 	onMount(() => {
 		const withChildren = [...document.querySelectorAll('.menu-item-has-children')];
-		console.log('🚀 ~ onMount ~ withChildren:', withChildren);
+		// console.log('🚀 ~ onMount ~ withChildren:', withChildren);
 
-		withChildren.forEach((el, i) => {
+		withChildren.forEach((el) => {
+			/**
+			 * @type {Element | null | undefined}
+			 */
+			let sub = undefined;
 			el.addEventListener('mouseenter', (e) => {
 				// e.preventDefault();
-				const subMenu = el.querySelector('.sub-menu');
-				const dropdownLinks = [...el.querySelectorAll('.mega-nav-title')];
+				sub = el.querySelector('.sub-menu');
+				sub?.classList.add('active');
+            
+				const dropdownLinks = [...el.querySelectorAll('.sub-menu li a')];
 
 				dropdownLinks?.forEach((link) => {
 					link.addEventListener('click', (/** @type {{ preventDefault: () => void; }} */ e) => {
 						// e.preventDefault();
-						subMenu?.classList.remove('active');
+						sub?.classList.remove('active');
+						isSubmenuOpen = false;
 					});
-					subMenu?.classList.add('active');
 				});
-				el.addEventListener('mouseleave', (e) => {
-					// e.preventDefault();
-					el.classList.remove('active');
-				});
+			});
+			el.addEventListener('mouseleave', (e) => {
+				e.preventDefault();
+				// isSubmenuOpen = false;
+				if (sub) {
+					sub.classList.remove('active');
+				}
 			});
 		});
 	});
-	let isSubmenuOpen = false;
 </script>
 
 <div class="header">
@@ -51,39 +60,19 @@
 
 				<ul role="list" class="menu-main">
 					<li><a href="/" class="mm-nav-link">Home</a></li>
-					<li
-						class="menu-item-has-children"
-						on:mouseover={() => (isSubmenuOpen = true)}
-						on:mouseleave={() => (isSubmenuOpen = false)}
-						on:focus={() => (isSubmenuOpen = true)}
-					>
+					<li class="menu-item-has-children">
 						<a href="/courses" class="mm-nav-link">Courses</a>
-						<div class="sub-menu" class:active={isSubmenuOpen}>
+						<div class="sub-menu" class:active={isSubmenuOpen === !isSubmenuOpen}>
 							<div class="list-item">
 								<ul role="list" class="">
-									<!-- svelte-ignore a11y-click-events-have-key-events -->
-									<li class="mm-link-btn">
-										<a
-											href="/courses-overview"
-											class="mega-nav-title"
-											on:click={() => (isSubmenuOpen = false)}>Overview</a
-										>
+									<li>
+										<a href="/courses-overview" class="mega-nav-title">Overview</a>
 									</li>
-									<li class="mm-link-btn">
-										<a
-											href="/courses"
-											class="mega-nav-title"
-											on:click={() => (isSubmenuOpen = false)}>Our Courses</a
-										>
+									<li>
+										<a href="/courses" class="mega-nav-title">Our Courses</a>
 									</li>
-									<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-									<!-- svelte-ignore a11y-click-events-have-key-events -->
-									<li class="mm-link-btn">
-										<a
-											href="/upcoming"
-											class="mega-nav-title"
-											on:click={() => (isSubmenuOpen = false)}>Upcoming</a
-										>
+									<li>
+										<a href="/upcoming" class="mega-nav-title">Upcoming</a>
 									</li>
 								</ul>
 								<!-- <div class="mm-img-w">
@@ -95,26 +84,21 @@
 							</div>
 						</div>
 					</li>
-					<li
-						class="menu-item-has-children"
-						on:mouseover={() => (isSubmenuOpen = true)}
-						on:mouseleave={() => (isSubmenuOpen = false)}
-						on:focus={() => (isSubmenuOpen = true)}
-					>
+					<li class="menu-item-has-children">
 						<a href="/trainings">Trainings</a>
-						<ul class="sub-menu">
-							<li><a href="/trainings-overview" on:click={() => (isSubmenuOpen = false)}>Overview</a></li>
-							<li><a href="/tranings" on:click={() => (isSubmenuOpen = false)}>Our trainings</a></li>
+						<ul class="sub-menu" class:active={isSubmenuOpen === !isSubmenuOpen}>
+							<li><a href="/trainings-overview">Overview</a></li>
+							<li><a href="/trainings">Our trainings</a></li>
 							<li><a href="/upcoming">Upcoming</a></li>
 						</ul>
 					</li>
-					<li><a href="/venues" on:click={() => (isSubmenuOpen = false)}>Venues</a></li>
+					<li><a href="/venues">Venues</a></li>
 					<!-- <li><a href="#">Upcoming Courses</a></li> -->
 					<li><a href="/blog">Blog</a></li>
-					<li class="menu-item-has-children">
-						<a href="#">About</a>
+					<li>
+						<a href="/about">About</a>
 					</li>
-					<li><a href="#">Contact</a></li>
+					<li><a href="/contact">Contact</a></li>
 				</ul>
 			</div>
 		</div>
@@ -356,11 +340,11 @@
 			transition: all 0.5s ease;
 			z-index: 1099;
 		}
-		.header .menu.active {
-			transform: translate(0%);
-			/* added block */
-			display: block;
-		}
+		/* .header .menu.active { */
+		/* transform: translate(0%); */
+		/* added block */
+		/* display: block; */
+		/* } */
 		.header .menu > ul > li {
 			line-height: 1;
 			margin: 0;
