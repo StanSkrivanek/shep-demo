@@ -106,7 +106,7 @@
 					<li><a href="/" class="mm-nav-link">Home</a></li>
 					<li class="menu-item-has-children">
 						<a href="#" class="mm-nav-link">Courses</a>
-						<div class="sub-menu mega-menu mega-menu-column-3">
+						<div class="sub-menu ">
 							<div class="list-item">
 								<ul role="list" class="">
 									<li class="mm-link-btn">
@@ -119,9 +119,9 @@
 										<a href="/upcoming" class="mega-nav-title">Upcoming</a>
 									</li>
 								</ul>
-								<div class="mm-img-w">
+								<!-- <div class="mm-img-w">
 									<img src="https://via.placeholder.com/150" alt="" />
-								</div>
+								</div> -->
 							</div>
 							<div class="list-item">
 								<ul role="list" class="">
@@ -170,6 +170,9 @@
 	}
 	a {
 		text-decoration: none;
+      &:hover {
+        color: var(--shep-orange);
+      }
 	}
 	/* header */
 	.header {
@@ -180,10 +183,10 @@
 		position: relative;
 		z-index: 99;
 		padding: 15px;
-		border: red 1px solid;
+		/* border: red 1px solid; */
 	}
 	.header .item-left {
-		border: red 1px solid;
+		/* border: red 1px solid; */
 		flex: 0 0 17%;
 	}
 	.header .logo a {
@@ -193,12 +196,12 @@
 		text-decoration: none;
 	}
 	.header .item-center {
-		border: red 1px solid;
+		/* border: red 1px solid; */
 		flex: 0 0 66%;
 		text-align: center;
 	}
 	.header .item-right {
-		border: red 1px solid;
+		/* border: red 1px solid; */
 		flex: 0 0 17%;
 		display: flex;
 		justify-content: flex-end;
@@ -218,7 +221,7 @@
 		/*margin-left: 25px;*/
 	}
 	.header .menu > ul > li > a {
-		font-size: 15px;
+      font-size:1.25rem;
 		font-weight: 500;
 		color: #000000;
 		position: relative;
@@ -227,7 +230,7 @@
 	}
 	.header .menu > ul > li .sub-menu {
 		position: absolute;
-		z-index: 500;
+		z-index: 100;
 		background-color: #ffffff;
 		box-shadow: -2px 2px 70px -25px rgba(0, 0, 0, 0.3);
 		padding: 20px 30px;
@@ -235,18 +238,24 @@
 		margin-top: 25px;
 		opacity: 0;
 		visibility: hidden;
+      border-radius: 0.5rem;
+      font-size: 1.25rem;
+      text-align: left;
 	}
+
+
 	@media (min-width: 992px) {
 		.header .menu > ul > li.menu-item-has-children:hover .sub-menu {
 			margin-top: 0;
 			visibility: visible;
 			opacity: 1;
+         z-index: 200;
 		}
 	}
-	.header .menu > ul > li .sub-menu > ul > li {
+	/* .header .menu > ul > li .sub-menu > ul > li {
 		line-height: 1;
-	}
-	.header .menu > ul > li .sub-menu > ul > li > a {
+	} */
+	/* .header .menu > ul > li .sub-menu > ul > li > a {
 		display: inline-block;
 		padding: 10px 0;
 		font-size: 15px;
@@ -254,69 +263,69 @@
 		transition: color 0.3s ease;
 		text-decoration: none;
 		text-transform: capitalize;
-	}
-	.header .menu > ul > li .single-column-menu {
+	} */
+	/* .header .menu > ul > li .single-column-menu {
 		min-width: 280px;
 		max-width: 350px;
-	}
-	.header .menu > ul > li .sub-menu.mega-menu > .list-item > ul > li {
+	} */
+	/* .header .menu > ul > li .sub-menu.mega-menu > .list-item > ul > li {
 		line-height: 1;
 		display: block;
-	}
-	.header .menu > ul > li .sub-menu.mega-menu > .list-item > ul > li > a {
+	} */
+	/* .header .menu > ul > li .sub-menu.mega-menu > .list-item > ul > li > a {
 		padding: 10px 0;
 		display: inline-block;
 		font-size: 15px;
 		color: #555555;
 		transition: color 0.3s ease;
-	}
-	.header .menu > ul > li .sub-menu.mega-menu {
+	} */
+	/* .header .menu > ul > li .sub-menu.mega-menu {
 		left: 50%;
 		transform: translateX(-50%);
-	}
+	} */
 
-	.header .menu > ul > li .sub-menu.mega-menu-column-3 {
+	/* .header .menu > ul > li .sub-menu.mega-menu-column-3 {
 		max-width: 1100px;
 		width: 100%;
 		display: flex;
 		flex-wrap: wrap;
 		padding: 20px 15px;
-	}
-	.header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item {
+	} */
+	/* .header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item {
 		flex: 0 0 33.3333%;
 		padding: 0 15px;
-	}
-	.header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item .title {
+	} */
+	/* .header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item .title {
 		font-size: 16px;
 		color: #ea4636;
 		font-weight: 500;
 		line-height: 1;
 		padding: 10px 0;
-	}
-	.header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item.text-center .title {
+	} */
+	/* .header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item.text-center .title {
 		text-align: center;
-	}
-	.header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item img {
+	} */
+	/* .header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item img {
 		max-width: 100%;
 		width: 100%;
 		vertical-align: middle;
 		margin-top: 10px;
-	}
-	.header .menu > ul > li .sub-menu.mega-menu > .list-item > ul > li > a:hover,
-	.header .menu > ul > li .sub-menu > ul > li > a:hover,
+	} */
+	/* .header .menu > ul > li .sub-menu.mega-menu > .list-item > ul > li > a:hover, */
+	/* .header .menu > ul > li .sub-menu > ul > li > a:hover, */
 	.header .item-right a:hover,
 	.header .menu > ul > li:hover > a {
-		color: #ff4d6a;
+		color: var(--shep-orange)
 	}
 	/* banner section */
-	.banner-section {
-		/* background-image: url('../img/banner.jpg');*/
+	/* .banner-section {
+		background-image: url('../img/banner.jpg');
 		background-size: cover;
 		background-position: center;
 		height: 700px;
 		width: 100%;
 		display: block;
-	}
+	} */
 	.mobile-menu-head,
 	.mobile-menu-trigger {
 		display: none;
