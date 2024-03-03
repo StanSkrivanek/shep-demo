@@ -602,3 +602,111 @@ export const getTeam = async () => {
 	let team = await client.fetch(query);
 	return team;
 };
+
+// Pages
+
+// get `about-us` page
+
+export const getAboutUsPage = async () => {
+	const client = sanityClient();
+	const query = `*[_type == "page" && slug.current == "about-us"][0]{
+   "title": article_title,
+	"excerpt": post_excerpt,
+	"slug": slug.current,
+	"main_img": hero_image.asset->url,
+	"category": post_category->blog_category,
+  	"category_slug": post_category->slug.current,
+	"author": post_author[] {
+		_type == 'reference' => @->{name}    
+        },
+	"content": post_body[] {
+		...,
+		_type == "image" => {
+			...,
+			"asset": asset->
+		}
+	}
+}`;
+
+	let aboutUs = await client.fetch(query);
+	return aboutUs;
+};
+
+// get `contact` page
+
+export const getContactPage = async () => {
+	const client = sanityClient();
+	const query = `*[_type == "page" && slug.current == "contact"][0]{
+	"title": title,
+	"slug": slug.current,
+	"content": content[] {
+		...,
+		_type == "image" => {
+			...,
+			"asset": asset->
+		}
+	}
+}`;
+
+	let contact = await client.fetch(query);
+	return contact;
+};
+
+// get `privacy-policy` page
+
+export const getPrivacyPolicyPage = async () => {
+	const client = sanityClient();
+	const query = `*[_type == "page" && slug.current == "privacy-policy"][0]{
+	"title": title,
+	"slug": slug.current,
+	"content": content[] {
+		...,
+		_type == "image" => {
+			...,
+			"asset": asset->
+		}
+	}
+}`;
+
+	let privacyPolicy = await client.fetch(query);
+	return privacyPolicy;
+};
+
+// get `terms-and-conditions` page
+
+export const getTermsAndConditionsPage = async () => {
+	const client = sanityClient();
+	const query = `*[_type == "page" && slug.current == "terms-and-conditions"][0]{
+	"title": title,
+	"slug": slug.current,
+	"content": content[] {
+		...,
+		_type == "image" => {
+			...,
+			"asset": asset->
+		}
+	}
+}`;
+
+	let termsAndConditions = await client.fetch(query);
+	return termsAndConditions;
+};
+
+// get `cookie-policy` page
+export const getCookiePolicyPage = async () => {
+	const client = sanityClient();
+	const query = `*[_type == "page" && slug.current == "cookie-policy"][0]{
+	"title": title,
+	"slug": slug.current,
+	"content": content[] {
+		...,
+		_type == "image" => {
+			...,
+			"asset": asset->
+		}
+	}
+}`;
+
+	let cookiePolicy = await client.fetch(query);
+	return cookiePolicy;
+};

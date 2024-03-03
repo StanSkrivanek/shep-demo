@@ -10,7 +10,7 @@
 
 	export let data;
 	$: post = data.post;
-	$: console.log(data);
+	// $: console.log(data);
 
 	let isTocOpen = false;
 

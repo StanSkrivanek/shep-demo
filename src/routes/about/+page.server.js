@@ -1,10 +1,10 @@
-import { getAboutUsPosts } from '$lib/server/sanity.js';
+import { getAboutUsPage } from '$lib/server/sanity.js';
 export async function load({ params }) {
 console.log(params);
 
    // @ts-ignore
-   const posts = await getAboutUsPosts();
+   const pageContent = await getAboutUsPage();
    return {
-      posts,
-   };
+			pageContent
+		};
 }

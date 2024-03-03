@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	// MEGAMENU
 
 	let isSubmenuOpen = false;
@@ -16,7 +16,7 @@
 				// e.preventDefault();
 				sub = el.querySelector('.sub-menu');
 				sub?.classList.add('active');
-            
+
 				const dropdownLinks = [...el.querySelectorAll('.sub-menu li a')];
 
 				dropdownLinks?.forEach((link) => {
@@ -61,12 +61,13 @@
 				<ul role="list" class="menu-main">
 					<li><a href="/" class="mm-nav-link">Home</a></li>
 					<li class="menu-item-has-children">
-						<a href="/courses" class="mm-nav-link">Courses</a>
+						<!-- svelte-ignore a11y-invalid-attribute -->
+						<a href="#" class="mm-nav-link">Courses</a>
 						<div class="sub-menu" class:active={isSubmenuOpen === !isSubmenuOpen}>
 							<div class="list-item">
 								<ul role="list" class="">
 									<li>
-										<a href="/courses-overview" class="mega-nav-title">Overview</a>
+										<a href="/courses/overview" class="mega-nav-title">Overview</a>
 									</li>
 									<li>
 										<a href="/courses" class="mega-nav-title">Our Courses</a>
@@ -85,9 +86,10 @@
 						</div>
 					</li>
 					<li class="menu-item-has-children">
-						<a href="/trainings">Trainings</a>
+						<!-- svelte-ignore a11y-invalid-attribute -->
+						<a href="#">Trainings</a>
 						<ul class="sub-menu" class:active={isSubmenuOpen === !isSubmenuOpen}>
-							<li><a href="/trainings-overview">Overview</a></li>
+							<li><a href="/trainings/overview">Overview</a></li>
 							<li><a href="/trainings">Our trainings</a></li>
 							<li><a href="/upcoming">Upcoming</a></li>
 						</ul>
