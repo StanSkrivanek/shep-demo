@@ -2,144 +2,31 @@
 	import { onMount } from 'svelte';
 	// MEGAMENU
 
-onMount( () => {
+	onMount(() => {
+		const withChildren = [...document.querySelectorAll('.menu-item-has-children')];
+		console.log('🚀 ~ onMount ~ withChildren:', withChildren);
 
-   const subNavBtns = document.querySelectorAll('.mm-link-btn');
-  let subMenu = document.querySelectorAll('.sub-menu');
-   // console.log("🚀 ~ subNavBtns:", subNavBtns)
-   
-   subNavBtns.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-         // e.preventDefault();
-         toggleMenu()
-   
-      });
-   });
+		withChildren.forEach((el, i) => {
+			el.addEventListener('mouseenter', (e) => {
+				// e.preventDefault();
+				const subMenu = el.querySelector('.sub-menu');
+				const dropdownLinks = [...el.querySelectorAll('.mega-nav-title')];
 
-   	function toggleMenu() {
-		// @ts-ignore
-		// menu.classList.toggle('active');
-		// @ts-ignore
-		// subMenu.classList.toggle('active');
-	}
-
-	// @ts-ignore
-	// function showSubMenu(hasChildren) {
-	// 	subMenu = hasChildren.querySelector('.sub-menu');
-	// 	subMenu.classList.add('active');
-	// 	subMenu.style.animation = 'slideLeft 0.5s ease forwards';
-	// 	const menuTitle = hasChildren.firstChild.innerText;
-	// 	// @ts-ignore
-	// 	menu.querySelector('.current-menu-title').innerHTML = menuTitle;
-	// 	// @ts-ignore
-	// 	menu.querySelector('.mobile-menu-head').classList.add('active');
-	// }
-
-	// function hideSubMenu() {
-	// 	// @ts-ignore
-	// 	subMenu.style.animation = 'slideRight 0.5s ease forwards';
-	// 	setTimeout(() => {
-	// 		// @ts-ignore
-	// 		subMenu.classList.remove('active');
-	// 	}, 300);
-	// 	// @ts-ignore
-	// 	menu.querySelector('.current-menu-title').innerHTML = '';
-	// 	// @ts-ignore
-	// 	menu.querySelector('.mobile-menu-head').classList.remove('active');
-	// }
-
-	// window.onresize = function () {
-	// 	// @ts-ignore
-	// 	if (this.innerWidth > 991) {
-	// 		// @ts-ignore
-	// 		if (menu.classList.contains('active')) {
-	// 			toggleMenu();
-	// 		}
-	// 	}
-	// };
-}
-)
-
-
-	// const menu = document.querySelector('.menu');
-	// const menuMain = menu?.querySelector('.menu-main');
-	// @ts-ignore
-	// const goBack = menu?.querySelector('.go-back');
-	// const menuTrigger = document.querySelector('.mobile-menu-trigger');
-	// const closeMenu = menu?.querySelector('.mobile-menu-close');
-	// @ts-ignore
-	// let subMenu = null;
-	// @ts-ignore
-	// menuMain.addEventListener('click', (e) => {
-	// 	// @ts-ignore
-	// 	if (!menu.classList.contains('active')) {
-	// 		return;
-	// 	}
-	// 	// @ts-ignore
-	// 	if (e.target.closest('.menu-item-has-children')) {
-	// 		// @ts-ignore
-	// 		const hasChildren = e.target.closest('.menu-item-has-children');
-	// 		console.log(hasChildren);
-	// 		showSubMenu(hasChildren);
-	// 	}
-	// });
-	// goBack?.addEventListener('click', () => {
-	// 	hideSubMenu();
-	// });
-	// @ts-ignore
-	// menuTrigger.addEventListener('click', () => {
-	// 	toggleMenu();
-	// });
-	// @ts-ignore
-	// closeMenu.addEventListener('click', () => {
-	// 	toggleMenu();
-	// });
-	// @ts-ignore
-	// document.querySelector('.menu-overlay').addEventListener('click', () => {
-	// 	toggleMenu();
-	// });
-
-	// function toggleMenu() {
-	// 	// @ts-ignore
-	// 	menu.classList.toggle('active');
-	// 	// @ts-ignore
-	// 	document.querySelector('.menu-overlay').classList.toggle('active');
-	// }
-
-	// @ts-ignore
-	// function showSubMenu(hasChildren) {
-	// 	subMenu = hasChildren.querySelector('.sub-menu');
-	// 	subMenu.classList.add('active');
-	// 	subMenu.style.animation = 'slideLeft 0.5s ease forwards';
-	// 	const menuTitle = hasChildren.firstChild.innerText;
-	// 	// @ts-ignore
-	// 	menu.querySelector('.current-menu-title').innerHTML = menuTitle;
-	// 	// @ts-ignore
-	// 	menu.querySelector('.mobile-menu-head').classList.add('active');
-	// }
-
-	// function hideSubMenu() {
-	// 	// @ts-ignore
-	// 	subMenu.style.animation = 'slideRight 0.5s ease forwards';
-	// 	setTimeout(() => {
-	// 		// @ts-ignore
-	// 		subMenu.classList.remove('active');
-	// 	}, 300);
-	// 	// @ts-ignore
-	// 	menu.querySelector('.current-menu-title').innerHTML = '';
-	// 	// @ts-ignore
-	// 	menu.querySelector('.mobile-menu-head').classList.remove('active');
-	// }
-
-	// window.onresize = function () {
-	// 	// @ts-ignore
-	// 	if (this.innerWidth > 991) {
-	// 		// @ts-ignore
-	// 		if (menu.classList.contains('active')) {
-	// 			toggleMenu();
-	// 		}
-	// 	}
-	// };
+				dropdownLinks?.forEach((link) => {
+					link.addEventListener('click', (/** @type {{ preventDefault: () => void; }} */ e) => {
+						// e.preventDefault();
+						subMenu?.classList.remove('active');
+					});
+					subMenu?.classList.add('active');
+				});
+				el.addEventListener('mouseleave', (e) => {
+					// e.preventDefault();
+					el.classList.remove('active');
+				});
+			});
+		});
+	});
+	let isSubmenuOpen = false;
 </script>
 
 <div class="header">
@@ -164,19 +51,39 @@ onMount( () => {
 
 				<ul role="list" class="menu-main">
 					<li><a href="/" class="mm-nav-link">Home</a></li>
-					<li class="menu-item-has-children">
-						<a href="#" class="mm-nav-link">Courses</a>
-						<div class="sub-menu">
+					<li
+						class="menu-item-has-children"
+						on:mouseover={() => (isSubmenuOpen = true)}
+						on:mouseleave={() => (isSubmenuOpen = false)}
+						on:focus={() => (isSubmenuOpen = true)}
+					>
+						<a href="/courses" class="mm-nav-link">Courses</a>
+						<div class="sub-menu" class:active={isSubmenuOpen}>
 							<div class="list-item">
 								<ul role="list" class="">
+									<!-- svelte-ignore a11y-click-events-have-key-events -->
 									<li class="mm-link-btn">
-										<a href="#" class="mega-nav-title">Overview</a>
+										<a
+											href="/courses-overview"
+											class="mega-nav-title"
+											on:click={() => (isSubmenuOpen = false)}>Overview</a
+										>
 									</li>
 									<li class="mm-link-btn">
-										<a href="/courses" class="mega-nav-title">Our Courses</a>
+										<a
+											href="/courses"
+											class="mega-nav-title"
+											on:click={() => (isSubmenuOpen = false)}>Our Courses</a
+										>
 									</li>
+									<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
+									<!-- svelte-ignore a11y-click-events-have-key-events -->
 									<li class="mm-link-btn">
-										<a href="/upcoming" class="mega-nav-title">Upcoming</a>
+										<a
+											href="/upcoming"
+											class="mega-nav-title"
+											on:click={() => (isSubmenuOpen = false)}>Upcoming</a
+										>
 									</li>
 								</ul>
 								<!-- <div class="mm-img-w">
@@ -188,15 +95,20 @@ onMount( () => {
 							</div>
 						</div>
 					</li>
-					<li class="menu-item-has-children">
-						<a href="#">Trainings</a>
+					<li
+						class="menu-item-has-children"
+						on:mouseover={() => (isSubmenuOpen = true)}
+						on:mouseleave={() => (isSubmenuOpen = false)}
+						on:focus={() => (isSubmenuOpen = true)}
+					>
+						<a href="/trainings">Trainings</a>
 						<ul class="sub-menu">
-							<li><a href="#">Intensive Trainings 1</a></li>
-							<li><a href="#">Intensive Trainings 2</a></li>
-							<li><a href="#">Intensive Trainings 3</a></li>
+							<li><a href="/trainings-overview" on:click={() => (isSubmenuOpen = false)}>Overview</a></li>
+							<li><a href="/tranings" on:click={() => (isSubmenuOpen = false)}>Our trainings</a></li>
+							<li><a href="/upcoming">Upcoming</a></li>
 						</ul>
 					</li>
-					<li><a href="/venues">Venues</a></li>
+					<li><a href="/venues" on:click={() => (isSubmenuOpen = false)}>Venues</a></li>
 					<!-- <li><a href="#">Upcoming Courses</a></li> -->
 					<li><a href="/blog">Blog</a></li>
 					<li class="menu-item-has-children">
@@ -282,7 +194,7 @@ onMount( () => {
 		text-transform: capitalize;
 		transition: color 0.3s ease;
 	}
-	.header .menu > ul > li .sub-menu {
+	.sub-menu {
 		position: absolute;
 		z-index: 100;
 		background-color: #ffffff;
@@ -298,7 +210,7 @@ onMount( () => {
 	}
 
 	@media (min-width: 992px) {
-		.header .menu > ul > li.menu-item-has-children:hover .sub-menu {
+		.active {
 			margin-top: 0;
 			visibility: visible;
 			opacity: 1;
