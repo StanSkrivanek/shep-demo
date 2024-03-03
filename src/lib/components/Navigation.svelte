@@ -1,5 +1,65 @@
 <script>
+	import { onMount } from 'svelte';
 	// MEGAMENU
+
+onMount( () => {
+
+   const subNavBtns = document.querySelectorAll('.mm-link-btn');
+  let subMenu = document.querySelectorAll('.sub-menu');
+   // console.log("🚀 ~ subNavBtns:", subNavBtns)
+   
+   subNavBtns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+         // e.preventDefault();
+         toggleMenu()
+   
+      });
+   });
+
+   	function toggleMenu() {
+		// @ts-ignore
+		// menu.classList.toggle('active');
+		// @ts-ignore
+		// subMenu.classList.toggle('active');
+	}
+
+	// @ts-ignore
+	// function showSubMenu(hasChildren) {
+	// 	subMenu = hasChildren.querySelector('.sub-menu');
+	// 	subMenu.classList.add('active');
+	// 	subMenu.style.animation = 'slideLeft 0.5s ease forwards';
+	// 	const menuTitle = hasChildren.firstChild.innerText;
+	// 	// @ts-ignore
+	// 	menu.querySelector('.current-menu-title').innerHTML = menuTitle;
+	// 	// @ts-ignore
+	// 	menu.querySelector('.mobile-menu-head').classList.add('active');
+	// }
+
+	// function hideSubMenu() {
+	// 	// @ts-ignore
+	// 	subMenu.style.animation = 'slideRight 0.5s ease forwards';
+	// 	setTimeout(() => {
+	// 		// @ts-ignore
+	// 		subMenu.classList.remove('active');
+	// 	}, 300);
+	// 	// @ts-ignore
+	// 	menu.querySelector('.current-menu-title').innerHTML = '';
+	// 	// @ts-ignore
+	// 	menu.querySelector('.mobile-menu-head').classList.remove('active');
+	// }
+
+	// window.onresize = function () {
+	// 	// @ts-ignore
+	// 	if (this.innerWidth > 991) {
+	// 		// @ts-ignore
+	// 		if (menu.classList.contains('active')) {
+	// 			toggleMenu();
+	// 		}
+	// 	}
+	// };
+}
+)
+
 
 	// const menu = document.querySelector('.menu');
 	// const menuMain = menu?.querySelector('.menu-main');
@@ -106,7 +166,7 @@
 					<li><a href="/" class="mm-nav-link">Home</a></li>
 					<li class="menu-item-has-children">
 						<a href="#" class="mm-nav-link">Courses</a>
-						<div class="sub-menu ">
+						<div class="sub-menu">
 							<div class="list-item">
 								<ul role="list" class="">
 									<li class="mm-link-btn">
@@ -124,8 +184,7 @@
 								</div> -->
 							</div>
 							<div class="list-item">
-								<ul role="list" class="">
-									
+								<ul role="list" class="" />
 							</div>
 						</div>
 					</li>
@@ -142,7 +201,6 @@
 					<li><a href="/blog">Blog</a></li>
 					<li class="menu-item-has-children">
 						<a href="#">About</a>
-
 					</li>
 					<li><a href="#">Contact</a></li>
 				</ul>
@@ -170,9 +228,9 @@
 	}
 	a {
 		text-decoration: none;
-      &:hover {
-        color: var(--shep-orange);
-      }
+		&:hover {
+			color: var(--shep-orange);
+		}
 	}
 	/* header */
 	.header {
@@ -183,10 +241,8 @@
 		position: relative;
 		z-index: 99;
 		padding: 15px;
-		/* border: red 1px solid; */
 	}
 	.header .item-left {
-		/* border: red 1px solid; */
 		flex: 0 0 17%;
 	}
 	.header .logo a {
@@ -196,12 +252,10 @@
 		text-decoration: none;
 	}
 	.header .item-center {
-		/* border: red 1px solid; */
 		flex: 0 0 66%;
 		text-align: center;
 	}
 	.header .item-right {
-		/* border: red 1px solid; */
 		flex: 0 0 17%;
 		display: flex;
 		justify-content: flex-end;
@@ -221,7 +275,7 @@
 		/*margin-left: 25px;*/
 	}
 	.header .menu > ul > li > a {
-      font-size:1.25rem;
+		font-size: 1.25rem;
 		font-weight: 500;
 		color: #000000;
 		position: relative;
@@ -238,18 +292,17 @@
 		margin-top: 25px;
 		opacity: 0;
 		visibility: hidden;
-      border-radius: 0.5rem;
-      font-size: 1.25rem;
-      text-align: left;
+		border-radius: 0.5rem;
+		font-size: 1.25rem;
+		text-align: left;
 	}
-
 
 	@media (min-width: 992px) {
 		.header .menu > ul > li.menu-item-has-children:hover .sub-menu {
 			margin-top: 0;
 			visibility: visible;
 			opacity: 1;
-         z-index: 200;
+			z-index: 200;
 		}
 	}
 	/* .header .menu > ul > li .sub-menu > ul > li {
@@ -315,7 +368,7 @@
 	/* .header .menu > ul > li .sub-menu > ul > li > a:hover, */
 	.header .item-right a:hover,
 	.header .menu > ul > li:hover > a {
-		color: var(--shep-orange)
+		color: var(--shep-orange);
 	}
 	/* banner section */
 	/* .banner-section {
