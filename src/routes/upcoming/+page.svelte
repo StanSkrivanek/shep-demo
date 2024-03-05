@@ -7,21 +7,35 @@
 	const cities = data.allUpcomingEvents.map(
 		(/** @type {{ venue: { city: string; }; }} */ event) => event.venue.city
 	);
+	const types = data.allUpcomingEvents.map(
+		(/** @type {{ event: { type: string; }; }} */ event) => event.event.type
+	);
 	const uniqueCities = [...new Set(cities)];
+	const uniqueTypes = [...new Set(types)];
+	console.log('🚀 ~ uniqueTypes:', uniqueTypes);
 	let city = '';
+	let type = '';
 	// $: console.log('🚀 ~ let city:', city);
 
 	/**
 	 * @param {string} city
 	 */
 	// function filterByCity(city) {
-		// console.log('🚀 ~ city:', city);
-		// city = city;
+	// console.log('🚀 ~ city:', city);
+	// city = city;
 	// }
 	$: filteredList = data.allUpcomingEvents.filter(
 		(/** @type {{ venue: { city: string; }; }} */ event) => {
-			if (city === '') return true;
-			return event.venue.city === city;
+			// filter by type and or city
+			if (city && type) {
+				return event.venue.city === city && event.event.type === type;
+			} else if (city) {
+				return event.venue.city === city;
+			} else if (type) {
+				return event.event.type === type;
+			} else {
+				return event;
+			}
 		}
 	);
 	// $: console.log('🚀 ~ filteredList:', filteredList);
@@ -31,8 +45,21 @@
 	<!-- ADD FILTER BY CITY -->
 
 	{#if uniqueCities}
+		<!-- add radiobuttons to filter `all` `courses` `training`  -->
+		<div class="radio-group">
+			<label for="type">Filter by Type</label>
+			<div class="custom-select">
+				<select id="type" bind:value={type}>
+					<option value="">All</option>
+					{#each uniqueTypes as type}
+						<option value={type}>{type}</option>
+					{/each}
+				</select>
+			</div>
+		</div>
+
 		<div class="filter">
-			<label for="city">Filter by City</label>
+			<label for="city">Filter by location</label>
 			<div class="custom-select">
 				<select id="city" bind:value={city}>
 					<option value="">All</option>
@@ -69,7 +96,6 @@
 						</a>
 					{/if}
 
-
 					<!-- <a class="btn-link" href="/courses/{upcoming.event.slug.current}">
 						<LinkCircle width={48} height={48} />
 					</a> -->
@@ -84,7 +110,7 @@
 		display: grid;
 		grid-column: 1/-1;
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		grid-template-rows: repeat(auto-fill, minmax(300px,1fr));
+		grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
 		/* TODO: Refactor `min-heigh` to have footer on bottom if no upcoming or only 1row */
 		min-height: 25vh;
 		gap: 1rem;
@@ -204,14 +230,13 @@
 		cursor: pointer;
 		/* display: flex; */
 		margin-bottom: 1rem;
-
 	}
 	.custom-select::before,
 	.custom-select::after {
 		--size: 0.5rem;
 		position: absolute;
 		content: '';
-		right: .5rem;
+		right: 0.5rem;
 		pointer-events: none;
 	}
 
@@ -222,7 +247,7 @@
 		border-radius: 0.25rem;
 		top: 10%;
 	} */
-	
+
 	.custom-select::after {
 		border-left: var(--size) solid transparent;
 		border-right: var(--size) solid transparent;
