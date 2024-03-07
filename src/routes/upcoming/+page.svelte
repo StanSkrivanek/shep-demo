@@ -46,32 +46,40 @@
 
 	{#if uniqueCities}
 		<!-- add radiobuttons to filter `all` `courses` `training`  -->
-		<div class="radio-group">
-			<label for="type">Filter by Type</label>
-			<div class="custom-select">
-				<select id="type" bind:value={type}>
-					<option value="">All</option>
-					{#each uniqueTypes as type}
-						<option value={type}>{type}</option>
-					{/each}
-				</select>
+		<!-- <div class="filter__c"> -->
+			<div class="radio-group">
+				<label for="type">Filter by Type</label>
+				<div class="custom-select">
+					<select id="type" bind:value={type}>
+						<option value="">All types</option>
+						{#each uniqueTypes as type}
+							<option value={type}>{type}</option>
+						{/each}
+					</select>
+				</div>
 			</div>
-		</div>
 
-		<div class="filter">
-			<label for="city">Filter by location</label>
-			<div class="custom-select">
-				<select id="city" bind:value={city}>
-					<option value="">All</option>
-					{#each uniqueCities as city}
-						<option value={city}>{city}</option>
-					{/each}
-				</select>
+			<div class="filter">
+				<label for="city">Filter by location</label>
+				<div class="custom-select">
+					<select id="city" bind:value={city}>
+						<option value="">All locations</option>
+						{#each uniqueCities as city}
+							<option value={city}>{city}</option>
+						{/each}
+					</select>
+				</div>
 			</div>
-		</div>
+		<!-- </div> -->
 	{/if}
 
 	<main class="container">
+		{#if filteredList.length === 0}
+			<div class="negative__w">
+				<p class="negative--message">There is not any upcoming {type} in {city}
+				 </p>
+			</div>
+		{/if}
 		{#each filteredList as upcoming}
 			<div class="card">
 				<div class="card-subheading">
@@ -114,6 +122,25 @@
 		/* TODO: Refactor `min-heigh` to have footer on bottom if no upcoming or only 1row */
 		min-height: 25vh;
 		gap: 1rem;
+	}
+
+	.negative__w {
+		display: grid;
+		grid-column: 1/-1;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+
+		& p {
+			margin: 0;
+		}
+	}
+
+	.negative--message {
+		font-size: clamp(1.5rem, 4vw, 3rem);
+		color: var(--shep-red);
+		padding-inline: 2rem;
+		text-align: center;
 	}
 	.card {
 		display: grid;
@@ -210,18 +237,22 @@
 		/* other styles for aesthetics */
 		width: 100%;
 		font-size: 1.15rem;
-		padding: 0.675em 6em 0.675em 1em;
+		padding: 0.675em .675em 0.675em 1em;
 		background-color: #fff;
 		border: 1px solid #caced1;
 		border-radius: 0.25rem;
-		color: #000;
+		/* color: #000; */
 		cursor: pointer;
 		position: relative;
 	}
-
+	label {
+		margin-bottom: 0.5rem;
+		font-size: 1rem;
+	}
 	.custom-select {
 		position: relative;
-		min-width: 300px;
+		margin-right: 1rem;
+		min-width: 240px;
 		height: 3rem;
 		border: 1px solid var(--shep-orange);
 		border-radius: 0.25rem;
@@ -254,8 +285,71 @@
 		border-top: var(--size) solid var(--shep-orange);
 		border-radius: 1rem;
 		top: 50%;
+		/* background-color: red; */
 	}
-
+/* .filter__c { */
+	/* display:grid; */
+	/* grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); */
+	/* grid-template-rows: repeat(auto-fill, minmax(300px, 1fr)); */
+	/* gap: 1rem; */
+/* } */
+	/* .filter {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 1rem;
+	} */
+	/* .filter label {
+		margin-bottom: 0.5rem;
+	} */
+	/* .filter select {
+		appearance: none;
+		-webkit-appearance: none;
+		font-size: 1.15rem;
+		padding: 0.675em 6em 0.675em 1em;
+		background-color: #fff;
+		border: 1px solid #caced1;
+		cursor: pointer;
+		position: relative;
+	} */
+	/* .filter .custom-select {
+		position: relative;
+		border: 1px solid var(--shep-orange);
+		border-radius: 0.25rem;
+		overflow: hidden;
+		background-color: #fff;
+		cursor: pointer;
+		margin-bottom: 1rem;
+	} */
+	/* .filter .custom-select::before,
+	.filter .custom-select::after {
+		--size: 0.5rem;
+		position: absolute;
+		content: '';
+		right: 0.5rem;
+		pointer-events: none;
+	} */
+	/* .filter .custom-select::after {
+		border-left: var(--size) solid transparent;
+		border-right: var(--size) solid transparent;
+		border-top: var(--size) solid var(--shep-orange);
+		border-radius: 1rem;
+		top: 50%;
+	} */
+	/* .filter .custom-select::before {
+		border-left: var(--size) solid transparent;
+		border-right: var(--size) solid transparent;
+		border-bottom: var(--size) solid rgb(231, 139, 0);
+		border-radius: 0.25rem;
+		top: 10%;
+	} */
+	/* .filter .radio-group {
+		display: flex;
+		flex-direction: column;
+	} */
+	/* .filter .radio-group label {
+		margin-bottom: 0.5rem;
+	} */
+	
 	/* Media Quiries */
 	/* @media (max-width: 996px) {
 		.hero-data {

@@ -49,12 +49,12 @@
 				<div class="mobile-menu-head">
 					<div class="go-back">
 						<!-- <i class="fa fa-angle-left" /> -->
-						back
+						&gt; - 
 					</div>
 					<div class="current-menu-title" />
 					<div class="mobile-menu-close">
 						<!-- <i class="fa fa-times" /> -->
-						close
+						X
 					</div>
 				</div>
 
@@ -80,9 +80,9 @@
 									<img src="https://via.placeholder.com/150" alt="" />
 								</div> -->
 							</div>
-							<div class="list-item">
+							<!-- <div class="list-item">
 								<ul role="list" class="" />
-							</div>
+							</div> -->
 						</div>
 					</li>
 					<li class="menu-item-has-children">
@@ -338,15 +338,15 @@
 			top: 0;
 			height: 100%;
 			overflow: hidden;
-			transform: translate(-100%);
+			/* transform: translate(-100%); */
 			transition: all 0.5s ease;
 			z-index: 1099;
 		}
-		/* .header .menu.active { */
-		/* transform: translate(0%); */
-		/* added block */
-		/* display: block; */
-		/* } */
+		/* .header .menu.active {
+		transform: translate(0%);
+	
+		display: block;
+		} */
 		.header .menu > ul > li {
 			line-height: 1;
 			margin: 0;
@@ -411,17 +411,17 @@
 			color: #000000;
 			font-size: 25px;
 		}
-		.header .menu .menu-main {
+		/* .header .menu .menu-main {
 			height: 100%;
 			overflow-x: hidden;
 			overflow-y: auto;
-		}
-		.header .menu > ul > li .sub-menu.mega-menu,
-		.header .menu > ul > li .sub-menu {
+		} */
+	
+		.sub-menu {
 			visibility: visible;
 			opacity: 1;
-			position: absolute;
-			box-shadow: none;
+			/* position: absolute; */
+			/* box-shadow: none; */
 			margin: 0;
 			padding: 15px;
 			top: 0;
@@ -435,9 +435,15 @@
 			transform: translateX(0%);
 			overflow-y: auto;
 		}
-		.header .menu > ul > li .sub-menu.active {
+		/* .sub-menu.active {
 			display: block;
-		}
+		} */
+		/* .sub-menu {
+			padding: 0;
+			display: block;
+			position:relative;
+			color: red;
+		} */
 		@keyframes slideLeft {
 			0% {
 				opacity: 0;
@@ -458,10 +464,10 @@
 				transform: translateX(100%);
 			}
 		}
-		.header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item img {
+		/* .header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item img {
 			margin-top: 0;
-		}
-		.header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item.text-center .title {
+		} */
+		/* .header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item.text-center .title {
 			margin-bottom: 20px;
 		}
 		.header
@@ -483,7 +489,7 @@
 		}
 		.header .menu > ul > li .sub-menu.mega-menu > .list-item > ul {
 			margin-bottom: 15px;
-		}
+		} */
 		.menu-overlay {
 			position: fixed;
 			background-color: rgba(0, 0, 0, 0.5);
@@ -496,9 +502,9 @@
 			opacity: 0;
 			transition: all 0.5s ease;
 		}
-		.menu-overlay.active {
+		/* .menu-overlay.active {
 			visibility: visible;
 			opacity: 1;
-		}
+		} */
 	}
 </style>

@@ -632,6 +632,56 @@ export const getAboutUsPage = async () => {
 	return aboutUs;
 };
 
+export const coursesOverview = async () =>{
+	const client = sanityClient();
+	const query = `*[_type == "page" && slug.current == "courses-overview"][0]{
+   "title": article_title,
+	"excerpt": post_excerpt,
+	"slug": slug.current,
+	"main_img": hero_image.asset->url,
+	"category": post_category->blog_category,
+  	"category_slug": post_category->slug.current,
+	"author": post_author[] {
+		_type == 'reference' => @->{name}    
+        },
+	"content": post_body[] {
+		...,
+		_type == "image" => {
+			...,
+			"asset": asset->
+		}
+	}
+}`;
+
+	let coursesOverview = await client.fetch(query);
+	return coursesOverview;
+}
+
+export const trainingsOverview = async () =>{
+	const client = sanityClient();
+	const query = `*[_type == "page" && slug.current == "trainings-overview"][0]{
+	"title": article_title,
+	"excerpt": post_excerpt,
+	"slug": slug.current,
+	"main_img": hero_image.asset->url,
+	"category": post_category->blog_category,
+  	"category_slug": post_category->slug.current,
+	"author": post_author[] {
+		_type == 'reference' => @->{name}    
+		  },
+	"content": post_body[] {
+		...,
+		_type == "image" => {
+			...,
+			"asset": asset->
+		}
+	}
+}`;
+
+	let trainingsOverview = await client.fetch(query);
+	return trainingsOverview;
+}
+
 // get `contact` page
 
 export const getContactPage = async () => {
