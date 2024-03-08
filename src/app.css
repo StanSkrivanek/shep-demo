@@ -352,11 +352,12 @@ h4,
 h5,
 h6 {
 	color: var(--clr-orange);
+		margin-bottom: 0;
 }
 
 article .article-title:not(:first-child) , article .article-title h3 {
-	padding-block: 1rem 0;
-	margin-bottom: 0;
+	padding-block: 0.5rem 0;
+	/* margin-bottom: 0; */
 }
 
 
