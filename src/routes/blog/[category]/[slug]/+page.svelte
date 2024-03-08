@@ -133,25 +133,26 @@
 					<Toc width={48} height={48} />
 				</div>
 			{/if}
-
-			<PortableText
-				value={post.content}
-				onMissingComponent={false}
-				components={{
-					block: {
-						// blockquote: Quote,
-						h1: CustomHeading,
-						h2: CustomHeading,
-						h3: CustomHeading,
-						h4: CustomHeading,
-						h5: CustomHeading,
-						normal: TextRte
-					},
-					types: {
-						image: ImageRte
-					}
-				}}
-			/>
+			<article>
+				<PortableText
+					value={post.content}
+					onMissingComponent={false}
+					components={{
+						block: {
+							// blockquote: Quote,
+							h1: CustomHeading,
+							h2: CustomHeading,
+							h3: CustomHeading,
+							h4: CustomHeading,
+							h5: CustomHeading,
+							normal: TextRte
+						},
+						types: {
+							image: ImageRte
+						}
+					}}
+				/>
+			</article>
 		</main>
 
 		<aside class="side-links">
@@ -351,7 +352,7 @@
 	}
 
 	.links__c {
-		padding-inline: .5rem;
+		padding-inline: 0.5rem;
 		border-left: 1px solid var(--gray-100);
 		margin-bottom: 2rem;
 		display: grid;

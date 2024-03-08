@@ -16,7 +16,8 @@
 	$: anchorId = `${value._key}`;
 </script>
 
-<div class="relative {precededByHeading ? 'mt-10' : 'mt-4'}" id={anchorId}>
+<!-- <div class="relative {precededByHeading ? 'mt-10' : 'mt-4'}" id={anchorId}> -->
+<div class="article-title" id={anchorId}>
 	<!-- <a href="#{anchorId}">
 		<span class="sr-only">Link to this heading</span>
 	</a> -->
@@ -47,19 +48,18 @@
 		color: red;
 		opacity: 1;
 	} */
-	/* h1,
+	/* h1, */
 	h2,
 	h3,
 	h4,
 	h5 {
 		font-family: 'Inter', sans-serif;
-		font-weight: 700;
+		/* font-weight: 700; */
 		line-height: 1;
 		letter-spacing: -0.025em;
-		color: rgb(75, 77, 82);
-		color: rgb(226, 60, 212);
-		margin-block: 0.5rem;
-	} */
+		/* color: var(--clr-orange); */
+		/* margin-block: 2rem 0.5rem; */
+	}
 	/* h1 {
 		font-size: 4.209rem;
 	}

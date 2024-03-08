@@ -21,8 +21,9 @@
 
 <style>
 	p {
-		width: 100%;
-		margin: 0 auto;
-		margin-bottom: 1.2rem;
+		/* width: 100%; */
+		/* margin: 0 auto; */
+		margin-bottom: 1.4rem;
+		/* max-width: 72ch; */
 	}
 </style>
