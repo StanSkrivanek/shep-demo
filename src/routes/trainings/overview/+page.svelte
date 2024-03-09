@@ -70,6 +70,11 @@
 	}
 </script>
 
+<svelte:head>
+	<title>{post.title}</title>
+	<meta name="description" content="{post.excerpt}" />
+</svelte:head>
+
 <div class="page__c">
 	<div class="hero" id="top">
 		<div class="hero-col-2__c">

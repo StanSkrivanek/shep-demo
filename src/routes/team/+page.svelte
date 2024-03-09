@@ -9,6 +9,10 @@
 	export let data;
 
 </script>
+<svelte:head>
+	<title>Our Team</title>
+	<meta name="description" content="Meet our team of experts" />
+</svelte:head>
 
 <div class="page__c">
 	<h1 class="separator-heading">Our Team</h1>

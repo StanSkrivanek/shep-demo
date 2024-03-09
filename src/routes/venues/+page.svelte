@@ -5,6 +5,11 @@
 	// const { venue_name } = data.venues;
 </script>
 
+<svelte:head>
+	<title>Venues</title>
+	<meta name="description" content="Our partners venues" />
+</svelte:head>
+
 <div class="page__c">
 	<div class="hero">
 		<div class="hero-col-2__c">
@@ -56,7 +61,6 @@
 </div>
 
 <style>
-
 	/* Hero */
 	.hero {
 		display: grid;
@@ -195,7 +199,7 @@
 			margin-bottom: 2rem;
 		}
 	}
-	
+
 	/* 1024px - lg - large devices (desktops) */
 	@media (max-width: 1024px) {
 		.hero-data {

@@ -69,7 +69,10 @@
 		});
 	}
 </script>
-
+<svelte:head>
+	<title>About us</title>
+	<meta name="description" content="About us" />
+</svelte:head>
 <div class="page__c">
 	<div class="hero" id="top">
 		<div class="hero-col-2__c">

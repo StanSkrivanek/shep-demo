@@ -43,7 +43,10 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 		filteredPosts = posts;
 	};
 </script>
-
+<svelte:head>
+	<title>Articles</title>
+	<meta name="description" content="Articles on mental health and well-being" />
+</svelte:head>
 <div class="page__c">
 	<div class="hero">
 		<div class="hero-col-2__c">

@@ -11,7 +11,9 @@ function sanityClient() {
 	};
 	return createClient({ ...config });
 }
-// Venues
+// --- VENUES ---
+
+// All Venues
 export const getAllVenues = async () => {
 	const client = sanityClient();
 	const allVenuesQuery = `*[_type == "venue"]{
@@ -41,6 +43,7 @@ export const getAllVenues = async () => {
 	return allVenues;
 };
 
+// single venue
 export const getSingleVenue = async (/** @type {undefined} */ slug) => {
 	const client = sanityClient();
 	const query = `*[_type == "venue" && slug.current == $slug][0]{
@@ -120,7 +123,7 @@ export const getSingleCourse = async (/** @type {undefined} */ slug) => {
 	return course;
 };
 
-// All UPCOMING Courses
+// All UPCOMING COURSES
 export const getAllUpcomingCourses = async () => {
 	const client = sanityClient();
 	const allUpcomingCoursesQuery = `*[_type == "open_course" && is_active == true]{
@@ -401,7 +404,7 @@ export const getAllUpcomingTrainingsForCurrentTraining = async (/** @type {undef
 // All Blog posts
 export const getAllPosts = async () => {
 	const client = sanityClient();
-	const allPostsQuery = `*[_type == "post" && post_category->slug.current != "about-us"]{
+	const allPostsQuery = `*[_type == "post" && post_category->slug.current != "activities" ]{
 	"title": article_title,
 	"excerpt": post_excerpt,
 	"slug": slug.current,
@@ -443,9 +446,9 @@ export const getPostsForSlider = async () => {
 };
 
 //  get all posts from "about-us" category
-export const getAboutUsPosts = async () => {
+export const getAllActivities = async () => {
 	const client = sanityClient();
-	const query = `*[_type == "post" && post_category->slug.current == "about-us"]{
+	const query = `*[_type == "post" && post_category->slug.current == "activities"]{
 	"title": article_title,
 	"excerpt": post_excerpt,
 	"slug": slug.current,
@@ -457,8 +460,8 @@ export const getAboutUsPosts = async () => {
 		  },
 }`;
 
-	const allPosts = await client.fetch(query);
-	return allPosts;
+	const allActivities = await client.fetch(query);
+	return allActivities;
 };
 
 // Single Article

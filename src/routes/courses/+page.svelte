@@ -6,7 +6,10 @@
 	// const openCourse = data.allOpenCourses;
 	// const { event, online, in_person, venue, form } = data.allCourses;
 </script>
-
+<svelte:head>
+	<title>Courses</title>
+	<meta name="description" content="Courses" />
+</svelte:head>
 <div class="page__c">
 	<div class="hero">
 		<div class="hero-col-2__c">

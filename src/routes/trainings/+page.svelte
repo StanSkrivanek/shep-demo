@@ -6,6 +6,11 @@
 	const alUpcomingTrainings = data.allTrainings;
 </script>
 
+<svelte:head>
+	<title>Trainings</title>
+	<meta name="description" content="Intensive trainings for Mental Health & Wellbeing" />
+</svelte:head>
+
 <div class="page__c">
 	<div class="hero">
 		<div class="hero-col-2__c">

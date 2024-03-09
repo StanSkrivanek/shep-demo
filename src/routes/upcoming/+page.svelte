@@ -41,6 +41,11 @@
 	// $: console.log('🚀 ~ filteredList:', filteredList);
 </script>
 
+<svelte:head>
+	<title>Upcoming Events</title>
+	<meta name="description" content="Upcoming Events" />
+</svelte:head>
+
 <div class="page__c">
 	<!-- ADD FILTER BY CITY -->
 

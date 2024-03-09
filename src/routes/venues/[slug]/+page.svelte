@@ -65,6 +65,7 @@
 	<title>{venue_name}</title>
 	<meta name="description" content={excerpt} />
 </svelte:head>
+
 <div class="page__c">
 	<div class="hero">
 		<div class="hero-data">

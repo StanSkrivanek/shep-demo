@@ -30,6 +30,11 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Application form</title>
+	<meta name="description" content="Application form for SHEP courses and events" />
+</svelte:head>
+
 <div class="page__c">
 	{#if courseData.event}
 		<form method="POST" action="?/sendToGoogle">

@@ -30,7 +30,10 @@
 		}
 	});
 </script>
-
+<svelte:head>
+	<title>Application form</title>
+	<meta name="description" content="Application form for upcoming courses" />
+</svelte:head>
 <div class="page__c">
 	{#if courseData.event}
 		

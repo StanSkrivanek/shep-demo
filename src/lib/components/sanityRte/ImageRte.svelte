@@ -17,10 +17,14 @@
 		margin: 0 auto;
 		display: flex;
 		justify-content: center;
-		align-items: center;
+		align-items: center; 
+		/* border-radius: 1rem;
+		overflow: hidden; */
 	}
 	.img__w img {
 		max-width: 100%;
 		margin-block: 2rem;
+		border-radius: .5rem;
+
 	}
 </style>
