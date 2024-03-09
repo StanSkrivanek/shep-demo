@@ -147,7 +147,8 @@
 							normal: TextRte
 						},
 						types: {
-							image: ImageRte
+							image: ImageRte,
+						
 						}
 					}}
 				/>

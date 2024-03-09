@@ -3,7 +3,8 @@
 
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import Toc from '$lib/components/icons/Toc.svelte';
-	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
+	import Youtube from '$lib/components/sanityRte/Youtube.svelte';
+	import { CustomHeading, ImageRte, TextRte} from '$lib/components/sanityRte/index.js';
 	import clickOutside from '$lib/utils/clickoutside.js';
 	import { PortableText } from '@portabletext/svelte';
 	import { afterUpdate, tick } from 'svelte';
@@ -151,7 +152,9 @@
 							normal: TextRte
 						},
 						types: {
-							image: ImageRte
+							image: ImageRte,
+							youtube: Youtube
+							
 						}
 					}}
 				/>

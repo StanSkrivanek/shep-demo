@@ -3,6 +3,7 @@
 	 * @type {any}
 	 */
 	export let portableText;
+	// $: console.log("🚀 ~ portableText:", portableText)
 
 	$: ({ indexInParent, global, value } = portableText);
 	$: ({ ptBlocks } = global);
