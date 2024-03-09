@@ -104,11 +104,12 @@
 		<!-- aside -->
 		<aside>
 			<!-- Courses -->
+			<h3>Apply for</h3>
 			{#if upcoming.length == 0}
 				<div class="no-course">
 					<div class="content">
 						<p>
-							We are sorry but currently there are no open SHEP courses open for applications in our
+							We are sorry but currently there are no SHEP courses open for applications in our
 							facilities.
 						</p>
 						<p>

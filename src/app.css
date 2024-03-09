@@ -328,9 +328,9 @@ h6,
 	margin-bottom: var(--base-size);
 }
 
-ul {
+ul, ol {
 	list-style-type: square;
-	margin-bottom: 2rem;
+	margin-bottom: 1.6rem;
 }
 
 p {
@@ -371,7 +371,7 @@ article > p:first-child {
 	text-decoration: underline;
 }
 /* LINKS */
-/* decorative - ed. on home page*/
+/* decorative - eg. on home page*/
 .decorative_link__c {
 	display: flex;
 	align-items: center;

@@ -12,7 +12,7 @@
 	);
 	const uniqueCities = [...new Set(cities)];
 	const uniqueTypes = [...new Set(types)];
-	console.log('🚀 ~ uniqueTypes:', uniqueTypes);
+	// console.log('🚀 ~ uniqueTypes:', uniqueTypes);
 	let city = '';
 	let type = '';
 	// $: console.log('🚀 ~ let city:', city);
@@ -47,37 +47,66 @@
 	{#if uniqueCities}
 		<!-- add radiobuttons to filter `all` `courses` `training`  -->
 		<!-- <div class="filter__c"> -->
-			<div class="radio-group">
-				<label for="type">Filter by Type</label>
-				<div class="custom-select">
-					<select id="type" bind:value={type}>
-						<option value="">All types</option>
-						{#each uniqueTypes as type}
-							<option value={type}>{type}</option>
-						{/each}
-					</select>
-				</div>
+		<div class="radio-group">
+			<label for="type">Filter by Type</label>
+			<div class="custom-select">
+				<select id="type" bind:value={type}>
+					<option value="">All types</option>
+					{#each uniqueTypes as type}
+						<option value={type}>{type}</option>
+					{/each}
+				</select>
 			</div>
+		</div>
 
-			<div class="filter">
-				<label for="city">Filter by location</label>
-				<div class="custom-select">
-					<select id="city" bind:value={city}>
-						<option value="">All locations</option>
-						{#each uniqueCities as city}
-							<option value={city}>{city}</option>
-						{/each}
-					</select>
-				</div>
+		<div class="filter">
+			<label for="city">Filter by location</label>
+			<div class="custom-select">
+				<select id="city" bind:value={city}>
+					<option value="">All locations</option>
+					{#each uniqueCities as city}
+						<option value={city}>{city}</option>
+					{/each}
+				</select>
 			</div>
+		</div>
 		<!-- </div> -->
 	{/if}
 
 	<main class="container">
+		{#if data.allUpcomingEvents.length === 0}
+			<div class="no-upcoming__w">
+				<p class="no-upcoming--message">
+					Currently there is not any upcoming course or training open for application
+				</p>
+				<p>
+					Please check back later or sing up to our newsletter to be notified when new courses will
+					open for application
+				</p>
+				<div>
+					<p>Sign up to newsletter</p>
+					<a href="/newsletter">
+						<LinkCircle width={48} height={48} />
+					</a>
+				</div>
+			</div>
+		{/if}
 		{#if filteredList.length === 0}
-			<div class="negative__w">
-				<p class="negative--message">There is not any upcoming {type} in {city}
-				 </p>
+			<div class="no-upcoming__w">
+				<!-- TODO: add message if there is not ay upcoming event -->
+				<p class="no-upcoming--message">There is not any upcoming {type} in {city}</p>
+				<div class="no-upcoming__w">
+					<p>
+						Please check back later or sing up to our newsletter to be notified when new courses
+						will open for application.
+					</p>
+					<div class="no-upcoming--link__c">
+						<p>Sign up to newsletter</p>
+						<a href="/newsletter">
+							<LinkCircle width={48} height={48} />
+						</a>
+					</div>
+				</div>
 			</div>
 		{/if}
 		{#each filteredList as upcoming}
@@ -124,7 +153,7 @@
 		gap: 1rem;
 	}
 
-	.negative__w {
+	.no-upcoming__w {
 		display: grid;
 		grid-column: 1/-1;
 		justify-content: center;
@@ -136,12 +165,21 @@
 		}
 	}
 
-	.negative--message {
+	.no-upcoming--message {
 		font-size: clamp(1.5rem, 4vw, 3rem);
 		color: var(--shep-red);
 		padding-inline: 2rem;
 		text-align: center;
 	}
+
+	.no-upcoming--link__c {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+	}
+
 	.card {
 		display: grid;
 		grid-template-areas:
@@ -237,7 +275,7 @@
 		/* other styles for aesthetics */
 		width: 100%;
 		font-size: 1.15rem;
-		padding: 0.675em .675em 0.675em 1em;
+		padding: 0.675em 0.675em 0.675em 1em;
 		background-color: #fff;
 		border: 1px solid #caced1;
 		border-radius: 0.25rem;
@@ -287,12 +325,12 @@
 		top: 50%;
 		/* background-color: red; */
 	}
-/* .filter__c { */
+	/* .filter__c { */
 	/* display:grid; */
 	/* grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); */
 	/* grid-template-rows: repeat(auto-fill, minmax(300px, 1fr)); */
 	/* gap: 1rem; */
-/* } */
+	/* } */
 	/* .filter {
 		display: flex;
 		flex-direction: column;
@@ -349,7 +387,7 @@
 	/* .filter .radio-group label {
 		margin-bottom: 0.5rem;
 	} */
-	
+
 	/* Media Quiries */
 	/* @media (max-width: 996px) {
 		.hero-data {

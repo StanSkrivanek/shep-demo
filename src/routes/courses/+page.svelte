@@ -32,9 +32,9 @@
 		</div>
 	</div>
 	<!-- <h1 class="separator-heading">Courses</h1> -->
-	<div class="intro">
+	<!-- <div class="intro"> -->
 		<!-- <h2>Upcoming Courses</h2> -->
-		<p>
+		<!-- <p>
 			The courses, meticulously organized by SHEP in collaboration with community group partners,
 			receive essential funding from esteemed organizations such as Cork ETB, Kerry ETB, and Healthy
 			Ireland.
@@ -55,8 +55,8 @@
 			options or in-person attendance. For those seeking information on courses in areas beyond
 			Cork, the website's short courses section provides details under specific county tabs,
 			facilitating a seamless application process for various geographic locations.
-		</p>
-	</div>
+		</p> -->
+	<!-- </div> -->
 	<main class="container">
 		{#each data.allCourses as course}
 		<div class="card">
