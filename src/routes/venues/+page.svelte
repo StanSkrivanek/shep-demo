@@ -40,12 +40,12 @@
 					</div>
 					<a class="link" href="venues/{venue.slug}">
 						<div class="link-desc__w">
-							<!-- <p class="small-title">See more</p> -->
+							<p class="small-title">See more</p>
 							<!-- <p>For more informations about us please visit our website</p> -->
-							<p>SHEP courses open for application in our facilities</p>
+							<!-- <p>SHEP courses open for application in our facilities</p> -->
 						</div>
 						<div class="link-icon">
-							<LinkCircle width={48} height={48} />
+							<LinkCircle width={42} height={42} />
 						</div>
 					</a>
 				</div>
@@ -169,6 +169,20 @@
 			}
 			& svg {
 				display: block;
+				& circle {
+					stroke: var(--shep-orange) !important;
+				}
+				& path {
+					fill: var(--shep-orange) !important;
+				}
+				&:hover {
+					& circle {
+						stroke: var(--shep-green) !important;
+					}
+					& path {
+						fill: var(--shep-green) !important;
+					}
+				}
 			}
 		}
 	}

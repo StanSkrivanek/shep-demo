@@ -257,24 +257,26 @@
 		<!-- main -->
 		<!-- TODO: expand main content to last column on -->
 		<main>
-			<PortableText
-				value={content}
-				onMissingComponent={false}
-				components={{
-					block: {
-						// blockquote: Quote,
-						h1: CustomHeading,
-						h2: CustomHeading,
-						h3: CustomHeading,
-						h4: CustomHeading,
-						h5: CustomHeading,
-						normal: TextRte
-					},
-					types: {
-						image: ImageRte
-					}
-				}}
-			/>
+			<article>
+				<PortableText
+					value={content}
+					onMissingComponent={false}
+					components={{
+						block: {
+							// blockquote: Quote,
+							h1: CustomHeading,
+							h2: CustomHeading,
+							h3: CustomHeading,
+							h4: CustomHeading,
+							h5: CustomHeading,
+							normal: TextRte
+						},
+						types: {
+							image: ImageRte
+						}
+					}}
+				/>
+			</article>
 		</main>
 	</div>
 </div>

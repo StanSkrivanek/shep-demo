@@ -258,24 +258,26 @@
 		<!-- main -->
 		<!-- TODO: expand main content to last column on -->
 		<main>
-			<PortableText
-				value={content}
-				onMissingComponent={false}
-				components={{
-					block: {
-						// blockquote: Quote,
-						h1: CustomHeading,
-						h2: CustomHeading,
-						h3: CustomHeading,
-						h4: CustomHeading,
-						h5: CustomHeading,
-						normal: TextRte
-					},
-					types: {
-						image: ImageRte
-					}
-				}}
-			/>
+			<article>
+				<PortableText
+					value={content}
+					onMissingComponent={false}
+					components={{
+						block: {
+							// blockquote: Quote,
+							h1: CustomHeading,
+							h2: CustomHeading,
+							h3: CustomHeading,
+							h4: CustomHeading,
+							h5: CustomHeading,
+							normal: TextRte
+						},
+						types: {
+							image: ImageRte
+						}
+					}}
+				/>
+			</article>
 		</main>
 	</div>
 </div>
@@ -539,13 +541,13 @@
 				cursor: pointer;
 			}
 			& svg {
-			& circle {
-				stroke: color-mix(in oklab, var(--_base-color-private) 80%, black) !important;
+				& circle {
+					stroke: color-mix(in oklab, var(--_base-color-private) 80%, black) !important;
+				}
+				& path {
+					stroke: color-mix(in oklab, var(--_base-color-private) 80%, black) !important;
+				}
 			}
-			& path {
-				stroke: color-mix(in oklab, var(--_base-color-private) 80%, black) !important;
-			}
-		}
 		}
 		& .rotate {
 			transform: rotate(180deg);

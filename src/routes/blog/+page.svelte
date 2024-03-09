@@ -96,7 +96,7 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 						</div>
 						<div class="card-footer">
 							<a class="btn-link" href={`./blog/${post.category_slug}/${post.slug}`}>
-								<LinkCircle width={48} height={48} />
+								<LinkCircle width={42} height={42} />
 								<!-- <Arrow width={21} height={21} /> -->
 							</a>
 						</div>
@@ -310,6 +310,22 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	}
 	.btn-link {
 		pointer-events: all;
+		& svg {
+			& circle {
+					stroke: var(--shep-orange) !important;
+				}
+				& path {
+					fill: var(--shep-orange) !important;
+				}
+				&:hover {
+					& circle {
+						stroke: var(--shep-green) !important;
+					}
+					& path {
+						fill: var(--shep-green) !important;
+					}
+				}
+		}
 	}
 
 	/* Media Query */

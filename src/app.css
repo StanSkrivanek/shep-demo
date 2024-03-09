@@ -344,23 +344,27 @@ p:last-child {
 
 /* RTE ARTICLE */
 /* article { */
-	/* padding: 1rem; */
+/* padding: 1rem; */
 /* } */
-article .article-title h2,
-h3,
-h4,
-h5,
-h6 {
-	color: var(--clr-orange);
-		margin-bottom: 0;
+.article-title h2,
+.article-title h3,
+.article-title h4,
+.article-title h5,
+.article-title h6 {
+	/* color: var(--clr-orange); */
+	color: var(--clr-gray-600);
+	margin-bottom: 0;
 }
 
-article .article-title:not(:first-child) , article .article-title h3 {
+article .article-title:not(:first-child),
+article .article-title h3 {
 	padding-block: 0.5rem 0;
 	/* margin-bottom: 0; */
 }
 
-
+article > p:first-child {
+	margin-top: 0;
+}
 /* Table of content  */
 .toc-active {
 	color: var(--orange-800) !important;

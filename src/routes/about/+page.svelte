@@ -1,5 +1,5 @@
 <script>
-// @ts-nocheck
+	// @ts-nocheck
 
 	import Toc from '$lib/components/icons/Toc.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
@@ -73,8 +73,7 @@
 <div class="page__c">
 	<div class="hero" id="top">
 		<div class="hero-col-2__c">
-
-		<div class="hero-data">
+			<div class="hero-data">
 				<div>
 					<h1><span>{post.title}</span></h1>
 					<p class="excerpt">{post.excerpt}</p>
@@ -84,8 +83,7 @@
 			<div class="hero-img">
 				<img src={post.main_img} alt={post.title} />
 			</div>
-			</div>
-	
+		</div>
 	</div>
 	<div class="main__c">
 		<aside class="toc" class:toc-open={isTocOpen} use:clickOutside={() => (isTocOpen = false)}>
@@ -132,23 +130,25 @@
 					<Toc width={48} height={48} />
 				</div>
 			{/if}
-			<PortableText
-				value={post.content}
-				onMissingComponent={false}
-				components={{
-					block: {
-						h1: CustomHeading,
-						h2: CustomHeading,
-						h3: CustomHeading,
-						h4: CustomHeading,
-						h5: CustomHeading,
-						normal: TextRte
-					},
-					types: {
-						image: ImageRte
-					}
-				}}
-			/>
+			<article>
+				<PortableText
+					value={post.content}
+					onMissingComponent={false}
+					components={{
+						block: {
+							h1: CustomHeading,
+							h2: CustomHeading,
+							h3: CustomHeading,
+							h4: CustomHeading,
+							h5: CustomHeading,
+							normal: TextRte
+						},
+						types: {
+							image: ImageRte
+						}
+					}}
+				/>
+			</article>
 		</main>
 	</div>
 </div>
