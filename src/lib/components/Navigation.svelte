@@ -1,18 +1,19 @@
 <script>
 	import { onMount } from 'svelte';
-	// MEGAMENU
+	import Close from './icons/Close.svelte';
+	import NavBurger from './icons/NavBurger.svelte';
 
 	/**
 	 * @type {boolean}
 	 */
 	let isSubmenuOpen = false;
+	/**
+	 * @type {boolean}
+	 */
 	let isMobileNavOpen = false;
-	$: console.log('🚀 ~ isMobileNavOpen:', isMobileNavOpen);
 
 	onMount(() => {
 		const withChildren = [...document.querySelectorAll('.menu-item-has-children')];
-		// menu = document.querySelector('.menu');
-		// overlay = document.querySelector('.menu-overlay');
 
 		withChildren.forEach((el) => {
 			/**
@@ -20,7 +21,6 @@
 			 */
 			let sub = undefined;
 			el.addEventListener('mouseenter', (e) => {
-				// e.preventDefault();
 				sub = el.querySelector('.sub-menu');
 				sub?.classList.add('active');
 
@@ -28,7 +28,6 @@
 
 				dropdownLinks?.forEach((link) => {
 					link.addEventListener('click', (/** @type {{ preventDefault: () => void; }} */ e) => {
-						// e.preventDefault();
 						sub?.classList.remove('active');
 						isSubmenuOpen = false;
 					});
@@ -54,18 +53,13 @@
 			<div class="menu-overlay" class:active={isMobileNavOpen} />
 			<div class="menu" class:active={isMobileNavOpen}>
 				<div class="mobile-menu-head">
-					<div class="go-back">
-						<!-- <i class="fa fa-angle-left" /> -->
-						&gt; -
-					</div>
 					<div class="current-menu-title" />
 					<button
 						class="mobile-menu-close"
 						on:click={() => (isMobileNavOpen = !isMobileNavOpen)}
 						aria-label="Close mobile menu"
 					>
-						<!-- <i class="fa fa-times" /> -->
-						X
+						<Close />
 					</button>
 				</div>
 
@@ -103,13 +97,7 @@
 										>
 									</li>
 								</ul>
-								<!-- <div class="mm-img-w">
-									<img src="https://via.placeholder.com/150" alt="" />
-								</div> -->
 							</div>
-							<!-- <div class="list-item">
-								<ul role="list" class="" />
-							</div> -->
 						</div>
 					</li>
 					<li class="menu-item-has-children">
@@ -144,7 +132,7 @@
 					<!-- <li><a href="#">Upcoming Courses</a></li> -->
 					<li><a href="/blog" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Blog</a></li>
 					<li>
-						<a href="/about">About</a>
+						<a href="/about" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>About</a>
 					</li>
 					<li>
 						<a href="/contact" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Contact</a>
@@ -154,7 +142,7 @@
 		</div>
 		<div class="header-item item-right">
 			<button class="mobile-menu-trigger" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}
-				>XXX</button
+				><NavBurger width={32} height={32} /></button
 			>
 			<span>social</span>
 		</div>
@@ -183,7 +171,6 @@
 	/* header */
 	.header {
 		display: block;
-		/* width: 100%; */
 		max-width: 1474px;
 		margin-inline: auto;
 		position: relative;
@@ -220,7 +207,6 @@
 		display: inline-block;
 		line-height: 50px;
 		margin-left: 8px;
-		/*margin-left: 25px;*/
 	}
 	.header .menu > ul > li > a {
 		font-size: 1.25rem;
@@ -253,80 +239,12 @@
 			z-index: 200;
 		}
 	}
-	/* .header .menu > ul > li .sub-menu > ul > li {
-		line-height: 1;
-	} */
-	/* .header .menu > ul > li .sub-menu > ul > li > a {
-		display: inline-block;
-		padding: 10px 0;
-		font-size: 15px;
-		color: #555555;
-		transition: color 0.3s ease;
-		text-decoration: none;
-		text-transform: capitalize;
-	} */
-	/* .header .menu > ul > li .single-column-menu {
-		min-width: 280px;
-		max-width: 350px;
-	} */
-	/* .header .menu > ul > li .sub-menu.mega-menu > .list-item > ul > li {
-		line-height: 1;
-		display: block;
-	} */
-	/* .header .menu > ul > li .sub-menu.mega-menu > .list-item > ul > li > a {
-		padding: 10px 0;
-		display: inline-block;
-		font-size: 15px;
-		color: #555555;
-		transition: color 0.3s ease;
-	} */
-	/* .header .menu > ul > li .sub-menu.mega-menu {
-		left: 50%;
-		transform: translateX(-50%);
-	} */
 
-	/* .header .menu > ul > li .sub-menu.mega-menu-column-3 {
-		max-width: 1100px;
-		width: 100%;
-		display: flex;
-		flex-wrap: wrap;
-		padding: 20px 15px;
-	} */
-	/* .header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item {
-		flex: 0 0 33.3333%;
-		padding: 0 15px;
-	} */
-	/* .header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item .title {
-		font-size: 16px;
-		color: #ea4636;
-		font-weight: 500;
-		line-height: 1;
-		padding: 10px 0;
-	} */
-	/* .header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item.text-center .title {
-		text-align: center;
-	} */
-	/* .header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item img {
-		max-width: 100%;
-		width: 100%;
-		vertical-align: middle;
-		margin-top: 10px;
-	} */
-	/* .header .menu > ul > li .sub-menu.mega-menu > .list-item > ul > li > a:hover, */
-	/* .header .menu > ul > li .sub-menu > ul > li > a:hover, */
 	.header .item-right a:hover,
 	.header .menu > ul > li:hover > a {
 		color: var(--shep-orange);
 	}
-	/* banner section */
-	/* .banner-section {
-		background-image: url('../img/banner.jpg');
-		background-size: cover;
-		background-position: center;
-		height: 700px;
-		width: 100%;
-		display: block;
-	} */
+
 	.mobile-menu-head,
 	.mobile-menu-trigger {
 		display: none;
@@ -346,36 +264,15 @@
 			justify-content: space-between;
 		}
 		.header .mobile-menu-trigger {
+			border: none;
+			background: none;
 			display: flex;
-			height: 30px;
-			width: 30px;
 			margin-left: 15px;
 			cursor: pointer;
 			align-items: center;
 			justify-content: center;
 		}
-		.header .mobile-menu-trigger span {
-			display: block;
-			height: 2px;
-			background-color: #333333;
-			width: 24px;
-			position: relative;
-		}
-		.header .mobile-menu-trigger span:before,
-		.header .mobile-menu-trigger span:after {
-			content: '';
-			position: absolute;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-color: #333333;
-		}
-		.header .mobile-menu-trigger span:before {
-			top: -6px;
-		}
-		.header .mobile-menu-trigger span:after {
-			top: 6px;
-		}
+
 		.header .item-right {
 			align-items: center;
 		}
@@ -409,17 +306,7 @@
 			display: block;
 			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		}
-		/*.header .menu > ul > li > a i{
-		position: absolute;
-		height: 50px;
-		width: 50px;
-		top:0;
-		right: 0;
-		text-align: center;
-		line-height: 50px;
-		transform: rotate(-90deg);
-	}
-  */
+
 		.header .menu .mobile-menu-head {
 			display: flex;
 			height: 50px;
@@ -452,14 +339,15 @@
 			color: #000000;
 		}
 		.header .menu .mobile-menu-head .mobile-menu-close {
+			border: none;
+			background: none;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			height: 50px;
 			width: 50px;
 			border-left: 1px solid rgba(0, 0, 0, 0.1);
 			cursor: pointer;
-			line-height: 50px;
-			text-align: center;
-			color: #000000;
-			font-size: 25px;
 		}
 		.header .menu .menu-main {
 			height: 100%;
@@ -475,17 +363,16 @@
 			position: absolute;
 			box-shadow: none;
 			margin: 0;
-			/* padding: 15px; */
-			/* top: 0;
-			left: 0; */
+			padding-left: 2.4rem;
 			width: 100%;
 			height: 100%;
-			/* padding-top: 65px; */
+
 			max-width: none;
 			min-width: auto;
 			display: none;
 			/* transform: translateX(0%); */
 			overflow-y: auto;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		}
 		.sub-menu.active {
 			display: block;
@@ -494,7 +381,6 @@
 			/* padding: 0; */
 			display: block;
 			position: relative;
-			color: red;
 		}
 		.sub-menu > .list-item li {
 			display: block;
@@ -520,32 +406,7 @@
 				transform: translateX(100%);
 			}
 		}
-		/* .header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item img {
-			margin-top: 0;
-		} */
-		/* .header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item.text-center .title {
-			margin-bottom: 20px;
-		}
-		.header
-			.menu
-			> ul
-			> li
-			.sub-menu.mega-menu-column-3
-			> .list-item.text-center:last-child
-			.title {
-			margin-bottom: 0px;
-		}
-		.header .menu > ul > li .sub-menu.mega-menu-column-3 > .list-item {
-			flex: 0 0 100%;
-			padding: 0px;
-		}
-		.header .menu > ul > li .sub-menu > ul > li > a,
-		.header .menu > ul > li .sub-menu.mega-menu > .list-item > ul > li > a {
-			display: block;
-		}
-		.header .menu > ul > li .sub-menu.mega-menu > .list-item > ul {
-			margin-bottom: 15px;
-		} */
+
 		.menu-overlay {
 			position: fixed;
 			background-color: rgba(0, 0, 0, 0.5);
