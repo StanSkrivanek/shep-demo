@@ -11,15 +11,29 @@
 	 * @type {boolean}
 	 */
 	let isMobileNavOpen = false;
+	/**
+	 * @type {boolean}
+	 */
+	let isMobile = false;
 
+	// 
 	onMount(() => {
 		const withChildren = [...document.querySelectorAll('.menu-item-has-children')];
+
+		// ADD eventListener ony on Mobile devices
+		// Update isMobile when the window is resized
+		window.addEventListener('resize', () => {
+			isMobile = window.innerWidth < 991;
+		});
+		// Set initial value of isMobile
+		isMobile = window.innerWidth < 991;
 
 		withChildren.forEach((el) => {
 			/**
 			 * @type {Element | null | undefined}
 			 */
 			let sub = undefined;
+
 			el.addEventListener('mouseenter', (e) => {
 				sub = el.querySelector('.sub-menu');
 				sub?.classList.add('active');
@@ -65,8 +79,10 @@
 
 				<ul role="list" class="menu-main">
 					<li>
-						<a href="/" class="mm-nav-link" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}
-							>Home</a
+						<a
+							href="/"
+							class="mm-nav-link"
+							on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}>Home</a
 						>
 					</li>
 					<li class="menu-item-has-children">
@@ -79,21 +95,24 @@
 										<a
 											href="/courses/overview"
 											class="mega-nav-title"
-											on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Overview</a
+											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
+											>Overview</a
 										>
 									</li>
 									<li>
 										<a
 											href="/courses"
 											class="mega-nav-title"
-											on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Our Courses</a
+											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
+											>Our Courses</a
 										>
 									</li>
 									<li>
 										<a
 											href="/upcoming"
 											class="mega-nav-title"
-											on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Upcoming</a
+											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
+											>Upcoming</a
 										>
 									</li>
 								</ul>
@@ -109,16 +128,21 @@
 									<li>
 										<a
 											href="/trainings/overview"
-											on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Overview</a
+											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
+											>Overview</a
 										>
 									</li>
 									<li>
-										<a href="/trainings" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}
+										<a
+											href="/trainings"
+											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
 											>Our trainings</a
 										>
 									</li>
 									<li>
-										<a href="/upcoming" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}
+										<a
+											href="/upcoming"
+											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
 											>Upcoming</a
 										>
 									</li>
@@ -127,12 +151,21 @@
 						</div>
 					</li>
 					<li>
-						<a href="/venues" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Venues</a>
+						<a
+							href="/venues"
+							on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}>Venues</a
+						>
 					</li>
 					<!-- <li><a href="#">Upcoming Courses</a></li> -->
-					<li><a href="/blog" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Blog</a></li>
 					<li>
-						<a href="/about" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>About</a>
+						<a href="/blog" on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
+							>Blog</a
+						>
+					</li>
+					<li>
+						<a href="/about" on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
+							>About</a
+						>
 					</li>
 					<li>
 						<a href="/contact" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Contact</a>
@@ -141,7 +174,9 @@
 			</div>
 		</div>
 		<div class="header-item item-right">
-			<button class="mobile-menu-trigger" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}
+			<button
+				class="mobile-menu-trigger"
+				on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
 				><NavBurger width={32} height={32} /></button
 			>
 			<span>social</span>
@@ -177,29 +212,24 @@
 		z-index: 99;
 		padding: 15px;
 	}
-	
 	.header .item-left {
 		flex: 0 0 17%;
 	}
-
 	.header .logo a {
 		font-size: 30px;
 		color: #000000;
 		font-weight: 700;
 		text-decoration: none;
 	}
-
 	.header .item-center {
 		flex: 0 0 66%;
 		text-align: center;
 	}
-
 	.header .item-right {
 		flex: 0 0 17%;
 		display: flex;
 		justify-content: flex-end;
 	}
-
 	.header .item-right a {
 		text-decoration: none;
 		font-size: 16px;
@@ -208,13 +238,11 @@
 		margin-left: 10px;
 		transition: color 0.3s ease;
 	}
-
 	.header .menu > ul > li {
 		display: inline-block;
 		line-height: 50px;
 		margin-left: 8px;
 	}
-
 	.header .menu > ul > li > a {
 		font-size: 1.25rem;
 		font-weight: 500;
@@ -222,10 +250,6 @@
 		position: relative;
 		text-transform: capitalize;
 		transition: color 0.3s ease;
-	}
-
-	.mm-nav-link {
-		cursor: default;
 	}
 
 	.sub-menu {
@@ -310,13 +334,13 @@
 			top: 0;
 			height: 100%;
 			overflow: hidden;
-			left: -100%;
-			transition: left 0.5s ease-in-out;
+			transform: translate(-100%);
+			transition: transform 0.5s ease;
 			z-index: 1099;
 		}
 		.header .menu.active {
-			left: 0%;
-			transition: left 0.5s ease-in-out;
+			transform: translate(0%);
+			transition: transform 0.5s ease;
 			/* display: block; */
 		}
 		.header .menu > ul > li {
