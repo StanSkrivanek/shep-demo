@@ -1,5 +1,5 @@
 <script>
-	import { onMount, tick } from 'svelte';
+	import { onMount } from 'svelte';
 	// MEGAMENU
 
 	let isSubmenuOpen = false;
@@ -49,7 +49,7 @@
 				<div class="mobile-menu-head">
 					<div class="go-back">
 						<!-- <i class="fa fa-angle-left" /> -->
-						&gt; - 
+						&gt; -
 					</div>
 					<div class="current-menu-title" />
 					<div class="mobile-menu-close">
@@ -88,11 +88,15 @@
 					<li class="menu-item-has-children">
 						<!-- svelte-ignore a11y-invalid-attribute -->
 						<a href="#">Trainings</a>
-						<ul class="sub-menu" class:active={isSubmenuOpen === !isSubmenuOpen}>
-							<li><a href="/trainings/overview">Overview</a></li>
-							<li><a href="/trainings">Our trainings</a></li>
-							<li><a href="/upcoming">Upcoming</a></li>
-						</ul>
+						<div class="sub-menu" class:active={isSubmenuOpen === !isSubmenuOpen}>
+							<div class="list-item">
+								<ul role="list" class="">
+									<li><a href="/trainings/overview">Overview</a></li>
+									<li><a href="/trainings">Our trainings</a></li>
+									<li><a href="/upcoming">Upcoming</a></li>
+								</ul>
+							</div>
+						</div>
 					</li>
 					<li><a href="/venues">Venues</a></li>
 					<!-- <li><a href="#">Upcoming Courses</a></li> -->
@@ -355,7 +359,7 @@
 		.header .menu > ul > li > a {
 			line-height: 50px;
 			height: 50px;
-			padding: 0 50px 0 15px;
+			padding: 0 50px 0 1.6rem;
 			display: block;
 			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		}
@@ -416,34 +420,45 @@
 			overflow-x: hidden;
 			overflow-y: auto;
 		} */
-	
+		.menu-main {
+			height: 100%;
+			overflow-x: hidden;
+			overflow-y: auto;
+			text-align: left;
+		}
 		.sub-menu {
 			visibility: visible;
 			opacity: 1;
+			text-align: left;
 			/* position: absolute; */
 			/* box-shadow: none; */
 			margin: 0;
-			padding: 15px;
-			top: 0;
-			left: 0;
+			/* padding: 15px; */
+			/* top: 0;
+			left: 0; */
 			width: 100%;
 			height: 100%;
-			padding-top: 65px;
+			/* padding-top: 65px; */
 			max-width: none;
 			min-width: auto;
 			display: none;
 			transform: translateX(0%);
 			overflow-y: auto;
 		}
-		/* .sub-menu.active {
+		.sub-menu.active {
 			display: block;
-		} */
-		/* .sub-menu {
-			padding: 0;
+		}
+		.sub-menu {
+			/* padding: 0; */
 			display: block;
-			position:relative;
+			position: relative;
 			color: red;
-		} */
+		}
+		.sub-menu > .list-item li {
+			display: block;
+			padding-block: 0.75rem;
+			/* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
+		}
 		@keyframes slideLeft {
 			0% {
 				opacity: 0;
