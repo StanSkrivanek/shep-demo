@@ -2,10 +2,17 @@
 	import { onMount } from 'svelte';
 	// MEGAMENU
 
+	/**
+	 * @type {boolean}
+	 */
 	let isSubmenuOpen = false;
+	let isMobileNavOpen = false;
+	$: console.log('🚀 ~ isMobileNavOpen:', isMobileNavOpen);
+
 	onMount(() => {
 		const withChildren = [...document.querySelectorAll('.menu-item-has-children')];
-		// console.log('🚀 ~ onMount ~ withChildren:', withChildren);
+		// menu = document.querySelector('.menu');
+		// overlay = document.querySelector('.menu-overlay');
 
 		withChildren.forEach((el) => {
 			/**
@@ -44,36 +51,56 @@
 			<a href="/" class="logo">Logo</a>
 		</div>
 		<div class="header-item item-center">
-			<div class="menu-overlay" />
-			<div class="menu">
+			<div class="menu-overlay" class:active={isMobileNavOpen} />
+			<div class="menu" class:active={isMobileNavOpen}>
 				<div class="mobile-menu-head">
 					<div class="go-back">
 						<!-- <i class="fa fa-angle-left" /> -->
 						&gt; -
 					</div>
 					<div class="current-menu-title" />
-					<div class="mobile-menu-close">
+					<button
+						class="mobile-menu-close"
+						on:click={() => (isMobileNavOpen = !isMobileNavOpen)}
+						aria-label="Close mobile menu"
+					>
 						<!-- <i class="fa fa-times" /> -->
 						X
-					</div>
+					</button>
 				</div>
 
 				<ul role="list" class="menu-main">
-					<li><a href="/" class="mm-nav-link">Home</a></li>
+					<li>
+						<a href="/" class="mm-nav-link" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}
+							>Home</a
+						>
+					</li>
 					<li class="menu-item-has-children">
 						<!-- svelte-ignore a11y-invalid-attribute -->
 						<a href="#" class="mm-nav-link">Courses</a>
-						<div class="sub-menu" class:active={isSubmenuOpen === !isSubmenuOpen}>
+						<div class="sub-menu">
 							<div class="list-item">
 								<ul role="list" class="">
 									<li>
-										<a href="/courses/overview" class="mega-nav-title">Overview</a>
+										<a
+											href="/courses/overview"
+											class="mega-nav-title"
+											on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Overview</a
+										>
 									</li>
 									<li>
-										<a href="/courses" class="mega-nav-title">Our Courses</a>
+										<a
+											href="/courses"
+											class="mega-nav-title"
+											on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Our Courses</a
+										>
 									</li>
 									<li>
-										<a href="/upcoming" class="mega-nav-title">Upcoming</a>
+										<a
+											href="/upcoming"
+											class="mega-nav-title"
+											on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Upcoming</a
+										>
 									</li>
 								</ul>
 								<!-- <div class="mm-img-w">
@@ -87,30 +114,49 @@
 					</li>
 					<li class="menu-item-has-children">
 						<!-- svelte-ignore a11y-invalid-attribute -->
-						<a href="#">Trainings</a>
-						<div class="sub-menu" class:active={isSubmenuOpen === !isSubmenuOpen}>
+						<a href="#" class="mm-nav-link">Trainings</a>
+						<div class="sub-menu">
 							<div class="list-item">
 								<ul role="list" class="">
-									<li><a href="/trainings/overview">Overview</a></li>
-									<li><a href="/trainings">Our trainings</a></li>
-									<li><a href="/upcoming">Upcoming</a></li>
+									<li>
+										<a
+											href="/trainings/overview"
+											on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Overview</a
+										>
+									</li>
+									<li>
+										<a href="/trainings" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}
+											>Our trainings</a
+										>
+									</li>
+									<li>
+										<a href="/upcoming" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}
+											>Upcoming</a
+										>
+									</li>
 								</ul>
 							</div>
 						</div>
 					</li>
-					<li><a href="/venues">Venues</a></li>
+					<li>
+						<a href="/venues" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Venues</a>
+					</li>
 					<!-- <li><a href="#">Upcoming Courses</a></li> -->
-					<li><a href="/blog">Blog</a></li>
+					<li><a href="/blog" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Blog</a></li>
 					<li>
 						<a href="/about">About</a>
 					</li>
-					<li><a href="/contact">Contact</a></li>
+					<li>
+						<a href="/contact" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Contact</a>
+					</li>
 				</ul>
 			</div>
 		</div>
 		<div class="header-item item-right">
+			<button class="mobile-menu-trigger" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}
+				>XXX</button
+			>
 			<span>social</span>
-			<span class="mobile-menu-trigger">XXX</span>
 		</div>
 	</div>
 </div>
@@ -342,15 +388,15 @@
 			top: 0;
 			height: 100%;
 			overflow: hidden;
-			/* transform: translate(-100%); */
+			transform: translate(-100%);
 			transition: all 0.5s ease;
 			z-index: 1099;
 		}
-		/* .header .menu.active {
-		transform: translate(0%);
-	
-		display: block;
-		} */
+		.header .menu.active {
+			transform: translate(0%);
+
+			display: block;
+		}
 		.header .menu > ul > li {
 			line-height: 1;
 			margin: 0;
@@ -415,23 +461,19 @@
 			color: #000000;
 			font-size: 25px;
 		}
-		/* .header .menu .menu-main {
-			height: 100%;
-			overflow-x: hidden;
-			overflow-y: auto;
-		} */
-		.menu-main {
+		.header .menu .menu-main {
 			height: 100%;
 			overflow-x: hidden;
 			overflow-y: auto;
 			text-align: left;
 		}
+
 		.sub-menu {
 			visibility: visible;
 			opacity: 1;
 			text-align: left;
-			/* position: absolute; */
-			/* box-shadow: none; */
+			position: absolute;
+			box-shadow: none;
 			margin: 0;
 			/* padding: 15px; */
 			/* top: 0;
@@ -442,7 +484,7 @@
 			max-width: none;
 			min-width: auto;
 			display: none;
-			transform: translateX(0%);
+			/* transform: translateX(0%); */
 			overflow-y: auto;
 		}
 		.sub-menu.active {
@@ -457,7 +499,6 @@
 		.sub-menu > .list-item li {
 			display: block;
 			padding-block: 0.75rem;
-			/* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
 		}
 		@keyframes slideLeft {
 			0% {
@@ -517,9 +558,9 @@
 			opacity: 0;
 			transition: all 0.5s ease;
 		}
-		/* .menu-overlay.active {
+		.menu-overlay.active {
 			visibility: visible;
 			opacity: 1;
-		} */
+		}
 	}
 </style>
