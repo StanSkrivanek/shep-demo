@@ -15,18 +15,11 @@
 	 * @type {boolean}
 	 */
 	let isMobile = false;
-
-	// 
+	// Set initial value of isMobile
+	isMobile = window.innerWidth < 991;
+	//
 	onMount(() => {
 		const withChildren = [...document.querySelectorAll('.menu-item-has-children')];
-
-		// ADD eventListener ony on Mobile devices
-		// Update isMobile when the window is resized
-		window.addEventListener('resize', () => {
-			isMobile = window.innerWidth < 991;
-		});
-		// Set initial value of isMobile
-		isMobile = window.innerWidth < 991;
 
 		withChildren.forEach((el) => {
 			/**
@@ -58,6 +51,9 @@
 	});
 </script>
 
+<!--  Update isMobile when the window is resized -->
+<svelte:window on:resize={() => (isMobile = window.innerWidth <= 991)} />
+
 <div class="header">
 	<div class="row v-center">
 		<div class="header-item item-left">
@@ -79,10 +75,8 @@
 
 				<ul role="list" class="menu-main">
 					<li>
-						<a
-							href="/"
-							class="mm-nav-link"
-							on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}>Home</a
+						<a href="/" on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
+							>Home</a
 						>
 					</li>
 					<li class="menu-item-has-children">
@@ -168,7 +162,10 @@
 						>
 					</li>
 					<li>
-						<a href="/contact" on:click={() => (isMobileNavOpen = !isMobileNavOpen)}>Contact</a>
+						<a
+							href="/contact"
+							on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}>Contact</a
+						>
 					</li>
 				</ul>
 			</div>
@@ -266,6 +263,10 @@
 		text-align: left;
 		transition: transform 0.5s ease;
 	}
+	
+	.mm-nav-link {
+		cursor: default;
+	}
 
 	@media (min-width: 992px) {
 		.active {
@@ -305,13 +306,16 @@
 			order: 3;
 			flex: 0 0 100%;
 		}
+
 		.header .item-left,
 		.header .item-right {
 			flex: 0 0 auto;
 		}
+
 		.v-center {
 			justify-content: space-between;
 		}
+
 		.header .mobile-menu-trigger {
 			border: none;
 			background: none;
@@ -334,13 +338,14 @@
 			top: 0;
 			height: 100%;
 			overflow: hidden;
-			transform: translate(-100%);
-			transition: transform 0.5s ease;
+			left: -100%;
+			transition: left 0.5s ease;
 			z-index: 1099;
 		}
+
 		.header .menu.active {
-			transform: translate(0%);
-			transition: transform 0.5s ease;
+			left: 0%;
+			transition: left 0.5s ease;
 			/* display: block; */
 		}
 		.header .menu > ul > li {
