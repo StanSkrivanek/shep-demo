@@ -216,19 +216,24 @@
 		text-transform: capitalize;
 		transition: color 0.3s ease;
 	}
+
+	.mm-nav-link {
+		cursor: default;
+	}
+
 	.sub-menu {
 		position: absolute;
 		z-index: 100;
 		background-color: #ffffff;
 		box-shadow: -2px 2px 70px -25px rgba(0, 0, 0, 0.3);
 		padding: 20px 30px;
-		transition: all 0.5s ease;
-		margin-top: 25px;
+		margin-top: 1rem;
 		opacity: 0;
 		visibility: hidden;
 		border-radius: 0.5rem;
 		font-size: 1.25rem;
 		text-align: left;
+		transition: transform 0.5s ease;
 	}
 
 	@media (min-width: 992px) {
@@ -237,6 +242,7 @@
 			visibility: visible;
 			opacity: 1;
 			z-index: 200;
+			transition: all 0.5s ease;
 		}
 	}
 
@@ -250,6 +256,18 @@
 		display: none;
 	}
 
+	.menu-overlay {
+		position: fixed;
+		background-color: rgba(0, 0, 0, 0.5);
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1098;
+		visibility: hidden;
+		opacity: 0;
+		transition: all 0.5s ease;
+	}
 	/*responsive*/
 	@media (max-width: 991px) {
 		.header .item-center {
@@ -279,20 +297,20 @@
 
 		.header .menu {
 			position: fixed;
-			width: 320px;
+			width: 300px;
 			background-color: #ffffff;
 			left: 0;
 			top: 0;
 			height: 100%;
 			overflow: hidden;
-			transform: translate(-100%);
-			transition: all 0.5s ease;
+			left: -100%;
+			transition: left 0.5s ease-in-out;
 			z-index: 1099;
 		}
 		.header .menu.active {
-			transform: translate(0%);
-
-			display: block;
+			left: 0%;
+			transition: left 0.5s ease-in-out;
+			/* display: block; */
 		}
 		.header .menu > ul > li {
 			line-height: 1;
@@ -319,20 +337,7 @@
 			background-color: #ffffff;
 			top: 0;
 		}
-		.header .menu .mobile-menu-head .go-back {
-			height: 50px;
-			width: 50px;
-			border-right: 1px solid rgba(0, 0, 0, 0.1);
-			cursor: pointer;
-			line-height: 50px;
-			text-align: center;
-			color: #000000;
-			font-size: 16px;
-			display: none;
-		}
-		.header .menu .mobile-menu-head.active .go-back {
-			display: block;
-		}
+
 		.header .menu .mobile-menu-head .current-menu-title {
 			font-size: 15px;
 			font-weight: 500;
@@ -374,9 +379,7 @@
 			overflow-y: auto;
 			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 		}
-		.sub-menu.active {
-			display: block;
-		}
+
 		.sub-menu {
 			/* padding: 0; */
 			display: block;
@@ -407,18 +410,6 @@
 			}
 		}
 
-		.menu-overlay {
-			position: fixed;
-			background-color: rgba(0, 0, 0, 0.5);
-			left: 0;
-			top: 0;
-			width: 100%;
-			height: 100%;
-			z-index: 1098;
-			visibility: hidden;
-			opacity: 0;
-			transition: all 0.5s ease;
-		}
 		.menu-overlay.active {
 			visibility: visible;
 			opacity: 1;
