@@ -131,7 +131,7 @@
 					}}
 					on:keyup={() => (isTocOpen = !isTocOpen)}
 				>
-					<Toc width={48} height={48} />
+					<Toc width={60} height={60} />
 				</div>
 			{/if}
 			<article>

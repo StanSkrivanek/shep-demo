@@ -177,24 +177,29 @@
 		z-index: 99;
 		padding: 15px;
 	}
+	
 	.header .item-left {
 		flex: 0 0 17%;
 	}
+
 	.header .logo a {
 		font-size: 30px;
 		color: #000000;
 		font-weight: 700;
 		text-decoration: none;
 	}
+
 	.header .item-center {
 		flex: 0 0 66%;
 		text-align: center;
 	}
+
 	.header .item-right {
 		flex: 0 0 17%;
 		display: flex;
 		justify-content: flex-end;
 	}
+
 	.header .item-right a {
 		text-decoration: none;
 		font-size: 16px;
@@ -203,11 +208,13 @@
 		margin-left: 10px;
 		transition: color 0.3s ease;
 	}
+
 	.header .menu > ul > li {
 		display: inline-block;
 		line-height: 50px;
 		margin-left: 8px;
 	}
+
 	.header .menu > ul > li > a {
 		font-size: 1.25rem;
 		font-weight: 500;
