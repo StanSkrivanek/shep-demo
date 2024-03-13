@@ -18,7 +18,7 @@ const config = {
 			// show or hide the inspector option
 			showToggleButton: 'always',
 			// inspector position
-			toggleButtonPos: 'top-right'
+			toggleButtonPos: 'bottom-right'
 		}
 	}
 	// vitePlugins: {

@@ -1,25 +1,22 @@
 <script>
 	import { onMount } from 'svelte';
 	import Close from './icons/Close.svelte';
+	import Facebook from './icons/Facebook.svelte';
+	import Instagram from './icons/Instagram.svelte';
 	import NavBurger from './icons/NavBurger.svelte';
+	import Twitter from './icons/Twitter.svelte';
+	import MainLogoNew from './icons/MainLogoNew.svelte';
+	import MainLogo from './icons/MainLogo.svelte';
 
-	/**
-	 * @type {boolean}
-	 */
 	let isSubmenuOpen = false;
-	/**
-	 * @type {boolean}
-	 */
 	let isMobileNavOpen = false;
-	/**
-	 * @type {boolean}
-	 */
 	let isMobile = false;
-	// Set initial value of isMobile
-	isMobile = window.innerWidth < 991;
-	//
+
 	onMount(() => {
 		const withChildren = [...document.querySelectorAll('.menu-item-has-children')];
+
+		// Set initial value of isMobile
+		isMobile = window.innerWidth < 991;
 
 		withChildren.forEach((el) => {
 			/**
@@ -57,7 +54,9 @@
 <div class="header">
 	<div class="row v-center">
 		<div class="header-item item-left">
-			<a href="/" class="logo">Logo</a>
+			<a href="/" class="logo">
+			<MainLogoNew width={50} height={50} />
+			</a>
 		</div>
 		<div class="header-item item-center">
 			<div class="menu-overlay" class:active={isMobileNavOpen} />
@@ -171,12 +170,18 @@
 			</div>
 		</div>
 		<div class="header-item item-right">
+			<div class="social">
+				<Twitter width={32} height={32} />
+
+				<Facebook width={32} height={32} />
+
+				<Instagram width={32} height={32} />
+			</div>
 			<button
 				class="mobile-menu-trigger"
 				on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
 				><NavBurger width={32} height={32} /></button
 			>
-			<span>social</span>
 		</div>
 	</div>
 </div>
@@ -263,11 +268,15 @@
 		text-align: left;
 		transition: transform 0.5s ease;
 	}
-	
+
 	.mm-nav-link {
 		cursor: default;
 	}
-
+	.social {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 	@media (min-width: 992px) {
 		.active {
 			margin-top: 0;
