@@ -4,11 +4,12 @@
 	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDateYear, monthYear } from '$lib/utils/datehelpers';
 	import { counties, source } from '$lib/utils/globalhelpers';
+
 	import { onMount } from 'svelte';
 
 	// variable form contain the form `data` and `issues` from validation
 	export let form;
-	// console.log('🚀 ~ file: +page.svelte:10 ~ FORM CLIENT:', form);
+	console.log('🚀 ~ file: +page.svelte:10 ~ FORM CLIENT:', form);
 
 	let courseData = $singleEventStore;
 
@@ -26,17 +27,34 @@
 		// need for refreshing form page without losing data
 		if (Object.keys(courseData).length === 0) {
 			courseData = JSON.parse(localStorage.getItem('singleEventStore'));
-			
 		}
 	});
 </script>
+
 <svelte:head>
 	<title>Application form</title>
 	<meta name="description" content="Application form for upcoming courses" />
 </svelte:head>
 <div class="page__c">
+	<!-- display success thankyou if form success is true display it for 3s -->
+
+	<!-- display success thankyou if form success is true display it for 3s-->
+
+	{#if !form?.success}
+		<div class="msg__c">
+			<div class="msg-success">
+				<h1>Thank you for your application</h1>
+				<p>
+					We have received your application and will be in touch with you shortly. Please check your
+					email for confirmation.
+				</p>
+				<!-- send email to form?.data?.email-->
+				
+			</div>
+		</div>
+	{/if}
+
 	{#if courseData.event}
-		
 		<form method="POST" action="?/sendToGoogle">
 			<div class="form-header">
 				<p>Application form for {courseData.event.type}</p>
@@ -308,16 +326,22 @@
 		& .form-header {
 			padding: 1rem;
 			margin-bottom: 1rem;
+			background: var(--shep-orange);
+			color: var(--fc-white);
+			border-radius: 0.25rem;
 		}
 		& h1 {
 			margin-bottom: 0.25rem;
+			color: var(--fc-white);
 		}
 		& h2 {
 			font-size: 1.5rem;
 			font-weight: 700;
 			margin-bottom: 1rem;
 			padding: 1rem;
-			background-color: var(--gray-2);
+			background-color: var(--shep-blue);
+			color: var(--fc-white);
+			border-radius: 0.25rem;
 		}
 		& p {
 			margin: 0.25rem;
@@ -326,7 +350,7 @@
 			margin-bottom: 1rem;
 		}
 		& span {
-			font-size: var(--sm);
+			/* font-size: var(--sm); */
 			font-weight: 400;
 		}
 		& .personal-data,
@@ -334,7 +358,7 @@
 		& .form-group {
 			display: flex;
 			flex-direction: column;
-			padding: 1rem;
+			padding-block: 1rem;
 			margin-bottom: 1rem;
 			& .input-group {
 				display: flex;
@@ -497,6 +521,40 @@
 	.table__w {
 		overflow-x: auto;
 	}
+
+	.msg__c {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: rgba(0, 0, 0, 0.8);
+		z-index: 1000;
+	}
+
+	/* center msg-success on screen */
+	.msg-success {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+		background-color: var(--green-300);
+		padding: 2rem;
+		margin-bottom: 1rem;
+		border-radius: 0.25rem;
+		& h1 {
+			margin-bottom: 0.25rem;
+		}
+		& p {
+			max-width: 100vw;
+			margin: 0.25rem;
+		}
+	}
+
 	/* select::-ms-expand {
 		display: none;
 	} */

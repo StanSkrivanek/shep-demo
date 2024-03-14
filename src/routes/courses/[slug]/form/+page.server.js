@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { API3_URL } from '$env/static/private';
-import { fail } from '@sveltejs/kit';
+import { fail} from '@sveltejs/kit';
+
 // svelte default actions
 export const actions = {
 	sendToGoogle: async ({ request }) => {
@@ -25,7 +26,7 @@ export const actions = {
 		const applicant = {
 			...formData
 		};
-		console.log('🚀 ~ default: ~ applicant:', applicant);
+		console.log('🚀 ~ default: ~ applicant:', applicant.email);
 		const sid = applicant.sheetID;
 
 		// add sheet url with ID as searchParam
@@ -37,9 +38,9 @@ export const actions = {
 
 		console.log(`Please hold ${applicant.name}, we are sending your application data`);
 		try {
-
-			// TODO: add toast
-			// run sending data toast
+			// TODO: open modal with spinner and message 'please wait, we are sending your application data'
+			
+			console.log(`Please hold ${applicant.name}, we are sending your application data`);
 
 			const response = await fetch(scriptUrl, {
 				method: 'POST',
@@ -49,8 +50,7 @@ export const actions = {
 				},
 				body: JSON.stringify(applicant)
 			});
-			// console.log('🚀 ~ default: ~ response:', response);
-			// if response is not ok, return fail
+
 			if (!response.ok) {
 				// console.log('🚀 ~ default: ~ BAD-response:', response);
 				return fail(response.status, {
@@ -60,9 +60,16 @@ export const actions = {
 			}
 			// console.log('🚀 ~ default: ~ GOOD-response:', response);
 			// run Thank you toast
+			// TODO: and open thank you toast
+			// openToast("Thank you for your application. We will be in touch soon.");
 			console.log('Thank you for your application. We will be in touch soon.');
+			// return success
 			return { success: true };
+		
+			
 		} catch (error) {
+			// open toast with error
+			// openToast('There was an error sending your application data. Please try again');
 			console.log('🚀 ~ default: ~ error:', error);
 			return fail('500', {
 				status: '500',
@@ -70,4 +77,41 @@ export const actions = {
 			});
 		}
 	}
+	// sendEmail: async ({ request }) => {
+	// 	const formData = Object.fromEntries(await request.formData());
+	// 	// const formData = await request.formData();
+	// 	if (!formData.inPerson) {
+	// 		// if inPerson is not checked, add the key and set it to 'no'
+	// 		formData.inPerson = '---';
+	// 	}
+	// 	if (!formData.online) {
+	// 		// if online is not checked, set it to 'no'
+	// 		formData.online = '---';
+	// 	}
+	// 	if (!formData.county) {
+	// 		formData.county = '';
+	// 	}
+	// 	if (!formData.source) {
+	// 		formData.source = '';
+	// 	}
+
+	// 	// applicant form object
+	// 	const applicant = {
+	// 		...formData
+	// 	};
+	// 	console.log('🚀 ~ default: ~ applicant:', applicant);
+	// 	const sid = applicant.sheetID;
+
+	// 	// add sheet url with ID as searchParam
+	// 	const sheetUrl = `https://script.google.com/macros/s/${sid}/exec`;
+
+	// 	console.log('🚀 ~ sendToGoogle: ~ sheetUrl:', sheetUrl);
+	// 	// `url` is link to google script that will trigger function to add data to google sheet
+	// 	const scriptUrl = API3_URL;
+
+	// 	console.log(`Please hold ${applicant.name}, we are sending your application data`);
+	// 	try {
+
+
+
 };
