@@ -37,10 +37,7 @@
 </svelte:head>
 <div class="page__c">
 	<!-- display success thankyou if form success is true display it for 3s -->
-
-	<!-- display success thankyou if form success is true display it for 3s-->
-
-	{#if !form?.success}
+	{#if form?.success}
 		<div class="msg__c">
 			<div class="msg-success">
 				<h1>Thank you for your application</h1>
@@ -48,8 +45,6 @@
 					We have received your application and will be in touch with you shortly. Please check your
 					email for confirmation.
 				</p>
-				<!-- send email to form?.data?.email-->
-				
 			</div>
 		</div>
 	{/if}
@@ -60,7 +55,7 @@
 				<p>Application form for {courseData.event.type}</p>
 				<h1>{courseData.event.title}</h1>
 				<p>
-					In <b>{courseData.venue.venue_name}</b>, {courseData.venue.city} starting
+					In <b>{courseData.venue.city} - {courseData.venue.venue_name}</b> starting
 					<b>{monthYear(courseData.in_person.start_date)}<b /></b>
 				</p>
 			</div>
@@ -69,53 +64,56 @@
 				<h2>Personal data <span><i>( mandatory )</i></span></h2>
 				<!-- name  -->
 				<div class="form-group">
-					<div class="input-group">
-						<label for="name">Name</label>
-						<input
-							type="text"
-							id="name"
-							name="name"
-							placeholder="Your full name.."
-							value={form?.data?.name || ''}
-							required
-						/>
-						{#if form?.errors?.name}
-							<span class="form-err-msg">{form?.issues.message[0]}</span>
-						{/if}
-					</div>
-					<!-- email -->
-					<div class="input-group">
-						<label for="email">Email</label>
-						<input
-							type="email"
-							id="email"
-							name="email"
-							placeholder="Your email.."
-							value={form?.data?.email || ''}
-							reqquired
-						/>
+					<div class="row">
+						<div class="input-group">
+							<label for="name">Name</label>
+							<input
+								type="text"
+								id="name"
+								name="name"
+								placeholder="Your full name.."
+								value={form?.data?.name ?? ''}
+								required
+							/>
+							{#if form?.errors?.name}
+								<span class="form-err-msg">{form?.issues.message[0]}</span>
+							{/if}
+						</div>
+						<!-- email -->
+						<div class="input-group">
+							<label for="email">Email</label>
+							<input
+								type="email"
+								id="email"
+								name="email"
+								placeholder="Your email.."
+								value={form?.data?.email ?? ''}
+								reqquired
+							/>
+						</div>
 					</div>
 					<!-- phone -->
-					<div class="input-group">
-						<label for="phone">Phone</label>
-						<input
-							type="tel"
-							id="phone"
-							name="phone"
-							placeholder="Your phone number.."
-							value={form?.data?.phone || ''}
-							required
-						/>
-					</div>
-					<!-- address -->
-					<div class="input-group">
-						<label for="county">County you live in <span><i>( optional )</i></span></label>
-						<select name="county" id="county">
-							<option disabled selected value="">-- Select an Option --</option>
-							{#each counties as county}
-								<option value={county}>{county}</option>
-							{/each}
-						</select>
+					<div class="row">
+						<div class="input-group">
+							<label for="county">County you live in <span><i>( optional )</i></span></label>
+							<select name="county" id="county">
+								<option disabled selected value="">-- Select an Option --</option>
+								{#each counties as county}
+									<option value={county}>{county}</option>
+								{/each}
+							</select>
+						</div>
+						<div class="input-group">
+							<label for="phone">Phone</label>
+							<input
+								type="tel"
+								id="phone"
+								name="phone"
+								placeholder="Your phone number.."
+								value={form?.data?.phone ?? ''}
+								required
+							/>
+						</div>
 					</div>
 					<!-- Medical needs -->
 					<div class="input-group">
@@ -129,27 +127,31 @@
 							placeholder="Please specify or leave empty"
 							cols="30"
 							rows="10"
-							value={form?.data?.medicalNeeds || ''}
+							value={form?.data?.medicalNeeds ?? ''}
 						/>
 					</div>
-					<div class="input-group">
-						<!-- emergency contact -->
-						<label for="emergency">Emergency contact</label>
-						<input
-							type="text"
-							id="emergency"
-							name="emergency"
-							placeholder="Emergency contact name.."
-							value={form?.data?.emergency || ''}
-						/>
-						<label for="emergencyPhone">Emergency contact phone number</label>
-						<input
-							type="tel"
-							id="emergencyPhone"
-							name="emergencyPhone"
-							placeholder="Emergency contact phone number.."
-							value={form?.data?.emergencyPhone || ''}
-						/>
+					<div class="row">
+						<div class="input-group">
+							<!-- emergency contact -->
+							<label for="emergency">Emergency contact</label>
+							<input
+								type="text"
+								id="emergency"
+								name="emergency"
+								placeholder="Emergency contact name.."
+								value={form?.data?.emergency ?? ''}
+							/>
+						</div>
+						<div class="input-group">
+							<label for="emergencyPhone">Emergency contact phone number</label>
+							<input
+								type="tel"
+								id="emergencyPhone"
+								name="emergencyPhone"
+								placeholder="Emergency contact phone number.."
+								value={form?.data?.emergencyPhone ?? ''}
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -157,29 +159,31 @@
 				<h2>Additional data <span><i>( optional )</i></span></h2>
 				<!-- source -->
 				<div class="form-group">
-					<div class="input-group">
-						<label for="source">How did you hear about this course?</label>
-						<select name="source" id="source">
-							<option disabled selected value="">-- Select an Option --</option>
-							{#each source as source}
-								<option value={source}>{source}</option>
-							{/each}
-						</select>
-					</div>
+					<div class="row">
+						<div class="input-group">
+							<label for="source">How did you hear about this course?</label>
+							<select name="source" id="source">
+								<option disabled selected value="">-- Select an Option --</option>
+								{#each source as source}
+									<option value={source}>{source}</option>
+								{/each}
+							</select>
+						</div>
 
-					<!-- reference -->
-					<div class="input-group">
-						<label for="reference"
-							>If referred to the course by another person please specify?<span>(optional)</span
-							></label
-						>
-						<input
-							type="text"
-							id="reference"
-							name="reference"
-							placeholder="person name"
-							value={form?.data?.reference || ''}
-						/>
+						<!-- reference -->
+						<div class="input-group">
+							<label for="reference"
+								>If referred to the course by another person please specify?<span>(optional)</span
+								></label
+							>
+							<input
+								type="text"
+								id="reference"
+								name="reference"
+								placeholder="person name"
+								value={form?.data?.reference || ''}
+							/>
+						</div>
 					</div>
 					<div class="input-group">
 						<label for="why">Why are you applying for the course?</label>
@@ -244,7 +248,7 @@
 									<td>{formatTime12(courseData.in_person.end_date)}</td>
 								</tr>
 							{/if}
-							<tr />
+
 							{#if courseData.online?.is_active === true}
 								<tr>
 									<td
@@ -277,12 +281,14 @@
 			<div class="agreement">
 				<label for="privacy">
 					<input type="checkbox" id="privacy" name="privacy" value="yes" required />
-					Yes, I have read SHEPs privacy guidelines and agree to them
+					<p>Yes, I have read SHEPs privacy guidelines and agree to them</p>
 				</label>
 				<label for="consent">
 					<input type="checkbox" id="consent" name="consent" value="yes" required />
-					Yes, I give consent to SHEP to hold these details for the purposes of sending information to
-					me on this upcoming course and other SHEP courses and events.
+					<p>
+						Yes, I give consent to SHEP to hold these details for the purposes of sending
+						information to me on this upcoming course and other SHEP courses and events.
+					</p>
 				</label>
 				<!-- <input type="text" id="coursedata" name="coursedata" value={coursedata.id} > -->
 			</div>
@@ -320,37 +326,38 @@
 		flex-direction: column;
 		background-color: var(--fc-white);
 		/* padding: 1rem; */
+		background: var(--yellow-200);
 	}
 	form {
 		padding-bottom: 2rem;
 		& .form-header {
 			padding: 1rem;
 			margin-bottom: 1rem;
-			background: var(--shep-orange);
-			color: var(--fc-white);
 			border-radius: 0.25rem;
 		}
 		& h1 {
 			margin-bottom: 0.25rem;
-			color: var(--fc-white);
+			color: var(--orange-700);
+	
 		}
 		& h2 {
 			font-size: 1.5rem;
 			font-weight: 700;
 			margin-bottom: 1rem;
 			padding: 1rem;
-			background-color: var(--shep-blue);
-			color: var(--fc-white);
+			background-color: var(--yellow-400);
 			border-radius: 0.25rem;
 		}
 		& p {
 			margin: 0.25rem;
+			& b {
+				color: var(--orange-700);
+			}
 		}
 		& p:first-child {
 			margin-bottom: 1rem;
 		}
 		& span {
-			/* font-size: var(--sm); */
 			font-weight: 400;
 		}
 		& .personal-data,
@@ -364,6 +371,7 @@
 				display: flex;
 				flex-direction: column;
 				margin-bottom: 0.5rem;
+				width: 100%;
 				& label {
 					font-size: 1.2rem;
 					font-weight: 600;
@@ -386,9 +394,12 @@
 				}
 			}
 		}
+		& .row {
+			display: flex;
+			gap: 1rem;
+		}
 		/* table */
 		& .attending-opt {
-			padding: 1rem;
 			& table {
 				width: 100%;
 				border-collapse: collapse;
@@ -412,6 +423,7 @@
 							font-weight: 400;
 							text-align: left;
 						}
+						
 					}
 				}
 				& .ticker {
@@ -423,13 +435,16 @@
 		& .agreement {
 			display: flex;
 			flex-direction: column;
-			padding: 3rem 1.5rem;
+			padding: 3rem 0.5rem;
 			& label {
 				font-size: var(--sm);
-				font-weight: 600;
+				font-weight: 400;
 				margin-bottom: 0.25rem;
 				position: relative;
 				cursor: pointer;
+				& p {
+					max-width: 100vw;
+				}
 			}
 		}
 
@@ -443,7 +458,7 @@
 			padding: var(--unit);
 			margin: 0 calc(var(--unit) / 2) 0 0;
 			border-radius: calc(var(--unit) * 0.3);
-			background: var(--bg);
+			background: white;
 			line-height: 1;
 			vertical-align: middle;
 			outline: none;
@@ -554,34 +569,28 @@
 			margin: 0.25rem;
 		}
 	}
+	.agreement label {
+			display: flex;
+			padding-bottom: 1rem;
+			
+		}
 
-	/* select::-ms-expand {
-		display: none;
-	} */
+	/* MediaQueries */
 
-	/* hover style */
-	/* select:hover {
-		border-color: var(--gray-2) !important;
-	} */
-
-	/* focus style */
-	/* select:focus {
-		border-color: var(--gray-2) !important;
-		box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7) !important;
-		box-shadow: 0 0 0 3px -moz-mac-focusring !important;
-		color: var(--fc-main);
-		outline: none;
-	} */
-
-	/* active style */
-	/* select:active {
-		border-color: var(--gray-2) !important;
-	} */
-
-	/* placeholder style */
-	/* select option[disabled] {
-		color: var(--gray-2);
-	} */
-
-	/* placeholder style */
+	@media (max-width: 768px) {
+		.row {
+			flex-direction: column;
+		}
+		td {
+			text-wrap: nowrap;
+		}
+		.agreement label {
+			display: flex;
+			padding-bottom: 1rem;
+		}
+		.agreement label p {
+			margin-block-start: -0.25rem;
+		}
+		
+	}
 </style>
