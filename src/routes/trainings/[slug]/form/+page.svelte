@@ -248,6 +248,7 @@
 									<td>{monthNameDateYear(courseData.online.end_date)}</td>
 									<td>{formatTime12(courseData.online.start_date)}</td>
 									<td>{formatTime12(courseData.online.end_date)}</td>
+									
 								</tr>
 							{/if}
 						</tbody>
@@ -286,6 +287,7 @@
 				/>
 				<input type="hidden" name="courseGroup" value={courseData.online.group} />
 				<input type="hidden" name="sheetID" value={courseData.sheetID} />
+					<input type="hidden" name="refName" value={courseData.refName} />
 			</div>
 			<div class="submit">
 				<button type="submit">Submit</button>

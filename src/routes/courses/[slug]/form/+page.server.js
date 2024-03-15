@@ -38,11 +38,11 @@ export const actions = {
 		// `url` is link to google script that will trigger function to add data to google sheet
 		const scriptUrl = API3_URL;
 
-		console.log(`Please hold ${applicant.name}, we are sending your application data`);
+		// console.log(`Please hold ${applicant.name}, we are sending your application data`);
 		try {
 			// TODO: open modal with spinner and message 'please wait, we are sending your application data'
 
-			console.log(`Please hold ${applicant.name}, we are sending your application data`);
+			// console.log(`Please hold ${applicant.name}, we are sending your application data`);
 
 			// send data to GOOGLE SHEET
 			const response = await fetch(scriptUrl, {

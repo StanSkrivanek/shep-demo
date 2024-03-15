@@ -318,8 +318,8 @@ export const getAllUpcomingTrainings = async () => {
 	'form': application_form {
 		'asset': asset->url
   },
-  'sheetID': sheet_id,
-
+	'sheetID': sheet_id,
+	'refName': ref_name,
  
 }
 `;
@@ -357,6 +357,7 @@ export const getAllUpcomingTrainingsforCurrentVenue = async (/** @type {undefine
 		'asset': asset->url
   }, 
    'sheetID': sheet_id,
+	'refName': ref_name,
 }
 `;
 
@@ -392,7 +393,8 @@ export const getAllUpcomingTrainingsForCurrentTraining = async (/** @type {undef
 	'form': application_form {
 		'asset': asset->url
   },
-  'sheetID': sheet_id,
+  	'sheetID': sheet_id,
+	'refName': ref_name,
 }
 `;
 
