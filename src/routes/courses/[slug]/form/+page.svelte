@@ -324,8 +324,7 @@
 	.page__c {
 		display: flex;
 		flex-direction: column;
-		background-color: var(--fc-white);
-		/* padding: 1rem; */
+border-radius: 0.5rem;
 		background: var(--yellow-200);
 	}
 	form {
@@ -532,6 +531,7 @@
 		background-repeat: no-repeat;
 		background-position: right 0.7em top 50%, 0 0;
 		background-size: 0.65em auto, 100%;
+		/* background-color: white; */
 	}
 	.table__w {
 		overflow-x: auto;

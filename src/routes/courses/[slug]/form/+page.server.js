@@ -1,6 +1,7 @@
 // @ts-nocheck
-import { API3_URL } from '$env/static/private';
-import { fail} from '@sveltejs/kit';
+import { API3_URL, GOOGLE_EMAIL } from '$env/static/private';
+import transporter from '$lib/mail/nodemailer.server';
+import { fail } from '@sveltejs/kit';
 
 // svelte default actions
 export const actions = {
@@ -27,6 +28,7 @@ export const actions = {
 			...formData
 		};
 		console.log('🚀 ~ default: ~ applicant:', applicant.email);
+
 		const sid = applicant.sheetID;
 
 		// add sheet url with ID as searchParam
@@ -39,7 +41,7 @@ export const actions = {
 		console.log(`Please hold ${applicant.name}, we are sending your application data`);
 		try {
 			// TODO: open modal with spinner and message 'please wait, we are sending your application data'
-			
+
 			console.log(`Please hold ${applicant.name}, we are sending your application data`);
 
 			const response = await fetch(scriptUrl, {
@@ -62,11 +64,41 @@ export const actions = {
 			// run Thank you toast
 			// TODO: and open thank you toast
 			// openToast("Thank you for your application. We will be in touch soon.");
-			console.log('Thank you for your application. We will be in touch soon.');
+			// console.log('Thank you for your application. We will be in touch soon.');
 			// return success
+
+			const html = `
+			<div>
+			<h2>Hello ${applicant.name}</h2>
+			<p>Thank you for your application for ${applicant.courseTitle} in ${applicant.courseVenue}, ${applicant.courseCity} starting ${applicant.course_start}.</p>
+			<p>We will be in touch soon.</p>
+			</div>
+			`;
+
+
+			// email message setup
+			const emailMessage = {
+				from: `FineDiv Studio <${GOOGLE_EMAIL}>`,
+				to: `"${applicant.email}"`,
+				subject: `Application confirmation`,
+				html
+			};
+			// @ts-ignore
+			const sendEmail = async (emailMessage) => {
+				await new Promise((resolve, reject) => {
+					transporter.sendMail(emailMessage, (err, info) => {
+						if (err) {
+							console.log('transporter ERR', err);
+							reject(err);
+						} else {
+							console.log('transporter messageId', info.messageId);
+							resolve(info);
+						}
+					});
+				});
+			};
+			await sendEmail(emailMessage);
 			return { success: true };
-		
-			
 		} catch (error) {
 			// open toast with error
 			// openToast('There was an error sending your application data. Please try again');
@@ -77,41 +109,4 @@ export const actions = {
 			});
 		}
 	}
-	// sendEmail: async ({ request }) => {
-	// 	const formData = Object.fromEntries(await request.formData());
-	// 	// const formData = await request.formData();
-	// 	if (!formData.inPerson) {
-	// 		// if inPerson is not checked, add the key and set it to 'no'
-	// 		formData.inPerson = '---';
-	// 	}
-	// 	if (!formData.online) {
-	// 		// if online is not checked, set it to 'no'
-	// 		formData.online = '---';
-	// 	}
-	// 	if (!formData.county) {
-	// 		formData.county = '';
-	// 	}
-	// 	if (!formData.source) {
-	// 		formData.source = '';
-	// 	}
-
-	// 	// applicant form object
-	// 	const applicant = {
-	// 		...formData
-	// 	};
-	// 	console.log('🚀 ~ default: ~ applicant:', applicant);
-	// 	const sid = applicant.sheetID;
-
-	// 	// add sheet url with ID as searchParam
-	// 	const sheetUrl = `https://script.google.com/macros/s/${sid}/exec`;
-
-	// 	console.log('🚀 ~ sendToGoogle: ~ sheetUrl:', sheetUrl);
-	// 	// `url` is link to google script that will trigger function to add data to google sheet
-	// 	const scriptUrl = API3_URL;
-
-	// 	console.log(`Please hold ${applicant.name}, we are sending your application data`);
-	// 	try {
-
-
-
 };
