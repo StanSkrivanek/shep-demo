@@ -1,6 +1,5 @@
 <script>
 	// @ts-nocheck
-
 	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDateYear, monthYear } from '$lib/utils/datehelpers';
 	import { counties, source } from '$lib/utils/globalhelpers';
@@ -309,6 +308,7 @@
 				/>
 				<input type="hidden" name="courseGroup" value={courseData.online.group} />
 				<input type="hidden" name="sheetID" value={courseData.sheetID} />
+				<input type="hidden" name="refName" value={courseData.refName} />
 			</div>
 			<div class="submit">
 				<button type="submit">Submit</button>

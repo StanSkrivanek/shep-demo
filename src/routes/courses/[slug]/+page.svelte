@@ -10,9 +10,10 @@
 	import { slide } from 'svelte/transition';
 
 	export let data;
-	// console.log('🚀 ~ file: +page.svelte:12 ~ data:', data);
-	const { title, excerpt, full_price, funded_price, main_img, content, brochure, slug } =
+	// Registered Event
+	const { title, excerpt, full_price, funded_price, main_img, content, brochure, slug, ref_name } =
 		data.course;
+	// Upcoming Events
 	const upcoming = data.allOpenCourses;
 
 	/**
@@ -44,6 +45,7 @@
 	function storeCourseData(node) {
 		$singleEventStore = node;
 		localStorage.setItem('singleEventStore', JSON.stringify(node));
+		// localStorage.setItem('refName', node.refName);
 	}
 </script>
 

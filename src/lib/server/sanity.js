@@ -83,7 +83,6 @@ export const getAllCourses = async () => {
 	 "slug": slug.current,
 	 excerpt,
 	 type,
-	 
 	 "main_img": main_image.asset->url,
 	 "content": content[] {
 		...,
@@ -118,6 +117,7 @@ export const getSingleCourse = async (/** @type {undefined} */ slug) => {
 		} 
 	 },
 	 "brochure": brochure.asset->url,
+	 
   }`;
 	const course = await client.fetch(query, { slug });
 	return course;
@@ -130,7 +130,7 @@ export const getAllUpcomingCourses = async () => {
 	"id":_id,
 	'in_person': in_person {
 		...,
-				'leader': course_leader[] {
+		'leader': course_leader[] {
 		_type == 'reference' => @->{name}    
 	},
 	},
@@ -153,6 +153,8 @@ export const getAllUpcomingCourses = async () => {
       'asset': asset->url
   },
   'sheetID':  sheet_id,
+  'refName': ref_name,
+
 }
 `;
 
@@ -166,6 +168,7 @@ export const getAllUpcomingCoursesforCurrentVenue = async (/** @type {undefined}
 	const allUpcomingCoursesQuery = `*[_type == "open_course" && is_active == true && venue->slug.current == $slug]{
 	"id":_id,
 	'generalType' : "course",
+	
 	'in_person': in_person {
 		...,
 		'leader': course_leader[] {
@@ -189,7 +192,7 @@ export const getAllUpcomingCoursesforCurrentVenue = async (/** @type {undefined}
 		'asset': asset->url
   },
    'sheetID':  sheet_id,
- 
+   'refName': ref_name,
 }
 `;
 
@@ -225,6 +228,7 @@ export const getAllUpcomingCoursesForCurrentCourse = async (/** @type {undefined
 		'asset': asset->url
   },
   'sheetID':  sheet_id,
+  'refName': ref_name,
 }
 `;
 
@@ -635,7 +639,7 @@ export const getAboutUsPage = async () => {
 	return aboutUs;
 };
 
-export const coursesOverview = async () =>{
+export const coursesOverview = async () => {
 	const client = sanityClient();
 	const query = `*[_type == "page" && slug.current == "courses-overview"][0]{
    "title": article_title,
@@ -658,9 +662,9 @@ export const coursesOverview = async () =>{
 
 	let coursesOverview = await client.fetch(query);
 	return coursesOverview;
-}
+};
 
-export const trainingsOverview = async () =>{
+export const trainingsOverview = async () => {
 	const client = sanityClient();
 	const query = `*[_type == "page" && slug.current == "trainings-overview"][0]{
 	"title": article_title,
@@ -683,7 +687,7 @@ export const trainingsOverview = async () =>{
 
 	let trainingsOverview = await client.fetch(query);
 	return trainingsOverview;
-}
+};
 
 // get `contact` page
 
