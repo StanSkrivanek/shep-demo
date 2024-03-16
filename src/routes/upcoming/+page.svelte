@@ -3,7 +3,7 @@
 
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	export let data;
-	console.log('🚀 ~ data:', data);
+	// console.log('🚀 ~ data:', data);
 	const cities = data.allUpcomingEvents.map(
 		(/** @type {{ venue: { city: string; }; }} */ event) => event.venue.city
 	);

@@ -7,8 +7,8 @@
 	import Twitter from '$lib/components/icons/TwitterMember.svelte';
 
 	export let data;
-
 </script>
+
 <svelte:head>
 	<title>Our Team</title>
 	<meta name="description" content="Meet our team of experts" />
@@ -41,7 +41,7 @@
 					{/if}
 					<!-- Email -->
 					{#if member.email}
-					<!-- {console.log("ENCODE",encodeURIComponent(member.email))} -->
+						<!-- {console.log("ENCODE",encodeURIComponent(member.email))} -->
 						<a class="link" href="mailto:{member.email}">
 							<div class="link-icon">
 								<Mail width={24} height={24} />
@@ -95,6 +95,10 @@
 		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 		gap: 1rem;
 	}
+	.separator-heading {
+		text-wrap: nowrap;
+	}
+
 	.team-card {
 		display: grid;
 		grid-template-areas: 'thumbnail' 'header' 'intro' 'contact';
@@ -105,7 +109,8 @@
 			[contact] 4rem;
 		border: 1px solid var(--gray-100);
 		transition: all 0.3s ease-in-out;
-		
+		border-radius: 1rem;
+
 		&:hover {
 			box-shadow: 8px 10px 15px -3px var(--gray-100);
 		}
@@ -154,19 +159,20 @@
 			align-items: center;
 			justify-content: center;
 			border-top: 1px solid var(--gray-100);
-			
-	
-	
+
 			& .link-icon {
 				margin-top: 0.5rem;
 				padding: 0 0.25rem;
-				& svg:hover path {
+				& svg path {
 					width: 1.5rem;
 					height: 1.5rem;
 					stroke: var(--shep-orange);
 				}
+				
+				&:hover path {
+					stroke: var(--shep-green);
+				}
 			}
 		}
 	}
-
 </style>

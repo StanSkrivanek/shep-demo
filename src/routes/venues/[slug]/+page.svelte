@@ -27,7 +27,7 @@
 		image
 	} = data.venue;
 	const upcoming = data.allUpcomingEvents;
-	console.log('🚀 ~ upcomingEvents:', upcoming);
+	// console.log('🚀 ~ upcomingEvents:', upcoming);
 
 	/**
 	 * @type {number | boolean | null}

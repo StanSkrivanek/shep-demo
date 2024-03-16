@@ -8,7 +8,7 @@
 
 	// variable form contain the form `data` and `issues` from validation
 	export let form;
-	console.log('🚀 ~ file: +page.svelte:10 ~ FORM CLIENT:', form);
+	// console.log('🚀 ~ file: +page.svelte:10 ~ FORM CLIENT:', form);
 
 	let courseData = $singleEventStore;
 
@@ -364,7 +364,7 @@ border-radius: 0.5rem;
 		& .form-group {
 			display: flex;
 			flex-direction: column;
-			padding-block: 1rem;
+			/* padding-block: 1rem; */
 			margin-bottom: 1rem;
 			& .input-group {
 				display: flex;

@@ -49,7 +49,7 @@ export const actions = {
 			// console.log('🚀 ~ default: ~ response:', response);
 			// if response is not ok, return fail
 			if (!response.ok) {
-				console.log('🚀 ~ default: ~ BAD-response:', response);
+				// console.log('🚀 ~ default: ~ BAD-response:', response);
 				return fail(response.status, {
 					status: response.status,
 					statusText: response.statusText

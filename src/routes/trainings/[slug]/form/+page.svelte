@@ -52,55 +52,56 @@
 				<!-- name  -->
 
 				<div class="form-group">
-					<div class="input-group">
-						<label for="name">Name</label>
-						<input
-							type="text"
-							id="name"
-							name="name"
-							placeholder="Your full name.."
-							value={form?.data?.name || ''}
-							required
-						/>
-						{#if form?.errors?.name}
-							<span class="form-err-msg">{form?.issues.message[0]}</span>
-						{/if}
+					<div class="row">
+						<div class="input-group">
+							<label for="name">Name</label>
+							<input
+								type="text"
+								id="name"
+								name="name"
+								placeholder="Your full name.."
+								value={form?.data?.name || ''}
+								required
+							/>
+							{#if form?.errors?.name}
+								<span class="form-err-msg">{form?.issues.message[0]}</span>
+							{/if}
+						</div>
+						<!-- email -->
+						<div class="input-group">
+							<label for="email">Email</label>
+							<input
+								type="email"
+								id="email"
+								name="email"
+								placeholder="Your email.."
+								value={form?.data?.email || ''}
+								reqquired
+							/>
+						</div>
 					</div>
-					<!-- email -->
-					<div class="input-group">
-						<label for="email">Email</label>
-						<input
-							type="email"
-							id="email"
-							name="email"
-							placeholder="Your email.."
-							value={form?.data?.email || ''}
-							reqquired
-						/>
+					<div class="row">
+						<div class="input-group">
+							<label for="county">County you live in <span><i>( optional )</i></span></label>
+							<select name="county" id="county">
+								<option disabled selected value="">-- Select an Option --</option>
+								{#each counties as county}
+									<option value={county}>{county}</option>
+								{/each}
+							</select>
+						</div>
+						<div class="input-group">
+							<label for="phone">Phone</label>
+							<input
+								type="tel"
+								id="phone"
+								name="phone"
+								placeholder="Your phone number.."
+								value={form?.data?.phone || ''}
+								required
+							/>
+						</div>
 					</div>
-					<!-- phone -->
-					<div class="input-group">
-						<label for="phone">Phone</label>
-						<input
-							type="tel"
-							id="phone"
-							name="phone"
-							placeholder="Your phone number.."
-							value={form?.data?.phone || ''}
-							required
-						/>
-					</div>
-					<!-- address -->
-					<div class="input-group">
-						<label for="county">County you live in <span><i>( optional )</i></span></label>
-						<select name="county" id="county">
-							<option disabled selected value="">-- Select an Option --</option>
-							{#each counties as county}
-								<option value={county}>{county}</option>
-							{/each}
-						</select>
-					</div>
-					<!-- Medical needs -->
 					<div class="input-group">
 						<label for="medicalNeeds"
 							>Please specify if there are any special or medical needs that we should be aware of
@@ -115,54 +116,58 @@
 							value={form?.data?.medicalNeeds || ''}
 						/>
 					</div>
-					<div class="input-group">
-						<!-- emergency contact -->
-						<label for="emergency">Emergency contact</label>
-						<input
-							type="text"
-							id="emergency"
-							name="emergency"
-							placeholder="Emergency contact name.."
-							value={form?.data?.emergency || ''}
-						/>
-						<label for="emergencyPhone">Emergency contact phone number</label>
-						<input
-							type="tel"
-							id="emergencyPhone"
-							name="emergencyPhone"
-							placeholder="Emergency contact phone number.."
-							value={form?.data?.emergencyPhone || ''}
-						/>
+					<div class="row">
+						<div class="input-group">
+							<label for="emergency">Emergency contact</label>
+							<input
+								type="text"
+								id="emergency"
+								name="emergency"
+								placeholder="Emergency contact name.."
+								value={form?.data?.emergency || ''}
+							/>
+						</div>
+						<div class="input-group">
+							<label for="emergencyPhone">Emergency contact phone number</label>
+							<input
+								type="tel"
+								id="emergencyPhone"
+								name="emergencyPhone"
+								placeholder="Emergency contact phone number.."
+								value={form?.data?.emergencyPhone || ''}
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="additional-data">
 				<h2>Additional data <span><i>( optional )</i></span></h2>
-				<!-- source -->
 				<div class="form-group">
-					<div class="input-group">
-						<label for="source">How did you hear about this course?</label>
-						<select name="source" id="source">
-							<option disabled selected value="">-- Select an Option --</option>
-							{#each source as source}
-								<option value={source}>{source}</option>
-							{/each}
-						</select>
-					</div>
+					<div class="row">
+						<div class="input-group">
+							<label for="source">How did you hear about this course?</label>
+							<select name="source" id="source">
+								<option disabled selected value="">-- Select an Option --</option>
+								{#each source as source}
+									<option value={source}>{source}</option>
+								{/each}
+							</select>
+						</div>
 
-					<!-- reference -->
-					<div class="input-group">
-						<label for="reference"
-							>If referred to the course by another person please specify?<span>(optional)</span
-							></label
-						>
-						<input
-							type="text"
-							id="reference"
-							name="reference"
-							placeholder="person name"
-							value={form?.data?.reference || ''}
-						/>
+						<!-- reference -->
+						<div class="input-group">
+							<label for="reference"
+								>If referred to the course by another person please specify?<span>(optional)</span
+								></label
+							>
+							<input
+								type="text"
+								id="reference"
+								name="reference"
+								placeholder="person name"
+								value={form?.data?.reference || ''}
+							/>
+						</div>
 					</div>
 					<div class="input-group">
 						<label for="why">Why are you applying for the course?</label>
@@ -248,7 +253,6 @@
 									<td>{monthNameDateYear(courseData.online.end_date)}</td>
 									<td>{formatTime12(courseData.online.start_date)}</td>
 									<td>{formatTime12(courseData.online.end_date)}</td>
-									
 								</tr>
 							{/if}
 						</tbody>
@@ -287,7 +291,7 @@
 				/>
 				<input type="hidden" name="courseGroup" value={courseData.online.group} />
 				<input type="hidden" name="sheetID" value={courseData.sheetID} />
-					<input type="hidden" name="refName" value={courseData.refName} />
+				<input type="hidden" name="refName" value={courseData.refName} />
 			</div>
 			<div class="submit">
 				<button type="submit">Submit</button>
@@ -303,33 +307,38 @@
 	.page__c {
 		display: flex;
 		flex-direction: column;
-		background-color: var(--fc-white);
-		
+		border-radius: 0.5rem;
+		background: var(--yellow-200);
 	}
 	form {
 		padding-bottom: 2rem;
 		& .form-header {
 			padding: 1rem;
 			margin-bottom: 1rem;
+			border-radius: 0.25rem;
 		}
 		& h1 {
 			margin-bottom: 0.25rem;
+			color: var(--orange-700);
 		}
 		& h2 {
 			font-size: 1.5rem;
 			font-weight: 700;
 			margin-bottom: 1rem;
 			padding: 1rem;
-			background-color: var(--gray-2);
+			background-color: var(--yellow-400);
+			border-radius: 0.25rem;
 		}
 		& p {
 			margin: 0.25rem;
+			& b {
+				color: var(--orange-700);
+			}
 		}
 		& p:first-child {
 			margin-bottom: 1rem;
 		}
 		& span {
-			font-size: var(--sm);
 			font-weight: 400;
 		}
 		& .personal-data,
@@ -337,12 +346,13 @@
 		& .form-group {
 			display: flex;
 			flex-direction: column;
-			padding: 1rem;
+			/* padding-block: 1rem; */
 			margin-bottom: 1rem;
 			& .input-group {
 				display: flex;
 				flex-direction: column;
 				margin-bottom: 0.5rem;
+				width: 100%;
 				& label {
 					font-size: 1.2rem;
 					font-weight: 600;
@@ -365,9 +375,12 @@
 				}
 			}
 		}
+		& .row {
+			display: flex;
+			gap: 1rem;
+		}
 		/* table */
 		& .attending-opt {
-			padding: 1rem;
 			& table {
 				width: 100%;
 				border-collapse: collapse;
@@ -402,13 +415,16 @@
 		& .agreement {
 			display: flex;
 			flex-direction: column;
-			padding: 3rem 1.5rem;
+			padding: 3rem 0.5rem;
 			& label {
 				font-size: var(--sm);
-				font-weight: 600;
+				font-weight: 400;
 				margin-bottom: 0.25rem;
 				position: relative;
 				cursor: pointer;
+				& p {
+					max-width: 100vw;
+				}
 			}
 		}
 
@@ -422,7 +438,7 @@
 			padding: var(--unit);
 			margin: 0 calc(var(--unit) / 2) 0 0;
 			border-radius: calc(var(--unit) * 0.3);
-			background: var(--bg);
+			background: white;
 			line-height: 1;
 			vertical-align: middle;
 			outline: none;
@@ -496,37 +512,64 @@
 		background-repeat: no-repeat;
 		background-position: right 0.7em top 50%, 0 0;
 		background-size: 0.65em auto, 100%;
+		/* background-color: white; */
 	}
 	.table__w {
 		overflow-x: auto;
 	}
-	/* select::-ms-expand {
-		display: none;
-	} */
 
-	/* hover style */
-	/* select:hover {
-		border-color: var(--gray-2) !important;
-	} */
+	.msg__c {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: rgba(0, 0, 0, 0.8);
+		z-index: 1000;
+	}
 
-	/* focus style */
-	/* select:focus {
-		border-color: var(--gray-2) !important;
-		box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7) !important;
-		box-shadow: 0 0 0 3px -moz-mac-focusring !important;
-		color: var(--fc-main);
-		outline: none;
-	} */
+	/* center msg-success on screen */
+	.msg-success {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+		background-color: var(--green-300);
+		padding: 2rem;
+		margin-bottom: 1rem;
+		border-radius: 0.25rem;
+		& h1 {
+			margin-bottom: 0.25rem;
+		}
+		& p {
+			max-width: 100vw;
+			margin: 0.25rem;
+		}
+	}
+	.agreement label {
+		display: flex;
+		padding-bottom: 1rem;
+	}
 
-	/* active style */
-	/* select:active {
-		border-color: var(--gray-2) !important;
-	} */
+	/* MediaQueries */
 
-	/* placeholder style */
-	/* select option[disabled] {
-		color: var(--gray-2);
-	} */
-
-	/* placeholder style */
+	@media (max-width: 768px) {
+		.row {
+			flex-direction: column;
+		}
+		td {
+			text-wrap: nowrap;
+		}
+		.agreement label {
+			display: flex;
+			padding-bottom: 1rem;
+		}
+		.agreement label p {
+			margin-block-start: -0.25rem;
+		}
+	}
 </style>

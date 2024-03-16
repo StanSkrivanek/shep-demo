@@ -93,7 +93,7 @@ function pauseSlides() {
 
 // This functionality is only basic
 function keysNav(e) {
-  console.log(e.keyCode);
+  // console.log(e.keyCode);
   switch (e.keyCode) {
     case 37: // arr <
       clearInterval(slideInterval);
