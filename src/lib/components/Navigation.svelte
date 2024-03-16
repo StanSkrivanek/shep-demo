@@ -3,10 +3,9 @@
 	import Close from './icons/Close.svelte';
 	import Facebook from './icons/Facebook.svelte';
 	import Instagram from './icons/Instagram.svelte';
+	import MainLogoNew from './icons/MainLogoNew.svelte';
 	import NavBurger from './icons/NavBurger.svelte';
 	import Twitter from './icons/Twitter.svelte';
-	import MainLogoNew from './icons/MainLogoNew.svelte';
-	import MainLogo from './icons/MainLogo.svelte';
 
 	let isSubmenuOpen = false;
 	let isMobileNavOpen = false;
@@ -55,7 +54,7 @@
 	<div class="row v-center">
 		<div class="header-item item-left">
 			<a href="/" class="logo">
-			<MainLogoNew width={50} height={50} />
+				<MainLogoNew width={50} height={50} />
 			</a>
 		</div>
 		<div class="header-item item-center">
@@ -143,13 +142,37 @@
 							</div>
 						</div>
 					</li>
+					<li class="menu-item-has-children">
+						<!-- svelte-ignore a11y-invalid-attribute -->
+						<a href="#" class="mm-nav-link">Projects</a>
+						<div class="sub-menu">
+							<div class="list-item">
+								<ul role="list" class="">
+									<li>
+										<a
+											href="/advocacy"
+											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
+											>Advocacy</a
+										>
+									</li>
+									<li>
+										<a
+											href="/counselling"
+											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
+											>Counselling</a
+										>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</li>
 					<li>
 						<a
 							href="/venues"
 							on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}>Venues</a
 						>
 					</li>
-					<!-- <li><a href="#">Upcoming Courses</a></li> -->
+
 					<li>
 						<a href="/blog" on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
 							>Blog</a
@@ -362,6 +385,7 @@
 			margin: 0;
 			display: block;
 		}
+
 		.header .menu > ul > li > a {
 			line-height: 50px;
 			height: 50px;
@@ -405,7 +429,9 @@
 			overflow-y: auto;
 			text-align: left;
 		}
-
+		.menu-main > li:hover {
+			background-color: var(--gray-1);
+		}
 		.sub-menu {
 			visibility: visible;
 			opacity: 1;

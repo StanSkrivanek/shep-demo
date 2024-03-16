@@ -640,6 +640,58 @@ export const getAboutUsPage = async () => {
 	let aboutUs = await client.fetch(query);
 	return aboutUs;
 };
+// Counselling page
+export const getCounsellingPage = async () => {
+	const client = sanityClient();
+	const query = `*[_type == "page" && slug.current == "shep-counselling"][0]{
+	"title": article_title,
+	"excerpt": post_excerpt,
+	"slug": slug.current,
+	"main_img": hero_image.asset->url,
+	"category": post_category->blog_category,
+  	"category_slug": post_category->slug.current,
+	"author": post_author[] {
+		_type == 'reference' => @->{name}    
+		  },
+	"content": post_body[] {
+		...,
+		_type == "image" => {
+			...,
+			"asset": asset->
+		}
+	}
+}`;
+
+	let counselling = await client.fetch(query);
+	return counselling;
+};
+
+// SHEP Advocacy page
+export const getShepAdvocacyPage = async () => {
+	const client = sanityClient();
+	const query = `*[_type == "page" && slug.current == "shep-advocacy"][0]{
+	"title": article_title,
+	"excerpt": post_excerpt,
+	"slug": slug.current,
+	"main_img": hero_image.asset->url,
+	"category": post_category->blog_category,
+  	"category_slug": post_category->slug.current,
+	"author": post_author[] {
+		_type == 'reference' => @->{name}    
+		  },
+	"content": post_body[] {
+		...,
+		_type == "image" => {
+			...,
+			"asset": asset->
+		}
+	}
+}`;
+
+	let shepAdvocacy = await client.fetch(query);
+	return shepAdvocacy;
+};
+
 
 export const coursesOverview = async () => {
 	const client = sanityClient();
