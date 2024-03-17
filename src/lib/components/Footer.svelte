@@ -40,20 +40,31 @@
 			<p>Mid-West - (081) 356 6698</p>
 			<p>Kerry - (083) 155 7887</p>
 		</div>
-		<div class="group">
-			<h5>EMAIL</h5>
-			<p>info@socialhealth.ie</p>
-		</div>
+
+		<!-- <p>info@socialhealth.ie</p> -->
 	</div>
 	<div class="footer__section">
 		<!-- <h3 class="footer__title">Locations</h3> -->
 		<div class="group">
-			<h5>Locations</h5>
-			<p>SHEP Cork</p>
-			<p>SHEP Kerry</p>
-			<p>SHEP Mid West (Limerick, Clare, Tipperary)</p>
-			<p>SHEP Waterford</p>
-			<p>SHEP Dublin</p>
+			<h5>Organization</h5>
+			<div>
+				<a class="footer__link" href="/about">About us</a>
+			</div>
+			<!-- <div>
+				<a class="footer__link" href="/terms">Terms</a>
+			</div> -->
+			<!-- <div>
+				<a class="footer__link" href="/privacy">Privacy</a>
+			</div> -->
+			<!-- <div>
+				<a class="footer__link" href="/cookies">Cookies</a>
+			</div> -->
+			<!-- <div>
+				<a class="footer__link" href="/sitemap">Sitemap</a>
+			</div> -->
+			<div>
+				<a class="footer__link" href="/contact">Contact</a>
+			</div>
 		</div>
 		<div class="group">
 			<h5>Accreditation</h5>
@@ -64,17 +75,30 @@
 				/>
 			</div>
 		</div>
+		<!-- <div class="group">
+			<h5>Locations</h5>
+			<p>SHEP Cork</p>
+			<p>SHEP Kerry</p>
+			<p>SHEP Mid West (Limerick, Clare, Tipperary)</p>
+			<p>SHEP Waterford</p>
+			<p>SHEP Dublin</p>
+		</div> -->
 	</div>
 	<div class="footer__section">
 		<div class="group">
-			<h5>Publications & Reports</h5>
-			<p>report and publications links</p>
+			<h5>Other info</h5>
+			<div>
+				<a class="footer__link" href="/reports">Publications</a>
+			</div>
+			<div>
+				<a class="footer__link" href="/recruitment">Recruitment</a>
+			</div>
 		</div>
 		<div class="group">
-			<h5>Shep Newsletter</h5>
-			<!-- Latest news and events -->
-			<p>latest Nuacht</p>
-			<p>Nuacht Archive link</p>
+			<h5>SHEP Nuacht</h5>
+			<div>
+				<a class="footer__link" href="/archive">Archive</a>
+			</div>
 		</div>
 		<div class="group">
 			<form action="">
@@ -105,13 +129,13 @@
 			& h5 {
 				margin-bottom: 0.75rem;
 				font-family: var(--ff-gilroy-smb);
-            border-bottom: 1px solid var(--gray-50);
-            line-height: 1.6rem;
+				border-bottom: 1px solid var(--gray-50);
+				line-height: 1.6rem;
 			}
 			& .img__w {
 				max-width: 100%;
 				padding-inline: 1rem;
-			
+
 				& img {
 					display: block;
 					width: 100%;
@@ -124,24 +148,24 @@
 		}
 	}
 
-	.footer__title {
+	/* .footer__title {
 		font-size: 1.5rem;
 		font-weight: 600;
 		margin-bottom: 1rem;
-	}
+	} */
 
-	.footer__list {
+	/* .footer__list {
 		list-style: none;
 		padding: 0;
 		margin: 0;
-	}
+	} */
 
-	.footer__item {
+	/* .footer__item {
 		margin-bottom: 0.5rem;
-	}
+	} */
 
 	.footer__link {
-		color: #fff;
+		/* color: #fff; */
 		text-decoration: none;
 		transition: color 0.3s ease-in-out;
 	}
@@ -164,17 +188,17 @@
 		}
 	}
 
-   form{
-      width:100%;
-      /* border: 1px solid red; */
-      & label {
-         margin-bottom: 0.5rem;
-         font-family: var(--ff-gilroy-smb);
-      }
+	form {
+		width: 100%;
+		/* border: 1px solid red; */
+		& label {
+			margin-bottom: 0.5rem;
+			font-family: var(--ff-gilroy-smb);
+		}
 		& input[type='email'] {
-         /* all: unset; */
+			/* all: unset; */
 			width: 100%;
-       font-size: 1rem;
+			font-size: 1rem;
 			padding: 0.5rem;
 			border: 1px solid var(--gray-100);
 			border-radius: 0.25rem;
@@ -189,14 +213,13 @@
 			color: #fff;
 			font-weight: 600;
 			cursor: pointer;
-         text-transform: uppercase;
+			text-transform: uppercase;
 		}
 		& input[type='submit']:hover {
 			background-color: var(--blue-800);
 		}
-   }
+	}
 	@media (max-width: 1280px) {
-
 	}
 
 	@media (max-width: 1024px) {
@@ -216,6 +239,4 @@
 			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 		}
 	}
-
-	
 </style>

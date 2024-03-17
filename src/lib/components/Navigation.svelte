@@ -178,17 +178,17 @@
 							>Blog</a
 						>
 					</li>
-					<li>
+					<!-- <li>
 						<a href="/about" on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
 							>About</a
 						>
-					</li>
-					<li>
+					</li> -->
+					<!-- <li>
 						<a
 							href="/contact"
 							on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}>Contact</a
 						>
-					</li>
+					</li> -->
 				</ul>
 			</div>
 		</div>

@@ -48,7 +48,10 @@
 	--h6: var(--base-size);
 	--sm: calc(var(--base-size) / var(--scale));
 	--xs: calc(var(--sm) / var(--scale));
-
+	/* --placeholder: calc(var(--base-size) var(--scale));
+ */
+	/* calculate base on vw */
+	--placeholder: clamp(1rem, -0.25rem + 4vw, 2rem);
 	/* typography */
 	--ff-inter: 'Inter', sans-serif;
 	--ff-gilroy: 'Gilroy', sans-serif;

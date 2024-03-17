@@ -1,17 +1,5 @@
 import { GOOGLE_EMAIL } from '$env/static/private';
 import transporter from '$lib/mail/nodemailer.server';
-// import { contactEmailSchema } from '$lib/types';
-
-/** @type {import('./$types').PageServerLoad} */
-// import { getAllProjects } from '$lib/server/sanity';
-
-// export async function load() {
-// 	const projects = await getAllProjects();
-// 	return {
-// 		projects
-// 	};
-// }
-
 /** @type {import('./$types').Actions} */
 export const actions = {
 	default: async ({ request }) => {
@@ -20,8 +8,7 @@ export const actions = {
 		const contactEmailData = {
 			name: formData.get('name'),
 			email: formData.get('email'),
-			service: formData.getAll('service'),
-			budget: formData.get('budget'),
+			phone: formData.get('phone'),
 			message: formData.get('message')
 		};
 		try {
@@ -31,29 +18,24 @@ export const actions = {
 			const html = `
 			<table>
 				<thead>
-					<tr style="padding: 8px; border:1px solid #ccc; background: #ccc;">
-						<th>Info</th>
-						<th>Data</th>
+					<tr style="padding: 16px; border:1px solid #eee; background: #cde2f4;">
+						<th style="font-size: 1.2rem; padding: 16px 8px;">Label</th>
+						<th style="font-size: 1.2rem; padding: 16px 8px;">Data</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr style="">
+					<tr style="font-size: 1.2rem">
 						<td style="padding: 8px; background: #eee;">Name</td>
 						<td style="padding: 8px;">${contactEmailData.name}</td>
 					</tr>
-					<tr>
+					<tr style="font-size: 1.2rem">
 						<td style="padding: 8px; background: #eee;">Email</td>
 						<td style="padding: 8px;">${contactEmailData.email}</td>
 						
 					</tr>
-					<tr>
-						<td style="padding: 8px; background: #eee;">Services</td>
-						<td style="padding: 8px;">${contactEmailData.service}</td>
-						
-					</tr>
-					<tr>
-						<td style="padding: 8px; background: #eee;">Budget</td>
-						<td style="padding: 8px;">${contactEmailData.budget}</td>
+					<tr style="font-size: 1.2rem">
+						<td style="padding: 8px; background: #eee;">Phone</td>
+						<td style="padding: 8px;">${contactEmailData.phone}</td>
 						
 					</tr>
 				</tbody>
@@ -67,7 +49,7 @@ export const actions = {
 			const emailMessage = {
 				from: `"${contactEmailData.name}" <${contactEmailData.email}>`,
 				to: GOOGLE_EMAIL,
-				subject: `New message from Profile website`,
+				subject: `New message from SHEP website`,
 				html
 			};
 			// @ts-ignore

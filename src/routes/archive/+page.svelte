@@ -1,0 +1,23 @@
+<script>
+   import { onMount } from 'svelte';
+   // import { MainLogo } from '$lib/components/Icons/MainLogo.svelte';
+   // import { Instagram } from '$lib/components/Icons/Instagram.svelte';
+   // import { Facebook } from '$lib/components/Icons/Facebook.svelte';
+   // import { Twitter } from '$lib/components/Icons/Twitter.svelte';
+   
+   onMount(() => {
+      console.log('Footer mounted');
+   });
+</script>
+
+<h1>SHEP Nuacht Archive</h1>
+<p>
+	SHEP Nuacht is an internal newsletter for all in the SHEP community, including SHEP’s learners,
+	project participants and many friends. The first edition was in June 2009 and we issue the
+	newsletter twice per year. We hope you enjoy reading it.
+</p>
+<p>
+	In order to minimise administration costs, SHEP Nuacht is distributed electronically and is also
+	posted to our website. If you would like to receive a copy of SHEP Nuacht by email please contact
+	us.
+</p>

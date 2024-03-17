@@ -1,16 +1,20 @@
 <script>
 	// @ts-nocheck
 	import { enhance } from '$app/forms';
+	import MainLogo from '$lib/components/icons/MainLogoNew.svelte';
 	import { onMount } from 'svelte';
 	import { cubicIn, cubicOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
+
 	export let form;
+
 	$: data = form?.data;
 	$: errors = {} || form?.errors;
 
-	$: isLoading = false;
+	$: isSending = false;
 	$: isToastOpen = false;
 
+	// This is my second test massage send from Contact page using node emailer. Hope this will work!
 	$: if (form?.success && !isToastOpen) {
 		isToastOpen = true;
 		setTimeout(() => {
@@ -61,9 +65,12 @@
 </svelte:head>
 
 <div class="page__c">
-	<h1>Contact</h1>
+	<div class="contact-header">
+		<!-- <h1>Contact</h1> -->
+		<MainLogo />
+	</div>
 	<div class="main__c">
-		<!-- contact Us form -->
+		<!-- TODO: use ZOD to validate data and keep button disabled until all data are filled in an valid -->
 		{#if isToastOpen}
 			<div
 				role="alert"
@@ -73,32 +80,42 @@
 				out:fly={{ delay: 200, duration: 800, easing: cubicIn, y: -100, x: 0 }}
 				class="toast toast-success"
 			>
-				<!-- fixed top-0 end-0 m-3 p-4 rounded text-2xl sm:text-lg font-light sm:font-light uppercase bg-green-300 -->
-				<p class="text-black">Thank you for your request!</p>
-				<p class="text-black">I will contact you shortly.</p>
+				<p class="text-black">Your message was send successfully</p>	
 			</div>
 		{/if}
 		<form
 			method="POST"
 			use:enhance={() => {
-				isLoading = true;
+				isSending = true;
 				setTimeout(() => {
-					isLoading = false;
+					isSending = false;
 				}, 2000);
 			}}
 		>
 			<div class="form-group">
 				<label for="name">Name</label>
-				<input type="text" id="name" name="name" required />
+				<input type="text" id="name" name="name" required placeholder="What is your full name?" />
 			</div>
 			<div class="form-group">
 				<label for="email">Email</label>
-				<input type="email" id="email" name="email" required />
+				<input
+					type="email"
+					id="email"
+					name="email"
+					required
+					placeholder="What email we can reach you at?"
+				/>
 			</div>
 			<!-- phone -->
 			<div class="form-group">
 				<label for="phone">Phone</label>
-				<input type="tel" id="phone" name="phone" required />
+				<input
+					type="tel"
+					id="phone"
+					name="phone"
+					required
+					placeholder="What phone number we should contact you on?"
+				/>
 			</div>
 			<div class="relative w-full mb-8 items-baseline">
 				<div>Message</div>
@@ -106,7 +123,7 @@
 					rows="1"
 					name="message"
 					id="message"
-					placeholder="Type your request* "
+					placeholder=" What we can help you with?"
 					value={form?.errors ? data?.message : ''}
 					required
 				/>
@@ -115,9 +132,11 @@
 					>
 				{/if}
 			</div>
-			<button type="submit" disabled={isLoading}>
-				{isLoading ? 'Sending...' : 'Send'}
-			</button>
+			<div class="form-footer">
+				<button type="submit" disabled={isSending}>
+					{isSending ? 'Sending...' : 'Send'}
+				</button>
+			</div>
 		</form>
 	</div>
 </div>
@@ -127,6 +146,7 @@
 	form {
 		/* row-start / col-start / row-end / col-end*/
 		grid-area: 1/3/1/7;
+		margin-bottom: 6rem;
 	}
 	/* force input style on autofill */
 	input:-webkit-autofill {
@@ -136,9 +156,6 @@
 		/* -webkit-text-fill-color: #fff !important; */
 	}
 
-	.form-group {
-		margin-bottom: 1rem;
-	}
 	input {
 		width: 100%;
 		padding-block: 0.5rem;
@@ -165,7 +182,10 @@
 		padding-bottom: 2rem;
 		outline: transparent;
 	}
-	button{
+	textarea::placeholder {
+		font-size: --sm;
+	}
+	button {
 		padding: 1rem 2rem;
 		border-radius: 0.25rem;
 		font-size: 1.4rem;
@@ -175,7 +195,7 @@
 		cursor: pointer;
 		transition: all 0.3s;
 		&:hover {
-			background: var(--blue-400);
+			background: var(--blue-600);
 		}
 	}
 	button:disabled {
@@ -183,5 +203,65 @@
 		background: gray;
 		border: transparent;
 		opacity: 0.5;
+	}
+	.form-group {
+		margin-bottom: 1rem;
+	}
+
+	.contact-header {
+		grid-area: 1/1/1/9;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 2rem;
+		& h1 {
+			font-size: 3rem;
+			margin-bottom: 1rem;
+		}
+	}
+
+	.form-footer {
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	/* Toast */
+	.toast {
+		position: fixed;
+		top: 0;
+		right: 0;
+		margin: 3rem;
+		padding: 2rem;
+		border-radius: 0.25rem;
+		text-align: center;
+		background: var(--green-300);
+		color: var(--clr-gray-600);
+		& .text-black {
+			line-height: 1;
+			font-weight: 600;
+			margin-top: 0.5rem;
+		}
+	}
+
+	/* Media Queries */
+
+	@media (max-width: 991px) {
+		form {
+			grid-area: 1/1/1/9;
+		}
+	}
+	@media (max-width: 767px) {
+		input::placeholder,
+		textarea::placeholder {
+			font-size: 1.2rem;
+		}
+	}
+
+	@media (max-width: 575px) {
+		input::placeholder,
+		textarea::placeholder {
+			font-size: 1rem;
+		}
 	}
 </style>
