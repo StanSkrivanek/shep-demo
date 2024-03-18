@@ -442,7 +442,6 @@
 			padding-left: 2.4rem;
 			width: 100%;
 			height: 100%;
-
 			max-width: none;
 			min-width: auto;
 			display: none;

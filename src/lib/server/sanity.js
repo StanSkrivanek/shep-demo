@@ -828,7 +828,8 @@ export const getNuachtPDFs = async () => {
 	const client = sanityClient();
 	const query = `*[_type == 'media.tag' && name.current == "nuacht"] {
   'pdfs': *[_type == 'sanity.fileAsset' && references(^._id)]{
-			"title":originalFilename, 
+			// "fileName": originalFilename,
+			"title": title,
 			"url":url
 		}
 	}`;

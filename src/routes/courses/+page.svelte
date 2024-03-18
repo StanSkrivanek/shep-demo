@@ -16,11 +16,6 @@
 		<div class="hero-col-2__c">
 			<div class="hero-data">
 				<h1>Short courses and workshops for Mental Health & Wellbeing</h1>
-				<!-- <p>
-					SHEP Courses and Trainings offer personalized learning experiences that prioritize
-					individual needs, creating a nurturing environment where participants are heard, fostering
-					a strong sense of belonging, safety, and respect within small, diverse groups.
-				</p> -->
 				<p>
 					The SHEP programme of short Community Education course for Health & Wellbeing usually runs
 					around 70-80 courses each year spread across counties Cork, Kerry, Limerick, Clare and
@@ -78,7 +73,7 @@
 		grid-column: 1 / 4;
 		grid-row: 1/1;
 		grid-area: hero-data;
-		padding: 2rem 0;
+		padding: 1rem;
 		border-radius: 1rem;
 		background: var(--orange-light);
 	}
@@ -209,8 +204,8 @@
 
 	@media (max-width: 996px) {
 		.hero-data {
-			flex-direction: row;
-			gap: 3rem;
+			flex-direction: column;
+			gap: 1rem;
 		}
 		.hero-data h1 {
 			margin-bottom: 0;
@@ -224,9 +219,9 @@
 				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
 				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
 		}
-		.intro {
+		/* .intro {
 			column-count: 1;
-		}
+		} */
 	}
 
 	@media (max-width: 500px) {

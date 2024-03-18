@@ -74,7 +74,7 @@
 		grid-column: 1 / 4;
 		grid-row: 1/1;
 		grid-area: hero-data;
-		padding: 2rem;
+		padding: 1rem;
 		border-radius: 1rem;
 		background: var(--orange-light);
 	}
@@ -194,16 +194,19 @@
 
 	@media (max-width: 996px) {
 		.hero-data {
-			flex-direction: row;
-			gap: 3rem;
+			flex-direction: column;
+			gap: 1rem;
 		}
+
 		.hero-data h1 {
 			margin-bottom: 0;
 		}
+
 		.hero-data p {
 			margin-bottom: 0;
 			max-width: 75ch;
 		}
+
 		.hero-col-2__c {
 			grid-template-areas:
 				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
@@ -211,12 +214,12 @@
 		}
 	}
 
-	@media (max-width: 500px) {
+	/* @media (max-width: 500px) {
 		.hero-data {
 			display: block;
 		}
 		.hero-data h1 {
 			margin-bottom: 2rem;
 		}
-	}
+	} */
 </style>

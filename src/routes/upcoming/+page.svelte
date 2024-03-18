@@ -138,10 +138,6 @@
 							<LinkCircle width={48} height={48} />
 						</a>
 					{/if}
-
-					<!-- <a class="btn-link" href="/courses/{upcoming.event.slug.current}">
-						<LinkCircle width={48} height={48} />
-					</a> -->
 				</div>
 			</div>
 		{/each}
