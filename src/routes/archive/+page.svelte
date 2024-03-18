@@ -1,4 +1,5 @@
 <script>
+	import Book from './../../lib/components/icons/Book.svelte';
 	import LinkCircle from './../../lib/components/icons/LinkCircle.svelte';
 	export let data;
 	$: pdfsData = data.nuachtPDFs[0].pdfs;
@@ -57,8 +58,8 @@
 						<div class="pdf__number">
 							{pdf.title.split('-')[1]}
 						</div>
-						<div class="pdf__link">
-							<a href={pdf.url} target="_blank"><LinkCircle width={48} height={48} /></a>
+						<div class="pdf__link" >
+							<a href={pdf.url} target="_blank"><Book width={40} height={40} /></a>
 						</div>
 					</div>
 				</div>
@@ -131,13 +132,11 @@
 		border-radius: 0.5rem;
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
-		background: var(--purple-100);
+		background: var(--orange-50);
 		& svg {
-			& circle {
-				stroke: var(--shep-orange) !important;
-			}
+
 			& path {
-				fill: var(--shep-orange) !important;
+				stroke: var(--shep-orange) !important;
 			}
 		}
 	}
@@ -152,13 +151,13 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 0.5rem;
-		color: var(--purple-500);
+		color: var(--clr-gray-400);
 	}
 
 	.pdf__title {
-		font-size: 1.5rem;
-		font-weight: 700;
-		color: var(--purple-400);
+		font-size: 1.4rem;
+		/* font-weight: 700; */
+		color: var(--clr-gray-300);
 	}
 
 	.pdf__date {
@@ -169,28 +168,29 @@
 	.card-pdf__link {
 		display: flex;
 		justify-content: space-between;
-		align-items: center;
+
+		align-items: flex-end;
 	}
 
 	.pdf__number {
 		font-size: 3rem;
 		font-weight: 900;
 		line-height: 1;
-		color: var(--purple-500);
-		font-family: var(--ff-gilroy-l);
+		color: var(--clr-gray-400);
+		font-family: var(--ff-gunterhaus);
 	}
 
 	.pdf__link {
 		font-size: 1rem;
 		font-weight: 400;
 		pointer-events: all;
+		/* border: 1px solid red; */
 		&:hover {
 			& svg {
-				& circle {
-					stroke: var(--shep-green) !important;
-				}
+				
 				& path {
-					fill: var(--shep-green) !important;
+					stroke: var(--shep-green) !important;
+					/* fill: var(--shep-green) !important; */
 				}
 			}
 		}
