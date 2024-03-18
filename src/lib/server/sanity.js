@@ -821,3 +821,30 @@ export const getCookiePolicyPage = async () => {
 	let cookiePolicy = await client.fetch(query);
 	return cookiePolicy;
 };
+
+// get all PDF's file from sanity Asset that has assigned tag tag 'nuacht'
+
+// export const getNuachtPDFs = async () => {
+// 	const client = sanityClient();
+// 	const query = `*[_type == "file" && tags[0] == "nuacht"]{
+// 	"url": asset->url,
+// 	"title": asset->title,
+// }`;
+
+// 	let nuachtPDFs = await client.fetch(query);
+// 	return nuachtPDFs;
+// }
+
+
+export const getNuachtPDFs = async () => {
+	const client = sanityClient();
+	const query = `*[_type == 'media.tag' && name.current == "nuacht"] {
+  'pdfs': *[_type == 'sanity.fileAsset' && references(^._id)]{
+			"title":originalFilename, 
+			"url":url
+		}
+	}`;
+
+	let nuachtPDFs = await client.fetch(query);
+	return nuachtPDFs;
+};

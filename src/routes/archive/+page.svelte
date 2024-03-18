@@ -1,13 +1,12 @@
 <script>
-   import { onMount } from 'svelte';
-   // import { MainLogo } from '$lib/components/Icons/MainLogo.svelte';
-   // import { Instagram } from '$lib/components/Icons/Instagram.svelte';
-   // import { Facebook } from '$lib/components/Icons/Facebook.svelte';
-   // import { Twitter } from '$lib/components/Icons/Twitter.svelte';
-   
-   onMount(() => {
-      console.log('Footer mounted');
-   });
+	import { onMount } from 'svelte';
+	export let data;
+
+	$: pdfsData = data.allPDFs[0].pdfs;
+
+	onMount(() => {
+		console.log('Footer mounted');
+	});
 </script>
 
 <h1>SHEP Nuacht Archive</h1>
@@ -21,3 +20,13 @@
 	posted to our website. If you would like to receive a copy of SHEP Nuacht by email please contact
 	us.
 </p>
+<p>
+	We hope you enjoy reading SHEP Nuacht and we welcome your feedback and contributions.
+</p>
+<ul>
+	{#each pdfsData as pdf}
+		<li>
+			<a href={pdf.url} target="_blank">{pdf.title}</a>
+		</li>
+	{/each}
+</ul>
