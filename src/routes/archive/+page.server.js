@@ -1,19 +1,21 @@
 import { getNuachtPDFs } from '$lib/server/sanity';
 
 
-export async function load({params}) {
-   console.log("🚀 ~ load ~ params:", params)
-   const allNuacht = await getNuachtPDFs();
+export async function load() {
+	const allNuacht = await getNuachtPDFs();
+	// set “style-src='self' 'unsafe-inline’;" in the Content-Security-Policy header"
+   // to allow inline styles
+   // set “script-src='self' 'unsafe-inline’;" in the Content-Security-Policy header"
+   // to allow unsafe-inline scripts
+   // set “img-src='self' data:” in the Content-Security-Policy header"
+   // to allow data urls
+   
 
-   return {
-		
-				allPDFs: allNuacht.map((item) => {
-               return {
-                ...item
-               }
-         }
-      )
-
-			
-		};
+	return {
+		nuachtPDFs: allNuacht.map((/** @type {any} */ item) => {
+			return {
+				...item
+			};
+		})
+	};
 }

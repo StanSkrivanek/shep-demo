@@ -48,35 +48,36 @@
 
 <div class="page__c">
 	<!-- ADD FILTER BY CITY -->
-
-	{#if uniqueCities}
-		<!-- add radiobuttons to filter `all` `courses` `training`  -->
-		<!-- <div class="filter__c"> -->
-		<div class="radio-group">
-			<label for="type">Filter by Type</label>
-			<div class="custom-select">
-				<select id="type" bind:value={type}>
-					<option value="">All types</option>
-					{#each uniqueTypes as type}
-						<option value={type}>{type}</option>
-					{/each}
-				</select>
+	<div class="filter__w">
+		{#if uniqueCities}
+			<!-- add radiobuttons to filter `all` `courses` `training`  -->
+			<!-- <div class="filter__c"> -->
+			<div class="filter">
+				<label for="type">Filter by Type</label>
+				<div class="custom-select">
+					<select id="type" bind:value={type}>
+						<option value="">All types</option>
+						{#each uniqueTypes as type}
+							<option value={type}>{type}</option>
+						{/each}
+					</select>
+				</div>
 			</div>
-		</div>
 
-		<div class="filter">
-			<label for="city">Filter by location</label>
-			<div class="custom-select">
-				<select id="city" bind:value={city}>
-					<option value="">All locations</option>
-					{#each uniqueCities as city}
-						<option value={city}>{city}</option>
-					{/each}
-				</select>
+			<div class="filter">
+				<label for="city">Filter by location</label>
+				<div class="custom-select">
+					<select id="city" bind:value={city}>
+						<option value="">All locations</option>
+						{#each uniqueCities as city}
+							<option value={city}>{city}</option>
+						{/each}
+					</select>
+				</div>
 			</div>
-		</div>
-		<!-- </div> -->
-	{/if}
+			<!-- </div> -->
+		{/if}
+	</div>
 
 	<main class="container">
 		{#if data.allUpcomingEvents.length === 0}
@@ -156,6 +157,15 @@
 		/* TODO: Refactor `min-heigh` to have footer on bottom if no upcoming or only 1row */
 		min-height: 25vh;
 		gap: 1rem;
+	}
+
+	.filter__w {
+		display: flex;
+		gap:1rem;
+		justify-content: left;
+		align-items: center;
+		grid-area: 1/1/1/9;
+		margin-bottom: 1rem;
 	}
 
 	.no-upcoming__w {
@@ -294,7 +304,7 @@
 	}
 	.custom-select {
 		position: relative;
-		margin-right: 1rem;
+		/* margin-right: 1rem; */
 		min-width: 240px;
 		height: 3rem;
 		border: 1px solid var(--shep-orange);
@@ -415,13 +425,24 @@
 			column-count: 1;
 		}
 	}
-
+*/
 	@media (max-width: 500px) {
-		.hero-data {
+		.filter__w {
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			
+		}
+		.filter {
+				margin-bottom: 0;
+				width:100%
+			}
+
+		/* .hero-data {
 			display: block;
 		}
 		.hero-data h1 {
 			margin-bottom: 2rem;
-		}
-	} */
+		} */
+	} 
 </style>

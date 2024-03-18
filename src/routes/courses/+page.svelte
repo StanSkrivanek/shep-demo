@@ -10,6 +10,7 @@
 	<title>Courses</title>
 	<meta name="description" content="Courses" />
 </svelte:head>
+
 <div class="page__c">
 	<div class="hero">
 		<div class="hero-col-2__c">
@@ -34,32 +35,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- <h1 class="separator-heading">Courses</h1> -->
-	<!-- <div class="intro"> -->
-		<!-- <h2>Upcoming Courses</h2> -->
-		<!-- <p>
-			The courses, meticulously organized by SHEP in collaboration with community group partners,
-			receive essential funding from esteemed organizations such as Cork ETB, Kerry ETB, and Healthy
-			Ireland.
-		</p>
-		<p>
-			These engaging sessions unfold in local community venues, spanning a duration of 20 hours and
-			spread across eight weekly sessions, each lasting 2.5 hours.
-		</p>
-		<p>
-			The learning experience is characterized by its emphasis on experiential learning within small
-			groups comprising 12-16 individuals, all guided by the expertise of SHEP-trained tutors. These
-			seasoned facilitators bring a wealth of experience to the sessions, ensuring a supportive and
-			enriching environment for participants.
-		</p>
-		<p>
-			One remarkable aspect of these courses is their accessibility, as there is no charge for
-			individuals eager to participate. Moreover, participants can choose between convenient online
-			options or in-person attendance. For those seeking information on courses in areas beyond
-			Cork, the website's short courses section provides details under specific county tabs,
-			facilitating a seamless application process for various geographic locations.
-		</p> -->
-	<!-- </div> -->
 	<main class="container">
 		{#each data.allCourses as course}
 		<div class="card">
@@ -122,7 +97,7 @@
 			aspect-ratio: 2.4/1;
 		}
 	}
-	.intro {
+	/* .intro {
 		grid-column: 1/-1;
 		margin-bottom: 2rem;
 		column-count: 2;
@@ -133,11 +108,11 @@
 		& p {
 			margin-bottom: 0.5rem;
 		}
-	}
-	.separator-heading {
+	} */
+	/* .separator-heading {
 		grid-column: 1/-1;
 		margin-bottom: 2rem;
-	}
+	} */
 	.container {
 		display: grid;
 		grid-column: 1/-1;

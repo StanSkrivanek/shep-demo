@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	export let data;
 
-	$: pdfsData = data.allPDFs[0].pdfs;
+	$: pdfsData = data.nuachtPDFs[0].pdfs;
 
 	onMount(() => {
 		console.log('Footer mounted');
@@ -26,7 +26,7 @@
 <ul>
 	{#each pdfsData as pdf}
 		<li>
-			<a href={pdf.url} target="_blank">{pdf.title}</a>
+			<a href={pdf.url} target="_blank" >{pdf.title}</a>
 		</li>
 	{/each}
 </ul>

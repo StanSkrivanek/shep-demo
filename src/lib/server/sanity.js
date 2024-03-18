@@ -824,18 +824,6 @@ export const getCookiePolicyPage = async () => {
 
 // get all PDF's file from sanity Asset that has assigned tag tag 'nuacht'
 
-// export const getNuachtPDFs = async () => {
-// 	const client = sanityClient();
-// 	const query = `*[_type == "file" && tags[0] == "nuacht"]{
-// 	"url": asset->url,
-// 	"title": asset->title,
-// }`;
-
-// 	let nuachtPDFs = await client.fetch(query);
-// 	return nuachtPDFs;
-// }
-
-
 export const getNuachtPDFs = async () => {
 	const client = sanityClient();
 	const query = `*[_type == 'media.tag' && name.current == "nuacht"] {
