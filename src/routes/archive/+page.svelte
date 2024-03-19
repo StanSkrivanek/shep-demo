@@ -1,14 +1,12 @@
 <script>
-	import Book from './../../lib/components/icons/Book.svelte';
-	import LinkCircle from './../../lib/components/icons/LinkCircle.svelte';
+	import Book from '$lib/components/icons/Book.svelte';
 	export let data;
-	$: pdfsData = data.nuachtPDFs[0].pdfs;
-	// $: console.log(
-	// 	'🚀 ~ pdfsData:',
-	// 	pdfsData.sort((a, b) => a.title.split('-')[2] - b.title.split('-')[2]).reverse()
-	// );
-	// destructure title and split by space
-	$: sortedPDFs = pdfsData
+	// $: console.log("🚀 ~ data:", data.props)
+	const { allNuacht } = data.props;
+	$: nuachtPDFs = allNuacht[0].pdfs;
+
+	// // destructure title and split by space
+	$: sortedPDFs = nuachtPDFs
 		//@ts-ignore
 		.sort((a, b) => a.title.split('-')[1] - b.title.split('-')[1])
 		.reverse();
@@ -19,20 +17,13 @@
 	<div class="hero">
 		<div class="hero-col-2__c">
 			<div class="hero-data">
-				<h1>SHEP Nuacht Archive</h1>
+				<h1>SHEP Nuacht</h1>
 				<div>
 					<p>
-						SHEP Nuacht is an internal newsletter for all in the SHEP community, including SHEP’s
-						learners, project participants and many friends. The first edition was in June 2009 and
-						we issue the newsletter twice per year. We hope you enjoy reading it.
-					</p>
-					<p>
-						In order to minimise administration costs, SHEP Nuacht is distributed electronically and
-						is also posted to our website. If you would like to receive a copy of SHEP Nuacht by
-						email please contact us.
-					</p>
-					<p>
-						We hope you enjoy reading SHEP Nuacht and we welcome your feedback and contributions.
+						SHEP Nuacht is the internal newsletter for the entire SHEP community. It was first
+						published in June 2009, and we continue to release new editions twice a year. These
+						publications are conveniently available in PDF format for easy access. We hope you find
+						them enjoyable!
 					</p>
 				</div>
 			</div>
@@ -45,25 +36,28 @@
 		</div>
 	</div>
 	<main class="container">
-		<div class="list__c">
-			{#each sortedPDFs as pdf}
-				<div class="card-pdf__c">
-					<div class="card-pdf__data">
-						<div class="pdf__title">{pdf.title.split('-')[0]}</div>
-						<div class="pdf__date">
-							{pdf.title.split('-')[2]} <span>{pdf.title.split('-')[3]}</span>
+		<div class="section">
+			<h2>Nuacht</h2>
+			<div class="list__c">
+				{#each sortedPDFs as pdf}
+					<div class="card-pdf__c">
+						<div class="card-pdf__data">
+							<div class="pdf__title">{pdf.title.split('-')[0]}</div>
+							<div class="pdf__date">
+								{pdf.title.split('-')[2]} <span>{pdf.title.split('-')[3]}</span>
+							</div>
+						</div>
+						<div class="card-pdf__link">
+							<div class="pdf__number">
+								{pdf.title.split('-')[1]}
+							</div>
+							<div class="pdf__link">
+								<a href={pdf.url} target="_blank"><Book width={40} height={40} /></a>
+							</div>
 						</div>
 					</div>
-					<div class="card-pdf__link">
-						<div class="pdf__number">
-							{pdf.title.split('-')[1]}
-						</div>
-						<div class="pdf__link" >
-							<a href={pdf.url} target="_blank"><Book width={40} height={40} /></a>
-						</div>
-					</div>
-				</div>
-			{/each}
+				{/each}
+			</div>
 		</div>
 	</main>
 </div>
@@ -111,7 +105,10 @@
 	.container {
 		grid-column: 1/-1;
 	}
-
+	.section {
+		margin-bottom: 5rem;
+	}
+	/* list */
 	.list__c {
 		list-style: none;
 		display: grid;
@@ -132,9 +129,8 @@
 		border-radius: 0.5rem;
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
-		background: var(--orange-50);
+		background: var(--gray-50);
 		& svg {
-
 			& path {
 				stroke: var(--shep-orange) !important;
 			}
@@ -144,6 +140,7 @@
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px var(--gray-2);
 		pointer-events: none;
+		border-color: var(--shep-orange);
 	}
 
 	.card-pdf__data {
@@ -157,7 +154,7 @@
 	.pdf__title {
 		font-size: 1.4rem;
 		/* font-weight: 700; */
-		color: var(--clr-gray-300);
+		color: var(--gray-600);
 	}
 
 	.pdf__date {
@@ -187,7 +184,6 @@
 		/* border: 1px solid red; */
 		&:hover {
 			& svg {
-				
 				& path {
 					stroke: var(--shep-green) !important;
 					/* fill: var(--shep-green) !important; */

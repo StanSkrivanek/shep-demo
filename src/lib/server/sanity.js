@@ -837,3 +837,19 @@ export const getNuachtPDFs = async () => {
 	let nuachtPDFs = await client.fetch(query);
 	return nuachtPDFs;
 };
+
+// get all PDF's file from sanity Asset that has assigned tag tag 'publication'
+
+export const getPublicationsPDFs = async () => {
+	const client = sanityClient();
+	const query = `*[_type == 'media.tag' && name.current == "publication"] {
+  'publications': *[_type == 'sanity.fileAsset' && references(^._id)]{
+			// "fileName": originalFilename,
+			"title": title,
+			"url":url
+		}
+	}`;
+
+	let publicationPDFs = await client.fetch(query);
+	return publicationPDFs;
+}
