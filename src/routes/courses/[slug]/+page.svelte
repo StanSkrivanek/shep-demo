@@ -10,6 +10,7 @@
 	import { slide } from 'svelte/transition';
 
 	export let data;
+	console.log("🚀 ~ data:", data)
 	// Registered Event
 	const { title, excerpt, full_price, funded_price, main_img, content, brochure, slug, ref_name } =
 		data.course;

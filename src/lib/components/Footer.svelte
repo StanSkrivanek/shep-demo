@@ -50,9 +50,9 @@
 			<div>
 				<a class="footer__link" href="/about">About us</a>
 			</div>
-			<!-- <div>
-				<a class="footer__link" href="/terms">Terms</a>
-			</div> -->
+			<div>
+				<a class="footer__link" href="/team">Our Team</a>
+			</div>
 			<!-- <div>
 				<a class="footer__link" href="/privacy">Privacy</a>
 			</div> -->
@@ -91,7 +91,7 @@
 				<a class="footer__link" href="/reports">Publications</a>
 			</div>
 			<div>
-				<a class="footer__link" href="/recruitment">Recruitment</a>
+				<a class="footer__link" href="/jobs">Job opportunities</a>
 			</div>
 		</div>
 		<div class="group">

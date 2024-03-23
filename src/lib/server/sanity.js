@@ -692,7 +692,6 @@ export const getShepAdvocacyPage = async () => {
 	return shepAdvocacy;
 };
 
-
 export const coursesOverview = async () => {
 	const client = sanityClient();
 	const query = `*[_type == "page" && slug.current == "courses-overview"][0]{
@@ -852,4 +851,34 @@ export const getPublicationsPDFs = async () => {
 
 	let publicationPDFs = await client.fetch(query);
 	return publicationPDFs;
-}
+};
+
+// get all jobs
+export const getJobs = async () => {
+	const client = sanityClient();
+	const query = `*[_type == "job"]{
+	"title": job_title,
+	"slug": slug.current,
+	"type": type,
+	"closingDate": closing_date,
+   ...,
+	"description": description[] {
+		...,
+	},
+	"requirements": requirements[] {
+		...
+	},
+	"responsibilities": responsibilities[] {
+		...
+	},
+	"benefits": benefits[] {
+		...
+	},
+ 	"contact": contact[] {
+		_type == 'reference' => @->{name}    
+		  }, 
+}`;
+
+	let jobs = await client.fetch(query);
+	return jobs;
+};
