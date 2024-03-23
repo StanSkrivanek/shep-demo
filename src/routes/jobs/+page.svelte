@@ -51,11 +51,7 @@
 				<div class="no-job">
 					<div class="content">
 						<p>
-							We are sorry but this course in not currently open for applications in any facilities.
-						</p>
-						<p>
-							You can sign to our newsletter to be notified when new Shep courses will open for
-							applications.
+							There are currently no open positions. Please check back later for updates.
 						</p>
 					</div>
 				</div>
@@ -73,8 +69,8 @@
 									<div>
 										<h2 class="job-header__title">{job.title}</h2>
 										<div class="job-header__sub">
-											<p>Location: {job.location}</p>
-											<p>Applications close: {monthNameDateYear(job.deadline)}</p>
+											<p><b>Location:</b> {job.location}</p>
+											<p><b>Apply by:</b> {monthNameDateYear(job.deadline)}</p>
 										</div>
 									</div>
 									<div class="link-icon" class:rotate={show == i}>
@@ -253,6 +249,12 @@
 	article {
 		margin-bottom: 2rem;
 		cursor: pointer;
+		background: var(--gray-1);
+		transition: all 0.3s ease-in-out;
+		& .rotate {
+			transform: rotate(180deg);
+			transition: all 0.4s ease-in-out;
+		}
 	}
 
 	.job__c {
@@ -281,14 +283,7 @@
 				} */
 		}
 	}
-	article {
-		background: var(--gray-1);
-		transition: all 0.3s ease-in-out;
-		& .rotate {
-			transform: rotate(180deg);
-			transition: all 0.4s ease-in-out;
-		}
-	}
+
 	.subtitle {
 		font-size: var(--h4);
 		color: var(--shep-orange);
@@ -323,8 +318,6 @@
 	}
 	.job-body {
 		padding-inline: 2rem;
-		/* height: 0;
-		overflow-y: hidden; */
 	}
 	.job-data {
 		border-bottom: 2px solid var(--gray-300);
@@ -367,6 +360,17 @@
 			grid-template-areas:
 				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
 				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
+		}
+		.job-header,
+		.job-body {
+			padding: 1.4rem;
+		}
+		.job-header__sub {
+			display: block;
+			margin-top: 1rem;
+		}
+		.job-header__sub p {
+			margin: 0rem;
 		}
 	}
 

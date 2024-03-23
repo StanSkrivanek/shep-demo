@@ -856,7 +856,7 @@ export const getPublicationsPDFs = async () => {
 // get all jobs
 export const getJobs = async () => {
 	const client = sanityClient();
-	const query = `*[_type == "job"]{
+	const query = `*[_type == "job" && is_active == true]{
 	"title": job_title,
 	"slug": slug.current,
 	"type": type,
