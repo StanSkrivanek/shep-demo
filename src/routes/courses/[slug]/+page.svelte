@@ -29,17 +29,17 @@
 	/**
 	 * @param {any} node
 	 */
-	function rotate180(node, { duration = 300 }) {
-		return {
-			duration,
-			css: (/** @type {number} */ t) => {
-				const eased = cubicOut(t);
-				return `
-						transform: rotate(${eased * 180}deg);
-					`;
-			}
-		};
-	}
+	// function rotate180(node, { duration = 300 }) {
+	// 	return {
+	// 		duration,
+	// 		css: (/** @type {number} */ t) => {
+	// 			const eased = cubicOut(t);
+	// 			return `
+	// 					transform: rotate(${eased * 180}deg);
+	// 				`;
+	// 		}
+	// 	};
+	// }
 	/**
 	 * @param {any} node
 	 */
@@ -126,7 +126,7 @@
 				<div class="accordion">
 					{#each upcoming as item, i}
 						<div
-							class="accordion_item card"
+							class="accordion_item"
 							role="button"
 							tabindex={i}
 							on:click={() => toggleActive(i)}
@@ -149,7 +149,7 @@
 								</div>
 							</div>
 							{#if show == i}
-								<div class="body accordion-body" transition:slide>
+								<div class="accordion-body" transition:slide>
 									<div class="detail">
 										<!-- header -->
 										<div class="detail-header">
@@ -486,10 +486,10 @@
 	}
 
 	.accordion-header {
-		padding: 1rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		padding: 1rem;
 		& .accordion-header--link {
 			/* --item-color: var(--clr-green); */
 			text-decoration: none;

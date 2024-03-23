@@ -3,9 +3,21 @@
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
 	import { monthNameDateYear } from '$lib/utils/datehelpers.js';
 	import { PortableText } from '@portabletext/svelte';
+	import { quintOut } from 'svelte/easing';
+	import { slide } from 'svelte/transition';
 	export let data;
 	console.log(data.props.allJobs);
 	let jobs = data.props.allJobs;
+
+	/**
+	 * @type {number | boolean | null}
+	 */
+	let show = null;
+
+	const toggleActive = (/** @type {number | boolean | null} */ i) => {
+		i == show ? (show = null) : (show = i);
+		console.log(i, show);
+	};
 </script>
 
 <div class="page__c">
@@ -35,132 +47,158 @@
 	<main class="container">
 		<div class="section">
 			<h2>Job Opportunities</h2>
-			{#each jobs as job}
-				<article>
-					<div class="job__c">
-						<div class="job-header">
-							<div>
-								<h2 class="job-header__title">{job.title}</h2>
-								<div class="job-header__sub">
-									<p>Location: {job.location}</p>
-									<p>Applications close: {monthNameDateYear(job.deadline)}</p>
-								</div>
-							</div>
-							<ArrowOpen width={48} height={48} />
-						</div>
-						<div class="job-body">
-							<div class="job-data">
-								<!-- <p class="pdf__date">{job.location}</p>
-							<p>{job.department}</p> -->
-								<p class="subtitle">Description</p>
-								<PortableText
-									value={job.description}
-									onMissingComponent={false}
-									components={{
-										block: {
-											h1: CustomHeading,
-											h2: CustomHeading,
-											h3: CustomHeading,
-											h4: CustomHeading,
-											h5: CustomHeading,
-											normal: TextRte
-										},
-										types: {
-											image: ImageRte
-										}
-									}}
-								/>
-
-								<p class="subtitle">Responsibilities</p>
-								<PortableText
-									value={job.responsibilities}
-									onMissingComponent={false}
-									components={{
-										block: {
-											h1: CustomHeading,
-											h2: CustomHeading,
-											h3: CustomHeading,
-											h4: CustomHeading,
-											h5: CustomHeading,
-											normal: TextRte
-										},
-										types: {
-											image: ImageRte
-										}
-									}}
-								/>
-								<p class="subtitle">Requirements</p>
-								<PortableText
-									value={job.requirements}
-									onMissingComponent={false}
-									components={{
-										block: {
-											h1: CustomHeading,
-											h2: CustomHeading,
-											h3: CustomHeading,
-											h4: CustomHeading,
-											h5: CustomHeading,
-											normal: TextRte
-										},
-										types: {
-											image: ImageRte
-										}
-									}}
-								/>
-								<p class="subtitle">Benefits</p>
-								<PortableText
-									value={job.benefits}
-									onMissingComponent={false}
-									components={{
-										block: {
-											h1: CustomHeading,
-											h2: CustomHeading,
-											h3: CustomHeading,
-											h4: CustomHeading,
-											h5: CustomHeading,
-											normal: TextRte
-										},
-										types: {
-											image: ImageRte
-										}
-									}}
-								/>
-							</div>
-
-							<div class="job-footer">
-								<!-- <p>Department: {job.department}</p> -->
-								<!-- <h3>More information</h3> -->
-								<div class="footer__section">
-									<div class="group">
-										<h4>Office</h4>
-										<p>The Old Primary School</p>
-										<p>Ardmore Avenue</p>
-										<p>Balinatemple</p>
-										<p>Co. Cork | T25 XYD7</p>
-									</div>
-									<!-- <div> -->
-									<div class="group">
-										<h4>Contact person</h4>
-										{#each job.contact as contact}
-											{#if contact !== job.contact[job.contact.length - 1]}
-												<p>{contact.name}</p>
-											{:else}
-												<p>{contact.name}</p>
-											{/if}
-										{/each}
-									</div>
-									<div class="group">
-										<h4>Phone</h4>
-										<p>Cork - (022) 12 4455</p>
-									</div>
-									<!-- </div> -->
-								</div>
-							</div>
-						</div>
-						<!-- footer -->
+			{#if jobs.length == 0}
+				<div class="no-job">
+					<div class="content">
+						<p>
+							We are sorry but this course in not currently open for applications in any facilities.
+						</p>
+						<p>
+							You can sign to our newsletter to be notified when new Shep courses will open for
+							applications.
+						</p>
 					</div>
-				</article>
-			{/each}
+				</div>
+			{:else}
+				<div class="accordion">
+					{#each jobs as job, i}
+						<!-- svelte-ignore a11y-no-noninteractive-element-to-interactive-role -->
+						<article
+							role="button"
+							on:click={() => toggleActive(i)}
+							on:keydown={() => toggleActive(i)}
+						>
+							<div class="job__c">
+								<div class="job-header">
+									<div>
+										<h2 class="job-header__title">{job.title}</h2>
+										<div class="job-header__sub">
+											<p>Location: {job.location}</p>
+											<p>Applications close: {monthNameDateYear(job.deadline)}</p>
+										</div>
+									</div>
+									<div class="link-icon" class:rotate={show == i}>
+										<ArrowOpen width={48} height={48} />
+									</div>
+								</div>
+								{#if show == i}
+									<div
+										class="job-body"
+										transition:slide={{ delay: 250, duration: 400, easing: quintOut }}
+									>
+										<div class="job-data">
+											<p class="subtitle">Description</p>
+											<PortableText
+												value={job.description}
+												onMissingComponent={false}
+												components={{
+													block: {
+														h1: CustomHeading,
+														h2: CustomHeading,
+														h3: CustomHeading,
+														h4: CustomHeading,
+														h5: CustomHeading,
+														normal: TextRte
+													},
+													types: {
+														image: ImageRte
+													}
+												}}
+											/>
+
+											<p class="subtitle">Responsibilities</p>
+											<PortableText
+												value={job.responsibilities}
+												onMissingComponent={false}
+												components={{
+													block: {
+														h1: CustomHeading,
+														h2: CustomHeading,
+														h3: CustomHeading,
+														h4: CustomHeading,
+														h5: CustomHeading,
+														normal: TextRte
+													},
+													types: {
+														image: ImageRte
+													}
+												}}
+											/>
+											<p class="subtitle">Requirements</p>
+											<PortableText
+												value={job.requirements}
+												onMissingComponent={false}
+												components={{
+													block: {
+														h1: CustomHeading,
+														h2: CustomHeading,
+														h3: CustomHeading,
+														h4: CustomHeading,
+														h5: CustomHeading,
+														normal: TextRte
+													},
+													types: {
+														image: ImageRte
+													}
+												}}
+											/>
+											<p class="subtitle">Benefits</p>
+											<PortableText
+												value={job.benefits}
+												onMissingComponent={false}
+												components={{
+													block: {
+														h1: CustomHeading,
+														h2: CustomHeading,
+														h3: CustomHeading,
+														h4: CustomHeading,
+														h5: CustomHeading,
+														normal: TextRte
+													},
+													types: {
+														image: ImageRte
+													}
+												}}
+											/>
+										</div>
+
+										<div class="job-footer">
+											<!-- <p>Department: {job.department}</p> -->
+											<!-- <h3>More information</h3> -->
+											<div class="footer__section">
+												<div class="group">
+													<h4>Office</h4>
+													<p>The Old Primary School</p>
+													<p>Ardmore Avenue</p>
+													<p>Balinatemple</p>
+													<p>Co. Cork | T25 XYD7</p>
+												</div>
+												<!-- <div> -->
+												<div class="group">
+													<h4>Contact person</h4>
+													{#each job.contact as contact}
+														{#if contact !== job.contact[job.contact.length - 1]}
+															<p>{contact.name}</p>
+														{:else}
+															<p>{contact.name}</p>
+														{/if}
+													{/each}
+												</div>
+												<div class="group">
+													<h4>Phone</h4>
+													<p>Cork - (022) 12 4455</p>
+												</div>
+												<!-- </div> -->
+											</div>
+										</div>
+									</div>
+								{/if}
+								<!-- footer -->
+							</div>
+						</article>
+					{/each}
+				</div>
+			{/if}
 		</div>
 	</main>
 </div>
@@ -214,6 +252,7 @@
 
 	article {
 		margin-bottom: 2rem;
+		cursor: pointer;
 	}
 
 	.job__c {
@@ -224,14 +263,15 @@
 		border-radius: 0.5rem;
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
-		 & svg {
+
+		& svg {
 			& circle {
-					stroke: var(--shep-orange) !important;
-				}
-				& path {
-					stroke: var(--shep-orange) !important;
-				}
-				/* &:hover {
+				stroke: var(--shep-orange) !important;
+			}
+			& path {
+				stroke: var(--shep-orange) !important;
+			}
+			/* &:hover {
 					& circle {
 						stroke: var(--shep-green) !important;
 					}
@@ -243,6 +283,11 @@
 	}
 	article {
 		background: var(--gray-1);
+		transition: all 0.3s ease-in-out;
+		& .rotate {
+			transform: rotate(180deg);
+			transition: all 0.4s ease-in-out;
+		}
 	}
 	.subtitle {
 		font-size: var(--h4);
@@ -255,12 +300,16 @@
 	.job-header {
 		display: flex;
 		justify-content: space-between;
-		padding: 1.5rem 2rem ;
+		padding: 1.5rem 2rem;
 		align-items: center;
-		/* margin-bottom: 0.5rem; */
-		/* color: var(--shep-orange); */
+		& .link-icon {
+			transition: all 0.6s ease-in-out;
+		}
+		& .rotate {
+			transform: rotate(180deg);
+			transition: all 0.6s ease-in-out;
+		}
 	}
-
 	.job-header__title {
 		margin-bottom: 0;
 		color: var(--shep-orange);
@@ -273,9 +322,9 @@
 		color: var(--gray-600);
 	}
 	.job-body {
-		padding-inline: 2rem ;
-		height:0;
-		overflow-y: hidden;
+		padding-inline: 2rem;
+		/* height: 0;
+		overflow-y: hidden; */
 	}
 	.job-data {
 		border-bottom: 2px solid var(--gray-300);
@@ -286,6 +335,7 @@
 			display: flex;
 			gap: 3rem;
 			flex-wrap: wrap;
+			padding-bottom: 2rem;
 			& .group {
 				display: flex;
 				flex-direction: column;
