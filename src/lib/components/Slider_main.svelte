@@ -71,10 +71,6 @@
 			</div>
 		{/if}
 	{/each}
-	<!-- <div class="slider__controls">
-		<button class="slider__button" on:click={nextSlide}>Next</button>
-		<button class="slider__button" on:click={prevSlide}>PREV</button>
-	</div> -->
 </div>
 
 <style>
@@ -171,6 +167,22 @@
 						align-items: center;
 						justify-content: center;
 						transition: all 0.3s ease;
+						& svg {
+							& circle {
+								stroke: var(--color-brand) !important;
+							}
+							& path {
+								fill: var(--color-brand) !important;
+							}
+							&:hover {
+								& circle {
+									stroke: var(--shep-green) !important;
+								}
+								& path {
+									fill: var(--shep-green) !important;
+								}
+							}
+						}
 					}
 				}
 			}
