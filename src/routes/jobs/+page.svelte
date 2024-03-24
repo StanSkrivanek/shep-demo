@@ -27,9 +27,8 @@
 				<h1>Recruitment</h1>
 				<div>
 					<p>
-						On this page, you'll find all the latest opportunities to become part of the SHEP team.
-						We continuously seek new experts to join us, so be sure to check back regularly for
-						updates on new opportunities. We eagerly await hearing from you!
+						We continuously seek new experts to join our team, so be sure to check back regularly
+						for updates on new opportunities. We eagerly await hearing from you!
 					</p>
 				</div>
 			</div>
@@ -49,11 +48,7 @@
 			<h2>Job Opportunities</h2>
 			{#if jobs.length == 0}
 				<div class="no-job">
-					<div class="content">
-						<p>
-							There are currently no open positions. Please check back later for updates.
-						</p>
-					</div>
+					<p>Currently, there are no vacant positions available. Kindly revisit for any future updates.</p>
 				</div>
 			{:else}
 				<div class="accordion">
@@ -245,7 +240,21 @@
 	.section {
 		margin-bottom: 5rem;
 	}
-
+	.no-job {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding-block: 3rem;
+		background: var(--gray-1);
+		border-radius: 0.5rem;
+		/* background: rgb(164, 224, 244); */
+		/* color:aliceblue; */
+		font-size: 1.5rem;
+		/* font-weight: 500; */
+		& p{
+			margin: 0;
+		}
+	}
 	article {
 		margin-bottom: 2rem;
 		cursor: pointer;
@@ -268,10 +277,10 @@
 
 		& svg {
 			& circle {
-				stroke: var(--shep-orange) !important;
+				stroke: var(--color-brand) !important;
 			}
 			& path {
-				stroke: var(--shep-orange) !important;
+				stroke: var(--color-brand) !important;
 			}
 			/* &:hover {
 					& circle {
@@ -286,7 +295,7 @@
 
 	.subtitle {
 		font-size: var(--h4);
-		color: var(--shep-orange);
+		color: var(--color-brand);
 		margin-bottom: 0.5rem;
 		border-bottom: 1px solid var(--gray-100);
 		padding-bottom: 0.5rem;
@@ -307,7 +316,7 @@
 	}
 	.job-header__title {
 		margin-bottom: 0;
-		color: var(--shep-orange);
+		color: var(--color-brand);
 	}
 	.job-header__sub {
 		display: flex;
@@ -335,7 +344,7 @@
 				& h4 {
 					margin-bottom: 1rem;
 					line-height: 1;
-					color: var(--shep-orange);
+					color: var(--color-brand);
 				}
 				& p {
 					margin: 0.25rem;

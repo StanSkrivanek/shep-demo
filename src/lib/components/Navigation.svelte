@@ -225,7 +225,7 @@
 	a {
 		text-decoration: none;
 		&:hover {
-			color: var(--shep-orange);
+			color: var(--color-brand);
 		}
 	}
 	/* header */
@@ -312,7 +312,7 @@
 
 	.header .item-right a:hover,
 	.header .menu > ul > li:hover > a {
-		color: var(--shep-orange);
+		color: var(--color-brand);
 	}
 
 	.mobile-menu-head,

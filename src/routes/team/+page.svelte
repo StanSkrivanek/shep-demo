@@ -166,7 +166,7 @@
 				& svg path {
 					width: 1.5rem;
 					height: 1.5rem;
-					stroke: var(--shep-orange);
+					stroke: var(--color-brand);
 				}
 				
 				&:hover path {

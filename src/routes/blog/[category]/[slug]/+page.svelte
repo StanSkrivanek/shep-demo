@@ -398,10 +398,10 @@
 				bottom: 1rem;
 				right: 1rem;
 				& circle {
-					stroke: var(--shep-orange) !important;
+					stroke: var(--color-brand) !important;
 				}
 				& path {
-					fill: var(--shep-orange) !important;
+					fill: var(--color-brand) !important;
 				}
 				&:hover {
 					& circle {

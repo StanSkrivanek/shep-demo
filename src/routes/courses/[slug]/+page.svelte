@@ -238,7 +238,6 @@
 											{/if}
 										</div>
 									{/if}
-									<!-- TODO: responsiveness when form is narrow fold buttons in column -->
 									<div class="accordion-links">
 										<!-- download brochure -->
 										<a href={item.form.asset} target="_blank">
@@ -259,7 +258,6 @@
 			{/if}
 		</aside>
 		<!-- main -->
-		<!-- TODO: expand main content to last column on -->
 		<main>
 			<article>
 				<PortableText

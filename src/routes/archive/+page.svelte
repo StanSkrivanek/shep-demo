@@ -132,7 +132,7 @@
 		background: var(--gray-50);
 		& svg {
 			& path {
-				stroke: var(--shep-orange) !important;
+				stroke: var(--color-brand) !important;
 			}
 		}
 	}
@@ -140,7 +140,7 @@
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px var(--gray-2);
 		pointer-events: none;
-		border-color: var(--shep-orange);
+		border-color: var(--color-brand);
 	}
 
 	.card-pdf__data {

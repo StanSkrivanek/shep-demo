@@ -66,10 +66,11 @@
 	--fc-mid: #48475e;
 	--fc-main: #24242d;
 	--fc-white: #fafafa;
-
 	/* Colors */
 	--clr-base: hsl(0, 0%, 50%);
-
+	
+	--color-brand: color-mix(in oklab, var(--shep-orange) 100%, white);
+	
 	/* SHEP RGB*/
 	--shep-orange: #ff7c56;
 	--shep-blue: #6b9ef5;
@@ -77,7 +78,7 @@
 	--shep-pink: #db84da;
 	--shep-yellow: #f5ce6b;
 	--shep-red: #ff4d6a;
-
+	
 	/* SHEP HSL */
 	--clr-blue: hsl(218, 87%, 69%);
 	--clr-red: hsl(350, 100%, 65%);

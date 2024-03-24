@@ -123,10 +123,10 @@
 		pointer-events: none;
 		& svg {
 			& circle {
-				stroke: var(--shep-orange) !important;
+				stroke: var(--color-brand) !important;
 			}
 			& path {
-				fill: var(--shep-orange) !important;
+				fill: var(--color-brand) !important;
 			}
 		}
 	}
@@ -150,7 +150,7 @@
 		& h3 {
 			font-size: 1.5rem;
 			font-weight: 400;
-			color: var(--shep-orange);
+			color: var(--color-brand);
 		}
 		& p {
 			margin: 0;

@@ -83,7 +83,7 @@
 		grid-area: hero-data;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: var(--shep-orange);
+		background: var(--color-brand);
 		& h1 {
 			color: var(--fc-white);
 			margin: 0;
@@ -160,7 +160,7 @@
 			font-size: var(--xs);
 			line-height: 2;
 			color: var(--gray-400);
-			color: var(--shep-orange);
+			color: var(--color-brand);
 		}
 	}
 	.card-img {
@@ -202,10 +202,10 @@
 		} */
 		& svg {
 			& circle {
-				stroke: var(--shep-orange) !important;
+				stroke: var(--color-brand) !important;
 			}
 			& path {
-				fill: var(--shep-orange) !important;
+				fill: var(--color-brand) !important;
 			}
 			&:hover {
 				& circle {

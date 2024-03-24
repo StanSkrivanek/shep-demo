@@ -513,7 +513,7 @@
 		}
 	}
 	.course {
-		--item-color: var(--shep-orange);
+		--item-color: var(--color-brand);
 		--_base-color-private: var(--item-color, var(--gray-500));
 		margin-bottom: 1rem;
 		background-color: var(--item-color);
