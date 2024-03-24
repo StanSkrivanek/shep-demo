@@ -308,7 +308,7 @@
 		grid-row: 1/3;
 		padding: 1.4rem;
 		border-radius: 1rem;
-		background: color-mix(in oklab, var(--blue-300) 50%, white);
+		background: color-mix(in oklab, var(--cyan-400) 50%, white);
 		& p {
 			display: flex;
 			justify-content: space-between;

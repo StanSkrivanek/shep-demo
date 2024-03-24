@@ -1,10 +1,15 @@
 <script>
 	// @ts-nocheck
+	import {
+
+		PortableText,
+		
+	} from '@portabletext/svelte';
+	// import CustomDefaultListItem from '$lib/components/sanityRte/CustomDefaultListItem.svelte';
 
 	import Toc from '$lib/components/icons/Toc.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
 	import clickOutside from '$lib/utils/clickoutside.js';
-	import { PortableText } from '@portabletext/svelte';
 	import { afterUpdate, tick } from 'svelte';
 
 	export let data;
@@ -69,6 +74,7 @@
 		});
 	}
 </script>
+
 <svelte:head>
 	<title>SHEP Counselling</title>
 	<meta name="description" content="SHEP Counselling" />
@@ -146,9 +152,18 @@
 							h5: CustomHeading,
 							normal: TextRte
 						},
+						// list: {
+						// 	// Swap only the list parts you need
+						// 	bullet: UnorderedListWrapper,
+						// 	// Custom user-defined list type
+						// 	checklist: ChecklistWrapper
+						// },
+						// listItem: {
+						// 	bullet: ListItem,
+						// 	checklist: ChecklistItem
+						// },
 						types: {
-							image: ImageRte,
-						
+							image: ImageRte
 						}
 					}}
 				/>

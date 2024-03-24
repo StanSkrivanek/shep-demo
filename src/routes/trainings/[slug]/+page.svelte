@@ -306,20 +306,16 @@
 		grid-row: 1/3;
 		padding: 1.4rem;
 		border-radius: 1rem;
-		background: color-mix(in oklab, var(--cyan-300) 50%, white);
+		background: color-mix(in oklab, var(--cyan-400) 50%, white);
 		& p {
 			display: flex;
 			justify-content: space-between;
 			margin: 0;
-			color: var(--fc-main);
 			font-size: var(--sm);
-			margin-bottom: 0.5rem;
 			color: var(--fc-main);
+			/* margin-bottom: 0.5rem; */
 		}
-		& .fee {
-			font-weight: 700;
-			font-family: var(--ff-inter);
-		}
+
 		& .small-title {
 			position: relative;
 			margin-top: 0;
@@ -337,6 +333,11 @@
 				height: 2px;
 				background: black;
 			}
+		}
+			& .fee {
+			font-weight: 600;
+			font-family: var(--ff-inter);
+	
 		}
 	}
 

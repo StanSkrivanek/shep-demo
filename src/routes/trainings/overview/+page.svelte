@@ -83,7 +83,7 @@
 					<h1><span>{post.title}</span></h1>
 					<p class="excerpt">{post.excerpt}</p>
 				</div>
-				<a class="article_cat" href="/blog/{post.category_slug}">{post.category}</a>
+				<!-- <a class="article_cat" href="/blog/{post.category_slug}">{post.category}</a> -->
 			</div>
 			<div class="hero-img">
 				<img src={post.main_img} alt={post.title} />
