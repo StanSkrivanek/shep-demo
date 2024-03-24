@@ -92,7 +92,7 @@
 					<Arrow width={24} height={24} />
 				</div>
 			</a>
-			<a href="./blog/counselling/shep-counselling" class="decorative_link__c">
+			<a href="/counselling" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
 						<LeavesCorner width={24} height={24} currentColor="#44E980" />
@@ -106,7 +106,7 @@
 					<Arrow width={24} height={24} />
 				</div>
 			</a>
-			<a href="./blog/advocacy/shep-advocacy" class="decorative_link__c">
+			<a href="/advocacy" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
 						<LeavesCorner width={24} height={24} currentColor="#DB84DA" />
