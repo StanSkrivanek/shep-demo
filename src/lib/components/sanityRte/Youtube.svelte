@@ -2,7 +2,6 @@
 	// @ts-nocheck
 
 	export let portableText;
-	// $: console.log('🚀 ~ file: ImageRte.svelte:5 ~ portableText:', portableText);
 	$: ({ value } = portableText);
 	// $: ({ ptBlocks } = global);
 	$: ({ _type } = value);

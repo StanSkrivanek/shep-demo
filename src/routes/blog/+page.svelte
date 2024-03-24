@@ -39,7 +39,7 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 
 	// show all posts - reset filter
 	const allposts = () => {
-		// console.log('POSTS', posts);
+
 		filteredPosts = posts;
 	};
 </script>
@@ -85,7 +85,7 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 					<div class="card">
 						<!-- TODO: use Sanity image optimisation settings -> ?max=fit&xxx-->
 						<div class="card-subheading">
-							<a class="btn-link" href={`./blog/${post.category_slug}`}>{post.category}</a>
+							<a class="btn-link" href={`/blog/${post.category_slug}`}>{post.category}</a>
 						</div>
 						<div class="card-img">
 							<img src={post.main_img} alt={post.title} />
@@ -98,7 +98,7 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 							<p>{trimText(post.excerpt, 140)}</p>
 						</div>
 						<div class="card-footer">
-							<a class="btn-link" href={`./blog/${post.category_slug}/${post.slug}`}>
+							<a class="btn-link" href={`/blog/${post.category_slug}/${post.slug}`}>
 								<LinkCircle width={42} height={42} />
 								<!-- <Arrow width={21} height={21} /> -->
 							</a>

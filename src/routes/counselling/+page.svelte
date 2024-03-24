@@ -13,9 +13,9 @@
 	import { afterUpdate, tick } from 'svelte';
 
 	export let data;
-	// console.log(data);
+
 	$: post = data.pageContent;
-	// $: console.log(data);
+
 	let isTocOpen = false;
 	afterUpdate(() => {
 		const io = new IntersectionObserver(

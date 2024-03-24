@@ -8,10 +8,10 @@
 	import { afterUpdate, tick } from 'svelte';
 
 	export let data;
-	// console.log(data);
 	$: post = data.pageContent;
-	// $: console.log(data);
+
 	let isTocOpen = false;
+
 	afterUpdate(() => {
 		const io = new IntersectionObserver(
 			(entries) => {
@@ -82,7 +82,7 @@
 					<h1><span>{post.title}</span></h1>
 					<p class="excerpt">{post.excerpt}</p>
 				</div>
-				<!-- <a class="article_cat" href="/blog/{post.category_slug}">{post.category}</a> -->
+				<!-- <a class="article_cat" href="{post.category_slug}">{post.category}</a> -->
 			</div>
 			<div class="hero-img">
 				<img src={post.main_img} alt={post.title} />

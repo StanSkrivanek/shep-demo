@@ -1,11 +1,8 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	export let data;
-	
-	// console.log(data.allCourses);
-	// const openCourse = data.allOpenCourses;
-	// const { event, online, in_person, venue, form } = data.allCourses;
 </script>
+
 <svelte:head>
 	<title>Courses</title>
 	<meta name="description" content="Courses" />
@@ -32,9 +29,9 @@
 	</div>
 	<main class="container">
 		{#each data.allCourses as course}
-		<div class="card">
-			<div class="card-subheading">
-				<p>{course.type}</p>
+			<div class="card">
+				<div class="card-subheading">
+					<p>{course.type}</p>
 				</div>
 				<div class="card-header">
 					<h3>{course.title}</h3>

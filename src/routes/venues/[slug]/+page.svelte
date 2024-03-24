@@ -9,7 +9,7 @@
 	import { cubicOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
 	export let data;
-	// console.log("🚀 ~ VENUE :", data)
+
 	let isTraining = false;
 
 	const {
@@ -27,7 +27,7 @@
 		image
 	} = data.venue;
 	const upcoming = data.allUpcomingEvents;
-	// console.log('🚀 ~ upcomingEvents:', upcoming);
+
 
 	/**
 	 * @type {number | boolean | null}
@@ -149,13 +149,13 @@
 								<div class="data">
 									<div class="location">
 										{#if item.event.type == 'Short course'}
-											<a class="accordion-header--link" href="../courses/{item.event.slug.current}"
+											<a class="accordion-header--link" href="/courses/{item.event.slug.current}"
 												>{item.event.title}</a
 											>
 										{:else}
 											<a
 												class="accordion-header--link"
-												href="../trainings/{item.event.slug.current}">{item.event.title}</a
+												href="/trainings/{item.event.slug.current}">{item.event.title}</a
 											>
 										{/if}
 										<p>{item.event.type}</p>
@@ -263,7 +263,6 @@
 											{/if}
 										</div>
 									{/if}
-									<!-- TODO: responsiveness when form is narrow fold buttons in column -->
 									<div class="accordion-links">
 										<!-- download brochure -->
 										<a href={item.form.asset} target="_blank">
@@ -273,7 +272,7 @@
 										<!-- "type": "Short course" -->
 										{#if item.event.type == 'Short course'}
 											<a
-												href="../courses/{item.event.slug.current}/form"
+												href="/courses/{item.event.slug.current}/form"
 												on:click={() => storeCourseData(item)}
 											>
 												<span>apply online</span>
@@ -281,7 +280,7 @@
 										{:else if item.event.type == 'Facilitator Training' || item.event.type == 'Fundation Training'}
 											<!-- "type": "Fundation Training" - "type": "Facilitator Training", -->
 											<a
-												href="../trainings/{item.event.slug.current}/form"
+												href="/trainings/{item.event.slug.current}/form"
 												on:click={() => storeCourseData(item)}
 											>
 												<span>apply online</span>
@@ -528,7 +527,6 @@
 		border-radius: 1rem;
 		background: color-mix(in oklab, var(--item-color) 20%, white);
 	}
-	/* TODO: investigate and learn used principles of private variables */
 
 	.accordion-header {
 		padding: 1rem;

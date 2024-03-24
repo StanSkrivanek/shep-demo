@@ -9,8 +9,6 @@
 	// import { formatDate, formatTime12, monthNameDateYear } from '$lib/utils/datehelpers.js';
 	export let data;
 	let { logos, slides } = data;
-	// console.log('🚀 ~ file: +page.svelte:11 ~ slides:', slides);
-	// console.log("🚀 ~ file: +page.svelte:11 ~ logos:", logos)
 </script>
 
 <div class="page__c">
@@ -32,33 +30,6 @@
 				alt="pinky theme"
 			/>
 		</div>
-	</div>
-	<div class="about">
-		<!-- <div class="img__w">
-			<img
-				src="https://cdn.sanity.io/images/gkez65br/production/0d2dea9c07ff8295c035cb63abf6c6b147e95133-654x753.svg"
-				alt="logo"
-			/>
-		</div>
-		<div class="card">
-			<div class="header__c">
-				<div class="txt__w">
-					<h4>Who Are We</h4>
-					<p>
-						SHEP is a unique, not-for-profit, community-based training and development organisation
-					</p>
-				</div>
-				<a href="/about" class="link-and-txt__w">
-					<span>More about us</span>
-					<LinkCircle width={56} height={56} />
-				</a>
-			</div>
-
-			<img
-				src="https://cdn.sanity.io/images/gkez65br/production/8e3acee681de61aa2a8d5ea3656c553dfcd7269f-568x673.jpg"
-				alt=""
-			/>
-		</div> -->
 	</div>
 
 	<div class="links-and-slider">
@@ -207,7 +178,7 @@
 				</p>
 			</div>
 			<div class="card-footer">
-				<a class="btn-link" href="./blog/personal-stories">
+				<a class="btn-link" href="/blog/personal-stories">
 					<LinkCircle width={48} height={48} />
 				</a>
 			</div>
@@ -253,7 +224,7 @@
 </div>
 
 <style>
-	/* HERO */
+
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -281,8 +252,8 @@
 			& h1 {
 				margin: 0;
 				margin-bottom: 2rem;
-				color: var(--gray-900);
-				font-weight: 400;
+				color: var(--fc-mid);
+				
 				/* text-align: right; */
 				& span {
 					font-size: clamp(1.953rem, calc(1.6rem + 1vw), 3.52rem);
@@ -310,15 +281,6 @@
 		}
 	}
 
-	/* ABOUT SECTION */
-	.about {
-		display: grid;
-		grid-template-columns: subgrid;
-		gap: 1rem;
-		justify-content: end;
-		grid-column: 1/-1;
-	}
-	/* SLIDER SECTION */
 	.links-and-slider {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -463,18 +425,36 @@
 				display: block;
 			}
 		}
+
 		& .info {
 			grid-area: intro;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
 			padding: 2.4rem;
-			background: var(--orange-300);
+			border: 1px solid var(--gray-2);
+			background: var(--gray-1);
 			border-radius: 0.5rem;
 		}
 		& .card-footer {
 			display: flex;
 			justify-content: flex-end;
+			& svg {
+				& circle {
+					stroke: var(--color-brand) !important;
+				}
+				& path {
+					fill: var(--color-brand) !important;
+				}
+				&:hover {
+					& circle {
+						stroke: var(--shep-green) !important;
+					}
+					& path {
+						fill: var(--shep-green) !important;
+					}
+				}
+			}
 		}
 	}
 
@@ -491,13 +471,10 @@
 			grid-area: intro;
 			padding: 2.4rem;
 			text-align: center;
-			/* background: var(--blue-50); */
 			border-radius: 0.5rem;
 		}
 		& .scroller {
 			grid-area: scroller;
-			/* border-bottom: 1px solid #ccc; */
-			/* color: var(--clr-gray-400); */
 		}
 	}
 
@@ -514,11 +491,28 @@
 			flex-direction: column;
 			justify-content: space-between;
 			padding: 2.4rem;
-			background: var(--purple-100);
+			border: 1px solid var(--gray-2);
+			background: var(--gray-1);
 			border-radius: 0.5rem;
 			& .card-footer {
 				display: flex;
 				justify-content: flex-end;
+				& svg {
+					& circle {
+						stroke: var(--color-brand) !important;
+					}
+					& path {
+						fill: var(--color-brand) !important;
+					}
+					&:hover {
+						& circle {
+							stroke: var(--shep-green) !important;
+						}
+						& path {
+							fill: var(--shep-green) !important;
+						}
+					}
+				}
 			}
 		}
 		& .sec-img {
@@ -534,45 +528,12 @@
 			}
 		}
 	}
+
 	.section-header {
 		font-weight: 600;
 		margin-bottom: 1rem;
 	}
-	/* .card {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		grid-area: card;
-		background: var(--gray-1);
-		padding: 2.4rem;
-		border-radius: 0.5rem;
-		& .card-body {
-			height: min-content;
-			& p {
-				font-size: var(--sm);
-				&:first-child {
-					font-family: var(--ff-gilroy-smb);
-					margin: 0;
-					margin-bottom: 1rem;
-					max-width: 10ch;
-					line-height: 1;
-					font-size: 1.2rem;
-				}
-			}
-		}
-		& .card-footer {
-			display: flex;
-			justify-content: flex-end;
-		}
-	} */
-	/* Media Query */
-	/**
-* 640px - sm - small devices (mobile) 
-* 768px - md - medium devices (tablet)
-* 1024px - lg - large devices (desktops)
-* 1280px - xl - extra large devices (large desktops)
-* 1536px - xxl - extra extra large devices (larger desktops)
-*/
+
 	@media (max-width: 1280px) {
 		.links-and-slider {
 			/* position: relative; */
@@ -592,10 +553,8 @@
 			gap: 1rem;
 			margin-bottom: 2rem;
 		}
-		/* .mission {
-			grid-template-areas: ' img img img card card card card card ';
-		} */
 	}
+
 	@media (max-width: 1024px) {
 		.mission {
 			grid-template-areas:
@@ -625,6 +584,7 @@
 				'intro intro intro intro intro intro intro intro';
 		}
 	}
+
 	@media (max-width: 640px) {
 		.hero {
 			display: block;

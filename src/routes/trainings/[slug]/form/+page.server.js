@@ -46,10 +46,10 @@ export const actions = {
 				},
 				body: JSON.stringify(applicant)
 			});
-			// console.log('🚀 ~ default: ~ response:', response);
+
 			// if response is not ok, return fail
 			if (!response.ok) {
-				// console.log('🚀 ~ default: ~ BAD-response:', response);
+	
 				return fail(response.status, {
 					status: response.status,
 					statusText: response.statusText

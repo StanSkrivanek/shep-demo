@@ -12,7 +12,7 @@
 	export let duration = 3000;
 
 	let currentSlide = 0;
-	// $: console.log('🚀 ~ file: Slider_main.svelte:12 ~ currentSlide:', currentSlide);
+
 
 	const nextSlide = () => {
 		currentSlide++;
@@ -36,16 +36,14 @@
 	 * @type {number | undefined}
 	 */
 	let interval;
-	// $: console.log('🚀 ~ file: Slider_main.svelte:36 ~ interval:', interval);
+
 	const timer = () => {
 		clearInterval(interval);
 		interval = setInterval(nextSlide, duration);
 	};
 	timer();
 
-	// console.log('🚀 ~ file: Slider_main.svelte:13 ~ ON_MOUNT slides:', slides);
-	// onMount(() => {
-	// });
+
 </script>
 
 <div class="slider">
@@ -63,7 +61,7 @@
 					</div>
 
 					<div class="slide-footer">
-						<a class="btn-link" href="./blog/{slide.category_slug}/{slide.slug}">
+						<a class="btn-link" href="/blog/{slide.category_slug}/{slide.slug}">
 							<LinkCircle width={48} height={48} />
 						</a>
 					</div>

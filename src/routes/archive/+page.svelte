@@ -1,7 +1,7 @@
 <script>
 	import Book from '$lib/components/icons/Book.svelte';
 	export let data;
-	// $: console.log("🚀 ~ data:", data.props)
+
 	const { allNuacht } = data.props;
 	$: nuachtPDFs = allNuacht[0].pdfs;
 
@@ -10,7 +10,7 @@
 		//@ts-ignore
 		.sort((a, b) => a.title.split('-')[1] - b.title.split('-')[1])
 		.reverse();
-	$: console.log('🚀 ~ sortedPDFs:', sortedPDFs);
+
 </script>
 
 <div class="page__c">

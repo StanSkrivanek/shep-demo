@@ -1,8 +1,8 @@
 <script>
 	export let data;
-	console.log("🚀 ~ data:", data)
+
 	let { catArticles } = data.props;
-	// console.log('🚀 ~ file: +page.svelte:4 ~ catArticles:', catArticles);
+
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { trimText } from '$lib/utils/globalhelpers.js';
 </script>
@@ -10,6 +10,7 @@
 	<title>Articles</title>
 	<meta name="description" content="Articles on mental health and well-being" />
 </svelte:head>
+
 <div class="page__c">
 	<div class="hero">
 		<div class="hero-col-2__c">
@@ -49,7 +50,7 @@
 					<p>{trimText(post.excerpt, 140)}</p>
 				</div>
 				<div class="card-footer">
-					<a class="btn-link" href={`./${post.category_slug}/${post.slug}`}>
+					<a class="btn-link" href={`/${post.category_slug}/${post.slug}`}>
 						<LinkCircle width={48} height={48} />
 					</a>
 				</div>
@@ -107,7 +108,6 @@
 	.container {
 		display: grid;
 		grid-column: 1/-1;
-		/* TODO: auto-fit IF more that 5 articles */
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 		gap: 1rem;
 	}

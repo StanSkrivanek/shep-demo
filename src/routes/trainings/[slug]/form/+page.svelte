@@ -8,7 +8,7 @@
 
 	// variable form contain the form `data` and `issues` from validation
 	export let form;
-	// console.log('🚀 ~ file: +page.svelte:10 ~ FORM CLIENT:', form);
+
 
 	let courseData = $singleEventStore;
 
@@ -299,9 +299,6 @@
 		</form>
 	{/if}
 </div>
-
-<!-- TODO: 1) validate inputs with ZOD -->
-<!-- TODO: 2) send data with action -->
 
 <style>
 	.page__c {

@@ -2,7 +2,7 @@
 	// @ts-nocheck
 
 	export let portableText;
-	// $: console.log("🚀 ~ file: ImageRte.svelte:5 ~ portableText:", portableText)
+
 	const imageUrl = portableText.value.asset.url;
 	const imageAlt = portableText.value.asset.originalFilename;
 </script>

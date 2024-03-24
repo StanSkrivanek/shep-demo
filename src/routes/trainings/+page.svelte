@@ -1,8 +1,6 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	export let data;
-	// console.log(data.allTrainings);
-	// const openCourse = data.allOpenCourses;
 	const alUpcomingTrainings = data.allTrainings;
 </script>
 

@@ -38,7 +38,6 @@
 			justify-content: center;
 			align-items: center;
 			height: 100%;
-			/* width: 100%; */
 			padding: 2rem;
 			& h1 {
 				font-size: 2rem;

@@ -3,7 +3,6 @@
 
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	export let data;
-	// console.log('🚀 ~ data:', data);
 	const cities = data.allUpcomingEvents.map(
 		(/** @type {{ venue: { city: string; }; }} */ event) => event.venue.city
 	);
@@ -12,18 +11,9 @@
 	);
 	const uniqueCities = [...new Set(cities)];
 	const uniqueTypes = [...new Set(types)];
-	// console.log('🚀 ~ uniqueTypes:', uniqueTypes);
 	let city = '';
 	let type = '';
-	// $: console.log('🚀 ~ let city:', city);
 
-	/**
-	 * @param {string} city
-	 */
-	// function filterByCity(city) {
-	// console.log('🚀 ~ city:', city);
-	// city = city;
-	// }
 	$: filteredList = data.allUpcomingEvents.filter(
 		(/** @type {{ venue: { city: string; }; }} */ event) => {
 			// filter by type and or city
@@ -38,7 +28,6 @@
 			}
 		}
 	);
-	// $: console.log('🚀 ~ filteredList:', filteredList);
 </script>
 
 <svelte:head>
@@ -99,7 +88,6 @@
 		{/if}
 		{#if filteredList.length === 0}
 			<div class="no-upcoming__w">
-				<!-- TODO: add message if there is not ay upcoming event -->
 				<p class="no-upcoming--message">There is not any upcoming {type} in {city}</p>
 				<div class="no-upcoming__w">
 					<p>
@@ -150,7 +138,6 @@
 		grid-column: 1/-1;
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 		grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
-		/* TODO: Refactor `min-heigh` to have footer on bottom if no upcoming or only 1row */
 		min-height: 25vh;
 		gap: 1rem;
 	}

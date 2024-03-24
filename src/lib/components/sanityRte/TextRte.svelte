@@ -12,7 +12,7 @@
 	$: ({ style } = value);
 
 	// $: precededByHeading = ['normal'].includes(ptBlocks[indexInParent - 1]?.style);
-	// $: console.log('🚀 ~ file: textRte.svelte:5 ~ precededByHeading:', precededByHeading);
+	
 </script>
 
 {#if style === 'normal'}

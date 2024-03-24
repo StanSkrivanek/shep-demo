@@ -11,7 +11,7 @@
 	 * @type {any[]}
 	 */
 	export let logos = [];
-	// console.log("🚀 ~ file: Scroller.svelte:14 ~ data:", logos)
+
 	
 	onMount(() => {
 		const scroller = document.querySelector('.scroller');

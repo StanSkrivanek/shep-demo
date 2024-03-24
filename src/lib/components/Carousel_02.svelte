@@ -28,6 +28,7 @@ function nextSlide() {
   showSlide(currentSlide + 1);
 }
 
+// @ts-ignore
 next.onclick = function () {
   pauseSlides();
   nextSlide();
@@ -38,6 +39,7 @@ function prevSlide() {
   showSlide(currentSlide - 1);
 }
 
+// @ts-ignore
 prev.onclick = function () {
   pauseSlides();
   prevSlide();
@@ -46,6 +48,9 @@ prev.onclick = function () {
 
 
 // show current (next/prev) slide
+	/**
+	 * @param {number} num
+	 */
 function showSlide(num) {
   slides[currentSlide].className = "fds-slide";
   currentSlide = (num + slides.length) % slides.length;
@@ -57,11 +62,16 @@ function showSlide(num) {
 // [ === PAGINATION === ]
 
 // create slider navigation based on number of slides
+	/**
+	 * @param {any[]} slides
+	 */
 function createPagination(slides) {
+
+  // @ts-ignore
   sliderNavContainer.innerHTML = `
   <ol class='fds-slider-navigation'>
   ${slides
-    .map((item, idx) => {
+    .map((/** @type {{ className: string; }} */ item, /** @type {number} */ idx) => {
       return `<li id="${idx}" class="fds-nav-item${
         item.className === "fds-slide is-visible" ? " selected" : ""
       }"><a href="#">${idx + 1}</a></li>`;
@@ -72,7 +82,8 @@ function createPagination(slides) {
 
 // updating slider nav 
 function updateNav() {
-  let [...list] = sliderNavContainer.children[0].children;
+  // @ts-ignore
+  let [...list] = sliderNavContainer?.children[0].children;
   list.map((item, idx) => {
     item.classList.remove("selected");
     currentSlide === idx ? item.classList.add("selected") : "";
@@ -92,8 +103,11 @@ function pauseSlides() {
 // [ === KEYBOARD NAV === ]
 
 // This functionality is only basic
+	/**
+	 * @param {{ keyCode: any; }} e
+	 */
 function keysNav(e) {
-  // console.log(e.keyCode);
+ 
   switch (e.keyCode) {
     case 37: // arr <
       clearInterval(slideInterval);
@@ -103,6 +117,7 @@ function keysNav(e) {
       clearInterval(slideInterval);
       nextSlide();
       break;
+      // @ts-ignore
       default: none;
   }
 }
@@ -110,6 +125,9 @@ function keysNav(e) {
 // [ === CLICK - GO TO THIS === ]
 
 // invoke `thisSlide()` function on click event listener
+	/**
+	 * @param {number} elmId
+	 */
 function showSlectedSlide(elmId) {
 	slides.forEach((slide,i) => {
 		slide.classList.remove("is-visible")
@@ -122,10 +140,13 @@ function showSlectedSlide(elmId) {
 // [ === EVENT LISTENERS === ]
 
 // active numbered navigation
+// @ts-ignore
 sliderNavContainer.addEventListener("click", (event) => {
   const cEl = event.target;
+  // @ts-ignore
   const pEl = cEl.parentElement
   const pId = pEl.id
+  // @ts-ignore
   const [...list] = sliderNavContainer.children[0].children;
   
   list.forEach((item) => item.classList.remove("selected"));
@@ -134,7 +155,9 @@ sliderNavContainer.addEventListener("click", (event) => {
   showSlectedSlide(pId);
 });
 
+// @ts-ignore
 mainContainer.addEventListener("mouseover", pauseSlides);
+// @ts-ignore
 mainContainer.addEventListener("mouseout", playAgain);
 window.addEventListener("keyup", keysNav);
 

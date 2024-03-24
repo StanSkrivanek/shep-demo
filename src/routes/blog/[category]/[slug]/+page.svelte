@@ -11,7 +11,7 @@
 
 	export let data;
 	$: post = data.post;
-	// $: console.log(data);
+
 
 	let isTocOpen = false;
 
@@ -76,6 +76,7 @@
 	<title>{post.title}</title>
 	<meta name="description" content={post.excerpt} />
 </svelte:head>
+
 <div class="page__c">
 	<div class="hero" id="top">
 		<div class="hero-col-2__c">
@@ -174,7 +175,7 @@
 								<p>{post.title}</p>
 								<div class="link-excerpt">
 									<p>{post.excerpt}</p>
-									<a href={`../${post.category_slug}/${post.slug}`}>
+									<a href={`/blog/${post.category_slug}/${post.slug}`}>
 										<LinkCircle width={40} height={40} />
 									</a>
 								</div>

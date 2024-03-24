@@ -1,12 +1,10 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	export let data;
-	// console.log('🚀 VENUES', data);
-	// const { venue_name } = data.venues;
 </script>
 
 <svelte:head>
-	<title>Venues</title>
+	<title>Facilities</title>
 	<meta name="description" content="Our partners venues" />
 </svelte:head>
 
@@ -30,7 +28,7 @@
 			</div>
 		</div>
 	</div>
-	<h1>Our Partners</h1>
+	<h1>Facilities</h1>
 	<div class="container">
 		{#each data.venues as venue}
 			<div class="card">
@@ -43,7 +41,7 @@
 						<h2>{venue.venue_name}</h2>
 						<!-- <p>{venue.excerpt}</p> -->
 					</div>
-					<a class="link" href="venues/{venue.slug}">
+					<a class="link" href="/venues/{venue.slug}">
 						<div class="link-desc__w">
 							<p class="small-title">See more</p>
 							<!-- <p>For more informations about us please visit our website</p> -->

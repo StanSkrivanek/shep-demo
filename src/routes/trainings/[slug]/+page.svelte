@@ -8,11 +8,11 @@
 	import { PortableText } from '@portabletext/svelte';
 	import { slide } from 'svelte/transition';
 	export let data;
-	// $: console.log('🚀 ~ file: +page.svelte:12 ~ CLIENT data.trainings:', data.upcomingTraning);
+
 	const { title, excerpt, full_price, funded_price, main_img, content, brochure, slug } =
 		data.traning;
 	const upcoming = data.allUpcomingTrainings;
-	// $: console.log("🚀 UPCOMING", upcoming)
+
 	/**
 	 * @type {number | boolean | null}
 	 */
@@ -217,7 +217,6 @@
 											{/if}
 										</div>
 									{/if}
-									<!-- TODO: responsiveness when form is narrow fold buttons in column -->
 									<div class="accordion-links">
 										<!-- download brochure -->
 										<a href={item.form.asset} target="_blank">
@@ -225,8 +224,6 @@
 										</a>
 
 										<!-- apply online -->
-										<!-- TODO: on click get data from this course and use these on Form page -->
-										<!-- Use STORE? Local storage? On submit send to google sheet and delete storage (store)-->
 										<a href="/trainings/{slug}/form" on:click={() => storeCourseData(item)}>
 											<span>apply online</span>
 										</a>
@@ -239,7 +236,6 @@
 			{/if}
 		</aside>
 		<!-- main -->
-		<!-- TODO: expand main content to last column on -->
 		<main>
 			<article>
 				<PortableText

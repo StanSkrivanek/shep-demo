@@ -6,7 +6,7 @@
 	import { quintOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
 	export let data;
-	console.log(data.props.allJobs);
+	
 	let jobs = data.props.allJobs;
 
 	/**
@@ -16,7 +16,7 @@
 
 	const toggleActive = (/** @type {number | boolean | null} */ i) => {
 		i == show ? (show = null) : (show = i);
-		console.log(i, show);
+		
 	};
 </script>
 

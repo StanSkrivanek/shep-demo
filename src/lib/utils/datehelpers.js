@@ -69,7 +69,7 @@ function formatTime24(date) {
 
 	return [hours, minutes].join(':');
 }
-// TODO: Refactor function below to fulfill ts requirements
+
 /**
  * @param {string | number | Date} date
  */
