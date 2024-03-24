@@ -6,11 +6,10 @@
 	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers';
 	import { PortableText } from '@portabletext/svelte';
-	import { cubicOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
 
 	export let data;
-	console.log("🚀 ~ data:", data)
+	console.log('🚀 ~ data:', data);
 	// Registered Event
 	const { title, excerpt, full_price, funded_price, main_img, content, brochure, slug, ref_name } =
 		data.course;
@@ -27,21 +26,7 @@
 	};
 
 	/**
-	 * @param {any} node
-	 */
-	// function rotate180(node, { duration = 300 }) {
-	// 	return {
-	// 		duration,
-	// 		css: (/** @type {number} */ t) => {
-	// 			const eased = cubicOut(t);
-	// 			return `
-	// 					transform: rotate(${eased * 180}deg);
-	// 				`;
-	// 		}
-	// 	};
-	// }
-	/**
-	 * @param {any} node
+	 * @param {{}} node
 	 */
 	function storeCourseData(node) {
 		$singleEventStore = node;
@@ -57,7 +42,6 @@
 
 <div class="page__c">
 	<!-- hero -->
-	<!-- TODO: update other Heros based on this principle 4 rows without 2-cols wrapper -->
 	<div class="hero">
 		<div class="hero-data">
 			<h1>{title}</h1>
@@ -333,12 +317,11 @@
 			font-size: var(--sm);
 			margin-bottom: 0.5rem;
 			color: var(--fc-main);
-			/* & span {
-				color: var(--fc-light);
-				
-			} */
 		}
-
+		& .fee {
+			font-weight: 700;
+			font-family: var(--ff-inter);
+		}
 		& .small-title {
 			position: relative;
 			margin-top: 0;
@@ -473,6 +456,7 @@
 			/* transform: rotate(180deg); */
 		}
 	}
+
 	.accordion_item {
 		--item-color: var(--shep-orange);
 		--_base-color-private: var(--item-color, var(--clr-base));

@@ -6,7 +6,6 @@
 	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers';
 	import { PortableText } from '@portabletext/svelte';
-	import { cubicOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
 	export let data;
 	// $: console.log('🚀 ~ file: +page.svelte:12 ~ CLIENT data.trainings:', data.upcomingTraning);
@@ -22,21 +21,6 @@
 	const toggleActive = (/** @type {number | boolean | null} */ i) => {
 		i == show ? (show = null) : (show = i);
 	};
-
-	/**
-	 * @param {any} node
-	 */
-	function rotate180(node, { duration = 300 }) {
-		return {
-			duration,
-			css: (/** @type {number} */ t) => {
-				const eased = cubicOut(t);
-				return `
-						transform: rotate(${eased * 180}deg);
-					`;
-			}
-		};
-	}
 
 	/**
 	 * @param {any} node
@@ -331,10 +315,10 @@
 			font-size: var(--sm);
 			margin-bottom: 0.5rem;
 			color: var(--fc-main);
-			/* & span {
-				color: var(--fc-light);
-				
-			} */
+		}
+		& .fee {
+			font-weight: 700;
+			font-family: var(--ff-inter);
 		}
 		& .small-title {
 			position: relative;

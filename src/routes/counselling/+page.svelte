@@ -70,8 +70,8 @@
 	}
 </script>
 <svelte:head>
-	<title>SHEP Advocacy</title>
-	<meta name="description" content="SHEP Advocacy" />
+	<title>SHEP Counselling</title>
+	<meta name="description" content="SHEP Counselling" />
 </svelte:head>
 <div class="page__c">
 	<div class="hero" id="top">

@@ -168,6 +168,12 @@
 					</li>
 					<li>
 						<a
+							href="/activities"
+							on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}>Activities</a
+						>
+					</li>
+					<li>
+						<a
 							href="/venues"
 							on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}>Venues</a
 						>
