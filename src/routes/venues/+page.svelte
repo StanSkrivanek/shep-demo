@@ -44,8 +44,6 @@
 					<a class="link" href="/venues/{venue.slug}">
 						<div class="link-desc__w">
 							<p class="small-title">See more</p>
-							<!-- <p>For more informations about us please visit our website</p> -->
-							<!-- <p>SHEP courses open for application in our facilities</p> -->
 						</div>
 						<div class="link-icon">
 							<LinkCircle width={42} height={42} />
@@ -53,7 +51,6 @@
 					</a>
 				</div>
 			</div>
-			<!-- <img src={venue.logo} alt=""> -->
 		{/each}
 	</div>
 </div>
@@ -111,9 +108,9 @@
 		display: grid;
 		grid-template-areas: 'thumbnail body';
 		grid-template-columns: repeat(2, 1fr);
-
+		background: var(--clr-white);
 		border: 1px solid var(--gray-100);
-		border-radius: 1rem;
+		border-radius: 0.5rem;
 		pointer-events: none;
 		transition: all 0.3s ease-in-out;
 		&:hover {
@@ -124,7 +121,6 @@
 
 	.thumbnail {
 		grid-area: thumbnail;
-		border-radius: 1rem;
 		background: var(--gray-100);
 		max-height: max-content;
 		& img {
@@ -132,7 +128,7 @@
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
-			border-radius: 1rem 0 0 1rem;
+			border-radius: 0.5rem 0 0 0.5rem;
 			aspect-ratio: 16/9;
 		}
 	}
@@ -172,10 +168,10 @@
 			& svg {
 				display: block;
 				& circle {
-					stroke: var(--color-brand) !important;
+					stroke: var(--clr-brand) !important;
 				}
 				& path {
-					fill: var(--color-brand) !important;
+					fill: var(--clr-brand) !important;
 				}
 				&:hover {
 					& circle {

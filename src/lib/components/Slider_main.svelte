@@ -13,7 +13,6 @@
 
 	let currentSlide = 0;
 
-
 	const nextSlide = () => {
 		currentSlide++;
 		if (currentSlide >= slides.length) {
@@ -42,8 +41,6 @@
 		interval = setInterval(nextSlide, duration);
 	};
 	timer();
-
-
 </script>
 
 <div class="slider">
@@ -140,6 +137,7 @@
 				background: var(--gray-1);
 				border-radius: 1rem;
 				height: 100%;
+				background: var(--clr-main-white);
 				& .slide__content {
 					grid-column: 2/2;
 					color: var(--fc-main);
@@ -167,10 +165,10 @@
 						transition: all 0.3s ease;
 						& svg {
 							& circle {
-								stroke: var(--color-brand) !important;
+								stroke: var(--clr-brand) !important;
 							}
 							& path {
-								fill: var(--color-brand) !important;
+								fill: var(--clr-brand) !important;
 							}
 							&:hover {
 								& circle {

@@ -6,6 +6,7 @@
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { trimText } from '$lib/utils/globalhelpers.js';
 </script>
+
 <svelte:head>
 	<title>Articles</title>
 	<meta name="description" content="Articles on mental health and well-being" />
@@ -50,7 +51,7 @@
 					<p>{trimText(post.excerpt, 140)}</p>
 				</div>
 				<div class="card-footer">
-					<a class="btn-link" href={`/${post.category_slug}/${post.slug}`}>
+					<a class="btn-link" href={`/blog/${post.category_slug}/${post.slug}`}>
 						<LinkCircle width={48} height={48} />
 					</a>
 				</div>
@@ -84,7 +85,7 @@
 		grid-area: hero-data;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: var(--color-brand);
+		background: var(--clr-brand);
 		& h1 {
 			color: var(--fc-white);
 			margin: 0;
@@ -140,7 +141,8 @@
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px var(--gray-100);
-		/* background: var(--green-light); */
+		background: var(--clr-main-white);
+		border: 1px solid var(--green-300);
 	}
 	.card-header {
 		grid-area: header;
@@ -160,7 +162,7 @@
 			font-size: var(--xs);
 			line-height: 2;
 			color: var(--gray-400);
-			color: var(--color-brand);
+			color: var(--clr-brand);
 		}
 	}
 	.card-img {
@@ -202,10 +204,10 @@
 		} */
 		& svg {
 			& circle {
-				stroke: var(--color-brand) !important;
+				stroke: var(--clr-brand) !important;
 			}
 			& path {
-				fill: var(--color-brand) !important;
+				fill: var(--clr-brand) !important;
 			}
 			&:hover {
 				& circle {

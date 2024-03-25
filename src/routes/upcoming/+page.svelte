@@ -144,7 +144,7 @@
 
 	.filter__w {
 		display: flex;
-		gap:1rem;
+		gap: 1rem;
 		justify-content: left;
 		align-items: center;
 		grid-area: 1/1/1/9;
@@ -194,21 +194,23 @@
 		border: 1px solid var(--gray-2);
 		border-radius: 1rem;
 		padding: 1rem;
+		background: var(--clr-white);
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
 		& svg {
 			& circle {
-				stroke: var(--color-brand) !important;
+				stroke: var(--clr-brand) !important;
 			}
 			& path {
-				fill: var(--color-brand) !important;
+				fill: var(--clr-brand) !important;
 			}
 		}
 	}
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px var(--gray-2);
-		background: var(--green-light);
+		background: var(--clr-main-white);
+		border: 1px solid var(--green-300);
 		& svg {
 			& circle {
 				stroke: var(--shep-green) !important;
@@ -225,7 +227,7 @@
 		& h3 {
 			font-size: 1.5rem;
 			font-weight: 400;
-			color: var(--color-brand);
+			color: var(--clr-brand);
 		}
 		& p {
 			margin: 0;
@@ -289,7 +291,7 @@
 		position: relative;
 		min-width: 240px;
 		height: 3rem;
-		border: 1px solid var(--color-brand);
+		border: 1px solid var(--clr-brand);
 		border-radius: 0.25rem;
 		overflow: hidden;
 		background-color: #fff;
@@ -308,7 +310,7 @@
 	.custom-select::after {
 		border-left: var(--size) solid transparent;
 		border-right: var(--size) solid transparent;
-		border-top: var(--size) solid var(--color-brand);
+		border-top: var(--size) solid var(--clr-brand);
 		border-radius: 1rem;
 		top: 50%;
 		/* background-color: red; */
@@ -319,11 +321,10 @@
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			
 		}
 		.filter {
-				margin-bottom: 0;
-				width:100%
-			}
-	} 
+			margin-bottom: 0;
+			width: 100%;
+		}
+	}
 </style>

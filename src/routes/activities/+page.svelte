@@ -1,6 +1,6 @@
 <script>
-	import { trimText } from '$lib/utils/globalhelpers';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import { trimText } from '$lib/utils/globalhelpers';
 	export let data;
 </script>
 
@@ -30,7 +30,6 @@
 		</div>
 	</div>
 	<div class="main__c">
-
 		<main class="container">
 			{#each data.activities as post}
 				<div class="posts">
@@ -61,7 +60,7 @@
 </div>
 
 <style>
-main {
+	main {
 		grid-area: main;
 		/* padding-inline: 1rem; */
 	}
@@ -163,9 +162,9 @@ main {
 			[header] 3.6rem
 			[body] auto
 			[footer] 2.6rem;
-
+		background: var(--clr-white);
 		border: 1px solid var(--gray-100);
-		border-radius: 1rem;
+		border-radius: 0.5rem;
 		padding: 1rem;
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
@@ -175,7 +174,8 @@ main {
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px var(--gray-100);
-		/* background: var(--green-light); */
+		background: var(--clr-main-white);
+		border: 1px solid var(--green-300);
 	}
 	.card-header {
 		grid-area: header;
@@ -214,7 +214,7 @@ main {
 	.card-img {
 		grid-area: image;
 		object-fit: cover;
-		border-radius: 1rem;
+		/* border-radius: 0.25rem; */
 		margin-bottom: 1rem;
 		/* border: 2px solid red; */
 		& img {
@@ -222,7 +222,7 @@ main {
 			display: block;
 			width: 100%;
 			height: 100%;
-			border-radius: 1rem;
+			border-radius: 0.25rem;
 
 			/* aspect-ratio: 2.4/1; */
 		}
@@ -252,19 +252,19 @@ main {
 		pointer-events: all;
 		& svg {
 			& circle {
-					stroke: var(--color-brand) !important;
+				stroke: var(--clr-brand) !important;
+			}
+			& path {
+				fill: var(--clr-brand) !important;
+			}
+			&:hover {
+				& circle {
+					stroke: var(--shep-green) !important;
 				}
 				& path {
-					fill: var(--color-brand) !important;
+					fill: var(--shep-green) !important;
 				}
-				&:hover {
-					& circle {
-						stroke: var(--shep-green) !important;
-					}
-					& path {
-						fill: var(--shep-green) !important;
-					}
-				}
+			}
 		}
 	}
 	/* Media Query */

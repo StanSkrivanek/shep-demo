@@ -4,14 +4,13 @@
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import Toc from '$lib/components/icons/Toc.svelte';
 	import Youtube from '$lib/components/sanityRte/Youtube.svelte';
-	import { CustomHeading, ImageRte, TextRte} from '$lib/components/sanityRte/index.js';
+	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
 	import clickOutside from '$lib/utils/clickoutside.js';
 	import { PortableText } from '@portabletext/svelte';
 	import { afterUpdate, tick } from 'svelte';
 
 	export let data;
 	$: post = data.post;
-
 
 	let isTocOpen = false;
 
@@ -72,6 +71,7 @@
 		});
 	}
 </script>
+
 <svelte:head>
 	<title>{post.title}</title>
 	<meta name="description" content={post.excerpt} />
@@ -155,7 +155,6 @@
 						types: {
 							image: ImageRte,
 							youtube: Youtube
-							
 						}
 					}}
 				/>
@@ -399,10 +398,10 @@
 				bottom: 1rem;
 				right: 1rem;
 				& circle {
-					stroke: var(--color-brand) !important;
+					stroke: var(--clr-brand) !important;
 				}
 				& path {
-					fill: var(--color-brand) !important;
+					fill: var(--clr-brand) !important;
 				}
 				&:hover {
 					& circle {

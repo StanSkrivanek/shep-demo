@@ -6,7 +6,7 @@
 	import { quintOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
 	export let data;
-	
+
 	let jobs = data.props.allJobs;
 
 	/**
@@ -16,7 +16,6 @@
 
 	const toggleActive = (/** @type {number | boolean | null} */ i) => {
 		i == show ? (show = null) : (show = i);
-		
 	};
 </script>
 
@@ -48,7 +47,10 @@
 			<h2>Job Opportunities</h2>
 			{#if jobs.length == 0}
 				<div class="no-job">
-					<p>Currently, there are no vacant positions available. Kindly revisit for any future updates.</p>
+					<p>
+						Currently, there are no vacant positions available. Kindly revisit for any future
+						updates.
+					</p>
 				</div>
 			{:else}
 				<div class="accordion">
@@ -251,7 +253,7 @@
 		/* color:aliceblue; */
 		font-size: 1.5rem;
 		/* font-weight: 500; */
-		& p{
+		& p {
 			margin: 0;
 		}
 	}
@@ -277,10 +279,10 @@
 
 		& svg {
 			& circle {
-				stroke: var(--color-brand) !important;
+				stroke: var(--clr-brand) !important;
 			}
 			& path {
-				stroke: var(--color-brand) !important;
+				stroke: var(--clr-brand) !important;
 			}
 			/* &:hover {
 					& circle {
@@ -295,7 +297,7 @@
 
 	.subtitle {
 		font-size: var(--h4);
-		color: var(--color-brand);
+		color: var(--clr-brand);
 		margin-bottom: 0.5rem;
 		border-bottom: 1px solid var(--gray-100);
 		padding-bottom: 0.5rem;
@@ -316,7 +318,7 @@
 	}
 	.job-header__title {
 		margin-bottom: 0;
-		color: var(--color-brand);
+		color: var(--clr-brand);
 	}
 	.job-header__sub {
 		display: flex;
@@ -344,7 +346,7 @@
 				& h4 {
 					margin-bottom: 1rem;
 					line-height: 1;
-					color: var(--color-brand);
+					color: var(--clr-brand);
 				}
 				& p {
 					margin: 0.25rem;

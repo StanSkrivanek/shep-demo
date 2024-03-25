@@ -2,7 +2,7 @@
 	import Book from '$lib/components/icons/Book.svelte';
 	export let data;
 
-	const {allPublications } = data.props;
+	const { allPublications } = data.props;
 	// $: nuachtPDFs = allNuacht[0].pdfs;
 	$: publications = allPublications[0].publications;
 	// // destructure title and split by space
@@ -20,8 +20,8 @@
 				<div>
 					<p>
 						Welcome to the SHEP Archive! Within these page, you'll discover our most recent
-						publications and reports, conveniently presented in PDF format for effortless
-						access. We hope you find them enjoyable!
+						publications and reports, conveniently presented in PDF format for effortless access. We
+						hope you find them enjoyable!
 					</p>
 				</div>
 			</div>
@@ -130,7 +130,7 @@
 		background: var(--gray-50);
 		& svg {
 			& path {
-				stroke: var(--color-brand) !important;
+				stroke: var(--clr-brand) !important;
 			}
 		}
 	}
@@ -138,7 +138,7 @@
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px var(--gray-2);
 		pointer-events: none;
-		border-color: var(--color-brand);
+		border-color: var(--clr-brand);
 	}
 
 	.card-pdf__data {

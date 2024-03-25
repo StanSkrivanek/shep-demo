@@ -69,7 +69,7 @@
 	/* Colors */
 	--clr-base: hsl(0, 0%, 50%);
 
-	--color-brand: color-mix(in oklab, var(--shep-orange) 100%, white);
+	--clr-brand: color-mix(in oklab, var(--shep-orange) 100%, white);
 
 	/* SHEP RGB*/
 	--shep-orange: #ff7c56;
@@ -89,10 +89,12 @@
 	--clr-purple: hsl(260, 82%, 71%);
 	--clr-cyan: hsl(180, 50%, 50%);
 
+	--clr-main-white: #fff9ef;
 	--clr-white: hsl(0, 0%, 100%);
+	--clr-light-green: hsl(161, 100%, 96%);
 	--clr-black: hsl(0, 0%, 0%);
 	--clr-transparent: transparent;
-
+	/* --clr-floral-white: #fff9ef; */
 	/* Variations */
 	--gray-1: #fafafa;
 	--gray-2: #e8e8e9;
@@ -243,6 +245,7 @@ body {
 	font-size: var(--base-size);
 	line-height: var(--lineHeight);
 	color: rgb(73, 76, 82);
+	background: var(--clr-main-white);
 }
 
 *,

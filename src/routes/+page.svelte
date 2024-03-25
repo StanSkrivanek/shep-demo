@@ -100,7 +100,7 @@
 	<div class="mission">
 		<div class="img_w">
 			<img
-				src="https://cdn.sanity.io/images/gkez65br/production/e22f9e770dc564915d3eceb55450eb06c24ecba0-849x829.jpg"
+				src="https://cdn.sanity.io/images/gkez65br/production/94d629ddacb12c2af68762fa41f02b30d812ab84-849x829.webp"
 				alt=""
 			/>
 		</div>
@@ -224,7 +224,6 @@
 </div>
 
 <style>
-
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -253,7 +252,7 @@
 				margin: 0;
 				margin-bottom: 2rem;
 				color: var(--fc-mid);
-				
+
 				/* text-align: right; */
 				& span {
 					font-size: clamp(1.953rem, calc(1.6rem + 1vw), 3.52rem);
@@ -305,6 +304,7 @@
 		grid-column: 1/-1;
 		gap: 1rem;
 		margin-bottom: 3rem;
+		/* background: var(--clr-main-white); */
 		/* @media screen and (max-width: 1280px) {
 			grid-template-areas:
 				' img img img card card card card card';
@@ -316,8 +316,9 @@
 				height: 100%;
 				aspect-ratio: 2/1;
 				object-fit: contain;
-				border-radius: 0.5rem;
+				border-radius: 0.55rem;
 				display: block;
+				border-radius: 0.5rem;
 			}
 		}
 		& .card-mission {
@@ -325,6 +326,7 @@
 			background-color: var(--blue-50);
 			padding: 2.4rem;
 			border-radius: 1rem;
+			background: var(--clr-main-white);
 			& p {
 				padding: 0;
 				margin: 0;
@@ -432,8 +434,8 @@
 			flex-direction: column;
 			justify-content: space-between;
 			padding: 2.4rem;
-			border: 1px solid var(--gray-2);
-			background: var(--gray-1);
+			/* border: 1px solid var(--gray-2); */
+			background: var(--clr-main-white);
 			border-radius: 0.5rem;
 		}
 		& .card-footer {
@@ -441,10 +443,10 @@
 			justify-content: flex-end;
 			& svg {
 				& circle {
-					stroke: var(--color-brand) !important;
+					stroke: var(--clr-brand) !important;
 				}
 				& path {
-					fill: var(--color-brand) !important;
+					fill: var(--clr-brand) !important;
 				}
 				&:hover {
 					& circle {
@@ -485,24 +487,25 @@
 		grid-column: 1/-1;
 		gap: 1rem;
 		margin-bottom: 3rem;
+
 		& .info {
 			grid-area: intro;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
 			padding: 2.4rem;
-			border: 1px solid var(--gray-2);
-			background: var(--gray-1);
+			/* border: 1px solid var(--gray-2); */
+			background: var(--clr-main-white);
 			border-radius: 0.5rem;
 			& .card-footer {
 				display: flex;
 				justify-content: flex-end;
 				& svg {
 					& circle {
-						stroke: var(--color-brand) !important;
+						stroke: var(--clr-brand) !important;
 					}
 					& path {
-						fill: var(--color-brand) !important;
+						fill: var(--clr-brand) !important;
 					}
 					&:hover {
 						& circle {

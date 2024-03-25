@@ -1,6 +1,5 @@
 <script>
-	import Arrow from '$lib/components/icons/Arrow.svelte';
-import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { trimText } from '$lib/utils/globalhelpers.js';
 	// import { reset } from '__sveltekit/paths';
 	// import { get } from 'svelte/store';
@@ -39,10 +38,10 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 
 	// show all posts - reset filter
 	const allposts = () => {
-
 		filteredPosts = posts;
 	};
 </script>
+
 <svelte:head>
 	<title>Articles</title>
 	<meta name="description" content="Articles on mental health and well-being" />
@@ -95,12 +94,11 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 						</div>
 						<div class="card-body">
 							<!-- <p>{post.author[0].name}</p> -->
-							<p>{trimText(post.excerpt, 140)}</p>
+							<p>{trimText(post.excerpt, 128)}</p>
 						</div>
 						<div class="card-footer">
 							<a class="btn-link" href={`/blog/${post.category_slug}/${post.slug}`}>
 								<LinkCircle width={42} height={42} />
-								<!-- <Arrow width={21} height={21} /> -->
 							</a>
 						</div>
 					</div>
@@ -230,6 +228,7 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 		border: 1px solid var(--gray-100);
 		border-radius: 1rem;
 		padding: 1rem;
+		background: var(--clr-white);
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
 		gap: 0.25rem;
@@ -238,7 +237,8 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px var(--gray-100);
-		/* background: var(--green-light); */
+		background: var(--clr-main-white);
+		border: 1px solid var(--green-300);
 	}
 	.card-header {
 		grid-area: header;
@@ -277,7 +277,7 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	.card-img {
 		grid-area: image;
 		object-fit: cover;
-		border-radius: 1rem;
+		/* border-radius: 1rem; */
 		margin-bottom: 1rem;
 		/* border: 2px solid red; */
 		& img {
@@ -285,7 +285,7 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 			display: block;
 			width: 100%;
 			height: 100%;
-			border-radius: 1rem;
+			border-radius: 0.25rem;
 
 			/* aspect-ratio: 2.4/1; */
 		}
@@ -315,19 +315,19 @@ import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 		pointer-events: all;
 		& svg {
 			& circle {
-					stroke: var(--color-brand) !important;
+				stroke: var(--clr-brand) !important;
+			}
+			& path {
+				fill: var(--clr-brand) !important;
+			}
+			&:hover {
+				& circle {
+					stroke: var(--shep-green) !important;
 				}
 				& path {
-					fill: var(--color-brand) !important;
+					fill: var(--shep-green) !important;
 				}
-				&:hover {
-					& circle {
-						stroke: var(--shep-green) !important;
-					}
-					& path {
-						fill: var(--shep-green) !important;
-					}
-				}
+			}
 		}
 	}
 

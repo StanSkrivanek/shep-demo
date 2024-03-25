@@ -28,7 +28,6 @@
 	} = data.venue;
 	const upcoming = data.allUpcomingEvents;
 
-
 	/**
 	 * @type {number | boolean | null}
 	 */
@@ -153,9 +152,8 @@
 												>{item.event.title}</a
 											>
 										{:else}
-											<a
-												class="accordion-header--link"
-												href="/trainings/{item.event.slug.current}">{item.event.title}</a
+											<a class="accordion-header--link" href="/trainings/{item.event.slug.current}"
+												>{item.event.title}</a
 											>
 										{/if}
 										<p>{item.event.type}</p>
@@ -512,7 +510,7 @@
 		}
 	}
 	.course {
-		--item-color: var(--color-brand);
+		--item-color: var(--clr-brand);
 		--_base-color-private: var(--item-color, var(--gray-500));
 		margin-bottom: 1rem;
 		background-color: var(--item-color);

@@ -10,7 +10,6 @@
 		//@ts-ignore
 		.sort((a, b) => a.title.split('-')[1] - b.title.split('-')[1])
 		.reverse();
-
 </script>
 
 <div class="page__c">
@@ -132,7 +131,7 @@
 		background: var(--gray-50);
 		& svg {
 			& path {
-				stroke: var(--color-brand) !important;
+				stroke: var(--clr-brand) !important;
 			}
 		}
 	}
@@ -140,7 +139,7 @@
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px var(--gray-2);
 		pointer-events: none;
-		border-color: var(--color-brand);
+		border-color: var(--clr-brand);
 	}
 
 	.card-pdf__data {

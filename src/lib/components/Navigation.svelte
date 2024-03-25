@@ -231,7 +231,7 @@
 	a {
 		text-decoration: none;
 		&:hover {
-			color: var(--color-brand);
+			color: var(--clr-brand);
 		}
 	}
 	/* header */
@@ -318,7 +318,7 @@
 
 	.header .item-right a:hover,
 	.header .menu > ul > li:hover > a {
-		color: var(--color-brand);
+		color: var(--clr-brand);
 	}
 
 	.mobile-menu-head,
