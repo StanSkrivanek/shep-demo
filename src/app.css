@@ -1,35 +1,16 @@
-@font-face {
-	font-family: 'Gilroy';
-	src: url('/fonts/gilroy/Gilroy-Regular.ttf') format('truetype');
+@font-face{
+	font-family: "fkg-black";
+	src: url('/fonts/FKGN/FKGroteskNeueTrial-Black-BF6576818b4c472.otf') format('OpenType');
+}
+@font-face{
+	font-family: "fkg-bold";
+	src: url('/fonts/FKGN/FKGroteskNeueTrial-Bold-BF6576818bd3700.otf') format('OpenType');
+}
+@font-face{
+	font-family: "fkg-regular";
+	src: url('/fonts/FKGN/FKGroteskNeueTrial-Regular-BF6576818c3af74.otf') format('OpenType');
+}
 
-	font-weight: normal;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'Gilroy-l';
-	src: url('/fonts/gilroy/Gilroy-Light.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Gilroy-m';
-	src: url('/fonts/gilroy/Gilroy-Medium.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'Gilroy-smb';
-	src: url('/fonts/gilroy/Gilroy-SemiBold.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'Gunterhaus';
-	src: url('/fonts/Gunterhaus/Gunterhaus-Modern.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
-}
 
 :root {
 	/* Fonts */
@@ -60,6 +41,10 @@
 	--ff-gilroy-smb: 'Gilroy-smb', sans-serif;
 	--ff-gunterhaus: 'Gunterhaus', sans-serif;
 	--ff-montreux: 'Montreux', sans-serif;
+
+	--ff-fkg-black: 'fkg-black', sans-serif;
+	--ff-fkg-bold: 'fkg-bold', sans-serif;
+	--ff-fkg-regular: 'fkg-regular', sans-serif;
 
 	/* Font colors */
 	--fc-light: #787676;
@@ -234,7 +219,7 @@
 html {
 	scroll-behavior: smooth;
 	scroll-padding-top: 2rem;
-	font-family: var(--ff-gilroy);
+	font-family: var(--ff-fkg-regular);
 }
 /* global body setting */
 body {
@@ -256,18 +241,20 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
+h1, h2{
+	font-family: var(--ff-fkg-black);
+	font-size: clamp(2.441rem, calc(1.6rem + 1vw), 3.052rem);
+	line-height: 1;
+	letter-spacing: -0.025em;
+	color: rgb(75, 77, 82);
+	margin-block: 0;
+}
+
 h3,
 h4,
 h5,
 h6 {
-	font-family: var(--ff-gilroy-l);
-	font-weight: 100;
-
-	/* font-family: var(--ff-gunterhaus);
-	font-weight: 600; */
-
+	font-family: var(--ff-fkg-regular);
 	line-height: 1;
 	letter-spacing: -0.025em;
 	color: rgb(75, 77, 82);
