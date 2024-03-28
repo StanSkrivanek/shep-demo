@@ -55,8 +55,8 @@
 
 	--hsl-brand: 13 100% 56%;
 	--hsl-off-white: 33 77% 96%;
-	
-	--hsl-white: 0 0% 100%;
+
+	--hsl-white: 0 0% 96%;
 	--hsl-purple: 260 82% 71%;
 	--hsl-blue: 218 87% 69%;
 	--hsl-green: 142 79% 59%;
@@ -66,22 +66,23 @@
 	--hsl-red: 350 100% 65%;
 	--hsl-gray: 213 36% 27%;
 
-
+	/* --hsl-fc-main: 240 11% 16%;
+	--hsl-fc-light: 240 11% 16%;
+	--hsl-fc-mid: 240 11% 16%;
+	--hsl-fc-white: 0 0% 100%; */
 
 	--clr-brand: color-mix(in oklab, hsl(var(--hsl-brand)) 65%, white);
 
-
 	--clr-main-bg: hsl(48, 56%, 96%);
-	/* --clr-white: hsl(0, 0%, 100%); */
-	--clr-light-green: hsl(161, 100%, 96%);
-	--clr-black: hsl(0, 0%, 0%);
+	
+
 	--clr-transparent: transparent;
 	/* --clr-floral-white: #fff9ef; */
 	/* Variations */
-	/* --gray-1: #fafafa;
-	--gray-2: #e8e8e9;
+	--gray-1: hsl(0, 0%, 98%);
+	--gray-2: hsl(240, 2%, 91%);
 	--gray-3: #7a828b;
-	--gray-4: #54595f; */
+	--gray-4: #54595f;
 
 	--clr-gray-300: #90a4ba;
 	--clr-gray-400: #607891;

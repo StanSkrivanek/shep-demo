@@ -72,7 +72,6 @@
 		grid-area: hero-data;
 		padding: 1rem;
 		border-radius: 1rem;
-		background: var(--orange-light);
 	}
 	.hero-img {
 		grid-column: 4 / -1;
@@ -89,27 +88,13 @@
 			aspect-ratio: 2.4/1;
 		}
 	}
-	/* .intro {
-		grid-column: 1/-1;
-		margin-bottom: 2rem;
-		column-count: 2;
-		column-gap: 2rem;
-		& p {
-			margin-top: 0;
-		}
-		& p {
-			margin-bottom: 0.5rem;
-		}
-	} */
-	/* .separator-heading {
-		grid-column: 1/-1;
-		margin-bottom: 2rem;
-	} */
+
 	.container {
 		display: grid;
 		grid-column: 1/-1;
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		gap: 1rem;
+		margin-bottom: 5rem;
 	}
 	.card {
 		display: grid;
@@ -120,47 +105,40 @@
 			'footer ';
 		grid-template-rows:
 			[subHeader] 2.5rem
-			[header] 5.2rem
+			[header] 4.2rem
 			[body] auto
 			[footer] 4rem;
 
-		border: 1px solid var(--gray-2);
-		border-radius: 1rem;
+		border: 1px solid hsl(var(--hsl-gray) / 0.05);
+		border-radius: 0.75rem;
 		padding: 1rem;
-		background: var(--clr-white);
+		background: hsl(var(--hsl-brand) / 0.04);
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
-		& svg {
-			& circle {
-				stroke: var(--clr-brand) !important;
-			}
-			& path {
-				fill: var(--clr-brand) !important;
-			}
-		}
+		/* & svg {
+			pointer-events: all;
+		} */
 	}
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
-		box-shadow: 8px 10px 15px -3px var(--gray-2);
-		background: var(--clr-main-white);
-		border: 1px solid var(--green-300);
+		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.15);
+		background: hsl(var(--hsl-gray) / 0.05);
+		border: 1px solid hsl(var(--hsl-brand) / 0.25);
 		& svg {
 			& circle {
-				stroke: var(--shep-green) !important;
+				stroke: hsl(var(--hsl-brand) / 0.75) !important;
 			}
 			& path {
-				fill: var(--shep-green) !important;
+				fill: hsl(var(--hsl-brand)) !important;
 			}
 		}
 	}
 
 	.card-header {
 		grid-area: header;
-
 		& h3 {
 			font-size: 1.5rem;
-			font-weight: 400;
-			color: var(--clr-brand);
+			color: hsl(var(--hsl-gray));
 		}
 		& p {
 			margin: 0;
@@ -173,6 +151,7 @@
 		& p {
 			margin-bottom: 1rem;
 			font-size: var(--sm);
+			color: hsl(var(--hsl-brand) / 0.75);
 		}
 	}
 	.card-body {
@@ -181,7 +160,7 @@
 		& p {
 			margin: 0;
 			font-size: 1rem;
-			color: var(--fc-mid);
+			color: hsl(var(--hsl-gray) / 0.75);
 		}
 	}
 	.card-footer {
@@ -193,7 +172,7 @@
 			align-self: flex-end;
 			margin: 0;
 			font-size: var(--xs);
-			color: var(--gray-3);
+			color: hsl(var(--hsl-gray) / 0.5);
 		}
 
 		& .btn-link {

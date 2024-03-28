@@ -37,12 +37,32 @@
 
 <div class="page__c">
 	<!-- ADD FILTER BY CITY -->
+	<div class="hero">
+		<div class="hero-col-2__c">
+			<div class="hero-data">
+				<h1>Upcoming Courses and Trainings</h1>
+				<p>
+					Find the upcoming course and training. Simply choose type of course or training and
+					location to find the upcoming events near you. If you can't find what you are looking for,
+					please sign up to our newsletter to be notified when new courses will open for
+					application.
+				</p>
+			</div>
+			<div class="hero-img">
+				<img
+					src="https://cdn.sanity.io/images/gkez65br/production/fc66a1c85ad2045f240a63b21454336c00f0a75a-1280x853.webp"
+					alt="pinky theme"
+				/>
+			</div>
+		</div>
+	</div>
+
 	<div class="filter__w">
 		{#if uniqueCities}
 			<!-- add radiobuttons to filter `all` `courses` `training`  -->
 			<!-- <div class="filter__c"> -->
 			<div class="filter">
-				<label for="type">Filter by Type</label>
+				<label for="type">Type</label>
 				<div class="custom-select">
 					<select id="type" bind:value={type}>
 						<option value="">All types</option>
@@ -54,7 +74,7 @@
 			</div>
 
 			<div class="filter">
-				<label for="city">Filter by location</label>
+				<label for="city">Location</label>
 				<div class="custom-select">
 					<select id="city" bind:value={city}>
 						<option value="">All locations</option>
@@ -133,13 +153,52 @@
 </div>
 
 <style>
+	.hero {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1/-1;
+		margin-bottom: 5rem;
+	}
+	.hero-col-2__c {
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1/-1;
+		grid-template-areas: 'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-img';
+		grid-template-rows: auto;
+		gap: 1rem;
+	}
+	.hero-data {
+		display: flex;
+		flex-direction: column;
+		grid-column: 1 / 4;
+		grid-row: 1/1;
+		grid-area: hero-data;
+		padding: 1rem;
+		border-radius: 1rem;
+	}
+	.hero-img {
+		grid-column: 4 / -1;
+		grid-area: hero-img;
+		border-radius: 1rem;
+		max-height: max-content;
+
+		& img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 1rem;
+			aspect-ratio: 2.4/1;
+		}
+	}
+
 	.container {
 		display: grid;
 		grid-column: 1/-1;
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		grid-template-rows: repeat(auto-fill, minmax(300px, 1fr));
-		min-height: 25vh;
+		/* grid-template-rows: repeat(auto-fill, minmax(300px, 1fr)); */
+		/* min-height: 25vh; */
 		gap: 1rem;
+		margin-bottom: 5rem;
 	}
 
 	.filter__w {
@@ -147,7 +206,8 @@
 		gap: 1rem;
 		justify-content: left;
 		align-items: center;
-		grid-area: 1/1/1/9;
+		/* 'grid-row-start', 'grid-column-start', 'grid-row-end', and 'grid-column-end'. */
+		grid-area: 2/1/2/9;
 		margin-bottom: 1rem;
 	}
 
@@ -187,47 +247,40 @@
 			'footer ';
 		grid-template-rows:
 			[subHeader] 2.5rem
-			[header] 5.2rem
+			[header] 4.2rem
 			[body] auto
 			[footer] 4rem;
 
-		border: 1px solid var(--gray-2);
-		border-radius: 1rem;
+		border: 1px solid hsl(var(--hsl-gray) / 0.05);
+		border-radius: 0.75rem;
 		padding: 1rem;
-		background: var(--clr-white);
+		background: hsl(var(--hsl-brand) / 0.04);
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
-		& svg {
-			& circle {
-				stroke: var(--clr-brand) !important;
-			}
-			& path {
-				fill: var(--clr-brand) !important;
-			}
-		}
+		/* & svg {
+			pointer-events: all;
+		} */
 	}
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
-		box-shadow: 8px 10px 15px -3px var(--gray-2);
-		background: var(--clr-main-white);
-		border: 1px solid var(--green-300);
+		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.15);
+		background: hsl(var(--hsl-gray) / 0.05);
+		border: 1px solid hsl(var(--hsl-brand) / 0.25);
 		& svg {
 			& circle {
-				stroke: var(--shep-green) !important;
+				stroke: hsl(var(--hsl-brand) / 0.75) !important;
 			}
 			& path {
-				fill: var(--shep-green) !important;
+				fill: hsl(var(--hsl-brand)) !important;
 			}
 		}
 	}
 
 	.card-header {
 		grid-area: header;
-
 		& h3 {
 			font-size: 1.5rem;
-			font-weight: 400;
-			color: var(--clr-brand);
+			color: hsl(var(--hsl-gray));
 		}
 		& p {
 			margin: 0;
@@ -240,6 +293,7 @@
 		& p {
 			margin-bottom: 1rem;
 			font-size: var(--sm);
+			color: hsl(var(--hsl-brand) / 0.75);
 		}
 	}
 	.card-body {
@@ -248,7 +302,7 @@
 		& p {
 			margin: 0;
 			font-size: 1rem;
-			color: var(--fc-mid);
+			color: hsl(var(--hsl-gray) / 0.75);
 		}
 	}
 	.card-footer {
@@ -260,7 +314,7 @@
 			align-self: flex-end;
 			margin: 0;
 			font-size: var(--xs);
-			color: var(--gray-3);
+			color: hsl(var(--hsl-gray) / 0.5);
 		}
 
 		& .btn-link {
@@ -286,6 +340,7 @@
 	label {
 		margin-bottom: 0.5rem;
 		font-size: 1rem;
+		font-family: 'fkg-bold', sans-serif;
 	}
 	.custom-select {
 		position: relative;

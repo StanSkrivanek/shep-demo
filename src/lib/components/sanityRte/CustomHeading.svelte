@@ -33,6 +33,7 @@
 		<h5 id={anchorId}><slot /></h5>
 	{/if}
 </div>
+<!-- </div> -->
 
 <style>
 	/* a {
@@ -53,11 +54,11 @@
 	h3,
 	h4,
 	h5 {
-		font-family: 'Inter', sans-serif;
-		/* font-weight: 700; */
+		font-family: 'fkg-bold', sans-serif;
 		line-height: 1;
 		letter-spacing: -0.025em;
-		/* color: var(--clr-orange); */
+		color: hsl(var(--hsl-gray) / .5);
+	
 		/* margin-block: 2rem 0.5rem; */
 	}
 	/* h1 {

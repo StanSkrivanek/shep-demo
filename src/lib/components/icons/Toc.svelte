@@ -1,6 +1,8 @@
  <script>
 	export let width = 70,
-		height = 70;
+		height = 70,
+       currentColor = 'hsl(var(--hsl-brand) / .75)';
+
 </script>
 
 <svg
@@ -14,7 +16,7 @@
  <g transform="matrix(1,0,0,1,-7386.32,-8038.96)">
         <g transform="matrix(1,0,0,2.17969,6038.78,6383.35)">
             <g transform="matrix(-0.918919,5.1629e-17,-1.12535e-16,-0.421583,2364.87,903.784)">
-                <circle cx="1069" cy="304" r="37" style="fill:#ff7c56;fill-opacity:1;"/>
+                <circle cx="1069" cy="304" r="37" style="fill:{currentColor};fill-opacity:1;"/>
                 <clipPath id="circle">
                     <circle cx="1069" cy="304" r="37" />
                 </clipPath>
