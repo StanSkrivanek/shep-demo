@@ -1,16 +1,15 @@
-@font-face{
-	font-family: "fkg-black";
+@font-face {
+	font-family: 'fkg-black';
 	src: url('/fonts/FKGN/FKGroteskNeueTrial-Black-BF6576818b4c472.otf') format('OpenType');
 }
-@font-face{
-	font-family: "fkg-bold";
+@font-face {
+	font-family: 'fkg-bold';
 	src: url('/fonts/FKGN/FKGroteskNeueTrial-Bold-BF6576818bd3700.otf') format('OpenType');
 }
-@font-face{
-	font-family: "fkg-regular";
+@font-face {
+	font-family: 'fkg-regular';
 	src: url('/fonts/FKGN/FKGroteskNeueTrial-Regular-BF6576818c3af74.otf') format('OpenType');
 }
-
 
 :root {
 	/* Fonts */
@@ -34,13 +33,13 @@
 	/* calculate base on vw */
 	--placeholder: clamp(1rem, -0.25rem + 4vw, 2rem);
 	/* typography */
-	--ff-inter: 'Inter', sans-serif;
+	/* --ff-inter: 'Inter', sans-serif;
 	--ff-gilroy: 'Gilroy', sans-serif;
 	--ff-gilroy-m: 'Gilroy-m', sans-serif;
 	--ff-gilroy-l: 'Gilroy-l', sans-serif;
 	--ff-gilroy-smb: 'Gilroy-smb', sans-serif;
 	--ff-gunterhaus: 'Gunterhaus', sans-serif;
-	--ff-montreux: 'Montreux', sans-serif;
+	--ff-montreux: 'Montreux', sans-serif; */
 
 	--ff-fkg-black: 'fkg-black', sans-serif;
 	--ff-fkg-bold: 'fkg-bold', sans-serif;
@@ -49,159 +48,45 @@
 	/* Font colors */
 	--fc-light: #787676;
 	--fc-mid: #48475e;
-	--fc-main: #24242d;
-	--fc-white: #fafafa;
+	--fc-main: hsl(240, 11%, 16%);
+	/* --fc-white: #fafafa; */
 	/* Colors */
-	--clr-base: hsl(0, 0%, 50%);
+	/* --clr-base: hsl(0, 0%, 50%); */
 
-	--clr-brand: color-mix(in oklab, var(--shep-orange) 100%, white);
+	--hsl-brand: 13 100% 56%;
+	--hsl-off-white: 33 77% 96%;
+	
+	--hsl-white: 0 0% 100%;
+	--hsl-purple: 260 82% 71%;
+	--hsl-blue: 218 87% 69%;
+	--hsl-green: 142 79% 59%;
+	--hsl-pink: 301 55% 69%;
+	--hsl-yellow: 43 87% 69%;
+	--hsl-cyan: 180 50% 50%;
+	--hsl-red: 350 100% 65%;
+	--hsl-gray: 213 36% 27%;
 
-	/* SHEP RGB*/
-	--shep-orange: #ff7c56;
-	--shep-blue: #6b9ef5;
-	--shep-green: #44e980;
-	--shep-pink: #db84da;
-	--shep-yellow: #f5ce6b;
-	--shep-red: #ff4d6a;
 
-	/* SHEP HSL */
-	--clr-blue: hsl(218, 87%, 69%);
-	--clr-red: hsl(350, 100%, 65%);
-	--clr-yellow: hsl(43, 87%, 69%);
-	--clr-orange: hsl(13, 100%, 67%);
-	--clr-pink: hsl(301, 55%, 69%);
-	--clr-green: hsl(142, 79%, 59%);
-	--clr-purple: hsl(260, 82%, 71%);
-	--clr-cyan: hsl(180, 50%, 50%);
 
-	--clr-main-white: #fff9ef;
-	--clr-white: hsl(0, 0%, 100%);
+	--clr-brand: color-mix(in oklab, hsl(var(--hsl-brand)) 65%, white);
+
+
+	--clr-main-bg: hsl(48, 56%, 96%);
+	/* --clr-white: hsl(0, 0%, 100%); */
 	--clr-light-green: hsl(161, 100%, 96%);
 	--clr-black: hsl(0, 0%, 0%);
 	--clr-transparent: transparent;
 	/* --clr-floral-white: #fff9ef; */
 	/* Variations */
-	--gray-1: #fafafa;
+	/* --gray-1: #fafafa;
 	--gray-2: #e8e8e9;
 	--gray-3: #7a828b;
-	--gray-4: #54595f;
+	--gray-4: #54595f; */
 
 	--clr-gray-300: #90a4ba;
 	--clr-gray-400: #607891;
-	--clr-gray-600: #2c425d;
-
-	/* yellow */
-	--yellow-50: #fefcf5;
-	--yellow-100: #fef9ec;
-	--yellow-200: #fdf3d8;
-	--yellow-300: #fbebc0;
-	--yellow-400: #fae4ad;
-	--yellow-500: #f9dd94;
-	--yellow-600: #f5c447;
-	--yellow-700: #e3a60d;
-	--yellow-800: #c18e0b;
-	--yellow-900: #8c6708;
-	--yellow-950: #614705;
-	/* orange */
-	--orange-50: #fef9f5;
-	--orange-100: #fef6f0;
-	--orange-200: #fdede2;
-	--orange-300: #fcdfca;
-	--orange-400: #fbd3b6;
-	--orange-500: #fac7a3;
-	--orange-600: #f8ad78;
-	--orange-700: #f48a3e;
-	--orange-800: #e3660c;
-	--orange-900: #a44a09;
-	--orange-950: #743406;
-
-	/* green */
-	--green-100: #d8f8e4;
-	--green-50: #eefcf3;
-	--green-200: #acf1c5;
-	--green-300: #7ce9a4;
-	--green-400: #33dc71;
-	--green-500: #22c55e;
-	--green-600: #1fb255;
-	--green-700: #1b9d4b;
-	--green-800: #167e3c;
-	--green-900: #105b2b;
-	--green-950: #0b411f;
-	/* blue */
-	--blue-50: #f2f8fc;
-	--blue-100: #e6f0f9;
-	--blue-200: #cde2f4;
-	--blue-300: #b0d1ee;
-	--blue-400: #8ebde6;
-	--blue-500: #64a5dd;
-	--blue-600: #4b96d8;
-	--blue-700: #2d82cd;
-	--blue-800: #266dab;
-	--blue-900: #1b4d79;
-	--blue-950: #11334f;
-	/* pink */
-	--pink-50: #fffafe;
-	--pink-100: #fef0fc;
-	--pink-200: #fee1fa;
-	--pink-300: #fdd3f7;
-	--pink-400: #fdbff4;
-	--pink-500: #fca9f0;
-	--pink-600: #fb89ea;
-	--pink-700: #f95ce2;
-	--pink-800: #ed08ca;
-	--pink-900: #ad0694;
-	--pink-950: #80046e;
-	/* purple */
-	--purple-50: #f8f6fe;
-	--purple-100: #f2ecfd;
-	--purple-200: #e2d5fb;
-	--purple-300: #d1bef9;
-	--purple-400: #bb9df6;
-	--purple-500: #a178f2;
-	--purple-600: #9466f0;
-	--purple-700: #804aed;
-	--purple-800: #6d2eeb;
-	--purple-900: #4611b1;
-	--purple-950: #370d8c;
-	/* cyan */
-	--cyan-50: #f0fafa;
-	--cyan-100: #e0f5f5;
-	--cyan-200: #c2ebeb;
-	--cyan-300: #9cdede;
-	--cyan-400: #75d1d1;
-	--cyan-500: #40bfbf;
-	--cyan-600: #3aacac;
-	--cyan-700: #329595;
-	--cyan-800: #2a7e7e;
-	--cyan-900: #1d5858;
-	--cyan-950: #143d3d;
-	/* red */
-	--red-50: #fef6f6;
-	--red-100: #fde8e8;
-	--red-200: #fbd0d0;
-	--red-300: #f8afaf;
-	--red-400: #f58585;
-	--red-500: #ef4444;
-	--red-600: #eb1414;
-	--red-700: #cf1212;
-	--red-800: #a90f0f;
-	--red-900: #840b0b;
-	--red-950: #550707;
-
-	/* gray */
-	--gray-50: #f3f5f7;
-	--gray-100: #eaedf1;
-	--gray-200: #ced6de;
-	--gray-300: #b2bfcc;
-	--gray-400: #8da0b4;
-	--gray-500: #607891;
-	--gray-600: #556a81;
-	--gray-700: #4d6075;
-	--gray-800: #3d4c5c;
-	--gray-900: #2f3a47;
-	--gray-950: #212931;
+	--clr-gray-600: hsl(213, 36%, 27%);
 }
-
 /* SVG */
 
 /* MEDIA QUERIES */
@@ -230,7 +115,7 @@ body {
 	font-size: var(--base-size);
 	line-height: var(--lineHeight);
 	color: rgb(73, 76, 82);
-	background: var(--clr-main-white);
+	background: var(--clr-main-bg);
 }
 
 *,
@@ -241,7 +126,8 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2{
+h1,
+h2 {
 	font-family: var(--ff-fkg-black);
 	font-size: clamp(2.441rem, calc(1.6rem + 1vw), 3.052rem);
 	line-height: 1;
@@ -292,7 +178,8 @@ a {
 
 a:hover {
 	text-decoration: underline;
-	color: lightseagreen;
+	/* color: lightseagreen; */
+	color: var(--clr-brand);
 }
 
 strong {
@@ -381,7 +268,7 @@ article > p:first-child {
 /* Table of content  */
 .toc-active {
 	color: var(--orange-800) !important;
-	text-decoration: underline;
+	/* text-decoration: underline; */
 }
 /* LINKS */
 /* decorative - eg. on home page*/
@@ -414,10 +301,17 @@ article > p:first-child {
 	}
 	&:hover {
 		text-decoration: none;
-		& h3,
+		/* & h3, */
 		p {
 			color: var(--fc-main);
 			/* font-weight: 600; */
+		}
+		& h3 {
+			color: var(--clr-brand);
+		}
+		& svg {
+			transition: 0.3s ease;
+			fill: var(--clr-brand);
 		}
 	}
 }

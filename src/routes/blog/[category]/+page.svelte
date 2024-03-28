@@ -85,7 +85,7 @@
 		grid-area: hero-data;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: var(--clr-brand);
+		/* background: var(--clr-brand); */
 		& h1 {
 			color: var(--fc-white);
 			margin: 0;
@@ -95,7 +95,7 @@
 		grid-column: 4 / -1;
 		grid-area: hero-img;
 		border-radius: 1rem;
-		background: var(--gray-100);
+		/* background: var(--gray-100); */
 		max-height: max-content;
 
 		& img {
@@ -130,7 +130,8 @@
 			[body] auto
 			[footer] 3.1rem;
 
-		border: 1px solid var(--gray-100);
+		/* border: 1px solid var(--gray-100); */
+		background: hsl(var(--hsl-white));
 		border-radius: 1rem;
 		padding: 1rem;
 		transition: all 0.3s ease-in-out;
@@ -140,9 +141,8 @@
 
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
-		box-shadow: 8px 10px 15px -3px var(--gray-100);
-		background: var(--clr-main-white);
-		border: 1px solid var(--green-300);
+		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
+		/* background: var(--hsl-off-white); */
 	}
 	.card-header {
 		grid-area: header;
@@ -168,17 +168,13 @@
 	.card-img {
 		grid-area: image;
 		object-fit: cover;
-		border-radius: 1rem;
 		margin-bottom: 1rem;
-		/* border: 2px solid red; */
 		& img {
 			object-fit: cover;
 			display: block;
 			width: 100%;
 			height: 100%;
-			border-radius: 1rem;
-
-			/* aspect-ratio: 2.4/1; */
+			border-radius: 0.25rem;
 		}
 	}
 	.card-body {
@@ -188,7 +184,7 @@
 			margin: 0;
 			font-size: 0.9rem;
 			line-height: 1.1;
-			color: var(--gray-400);
+			color: hsl(var(--hsl-gray) / 0.75);
 		}
 	}
 	.card-footer {
@@ -196,25 +192,20 @@
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
-		/* & p {
-			align-self: flex-end;
-			margin: 0;
-			font-size: var(--xs);
-			color: var(--gray-3);
-		} */
+	
 		& svg {
 			& circle {
-				stroke: var(--clr-brand) !important;
+				stroke: hsl(var(--hsl-gray) / 0.75) !important;
 			}
 			& path {
-				fill: var(--clr-brand) !important;
+				fill: hsl(var(--hsl-gray) / 0.75);
 			}
 			&:hover {
 				& circle {
-					stroke: var(--shep-green) !important;
+					stroke: hsl(var(--hsl-brand)) !important;
 				}
 				& path {
-					fill: var(--shep-green) !important;
+					fill: hsl(var(--hsl-brand));
 				}
 			}
 		}

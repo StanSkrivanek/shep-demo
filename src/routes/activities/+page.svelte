@@ -257,14 +257,14 @@
 			& path {
 				fill: var(--clr-brand) !important;
 			}
-			&:hover {
+			/* &:hover {
 				& circle {
 					stroke: var(--shep-green) !important;
 				}
 				& path {
 					fill: var(--shep-green) !important;
 				}
-			}
+			} */
 		}
 	}
 	/* Media Query */

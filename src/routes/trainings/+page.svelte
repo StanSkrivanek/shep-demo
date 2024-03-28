@@ -134,12 +134,14 @@
 		box-shadow: 8px 10px 15px -3px var(--gray-2);
 		background: var(--green-light);
 		border: 1px solid var(--green-300);
-		& svg {
+		& svg:hover {
+			transition: 0.3s ease;
 			& circle {
-				stroke: var(--shep-green) !important;
+				stroke: hsl(var(--hsl-brand));
 			}
+
 			& path {
-				fill: var(--shep-green) !important;
+				fill: hsl(var(--hsl-brand));
 			}
 		}
 	}

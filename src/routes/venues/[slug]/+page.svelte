@@ -91,7 +91,7 @@
 		<div class="hero-sm-box-bottom">
 			<p class="small-title">Our Website</p>
 			<p class="limited-char">To get more info about our activities visit our website</p>
-			<a href="https://{website}" target="_blank">
+			<a href="{website}" target="_blank">
 				<div class="link-icon">
 					<LinkCircle width={48} height={48} />
 				</div>
@@ -510,7 +510,7 @@
 		}
 	}
 	.course {
-		--item-color: var(--clr-brand);
+		--item-color: hsl(var(--hsl-brand));
 		--_base-color-private: var(--item-color, var(--gray-500));
 		margin-bottom: 1rem;
 		background-color: var(--item-color);
@@ -518,7 +518,7 @@
 		background: color-mix(in oklab, var(--item-color) 20%, white);
 	}
 	.training {
-		--item-color: var(--purple-800);
+		--item-color: hsl(var(--hsl-purple));
 		--_base-color-private: var(--item-color, var(--gray-500));
 		margin-bottom: 1rem;
 		background-color: var(--item-color);

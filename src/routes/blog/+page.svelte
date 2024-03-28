@@ -46,6 +46,7 @@
 	<title>Articles</title>
 	<meta name="description" content="Articles on mental health and well-being" />
 </svelte:head>
+
 <div class="page__c">
 	<div class="hero">
 		<div class="hero-col-2__c">

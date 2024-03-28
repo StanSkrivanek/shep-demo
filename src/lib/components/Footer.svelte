@@ -116,25 +116,25 @@
 		grid-template-columns: repeat(4, 1fr);
 		max-width: 1474px;
 		margin: 0 auto;
-		gap: 1rem;
+		gap: 2rem;
 		padding: 1rem;
 	}
 
 	.footer__section {
 		border-radius: 1rem;
-		padding: 1rem;
-		border: 1px solid var(--gray-100);
 		& .group {
 			margin-bottom: 1rem;
 			& h5 {
 				margin-bottom: 0.75rem;
 				font-family: var(--ff-gilroy-smb);
-				border-bottom: 1px solid var(--gray-50);
+				max-width: max-content;
 				line-height: 1.6rem;
 			}
 			& .img__w {
 				max-width: 100%;
-				padding-inline: 1rem;
+
+				border-radius: 0.5rem;
+				overflow: hidden;
 
 				& img {
 					display: block;
@@ -171,7 +171,7 @@
 	}
 
 	.footer__link:hover {
-		color: #f26a2e;
+		color: hsl(var(--hsl-brand));
 	}
 	.logo__w {
 		display: flex;
@@ -204,19 +204,21 @@
 			border-radius: 0.25rem;
 			margin-bottom: 1rem;
 		}
+
 		& input[type='submit'] {
 			width: 100%;
 			padding: 1rem;
-			border: 1px solid var(--gray-100);
+			border: none;
 			border-radius: 0.25rem;
-			background-color: var(--shep-blue);
-			color: #fff;
+			background-color: hsl(var(--hsl-brand) / 0.5);
 			font-weight: 600;
+			font-size: var(--sm);
+			letter-spacing: 0.05em;
 			cursor: pointer;
 			text-transform: uppercase;
 		}
 		& input[type='submit']:hover {
-			background-color: var(--blue-800);
+			background-color: hsl(var(--hsl-brand) / 0.75);
 		}
 	}
 	@media (max-width: 1280px) {

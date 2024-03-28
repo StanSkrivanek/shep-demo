@@ -73,28 +73,7 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
-		/* overflow: hidden; */
-		& .slider__controls {
-			position: absolute;
-			top: 100%;
-			transform: translateY(-100%);
-			display: flex;
-			justify-content: space-between;
-			max-width: 100%;
-			padding: 1rem;
-			z-index: 1;
-			background: var(--red-500);
-			& .slider__button {
-				background: transparent;
-				border: none;
-				color: white;
-				font-size: 2rem;
-				cursor: pointer;
-				&:hover {
-					color: #ccc;
-				}
-			}
-		}
+
 		& .slide {
 			position: absolute;
 			top: 0;
@@ -120,11 +99,10 @@
 					bottom: 1rem;
 					right: 1rem;
 					padding: 0.25rem 0.5rem;
-					background: hsla(0, 0%, 0%, 0.2);
+					background: hsla(0, 0%, 0%, 0.328);
 					border-radius: calc(1rem - 0.5rem);
-					color: var(--fc-white);
+					color: white;
 					font-size: 0.8rem;
-					/* font-weight: 600; */
 					z-index: 1;
 				}
 			}
@@ -134,7 +112,7 @@
 				flex-direction: column;
 				justify-content: space-between;
 				padding: 2rem;
-				background: var(--gray-1);
+				/* background: var(--gray-1); */
 				border-radius: 1rem;
 				height: 100%;
 				background: var(--clr-main-white);
@@ -143,15 +121,18 @@
 					color: var(--fc-main);
 					& h2 {
 						margin: 0;
-						text-transform: uppercase;
 						line-height: 1.1;
-						margin-bottom: 1.5rem;
-						border-bottom: 1px solid var(--gray-2);
-						font-family: var(--ff-gilroy-l);
+						margin-bottom: 1rem;
+						padding-bottom: 0.5rem;
+						border-bottom: 1px solid hsl(var(--hsl-gray) / 0.25);
+						font-family: var(--ff-fkg-regular);
+						font-weight: 100;
+						text-transform: uppercase;
+						color: hsl(var(--hsl-gray) / 0.65);
 					}
 					& p {
 						margin: 0;
-						color: var(--clr-gray-400);
+						color: hsl(var(--hsl-gray) / 0.75);
 					}
 				}
 				& .slide-footer {
@@ -162,22 +143,16 @@
 						display: flex;
 						align-items: center;
 						justify-content: center;
-						transition: all 0.3s ease;
-						& svg {
-							& circle {
-								stroke: var(--clr-brand) !important;
-							}
-							& path {
-								fill: var(--clr-brand) !important;
-							}
-							&:hover {
-								& circle {
-									stroke: var(--shep-green) !important;
-								}
-								& path {
-									fill: var(--shep-green) !important;
-								}
-							}
+						transition: 0.3s ease;
+					}
+					& svg:hover {
+						transition: 0.3s ease;
+						& circle {
+							stroke: hsl(var(--hsl-brand)) !important;
+						}
+
+						& path {
+							fill: hsl(var(--hsl-brand)) !important;
 						}
 					}
 				}

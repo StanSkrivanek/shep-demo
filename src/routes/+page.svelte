@@ -37,7 +37,7 @@
 			<a href="./courses" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
-						<LeavesCorner width={24} height={24} currentColor="#ff7c56" />
+						<LeavesCorner width={24} height={24} currentColor="hsl(var(--hsl-red) / .75)" />
 					</div>
 					<div class="link-body">
 						<h3>Short Courses</h3>
@@ -52,7 +52,7 @@
 			<a href="./trainings" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
-						<LeavesCorner width={24} height={24} currentColor="#ff7c56" />
+						<LeavesCorner width={24} height={24} currentColor="hsl(var(--hsl-purple) / .75)" />
 					</div>
 					<div class="link-body">
 						<h3>Intensive Training</h3>
@@ -66,7 +66,7 @@
 			<a href="/counselling" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
-						<LeavesCorner width={24} height={24} currentColor="#44E980" />
+						<LeavesCorner width={24} height={24} currentColor="hsl(var(--hsl-cyan) / .75)" />
 					</div>
 					<div class="link-body">
 						<h3>Counselling</h3>
@@ -80,7 +80,7 @@
 			<a href="/advocacy" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
-						<LeavesCorner width={24} height={24} currentColor="#DB84DA" />
+						<LeavesCorner width={24} height={24} currentColor="hsl(var(--hsl-blue) / .75)" />
 					</div>
 					<div class="link-body">
 						<h3>Advocacy Project</h3>
@@ -135,7 +135,7 @@
 				<a href="./team" class="decorative_link__c">
 					<div class="link-header">
 						<div class="dots">
-							<LeavesCorner width={24} height={24} currentColor="#6B9EF5" />
+							<LeavesCorner width={24} height={24} currentColor="hsl(var(--hsl-brand) / .75)" />
 						</div>
 						<div class="link-body">
 							<h3>Our Team</h3>
@@ -149,7 +149,7 @@
 				<a href="./venues" class="decorative_link__c">
 					<div class="link-header">
 						<div class="dots">
-							<LeavesCorner width={24} height={24} currentColor="#6B9EF5" />
+							<LeavesCorner width={24} height={24} currentColor="hsl(var(--hsl-brand) / .75)" />
 						</div>
 						<div class="link-body">
 							<h3>Our Partners</h3>
@@ -210,9 +210,6 @@
 					counseling, and advocacy endeavors, SHEP manages a range of strategically developed
 					projects aimed at furthering our mission.
 				</p>
-				<!-- <p>These projects are carried out by SHEP in
-					collaboration with partners, and funding is derived from SHEP's own resources as well as
-					support from other organizations.</p> -->
 			</div>
 			<div class="card-footer">
 				<a class="btn-link" href="./activities">
@@ -224,6 +221,10 @@
 </div>
 
 <style>
+	h2 {
+		color: var(--clr-brand);
+		margin-bottom: 1rem;
+	}
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -287,9 +288,21 @@
 		grid-column: 1/-1;
 		gap: 1rem;
 		margin-bottom: 3rem;
+
 		& .links {
 			grid-area: links;
+			& a:hover {
+				transition: 0.3s ease;
+				& circle {
+					stroke: hsl(var(--hsl-brand)) !important;
+				}
+
+				& path {
+					fill: hsl(var(--hsl-brand)) !important;
+				}
+			}
 		}
+
 		& .slider__c {
 			grid-area: slider;
 			display: block;
@@ -382,13 +395,12 @@
 					}
 					& .credits__w {
 						padding: 0.25rem 0.5rem;
-						background-color: hsla(0, 0%, 0%, 0.4);
-						background-color: hsl(219, 100%, 65%);
+						background-color: var(--clr-brand);
 						border-radius: 0.25rem;
 					}
 					& p {
 						font-size: var(--sm);
-						color: var(--gray-100);
+						color: var(--fc-main);
 					}
 				}
 			}
@@ -401,6 +413,12 @@
 					padding-bottom: 0.5rem;
 					flex-basis: 50%;
 					border-bottom: none;
+					&:hover {
+						transition: 0.3s ease;
+						& path {
+							fill: hsl(var(--hsl-brand)) !important;
+						}
+					}
 				}
 				@media screen and (max-width: 640px) {
 					flex-direction: column;
@@ -441,20 +459,14 @@
 		& .card-footer {
 			display: flex;
 			justify-content: flex-end;
-			& svg {
+			& svg:hover {
+				transition: 0.3s ease;
 				& circle {
-					stroke: var(--clr-brand) !important;
+					stroke: hsl(var(--hsl-brand)) !important;
 				}
+
 				& path {
-					fill: var(--clr-brand) !important;
-				}
-				&:hover {
-					& circle {
-						stroke: var(--shep-green) !important;
-					}
-					& path {
-						fill: var(--shep-green) !important;
-					}
+					fill: hsl(var(--hsl-brand)) !important;
 				}
 			}
 		}
@@ -494,29 +506,22 @@
 			flex-direction: column;
 			justify-content: space-between;
 			padding: 2.4rem;
-			/* border: 1px solid var(--gray-2); */
 			background: var(--clr-main-white);
 			border-radius: 0.5rem;
 			& .card-footer {
 				display: flex;
 				justify-content: flex-end;
-				& svg {
-					& circle {
-						stroke: var(--clr-brand) !important;
-					}
-					& path {
-						fill: var(--clr-brand) !important;
-					}
-					&:hover {
-						& circle {
-							stroke: var(--shep-green) !important;
-						}
-						& path {
-							fill: var(--shep-green) !important;
-						}
-					}
-				}
 			}
+			& svg:hover {
+						transition: 0.3s ease;
+						& circle {
+							stroke: hsl(var(--hsl-brand)) !important;
+						}
+
+						& path {
+							fill: hsl(var(--hsl-brand)) !important;
+						}
+					}
 		}
 		& .sec-img {
 			grid-area: img;
@@ -526,7 +531,7 @@
 				aspect-ratio: 2/1;
 				object-fit: cover;
 				border-radius: 0.5rem;
-				/* min-height: 360px; */
+				
 				display: block;
 			}
 		}
@@ -593,28 +598,8 @@
 			display: block;
 			position: relative;
 		}
-		.hero .title {
-			/* background-color: rgb(0,0,0,.4); */
-			/* inset: 45% 30% 1rem 1rem; */
-			/* position: absolute; */
-			/* position: relative; */
-			/* padding:1rem; */
-			/* border-radius: .5rem; */
-		}
 		.hero .title h1 {
 			max-width: 20ch;
-			/* z-index: 1; */
-			/* font-size: clamp(1rem, calc(1rem + 1vw), 2rem); */
-			/* color: white; */
-			/* padding: 0.25em 0.25em; */
-			/* border-radius: 0.65rem; */
-			/* font-family: var(--ff-gilroy-l); */
-			/* line-height: 1.25; */
-			/* text-transform: uppercase; */
-			/* background: var(--green-100); */
-			/* -webkit-box-decoration-break: clone; */
-			/* -o-box-decoration-break: clone; */
-			/* box-decoration-break: clone; */
 		}
 	}
 </style>
