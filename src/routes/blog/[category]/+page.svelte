@@ -158,7 +158,7 @@
 		& h3 {
 			font-size: var(--h5);
 			color: hsl(var(--hsl-gray) / 0.45);
-			font-family: 'fkg-bold', sans-serif;
+				font-family: var(--ff-fkg-bold);
 		}
 	}
 	.card-img {

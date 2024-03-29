@@ -310,7 +310,7 @@
 			position: relative;
 			margin-top: 0;
 			margin-bottom: 1.2rem;
-			font-family: 'fkg-bold', sans-serif;
+				font-family: var(--ff-fkg-bold);
 			font-size: var(--sm);
 			/* width: fit-content; */
 			&::after {
@@ -330,7 +330,7 @@
 		}
 		& .fee {
 			text-align: center;
-			font-family: 'fkg-black', sans-serif;
+				font-family: var(--ff-fkg-black);
 			& p {
 				font-size: var(--h3);
 			}
@@ -359,7 +359,7 @@
 			position: relative;
 			margin-top: 0;
 			margin-bottom: 1.2rem;
-			font-family: 'fkg-bold', sans-serif;
+				font-family: var(--ff-fkg-bold);
 			font-size: var(--sm);
 			width: fit-content;
 			&::after {

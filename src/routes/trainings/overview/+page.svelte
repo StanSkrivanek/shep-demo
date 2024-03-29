@@ -9,7 +9,7 @@
 
 	export let data;
 	$: post = data.pageContent;
-	
+
 	let isTocOpen = false;
 
 	afterUpdate(() => {
@@ -72,7 +72,7 @@
 
 <svelte:head>
 	<title>{post.title}</title>
-	<meta name="description" content="{post.excerpt}" />
+	<meta name="description" content={post.excerpt} />
 </svelte:head>
 
 <div class="page__c">
@@ -200,9 +200,9 @@
 			height: 100%;
 			background: linear-gradient(
 				90deg,
-				hsl(var(--hsl-purple) /0.8) 0%,
-				hsl(var(--hsl-purple)/.4) 65%,
-				hsl(var(--hsl-purple) /.0) 100%
+				hsl(var(--hsl-purple) / 0.8) 0%,
+				hsl(var(--hsl-purple) / 0.4) 65%,
+				hsl(var(--hsl-purple) / 0) 100%
 			);
 			border-radius: 1rem;
 			z-index: -1;
@@ -269,7 +269,7 @@
 			margin-bottom: 0.5rem;
 			font-size: 1.1rem;
 			color: hsl(var(--hsl-gray));
-			font-family: fkg-bold, sans-serif;
+			font-family: var(--ff-fkg-bold);
 			&::after {
 				content: '';
 				display: block;
@@ -293,7 +293,7 @@
 					font-weight: 500;
 
 					&.toc-active {
-						color: hsl(var(--hsl-brand) ) !important;
+						color: hsl(var(--hsl-brand)) !important;
 					}
 
 					&:hover {
@@ -309,7 +309,7 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-top: 1rem;
-		font-family: "fkg-bold", sans-serif;
+		font-family: '', sans-serif;
 	}
 	.toc-icon__w {
 		position: fixed;
@@ -339,9 +339,9 @@
 		.hero-data::before {
 			background: linear-gradient(
 				90deg,
-				hsl(var(--hsl-purple) /0.8) 0%,
-				hsl(var(--hsl-purple)/.4) 65%,
-				hsl(var(--hsl-purple) /.0) 100%
+				hsl(var(--hsl-purple) / 0.8) 0%,
+				hsl(var(--hsl-purple) / 0.4) 65%,
+				hsl(var(--hsl-purple) / 0) 100%
 			);
 		}
 		.main__c {

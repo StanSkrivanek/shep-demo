@@ -340,7 +340,7 @@
 	label {
 		margin-bottom: 0.5rem;
 		font-size: 1rem;
-		font-family: 'fkg-bold', sans-serif;
+			font-family: var(--ff-fkg-bold);
 	}
 	.custom-select {
 		position: relative;

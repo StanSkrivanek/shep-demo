@@ -266,7 +266,7 @@
 			margin-bottom: 0.5rem;
 			font-size: 1.1rem;
 			color: hsl(var(--hsl-gray));
-			font-family: fkg-bold, sans-serif;
+				font-family: var(--ff-fkg-bold);
 			&::after {
 				content: '';
 				display: block;
@@ -306,7 +306,7 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-top: 1rem;
-		font-family: 'fkg-bold', sans-serif;
+			font-family: var(--ff-fkg-bold);
 	}
 	.toc-icon__w {
 		position: fixed;

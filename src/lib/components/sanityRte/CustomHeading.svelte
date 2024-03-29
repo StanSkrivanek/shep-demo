@@ -54,7 +54,7 @@
 	h3,
 	h4,
 	h5 {
-		font-family: 'fkg-bold', sans-serif;
+		font-family: var(--ff-fkg-black);
 		line-height: 1;
 		letter-spacing: -0.025em;
 		color: hsl(var(--hsl-gray) / .5);
