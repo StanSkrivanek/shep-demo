@@ -91,7 +91,7 @@
 		<div class="hero-sm-box-bottom">
 			<p class="small-title">Our Website</p>
 			<p class="limited-char">To get more info about our activities visit our website</p>
-			<a href="{website}" target="_blank">
+			<a href={website} target="_blank">
 				<div class="link-icon">
 					<LinkCircle width={48} height={48} />
 				</div>
@@ -104,7 +104,9 @@
 		<!-- aside -->
 		<aside>
 			<!-- Courses -->
-			<h3>Apply for</h3>
+			{#if upcoming.length > 0}
+				<h3>Apply for</h3>
+			{/if}
 			{#if upcoming.length == 0}
 				<div class="no-course">
 					<div class="content">
@@ -378,7 +380,7 @@
 			position: relative;
 			margin-top: 0;
 			margin-bottom: 1.2rem;
-			font-family: var(--ff-gilroy-m);
+			font-family: var(--ff-fkg-bold);
 			font-size: var(--sm);
 			color: var(--fc-main);
 			width: fit-content;
@@ -403,21 +405,19 @@
 		padding: 1.4rem;
 		border-radius: 1rem;
 		color: var(--fc-light);
-		background: var(--orange-100);
 		min-width: 160px;
-		background: color-mix(in oklab, var(--cyan-200) 70%, white);
+		background: color-mix(in oklab, hsl(var(--hsl-white)) 70%, white);
 		& p {
 			margin: 0;
-			color: var(--fc-main);
 			font-size: var(--sm);
 		}
 		& .small-title {
 			position: relative;
 			margin-top: 0;
 			margin-bottom: 1.2rem;
-			font-family: var(--ff-gilroy-m);
+			font-family: var(--ff-fkg-bold);
 			font-size: var(--sm);
-			color: var(--fc-main);
+
 			width: fit-content;
 			&::after {
 				content: '';

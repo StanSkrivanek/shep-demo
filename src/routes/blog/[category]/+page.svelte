@@ -44,7 +44,7 @@
 					<img src={post.main_img} alt={post.title} />
 				</div>
 				<div class="card-header">
-					<p>{post.title}</p>
+					<h3>{post.title}</h3>
 				</div>
 				<div class="card-body">
 					<!-- <p>{post.author[0].name}</p> -->
@@ -118,67 +118,65 @@
 	.card {
 		display: grid;
 		grid-template-areas:
-			'subHeader '
 			'image'
+			'subHeader '
 			'header '
 			'body '
 			'footer ';
 		grid-template-rows:
+			[image] 15rem
 			[subHeader] 2rem
-			[image] 10rem
 			[header] 3.6rem
 			[body] auto
-			[footer] 3.1rem;
+			[footer] 2.6rem;
 
-		/* border: 1px solid var(--gray-100); */
-		background: hsl(var(--hsl-white));
-		border-radius: 1rem;
-		padding: 1rem;
-		transition: all 0.3s ease-in-out;
-		pointer-events: none;
 		gap: 0.25rem;
+		padding-bottom: 1rem;
+		background: hsl(var(--hsl-white));
+		border: 1px solid hsl(var(--hsl-blue) / 0.25);
+		border-radius: 0.5rem;
+		overflow: hidden;
+		pointer-events: none;
+		transition: all 0.3s ease-in-out;
 	}
 
-	.card:hover {
-		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
-		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
-		/* background: var(--hsl-off-white); */
-	}
-	.card-header {
-		grid-area: header;
-		& p {
-			margin: 0;
-			line-height: 1.1;
-			font-family: var(--ff-gilroy-smb);
-		}
-	}
 	.card-subheading {
 		grid-area: subHeader;
-		display: flex;
-		justify-content: space-between;
-
+		padding-inline: 1rem;
 		& p {
-			margin: 0;
+			font-size: var(--sm);
+		}
+		& a {
 			font-size: var(--xs);
-			line-height: 2;
-			color: var(--gray-400);
-			color: var(--clr-brand);
+			color: hsl(var(--hsl-blue));
+		}
+	}
+
+	.card-header {
+		grid-area: header;
+		padding-inline: 1rem;
+		& h3 {
+			font-size: var(--h5);
+			color: hsl(var(--hsl-gray) / 0.45);
+			font-family: 'fkg-bold', sans-serif;
 		}
 	}
 	.card-img {
 		grid-area: image;
 		object-fit: cover;
 		margin-bottom: 1rem;
+		border-radius: 0.25rem 0.25rem 0 0;
+		overflow: hidden;
 		& img {
 			object-fit: cover;
 			display: block;
 			width: 100%;
 			height: 100%;
-			border-radius: 0.25rem;
 		}
 	}
 	.card-body {
 		grid-area: body;
+		padding-inline: 1rem;
 		margin-bottom: 0.5rem;
 		& p {
 			margin: 0;
@@ -191,22 +189,16 @@
 		grid-area: footer;
 		display: flex;
 		justify-content: flex-end;
-		align-items: center;
-	
-		& svg {
+		padding-inline: 1rem;
+	}
+	.btn-link {
+		pointer-events: all;
+		& svg:hover {
 			& circle {
-				stroke: hsl(var(--hsl-gray) / 0.75) !important;
+				stroke: var(--clr-brand) !important;
 			}
 			& path {
-				fill: hsl(var(--hsl-gray) / 0.75);
-			}
-			&:hover {
-				& circle {
-					stroke: hsl(var(--hsl-brand)) !important;
-				}
-				& path {
-					fill: hsl(var(--hsl-brand));
-				}
+				fill: var(--clr-brand) !important;
 			}
 		}
 	}

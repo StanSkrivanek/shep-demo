@@ -158,13 +158,11 @@
 		grid-area: hero-data;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: var(--cyan-100);
 	}
 	.hero-img {
 		grid-column: 4 / -1;
 		grid-area: hero-img;
 		border-radius: 1rem;
-		background: var(--gray-100);
 		max-height: max-content;
 
 		& img {
@@ -232,6 +230,7 @@
 		background: hsl(var(--hsl-white));
 		border: 1px solid hsl(var(--hsl-blue) / 0.25);
 		border-radius: 0.5rem;
+		overflow: hidden;
 		pointer-events: none;
 		transition: all 0.3s ease-in-out;
 	}
@@ -332,13 +331,13 @@
 		.card {
 			grid-template-areas:
 				'subHeader '
-				/* 'image' */
+				'image'
 				'header '
 				'body '
 				'footer ';
 			grid-template-rows:
+				[image] 10rem
 				[subHeader] 2rem
-				/* [image] 10rem */
 				[header] 3.6rem
 				[body] auto
 				[footer] 2.6rem;

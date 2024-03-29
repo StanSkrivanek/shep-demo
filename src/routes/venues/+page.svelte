@@ -12,7 +12,7 @@
 	<div class="hero">
 		<div class="hero-col-2__c">
 			<div class="hero-data">
-				<h1>SHEP courses are held in local community facilities</h1>
+				<h1>Partners and community facilities</h1>
 				<p>
 					SHEP offers a wide range of courses in a variety of venues across Ireland. Thanks to our
 					partners we can provide our courses in a number of facilities in Cork, Kerry, Limerick,
@@ -28,7 +28,7 @@
 			</div>
 		</div>
 	</div>
-	<h1>Facilities</h1>
+	<h2>Facilities</h2>
 	<div class="container">
 		{#each data.venues as venue}
 			<div class="card">
@@ -38,7 +38,7 @@
 				<div class="data">
 					<div class="data-header">
 						<p>{venue.city}</p>
-						<h2>{venue.venue_name}</h2>
+						<h3>{venue.venue_name}</h3>
 						<!-- <p>{venue.excerpt}</p> -->
 					</div>
 					<a class="link" href="/venues/{venue.slug}">
@@ -103,25 +103,22 @@
 		grid-column: 1/-1;
 		grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
 		gap: 1rem;
+		margin-bottom: 5rem;
 	}
+	/* Card */
 	.card {
 		display: grid;
 		grid-template-areas: 'thumbnail body';
 		grid-template-columns: repeat(2, 1fr);
-		background: var(--clr-white);
-		border: 1px solid var(--gray-100);
+		background: hsl(var(--hsl-white));
+		border: 1px solid hsl(var(--hsl-gray) / .15);
 		border-radius: 0.5rem;
 		pointer-events: none;
 		transition: all 0.3s ease-in-out;
-		&:hover {
-			box-shadow: 8px 10px 15px -3px var(--gray-100);
-			/* background: var(--green-light); */
-		}
 	}
 
 	.thumbnail {
 		grid-area: thumbnail;
-		background: var(--gray-100);
 		max-height: max-content;
 		& img {
 			display: block;
@@ -144,8 +141,8 @@
 				margin: 0 0 0.25rem 0;
 				color: var(--gray-400);
 			}
-			& h2 {
-				font-size: var(--h4);
+			& h3 {
+				font-size: var(--h5);
 			}
 		}
 		& .link {
@@ -167,19 +164,14 @@
 			}
 			& svg {
 				display: block;
-				& circle {
+				transition: all 0.3s ease-in-out;
+				&:hover {
+					& circle {
 					stroke: var(--clr-brand) !important;
 				}
 				& path {
 					fill: var(--clr-brand) !important;
 				}
-				&:hover {
-					& circle {
-						stroke: var(--shep-green) !important;
-					}
-					& path {
-						fill: var(--shep-green) !important;
-					}
 				}
 			}
 		}
@@ -214,6 +206,7 @@
 		}
 		.container {
 			grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		
 		}
 		.thumbnail img {
 			border-radius: 1rem 1rem 0 0;
