@@ -166,7 +166,7 @@
 	<div class="stories">
 		<div class="info">
 			<div>
-				<h2 class="section-header">Mental Health & Wellbeing</h2>
+				<h2 class="section-header">Wellbeing</h2>
 				<p>
 					When it comes to mental health, we all have our own unique stories to tell. But no matter
 					what we are going through, there are other people experiencing it too.

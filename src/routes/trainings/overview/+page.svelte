@@ -200,20 +200,20 @@
 			height: 100%;
 			background: linear-gradient(
 				90deg,
-				rgba(21, 24, 48, 0.4) 0%,
-				rgba(21, 24, 48, 0.3) 50%,
-				rgba(11, 11, 11, 0.1) 100%
+				hsl(var(--hsl-purple) /0.8) 0%,
+				hsl(var(--hsl-purple)/.4) 65%,
+				hsl(var(--hsl-purple) /.0) 100%
 			);
 			border-radius: 1rem;
 			z-index: -1;
 		}
 		& h1 {
-			color: var(--fc-white);
+			color: hsl(var(--hsl-off-white));
 			max-width: 20ch;
 		}
 		& .excerpt {
 			max-width: 40ch;
-			color: var(--fc-white);
+			color: hsl(var(--hsl-white));
 			font-size: 1.1rem;
 		}
 		& .article_cat {
@@ -268,13 +268,14 @@
 			padding: 0;
 			margin-bottom: 0.5rem;
 			font-size: 1.1rem;
-			color: var(--fc-main);
+			color: hsl(var(--hsl-gray));
+			font-family: fkg-bold, sans-serif;
 			&::after {
 				content: '';
 				display: block;
 				width: 100%;
 				height: 1px;
-				background: var(--gray-200);
+				background: hsl(var(--hsl-gray) / 0.25);
 				margin-top: 0.5rem;
 			}
 		}
@@ -287,12 +288,17 @@
 				& a {
 					display: block;
 					text-decoration: none;
-					color: var(--gray-500);
+					color: hsl(var(--hsl-gray));
 					font-size: 1rem;
 					font-weight: 500;
+
+					&.toc-active {
+						color: hsl(var(--hsl-brand) ) !important;
+					}
+
 					&:hover {
-						color: var(--orange-600);
-						text-decoration: underline;
+						color: hsl(var(--hsl-brand));
+						/* text-decoration: underline; */
 					}
 				}
 			}
@@ -303,6 +309,7 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-top: 1rem;
+		font-family: "fkg-bold", sans-serif;
 	}
 	.toc-icon__w {
 		position: fixed;
@@ -332,9 +339,9 @@
 		.hero-data::before {
 			background: linear-gradient(
 				90deg,
-				rgba(21, 24, 48, 0.4) 0%,
-				rgba(21, 24, 48, 0.3) 80%,
-				rgba(11, 11, 11, 0.1) 100%
+				hsl(var(--hsl-purple) /0.8) 0%,
+				hsl(var(--hsl-purple)/.4) 65%,
+				hsl(var(--hsl-purple) /.0) 100%
 			);
 		}
 		.main__c {
@@ -348,11 +355,10 @@
 			right: 0;
 			overflow-y: auto;
 			padding: 1.4rem;
-			background: var(--color-bg);
 			z-index: 1;
-			background: var(--clr-white);
+			background: hsl(var(--hsl-white));
 			border-radius: 1rem 0 0 0;
-			border: 1px solid var(--gray-2);
+			border: 1px solid hsl(var(--hsl-gray) / 0.25);
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 			transform: translateX(100%);
 		}
@@ -372,7 +378,6 @@
 		}
 	}
 	@media screen and (max-width: 640px) {
-		/* doostuff */
 		.hero-data::before {
 			background: linear-gradient(
 				90deg,
@@ -390,9 +395,6 @@
 		.hero-img {
 			max-height: 100%;
 		}
-		/* aside > h4 {
-			font-size: 1.6rem;
-		} */
 	}
 	@media screen and (max-width: 480px) {
 		/* doostuff */

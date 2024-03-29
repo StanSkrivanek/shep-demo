@@ -50,7 +50,6 @@
 		{/each}
 	</main>
 </div>
-
 <style>
 	.hero {
 		display: grid;
@@ -74,7 +73,6 @@
 		grid-area: hero-data;
 		padding: 1rem;
 		border-radius: 1rem;
-		background: var(--orange-light);
 	}
 	.hero-img {
 		grid-column: 4 / -1;
@@ -91,15 +89,13 @@
 			aspect-ratio: 2.4/1;
 		}
 	}
-	/* .separator-heading {
-		grid-column: 1/-1;
-		margin-bottom: 2rem;
-	} */
+
 	.container {
 		display: grid;
 		grid-column: 1/-1;
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		gap: 1rem;
+		margin-bottom: 5rem;
 	}
 	.card {
 		display: grid;
@@ -114,45 +110,36 @@
 			[body] auto
 			[footer] 4rem;
 
-		border: 1px solid var(--gray-2);
-		border-radius: 1rem;
+		border: 1px solid hsl(var(--hsl-gray) / 0.05);
+		border-radius: 0.75rem;
 		padding: 1rem;
-		background: var(--clr-white);
+		background: hsl(var(--hsl-brand) / 0.04);
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
-		& svg {
-			& circle {
-				stroke: var(--clr-brand) !important;
-			}
-			& path {
-				fill: var(--clr-brand) !important;
-			}
-		}
+		/* & svg {
+			pointer-events: all;
+		} */
 	}
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
-		box-shadow: 8px 10px 15px -3px var(--gray-2);
-		background: var(--green-light);
-		border: 1px solid var(--green-300);
-		& svg:hover {
-			transition: 0.3s ease;
+		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.15);
+		background: hsl(var(--hsl-gray) / 0.05);
+		border: 1px solid hsl(var(--hsl-brand) / 0.25);
+		& svg {
 			& circle {
-				stroke: hsl(var(--hsl-brand));
+				stroke: hsl(var(--hsl-brand) / 0.75) !important;
 			}
-
 			& path {
-				fill: hsl(var(--hsl-brand));
+				fill: hsl(var(--hsl-brand)) !important;
 			}
 		}
 	}
 
 	.card-header {
 		grid-area: header;
-
 		& h3 {
 			font-size: 1.5rem;
-			font-weight: 400;
-			color: var(--clr-brand);
+			color: hsl(var(--hsl-gray));
 		}
 		& p {
 			margin: 0;
@@ -165,6 +152,7 @@
 		& p {
 			margin-bottom: 1rem;
 			font-size: var(--sm);
+			color: hsl(var(--hsl-brand) / 0.75);
 		}
 	}
 	.card-body {
@@ -173,7 +161,7 @@
 		& p {
 			margin: 0;
 			font-size: 1rem;
-			color: var(--fc-mid);
+			color: hsl(var(--hsl-gray) / 0.75);
 		}
 	}
 	.card-footer {
@@ -181,12 +169,11 @@
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
-
 		& p {
 			align-self: flex-end;
 			margin: 0;
 			font-size: var(--xs);
-			color: var(--gray-3);
+			color: hsl(var(--hsl-gray) / 0.5);
 		}
 
 		& .btn-link {
@@ -199,29 +186,29 @@
 			flex-direction: column;
 			gap: 1rem;
 		}
-
 		.hero-data h1 {
 			margin-bottom: 0;
 		}
-
 		.hero-data p {
 			margin-bottom: 0;
 			max-width: 75ch;
 		}
-
 		.hero-col-2__c {
 			grid-template-areas:
 				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
 				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
 		}
+		/* .intro {
+			column-count: 1;
+		} */
 	}
 
-	/* @media (max-width: 500px) {
+	@media (max-width: 500px) {
 		.hero-data {
 			display: block;
 		}
 		.hero-data h1 {
 			margin-bottom: 2rem;
 		}
-	} */
+	}
 </style>

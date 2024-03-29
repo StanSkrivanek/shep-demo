@@ -113,9 +113,9 @@
 				justify-content: space-between;
 				padding: 2rem;
 				/* background: var(--gray-1); */
-				border-radius: 1rem;
+	
 				height: 100%;
-				background: var(--clr-main-white);
+				border-block: 1px solid hsl(var(--hsl-gray) / 0.15);
 				& .slide__content {
 					grid-column: 2/2;
 					color: var(--fc-main);
@@ -124,7 +124,7 @@
 						line-height: 1.1;
 						margin-bottom: 1rem;
 						padding-bottom: 0.5rem;
-						border-bottom: 1px solid hsl(var(--hsl-gray) / 0.25);
+						/* border-bottom: 1px solid hsl(var(--hsl-gray) / 0.25); */
 						font-family: var(--ff-fkg-regular);
 						font-weight: 100;
 						text-transform: uppercase;

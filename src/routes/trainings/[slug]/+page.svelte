@@ -53,12 +53,14 @@
 			<p class="small-title">Course Fee</p>
 			<div class="fee">
 				{#if full_price != 'No Charge'}
-					<p><span>In Full:</span>€ {full_price}</p>
+					<span>In Full</span>
+					<p>{full_price}</p>
 				{:else}
-					<p><span>In Full:</span>{full_price}</p>
+					<p>{full_price}</p>
 				{/if}
 				{#if funded_price != null}
-					<p><span>Funded :</span>€ {funded_price}</p>
+					<span>Funded</span>
+					<p>{funded_price}</p>
 				{/if}
 			</div>
 		</div>
@@ -92,12 +94,12 @@
 					</div>
 					<div class="nlr-link">
 						<div class="dots">
-							<DotsCorner width={24} height={24} />
+							<DotsCorner width={24} height={24} currentColor="hsl(var(--hsl-white))"/>
 						</div>
 						<div>
 							<p>Sign to newsletter</p>
 							<a href="/newsletter">
-								<LinkCircle width={48} height={48} />
+								<LinkCircle width={48} height={48} currentColor="hsl(var(--hsl-white))"/>
 							</a>
 						</div>
 					</div>
@@ -260,7 +262,6 @@
 		</main>
 	</div>
 </div>
-
 <style>
 	.hero {
 		display: grid;
@@ -272,17 +273,15 @@
 
 	/* Hero */
 	.hero-data {
-		/* grid-area: hero-data; */
 		grid-column: 1 / 4;
 		grid-row: 1/5;
 		display: flex;
 		flex-direction: column;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: color-mix(in oklab, var(--purple-300) 50%, white);
+		background: color-mix(in oklab, var(--shep-orange) 20%, white);
 	}
 	.hero-img {
-		/* grid-area: hero-img; */
 		grid-column: 4 / 8;
 		grid-row: 1/5;
 		border-radius: 1rem;
@@ -297,46 +296,50 @@
 			aspect-ratio: 2.4/1;
 		}
 	}
+
+	/* Fee */
 	.hero-sm-box-top {
 		grid-column: 8/-1;
 		grid-row: 1/3;
 		padding: 1.4rem;
 		border-radius: 1rem;
-		background: color-mix(in oklab, var(--cyan-400) 50%, white);
-		& p {
-			display: flex;
-			justify-content: space-between;
-			margin: 0;
-			font-size: var(--sm);
-			color: var(--fc-main);
-			/* margin-bottom: 0.5rem; */
-		}
+		background: color-mix(in oklab, hsl(var(--hsl-gray) / 0.15), white);
+		text-align: center;
 
 		& .small-title {
 			position: relative;
 			margin-top: 0;
 			margin-bottom: 1.2rem;
-			font-family: var(--ff-gilroy-m);
+			font-family: 'fkg-bold', sans-serif;
 			font-size: var(--sm);
-			color: var(--fc-main);
-			width: fit-content;
+			/* width: fit-content; */
 			&::after {
 				content: '';
 				position: absolute;
 				bottom: -4px;
 				left: 0;
 				width: 100%;
-				height: 2px;
-				background: black;
+				height: 1px;
+				background: hsl(var(--hsl-gray) / 0.25);
 			}
 		}
-			& .fee {
-			font-weight: 600;
-			font-family: var(--ff-inter);
-	
+		& p {
+			margin: 0;
+			color: hsl(var(--hsl-gray));
+			margin-bottom: 0.25rem;
+		}
+		& .fee {
+			text-align: center;
+			font-family: 'fkg-black', sans-serif;
+			& p {
+				font-size: var(--h3);
+			}
 		}
 	}
-
+	.limited-char {
+		width: 16ch;
+	}
+	/* Brochure */
 	.hero-sm-box-bottom {
 		grid-column: 8/-1;
 		grid-row: 3/5;
@@ -345,21 +348,19 @@
 		justify-content: space-between;
 		padding: 1.4rem;
 		border-radius: 1rem;
-		color: var(--fc-light);
 		min-width: 160px;
-		background: color-mix(in oklab, var(--purple-300) 50%, white);
+		background: color-mix(in oklab, hsl(var(--hsl-white)) 15%, white);
 		& p {
 			margin: 0;
-			color: var(--fc-main);
+
 			font-size: var(--sm);
 		}
 		& .small-title {
 			position: relative;
 			margin-top: 0;
 			margin-bottom: 1.2rem;
-			font-family: var(--ff-gilroy-m);
+			font-family: 'fkg-bold', sans-serif;
 			font-size: var(--sm);
-			color: var(--fc-main);
 			width: fit-content;
 			&::after {
 				content: '';
@@ -372,10 +373,6 @@
 			}
 		}
 	}
-	.limited-char {
-		width: 16ch;
-	}
-
 	.link-icon {
 		display: flex;
 		justify-content: right;
@@ -416,11 +413,11 @@
 		display: flex;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: var(--red-200);
+		background: hsl(var(--hsl-red) / 0.8);
 		& p {
 			margin: 0;
 			margin-bottom: 0.5rem;
-			color: var(--fc-main);
+			color: hsl(var(--hsl-white));
 		}
 		& .content {
 			margin-right: 2rem;
@@ -430,7 +427,6 @@
 			flex-direction: column;
 			justify-content: space-between;
 			align-items: flex-end;
-			color: var(--red);
 			&:first-child {
 				margin-bottom: 1rem;
 			}
@@ -440,7 +436,7 @@
 				line-height: 1;
 				margin: 0;
 				margin-bottom: 0.5rem;
-				color: var(--fc-main);
+				/* color: var(--fc-main); */
 			}
 			& a {
 				display: flex;
@@ -452,30 +448,22 @@
 			/* transform: rotate(180deg); */
 		}
 	}
+
 	.accordion_item {
-		/* --_base-color-private: var(BASE COLOR, FALLBACK COLOR); */
-		--item-color: var(--purple-800); /* default MAIN color */
+		--item-color: hsl(var(--hsl-brand));
 		--_base-color-private: var(--item-color, var(--clr-base));
 		/* changing value of `--item-color` will change colors of each child element that contain `--_base-color-private`  */
 		margin-bottom: 1rem;
 		background-color: var(--_bkc-color);
 		border-radius: 1rem;
-		background: color-mix(in oklab, var(--_base-color-private) 16%, white);
-		& svg {
-			& circle {
-				stroke: var(--_base-color-private) !important;
-			}
-			& path {
-				stroke: var(--_base-color-private) !important;
-			}
-		}
+		background: color-mix(in oklab, var(--_base-color-private) 20%, white);
 	}
 
 	.accordion-header {
-		padding: 1rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		padding: 1rem;
 		& .accordion-header--link {
 			/* --item-color: var(--clr-green); */
 			text-decoration: none;
@@ -484,29 +472,29 @@
 			font-family: var(--ff-gilroy-m);
 			transition: all 0.3s ease-in-out;
 			&:hover {
-				text-decoration: underline;
+				/* text-decoration: underline; */
 				color: color-mix(in oklab, var(--_base-color-private) 100%, white);
 			}
 		}
 		& p:first-child {
 			margin-bottom: 0;
 			font-size: 1.4rem;
-			color: color-mix(in oklab, var(--_base-color-private) 100%, white);
+			color: color-mix(in oklab, var(--_base-color-private) 50%, black);
 		}
 
 		& p:not(:first-child) {
 			margin: 0;
-			color: color-mix(in oklab, var(--_base-color-private) 100%, white);
+			color: color-mix(in oklab, var(--_base-color-private) 80%, black);
 			/* margin-bottom: 0.5rem; */
 			font-size: var(--sm);
 		}
 		& p:nth-child(2) {
-			color: color-mix(in oklab, var(--_base-color-private) 85%, white);
+			color: color-mix(in oklab, var(--_base-color-private) 85%, black);
 			margin-bottom: 0.5rem;
 		}
 
 		& .city {
-			color: color-mix(in oklab, var(--_base-color-private) 60%, white);
+			color: color-mix(in oklab, var(--_base-color-private) 80%, black);
 			font-size: 1rem;
 		}
 		& .datetime {
@@ -528,6 +516,14 @@
 			transition: all 0.3s ease-in-out;
 			& :hover {
 				cursor: pointer;
+			}
+			& svg {
+				& circle {
+					stroke: color-mix(in oklab, var(--_base-color-private) 80%, black) !important;
+				}
+				& path {
+					stroke: color-mix(in oklab, var(--_base-color-private) 80%, black) !important;
+				}
 			}
 		}
 		& .rotate {
@@ -658,25 +654,25 @@
 
 	/* Media Query */
 	@media screen and (max-width: 1280px) {
-		/* .main__c {
+		.main__c {
 			grid-template-columns: subgrid;
-			grid-template-areas: 'aside aside aside main main main main main';
-		} */
+			grid-template-areas: 'aside aside aside main main main main main ';
+		}
 		.hero-img {
 			grid-column: 1/-1;
 			grid-row: 1/2;
 		}
 		.hero-data {
-			grid-column: 1/7;
-			grid-row: 3/5;
+			grid-column: 1/5;
+			grid-row: 2/5;
 		}
 		.hero-sm-box-top {
-			grid-column: 7/-1;
-			grid-row: 3/4;
+			grid-column: 5/7;
+			grid-row: 2/5;
 		}
 		.hero-sm-box-bottom {
 			grid-column: 7/-1;
-			grid-row: 4/5;
+			grid-row: 2/5;
 		}
 		.accordion .accordion-links a {
 			margin-bottom: 1rem;
@@ -704,15 +700,10 @@
 		.no-course {
 			display: block;
 		}
-	}
-	@media (max-width: 768px) {
-		.hero-img {
-			grid-column: 1/-1;
-			grid-row: 1/2;
-		}
 		.hero-data {
 			grid-column: 1/-1;
 			grid-row: 2/3;
+			padding: 1rem;
 		}
 		.hero-sm-box-top {
 			grid-column: 1/5;
@@ -722,6 +713,13 @@
 			grid-column: 5/-1;
 			grid-row: 3/5;
 		}
+	}
+
+	@media (max-width: 768px) {
+		/* .hero-img {
+			grid-column: 1/-1;
+			grid-row: 1/2;
+		} */
 	}
 	@media (max-width: 576px) {
 		.main__c {

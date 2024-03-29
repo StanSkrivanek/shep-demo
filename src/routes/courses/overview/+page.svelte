@@ -197,9 +197,9 @@
 			height: 100%;
 			background: linear-gradient(
 				90deg,
-				rgba(21, 24, 48, 0.64) 0%,
-				rgba(21, 24, 48, 0.24) 50%,
-				rgba(11, 11, 11, 0.01) 100%
+				hsl(var(--hsl-brand) / 0.8) 0%,
+				hsl(var(--hsl-brand) / 0.4) 65%,
+				hsl(var(--hsl-brand) / 0) 100%
 			);
 			border-radius: 1rem;
 			z-index: -1;
@@ -290,7 +290,7 @@
 					font-weight: 500;
 
 					&.toc-active {
-						color: hsl(var(--hsl-brand) ) !important;
+						color: hsl(var(--hsl-brand)) !important;
 					}
 
 					&:hover {
@@ -306,7 +306,7 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-top: 1rem;
-		font-family: "fkg-bold", sans-serif;
+		font-family: 'fkg-bold', sans-serif;
 	}
 	.toc-icon__w {
 		position: fixed;
@@ -336,9 +336,9 @@
 		.hero-data::before {
 			background: linear-gradient(
 				90deg,
-				rgba(21, 24, 48, 0.4) 0%,
-				rgba(21, 24, 48, 0.3) 80%,
-				rgba(11, 11, 11, 0.1) 100%
+				hsl(var(--hsl-brand) / 0.8) 0%,
+				hsl(var(--hsl-brand) / 0.4) 65%,
+				hsl(var(--hsl-brand) / 0) 100%
 			);
 		}
 		.main__c {

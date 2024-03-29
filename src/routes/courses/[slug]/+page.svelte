@@ -356,7 +356,7 @@
 		padding: 1.4rem;
 		border-radius: 1rem;
 		min-width: 160px;
-		background: color-mix(in oklab, hsl(var(--hsl-cyan)) 15%, white);
+		background: color-mix(in oklab, hsl(var(--hsl-white)) 15%, white);
 		& p {
 			margin: 0;
 
