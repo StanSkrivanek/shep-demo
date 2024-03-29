@@ -22,7 +22,7 @@
 			</div>
 			<div class="hero-img">
 				<img
-					src="https://cdn.sanity.io/images/gkez65br/production/8b137c079b2438d98270dd211b76ea58c1a0210c-1200x719.jpg"
+					src="https://cdn.sanity.io/images/gkez65br/production/479126b0eb6e14162016f648c77a88c95f550685-1680x933.webp"
 					alt="pinky theme"
 				/>
 			</div>
@@ -113,7 +113,7 @@
 		border: 1px solid hsl(var(--hsl-gray) / 0.05);
 		border-radius: 0.75rem;
 		padding: 1rem;
-		background: hsl(var(--hsl-brand) / 0.04);
+		background: hsl(var(--hsl-purple) / 0.1);
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
 		/* & svg {
@@ -124,13 +124,13 @@
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.15);
 		background: hsl(var(--hsl-gray) / 0.05);
-		border: 1px solid hsl(var(--hsl-brand) / 0.25);
+		border: 1px solid hsl(var(--hsl-purple) / 0.25);
 		& svg {
 			& circle {
-				stroke: hsl(var(--hsl-brand) / 0.75) !important;
+				stroke: hsl(var(--hsl-purple) / 0.75) !important;
 			}
 			& path {
-				fill: hsl(var(--hsl-brand)) !important;
+				fill: hsl(var(--hsl-purple)) !important;
 			}
 		}
 	}
@@ -152,7 +152,7 @@
 		& p {
 			margin-bottom: 1rem;
 			font-size: var(--sm);
-			color: hsl(var(--hsl-brand) / 0.75);
+			color: hsl(var(--hsl-purple));
 		}
 	}
 	.card-body {

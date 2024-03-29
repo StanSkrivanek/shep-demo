@@ -91,7 +91,7 @@
 							<img src={post.main_img} alt={post.title} />
 						</div>
 						<div class="card-header">
-							<p>{post.title}</p>
+							<h3>{post.title}</h3>
 						</div>
 						<div class="card-body">
 							<!-- <p>{post.author[0].name}</p> -->
@@ -119,7 +119,7 @@
 			padding-bottom: 0.5rem;
 			/* font-size: var(--xs); */
 			line-height: 1;
-			border-bottom: 1px solid var(--gray-2);
+			border-bottom: 1px solid hsl(var(--hsl-gray) / 0.25);
 			color: var(--gray-3);
 		}
 	}
@@ -189,24 +189,25 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
-		max-width: 300px;
+		/* max-width: 300px; */
 		/* border-right: 1px solid var(--gray-2); */
 		& .btn-tag {
 			margin: 0;
 			font-size: var(--xs);
 			line-height: 1;
 			pointer-events: all;
-			color: var(--gray-500);
+			color: hsl(var(--hsl-gray));
 			border: none;
-			border: 1px solid var(--gray-100);
+			border: 1px solid hsl(var(--hsl-blue) / 0.25);
 			padding: 0.25rem 0.5rem;
 			border-radius: 0.25rem;
-			background: var(--clr-white);
+			background: hsl(var(--hsl-white));
 			transition: all 0.2s ease-in-out;
+			text-transform: uppercase;
 			word-wrap: none;
 			&:hover {
-				color: var(--clr-white);
-				background-color: var(--cyan-500);
+				color: hsl(var(--hsl-white));
+				background-color: hsl(var(--hsl-gray));
 				border-color: transparent;
 			}
 		}
@@ -214,120 +215,86 @@
 	.card {
 		display: grid;
 		grid-template-areas:
-			'subHeader '
 			'image'
+			'subHeader '
 			'header '
 			'body '
 			'footer ';
 		grid-template-rows:
+			[image] 15rem
 			[subHeader] 2rem
-			[image] 10rem
 			[header] 3.6rem
 			[body] auto
 			[footer] 2.6rem;
 
-		border: 1px solid var(--gray-100);
-		border-radius: 1rem;
-		padding: 1rem;
-		background: var(--clr-white);
-		transition: all 0.3s ease-in-out;
-		pointer-events: none;
 		gap: 0.25rem;
+		padding-bottom: 1rem;
+		background: hsl(var(--hsl-white));
+		border: 1px solid hsl(var(--hsl-blue) / 0.25);
+		border-radius: 0.5rem;
+		pointer-events: none;
+		transition: all 0.3s ease-in-out;
 	}
 
-	.card:hover {
-		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
-		box-shadow: 8px 10px 15px -3px var(--gray-100);
-		background: var(--clr-main-white);
-		border: 1px solid var(--green-300);
-	}
-	.card-header {
-		grid-area: header;
-
-		& h3 {
-			font-size: 1.5rem;
-			font-weight: 16rem;
-		}
-
-		& p {
-			margin: 0;
-			line-height: 1.1;
-			font-family: var(--ff-gilroy-smb);
-		}
-	}
 	.card-subheading {
 		grid-area: subHeader;
-		display: flex;
-		justify-content: space-between;
+		padding-inline: 1rem;
 		& p {
-			font-size: var(--xs);
-			/* color: var(--cyan-50); */
-			line-height: 2;
+			font-size: var(--sm);
 		}
 		& a {
-			margin: 0;
 			font-size: var(--xs);
-			line-height: 2;
-			pointer-events: all;
-			color: var(--gray-400);
-			&:hover {
-				color: var(--cyan-400);
-			}
+			color: hsl(var(--hsl-blue));
+		}
+	}
+
+	.card-header {
+		grid-area: header;
+		padding-inline: 1rem;
+		& h3 {
+			font-size: var(--h5);
+			color: hsl(var(--hsl-gray) / 0.45);
+			font-family: 'fkg-bold', sans-serif;
 		}
 	}
 	.card-img {
 		grid-area: image;
 		object-fit: cover;
-		/* border-radius: 1rem; */
 		margin-bottom: 1rem;
-		/* border: 2px solid red; */
+		border-radius: 0.25rem 0.25rem 0 0;
+		overflow: hidden;
 		& img {
 			object-fit: cover;
 			display: block;
 			width: 100%;
 			height: 100%;
-			border-radius: 0.25rem;
-
-			/* aspect-ratio: 2.4/1; */
 		}
 	}
 	.card-body {
 		grid-area: body;
+		padding-inline: 1rem;
 		margin-bottom: 0.5rem;
 		& p {
 			margin: 0;
 			font-size: 0.9rem;
 			line-height: 1.1;
-			color: var(--gray-500);
+			color: hsl(var(--hsl-gray) / 0.75);
 		}
 	}
 	.card-footer {
 		grid-area: footer;
 		display: flex;
 		justify-content: flex-end;
-		/* & p {
-			align-self: flex-end;
-			margin: 0;
-			font-size: var(--xs);
-			color: var(--gray-3);
-		} */
+		padding-inline: 1rem;
 	}
 	.btn-link {
 		pointer-events: all;
-		& svg {
+		& svg:hover {
 			& circle {
 				stroke: var(--clr-brand) !important;
 			}
 			& path {
 				fill: var(--clr-brand) !important;
-			}
-			&:hover {
-				& circle {
-					stroke: var(--shep-green) !important;
-				}
-				& path {
-					fill: var(--shep-green) !important;
-				}
 			}
 		}
 	}
