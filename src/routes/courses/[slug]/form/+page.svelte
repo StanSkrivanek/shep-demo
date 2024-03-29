@@ -117,7 +117,7 @@
 					<div class="input-group">
 						<label for="medicalNeeds"
 							>Please specify if there are any special or medical needs that we should be aware of
-							for practical purposes <span><i>( optional )</i></span></label
+							for practical purposes</label
 						>
 						<textarea
 							id="medicalNeeds"
@@ -323,8 +323,8 @@
 	.page__c {
 		display: flex;
 		flex-direction: column;
-border-radius: 0.5rem;
-		background: var(--yellow-200);
+		border-radius: 0.5rem;
+		background: hsl(var(--hsl-green) /.25);
 	}
 	form {
 		padding-bottom: 2rem;
@@ -335,21 +335,20 @@ border-radius: 0.5rem;
 		}
 		& h1 {
 			margin-bottom: 0.25rem;
-			color: var(--orange-700);
-	
+			color: hsl(var(--hsl-gray) /.5);
 		}
 		& h2 {
 			font-size: 1.5rem;
 			font-weight: 700;
 			margin-bottom: 1rem;
 			padding: 1rem;
-			background-color: var(--yellow-400);
+			background-color: hsl(var(--hsl-green) /.25);
 			border-radius: 0.25rem;
 		}
 		& p {
 			margin: 0.25rem;
 			& b {
-				color: var(--orange-700);
+				color: hsl(var(--hsl-brand) /.75);
 			}
 		}
 		& p:first-child {
@@ -379,11 +378,11 @@ border-radius: 0.5rem;
 				textarea,
 				select {
 					padding: 0.5rem;
-					border: 1px solid var(--gray-2);
+					border: 1px solid hsl(var(--hsl-gray) /.25);
 					border-radius: 0.5rem;
 					font-size: 1.5rem;
 					font-weight: 400;
-					color: var(--fc-main);
+					/* color: var(--fc-main); */
 					margin-bottom: 1rem;
 				}
 				& textarea {
@@ -405,7 +404,7 @@ border-radius: 0.5rem;
 					& tr {
 						& th {
 							padding: 0.5rem;
-							border-bottom: 1px solid var(--gray-2);
+							border-bottom: 1px solid hsl(var(--hsl-gray) /.25);
 							font-size: 1.2rem;
 							font-weight: 600;
 							text-align: left;
@@ -416,12 +415,11 @@ border-radius: 0.5rem;
 					& tr {
 						& td {
 							padding: 0.5rem;
-							border-bottom: 1px solid var(--gray-2);
+							border-bottom: 1px solid hsl(var(--hsl-gray) /.25);
 							font-size: 1.2rem;
 							font-weight: 400;
 							text-align: left;
 						}
-						
 					}
 				}
 				& .ticker {
@@ -472,7 +470,7 @@ border-radius: 0.5rem;
 			position: absolute;
 			top: 40%;
 			left: 60%;
-			border: calc(var(--unit) * 0.4) solid var(--shep-blue);
+			border: calc(var(--unit) * 0.4) solid hsl(var(--hsl-blue));
 			border-top-width: 0;
 			border-right-width: 0;
 			/* border-radius: calc(var(--unit) * 0.3);
@@ -489,19 +487,19 @@ border-radius: 0.5rem;
 			margin-top: 2rem;
 			& button {
 				padding: 1rem 6rem;
-				background-color: var(--shep-blue);
+				background-color: hsl(var(--hsl-blue));
 				border: none;
 				border-radius: 1rem;
 				font-size: 1.5rem;
 				font-weight: 700;
-				color: var(--fc-white);
+				color:hsl(var(--hsl-white));
 				cursor: pointer;
 			}
 		}
 	}
 
 	.form-err-msg {
-		color: var(--shep-red);
+		color: hsl(var(--hsl-red));
 		font-size: var(--xs);
 		font-weight: 400;
 	}
@@ -517,10 +515,10 @@ border-radius: 0.5rem;
 		cursor: pointer;
 		font-size: 1.5rem;
 		font-weight: 400;
-		color: var(--fc-main);
+		/* color: var(--fc-main); */
 		margin-bottom: 1rem;
 		padding: 0.5rem;
-		border: 1px solid var(--gray-3) !important;
+		border: 1px solid hsl(var(--hsl-gray) /.25) !important;
 		border-radius: 0.5rem;
 	}
 
@@ -530,7 +528,7 @@ border-radius: 0.5rem;
 		background-repeat: no-repeat;
 		background-position: right 0.7em top 50%, 0 0;
 		background-size: 0.65em auto, 100%;
-		/* background-color: white; */
+		background-color: hsl(var(--hsl-green) /.25);
 	}
 	.table__w {
 		overflow-x: auto;
@@ -545,7 +543,7 @@ border-radius: 0.5rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background-color: rgba(0, 0, 0, 0.8);
+		/* background-color: hsl(var(--hsl-gray)); */
 		z-index: 1000;
 	}
 
@@ -556,7 +554,7 @@ border-radius: 0.5rem;
 		left: 50%;
 		transform: translate(-50%, -50%);
 		text-align: center;
-		background-color: var(--green-300);
+		background-color: hsl(var(--hsl-green) /0.5);
 		padding: 2rem;
 		margin-bottom: 1rem;
 		border-radius: 0.25rem;
@@ -569,10 +567,9 @@ border-radius: 0.5rem;
 		}
 	}
 	.agreement label {
-			display: flex;
-			padding-bottom: 1rem;
-			
-		}
+		display: flex;
+		padding-bottom: 1rem;
+	}
 
 	/* MediaQueries */
 
@@ -590,6 +587,5 @@ border-radius: 0.5rem;
 		.agreement label p {
 			margin-block-start: -0.25rem;
 		}
-		
 	}
 </style>

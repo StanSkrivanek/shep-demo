@@ -59,7 +59,6 @@
 					<span>In Full</span>
 					<p>{full_price}</p>
 				{:else}
-					<span>In Full:</span>
 					<p>{full_price}</p>
 				{/if}
 				{#if funded_price != null}
@@ -85,7 +84,9 @@
 	<div class="main__c">
 		<!-- aside -->
 		<aside>
-			<h3>Apply for</h3>
+			{#if upcoming.length > 0}
+				<h3>Apply for</h3>
+			{/if}
 			{#if upcoming.length == 0}
 				<div class="no-course">
 					<div class="content">
