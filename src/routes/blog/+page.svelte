@@ -11,7 +11,7 @@
 
 	// pagination base values
 	let currentPage = 1;
-	const itemsPerPage = 4;
+	const itemsPerPage = 3;
 
 	//  check these functions
 	// let uniqueCategories = categories.filter((v, i, a) => a.findIndex(t => (t.category === v.category)) === i);
