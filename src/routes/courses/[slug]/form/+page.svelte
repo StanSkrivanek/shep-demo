@@ -35,6 +35,7 @@
 </svelte:head>
 <div class="page__c">
 	<!-- display success thankyou if form success is true display it for 3s -->
+
 	{#if form?.success}
 		<div class="msg__c">
 			<div class="msg-success">
@@ -171,7 +172,8 @@
 						<!-- reference -->
 						<div class="input-group">
 							<label for="reference"
-								>If referred to the course by another person please specify?<span><i>( optional )</i></span
+								>If referred to the course by another person please specify?<span
+									><i>( optional )</i></span
 								></label
 							>
 							<input
@@ -203,7 +205,10 @@
 					Attending options
 					{#if courseData.in_person.is_active === true && courseData.online.is_active === true}
 						<span>
-							<i>Please select preferred option <span>( or both if you can attend either one )</span></i>
+							<i
+								>Please select preferred option <span>( or both if you can attend either one )</span
+								></i
+							>
 						</span>
 					{:else}
 						<span><i>(Please select option)</i></span>
@@ -319,13 +324,13 @@
 <!-- TODO: 1) validate inputs with ZOD -->
 <!-- TODO: 2) send data with action -->
 
-
 <style>
 	.page__c {
 		display: flex;
 		flex-direction: column;
 		border-radius: 0.5rem;
-		background: hsl(var(--hsl-brand) /.25);
+		background: hsl(var(--hsl-brand) / 0.25);
+		margin-bottom: 5rem;
 	}
 	form {
 		padding-bottom: 2rem;
@@ -343,22 +348,22 @@
 			font-size: 1.5rem;
 			margin-bottom: 1rem;
 			padding: 1rem;
-			background-color: hsl(var(--hsl-brand) /.25);
+			background-color: hsl(var(--hsl-brand) / 0.25);
 			border-radius: 0.25rem;
 		}
 		& p {
 			margin: 0.25rem;
 			& b {
-				color: hsl(var(--hsl-gray))
+				color: hsl(var(--hsl-gray));
 			}
 		}
 		& p:first-child {
 			margin-bottom: 1rem;
 		}
-		& span i{
+		& span i {
 			font-size: var(--sm);
 			font-family: var(--ff-fkg-regular);
-			color: hsl(var(--hsl-gray) /0.5);
+			color: hsl(var(--hsl-gray) / 0.5);
 		}
 		& .personal-data,
 		& .additional-data,
@@ -380,7 +385,7 @@
 				textarea,
 				select {
 					padding: 0.5rem;
-					border: 1px solid hsl(var(--hsl-gray) /0.25);
+					border: 1px solid hsl(var(--hsl-gray) / 0.25);
 					border-radius: 0.5rem;
 					font-size: 1.5rem;
 					color: hsl(var(--hsl-gray));
@@ -406,7 +411,7 @@
 					& tr {
 						& th {
 							padding: 0.5rem;
-							border-bottom: 1px solid hsl(var(--hsl-gray) /0.25);
+							border-bottom: 1px solid hsl(var(--hsl-gray) / 0.25);
 							font-size: 1.2rem;
 							/* font-weight: 600; */
 							text-align: left;
@@ -417,7 +422,7 @@
 					& tr {
 						& td {
 							padding: 0.5rem;
-							border-bottom: 1px solid hsl(var(--hsl-gray) /0.25);
+							border-bottom: 1px solid hsl(var(--hsl-gray) / 0.25);
 							font-size: 1.2rem;
 							font-weight: 400;
 							text-align: left;
@@ -492,7 +497,7 @@
 				background-color: hsl(var(--hsl-blue));
 				border: none;
 				border-radius: 1rem;
-				font-size: 1.5rem;
+				font-size: 0.5rem;
 				font-weight: 700;
 				color: hsl(var(--hsl-white));
 				cursor: pointer;
@@ -520,7 +525,7 @@
 		color: hsl(var(--hsl-gray));
 		margin-bottom: 1rem;
 		padding: 0.5rem;
-		border: 1px solid hsl(var(--hsl-gray)/.25) !important;
+		border: 1px solid hsl(var(--hsl-gray) / 0.25) !important;
 		border-radius: 0.5rem;
 	}
 
@@ -556,7 +561,7 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		text-align: center;
-		background-color:hsl(var(--hsl-green) /.5);
+		background-color: hsl(var(--hsl-green) / 0.5);
 		padding: 2rem;
 		margin-bottom: 1rem;
 		border-radius: 0.25rem;
