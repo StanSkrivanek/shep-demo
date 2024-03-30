@@ -1,5 +1,4 @@
 <script>
-	import Pagination from '$lib/components/Pagination.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { trimText } from '$lib/utils/globalhelpers.js';
 	// import { reset } from '__sveltekit/paths';
@@ -11,7 +10,9 @@
 
 	// pagination base values
 	let currentPage = 1;
-	const itemsPerPage = 3;
+	const itemsPerPage = 1;
+
+	const maxPages = 1;
 
 	//  check these functions
 	// let uniqueCategories = categories.filter((v, i, a) => a.findIndex(t => (t.category === v.category)) === i);
@@ -151,9 +152,23 @@
 			<div class="pagination__w">
 				<button on:click={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
 				{#each Array(totalPages) as _, i}
-					<button class:current={currentPage === i + 1} on:click={() => goToPage(i + 1)}
-						>{i + 1}</button
-					>
+					<!-- first page -->
+					{#if i === 0}
+						<button  class:current={currentPage === i +1} on:click={() => goToPage(i + 1)}>{i + 1}</button>
+						{/if}
+						<!-- {#if totalPages >= maxPages} -->
+						<!-- button with updating number of current page -->
+						
+						{#if i === currentPage && i > 0 && i <= totalPages - 1}
+						<span>...</span>
+							<button  class:current={currentPage === i+1} on:click={() => goToPage(i + 1)}>{i + 1}</button>
+							{/if}
+							
+							{#if i === totalPages - 1}
+							<span>...</span>
+							<button  class:current={currentPage === i + 1} on:click={() => goToPage(i + 1)}>{i + 1}</button>
+						{/if}
+					<!-- {/if} -->
 				{/each}
 				<button on:click={goToNextPage} disabled={currentPage === totalPages}>Next</button>
 			</div>
@@ -188,8 +203,8 @@
 		}
 		& .current {
 			/* color: red; */
-			background: hsl(var(--hsl-brand) /0.25);			 		
-					
+			background: hsl(var(--hsl-brand) / 0.25);
+
 			/* Replace with your desired color */
 		}
 	}
