@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+// @ts-nocheck
 import { env } from '$env/dynamic/private';
 import { createClient } from '@sanity/client';
 
@@ -409,8 +411,48 @@ export const getAllUpcomingTrainingsForCurrentTraining = async (/** @type {undef
 
 // All Blog posts
 export const getAllPosts = async () => {
+// let lastId =""
 	const client = sanityClient();
 	const allPostsQuery = `*[_type == "post" && post_category->slug.current != "activities" ]{
+		"id":_id,
+		"title": article_title,
+		"excerpt": post_excerpt,
+		"slug": slug.current,
+		"main_img": hero_image.asset->url,
+		"category": post_category->blog_category,
+		"category_slug": post_category->slug.current,
+		"author": post_author[] {
+			_type == 'reference' => @->{name}    
+		},
+		"content": post_body[] {
+			...,
+			_type == "image" => {
+				...,
+				"asset": asset->
+			}
+		}
+	}`;
+
+	const allPosts = await client.fetch(allPostsQuery);
+	// lastId = allPosts[allPosts.length - 1].id;
+	// console.log('------------------------------------------------------------');
+	// console.log('🚀 ~ GETALLPOSTS ~ lastId:', lastId);
+	// console.log('------------------------------------------------------------');
+	return allPosts;
+};
+
+export const getAllPostsWithPagination = async () => {
+	const client = sanityClient();
+
+	let lastId = allPostsQuery._id;
+
+	// async function fetchNextPage() {
+	// 	if (lastId === null) {
+	// 		return [];
+	// 	}
+	// }
+	const allPostsQuery = `*[_type == "post" && _id > $lastId ] | order(_id) [0...3]{
+		"id":_id,
 	"title": article_title,
 	"excerpt": post_excerpt,
 	"slug": slug.current,
@@ -429,8 +471,14 @@ export const getAllPosts = async () => {
 	}
 }`;
 
-	const allPosts = await client.fetch(allPostsQuery);
-	return allPosts;
+	if (allPostsQuery.length > 0) {
+		lastId = allPostsQuery[allPostsQuery.length - 1]._id;
+	} else {
+		lastId = null;
+	}
+
+	const paginatedPosts = await client.fetch(allPostsQuery);
+	return paginatedPosts;
 };
 
 export const getPostsForSlider = async () => {

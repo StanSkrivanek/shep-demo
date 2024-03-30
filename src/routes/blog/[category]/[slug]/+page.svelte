@@ -226,20 +226,20 @@
 			height: 100%;
 			background: linear-gradient(
 				90deg,
-				hsl(var(--hsl-green)) 0%,
-				hsl(var(--hsl-green) / 0.5) 65%,
-				hsl(var(--hsl-green) / 0) 100%
+				hsl(var(--hsl-gray)) 0%,
+				hsl(var(--hsl-gray) / 0.5) 65%,
+				hsl(var(--hsl-gray) / 0) 100%
 			);
 			border-radius: 1rem;
 			z-index: -1;
 		}
 		& h1 {
-			color: var(--fc-white);
+			color: hsl(var(--hsl-white));
 			max-width: 20ch;
 		}
 		& .excerpt {
 			max-width: 40ch;
-			color: var(--fc-white);
+				color: hsl(var(--hsl-white));
 			font-size: 1.1rem;
 		}
 		& .article_cat {
@@ -254,7 +254,7 @@
 			font-size: 0.9rem;
 			font-weight: 500;
 			align-self: flex-start;
-			background: hsl(var(--hsl-gray) / 0.45);
+			background: hsl(var(--hsl-gray) / 0.75);
 		}
 	}
 	.hero-img {

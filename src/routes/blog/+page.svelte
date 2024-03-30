@@ -1,4 +1,5 @@
 <script>
+	import Pagination from '$lib/components/Pagination.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { trimText } from '$lib/utils/globalhelpers.js';
 	// import { reset } from '__sveltekit/paths';
@@ -7,6 +8,11 @@
 	let { posts, categories } = data;
 
 	let filteredPosts = posts;
+
+	// pagination base values
+	let currentPage = 1;
+	const itemsPerPage = 4;
+
 	//  check these functions
 	// let uniqueCategories = categories.filter((v, i, a) => a.findIndex(t => (t.category === v.category)) === i);
 	// let uniquePosts = posts.filter((v, i, a) => a.findIndex((t) => t.category === v.category) === i);
@@ -29,10 +35,11 @@
 
 	//  filter posts by category
 	const uniquePosts = (/** @type {Text} */ category) => {
+		//  reset currentPage to 1 when filter is applied to show the first page of the filtered posts
+		currentPage = 1;
 		let filtered = posts.filter(
 			(/** @type {{ category: Text; }} */ post) => post.category === category
 		);
-
 		filteredPosts = filtered;
 	};
 
@@ -40,6 +47,40 @@
 	const allposts = () => {
 		filteredPosts = posts;
 	};
+
+	// PAGINATION
+	// Assuming `allPosts` is an array of all your posts
+	$: allPosts = filteredPosts;
+
+	// Calculate the start and end indices for the current page's items
+	$: start = (currentPage - 1) * itemsPerPage;
+	$: end = start + itemsPerPage;
+
+	// Get the current page's items
+	$: currentPageItems = allPosts.slice(start, end);
+	$: console.log('🚀 ~ currentPageItems:', currentPageItems);
+
+	// Calculate the total number of pages
+	$: totalPages = Math.ceil(allPosts.length / itemsPerPage);
+
+	/**
+	 * @param {number} page
+	 */
+	function goToPage(page) {
+		currentPage = page;
+	}
+
+	function goToPreviousPage() {
+		if (currentPage > 1) {
+			currentPage--;
+		}
+	}
+
+	function goToNextPage() {
+		if (currentPage < totalPages) {
+			currentPage++;
+		}
+	}
 </script>
 
 <svelte:head>
@@ -80,7 +121,7 @@
 			</div>
 		</aside>
 		<main class="container">
-			{#each filteredPosts as post}
+			{#each currentPageItems as post (post.id)}
 				<div class="posts">
 					<div class="card">
 						<!-- TODO: use Sanity image optimisation settings -> ?max=fit&xxx-->
@@ -106,13 +147,54 @@
 				</div>
 			{/each}
 		</main>
+		{#if totalPages > 1}
+			<div class="pagination__w">
+				<button on:click={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
+				{#each Array(totalPages) as _, i}
+					<button class:current={currentPage === i + 1} on:click={() => goToPage(i + 1)}
+						>{i + 1}</button
+					>
+				{/each}
+				<button on:click={goToNextPage} disabled={currentPage === totalPages}>Next</button>
+			</div>
+		{/if}
 	</div>
 </div>
 
 <style>
+	.pagination__w {
+		grid-template-columns: subgrid;
+		grid-column: 1/-1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 2rem;
+		& button {
+			margin: 0 0.5rem;
+			padding: 0.5rem 1rem;
+			border: 1px solid hsl(var(--hsl-gray) / 0.25);
+			border-radius: 0.25rem;
+			background: hsl(var(--hsl-white));
+			color: hsl(var(--hsl-gray));
+			transition: all 0.2s ease-in-out;
+			&:hover {
+				background: hsl(var(--hsl-brand));
+				color: hsl(var(--hsl-white));
+			}
+			&:disabled {
+				opacity: 0.5;
+				pointer-events: none;
+			}
+		}
+		& .current {
+			/* color: red; */
+			background: hsl(var(--hsl-brand) /0.25);			 		
+					
+			/* Replace with your desired color */
+		}
+	}
 	aside {
 		grid-area: aside;
-		/* border-right: 1px solid var(--gray-2); */
 		& p {
 			margin: 0;
 			margin-bottom: 1rem;
@@ -253,7 +335,7 @@
 		& h3 {
 			font-size: var(--h5);
 			color: hsl(var(--hsl-gray) / 0.45);
-				font-family: var(--ff-fkg-bold);
+			font-family: var(--ff-fkg-bold);
 		}
 	}
 	.card-img {

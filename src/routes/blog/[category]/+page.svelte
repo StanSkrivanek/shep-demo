@@ -26,8 +26,8 @@
 			</div>
 			<div class="hero-img">
 				<img
-					src="https://cdn.sanity.io/images/gkez65br/production/e839df8e4afd7bb9a69fa6ff57ff852dbfcdcfc2-800x400.jpg"
-					alt="man on paper ship looking into binocular"
+					src="https://cdn.sanity.io/images/gkez65br/production/479126b0eb6e14162016f648c77a88c95f550685-1680x933.webp"
+					alt="illustration of boy reading a news"
 				/>
 			</div>
 		</div>
@@ -158,7 +158,7 @@
 		& h3 {
 			font-size: var(--h5);
 			color: hsl(var(--hsl-gray) / 0.45);
-				font-family: var(--ff-fkg-bold);
+			font-family: var(--ff-fkg-bold);
 		}
 	}
 	.card-img {
