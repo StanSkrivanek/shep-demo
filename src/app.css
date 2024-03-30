@@ -93,7 +93,7 @@ body {
 	letter-spacing: 0.03rem;
 	font-size: var(--base-size);
 	line-height: var(--lineHeight);
-	color: rgb(73, 76, 82);
+	color: hsl(var(--hsl-gray));
 	background: var(--clr-main-bg);
 }
 
@@ -111,7 +111,7 @@ h2 {
 	font-size: clamp(2.441rem, calc(1.6rem + 1vw), 3.052rem);
 	line-height: 1;
 	letter-spacing: -0.025em;
-	color: rgb(75, 77, 82);
+	color: hsl(var(--hsl-gray));
 	margin-block: 0;
 }
 
@@ -122,7 +122,7 @@ h6 {
 	font-family: var(--ff-fkg-regular);
 	line-height: 1;
 	letter-spacing: -0.025em;
-	color: rgb(75, 77, 82);
+	color: hsl(var(--hsl-gray));
 	margin-block: 0;
 }
 svg {
@@ -152,17 +152,17 @@ ol {
 
 /* Links */
 a {
-	color: rgb(55, 56, 58);
+	color: hsl(var(--hsl-gray))
 }
 
 a:hover {
 	text-decoration: underline;
 	/* color: lightseagreen; */
-	color: var(--clr-brand);
+	color: hsl(var(--hsl-brand));
 }
 
 strong {
-	font-family: var(--ff-inter);
+	font-family: var(--ff-fkg-bold);
 	letter-spacing: 0.06rem;
 }
 
@@ -231,7 +231,7 @@ h6,
 .article-title h5,
 .article-title h6 {
 	/* color: var(--clr-orange); */
-	color: var(--clr-gray-600);
+	color: hsl(var(--hsl-gray));
 	margin-bottom: 0;
 }
 
@@ -246,7 +246,7 @@ article > p:first-child {
 }
 /* Table of content  */
 .toc-active {
-	color: var(--orange-800) !important;
+	color: hsl(var(--hsl-brand)) !important;
 	/* text-decoration: underline; */
 }
 /* LINKS */
@@ -255,7 +255,7 @@ article > p:first-child {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border-bottom: 1px solid var(--gray-200);
+	border-bottom: 1px solid hsl(var(--hsl-gray) /.5);
 	padding-right: 1rem;
 	text-decoration: none;
 	& .dots {
@@ -272,7 +272,7 @@ article > p:first-child {
 		}
 		& p {
 			font-size: var(--sm);
-			color: var(--clr-gray-400);
+			color: hsl(var(--hsl-gray)/.5);
 			margin: 0;
 			margin-bottom: 0.75rem;
 			transition: color 0.25s ease-in-out;
@@ -282,15 +282,15 @@ article > p:first-child {
 		text-decoration: none;
 		/* & h3, */
 		p {
-			color: var(--fc-main);
+			color: hsl(var(--hsl-gray));
 			/* font-weight: 600; */
 		}
 		& h3 {
-			color: var(--clr-brand);
+			color: hsl(var(--hsl-gray));
 		}
 		& svg {
 			transition: 0.3s ease;
-			fill: var(--clr-brand);
+			fill: hsl(var(--hsl-brand));
 		}
 	}
 }

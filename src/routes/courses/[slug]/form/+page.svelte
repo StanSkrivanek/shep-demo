@@ -171,7 +171,7 @@
 						<!-- reference -->
 						<div class="input-group">
 							<label for="reference"
-								>If referred to the course by another person please specify?<span>(optional)</span
+								>If referred to the course by another person please specify?<span><i>( optional )</i></span
 								></label
 							>
 							<input
@@ -203,10 +203,10 @@
 					Attending options
 					{#if courseData.in_person.is_active === true && courseData.online.is_active === true}
 						<span>
-							Please select preferred option <span>( or both if you can attend either one )</span>
+							<i>Please select preferred option <span>( or both if you can attend either one )</span></i>
 						</span>
 					{:else}
-						<span>( Please select option )</span>
+						<span><i>(Please select option)</i></span>
 					{/if}
 				</h2>
 				<!-- table -->
@@ -319,12 +319,13 @@
 <!-- TODO: 1) validate inputs with ZOD -->
 <!-- TODO: 2) send data with action -->
 
+
 <style>
 	.page__c {
 		display: flex;
 		flex-direction: column;
 		border-radius: 0.5rem;
-		background: hsl(var(--hsl-green) /.25);
+		background: hsl(var(--hsl-brand) /.25);
 	}
 	form {
 		padding-bottom: 2rem;
@@ -335,27 +336,29 @@
 		}
 		& h1 {
 			margin-bottom: 0.25rem;
-			color: hsl(var(--hsl-gray) /.5);
+			color: hsl(var(--hsl-gray));
 		}
 		& h2 {
+			font-family: var(--ff-fkg-regular);
 			font-size: 1.5rem;
-			font-weight: 700;
 			margin-bottom: 1rem;
 			padding: 1rem;
-			background-color: hsl(var(--hsl-green) /.25);
+			background-color: hsl(var(--hsl-brand) /.25);
 			border-radius: 0.25rem;
 		}
 		& p {
 			margin: 0.25rem;
 			& b {
-				color: hsl(var(--hsl-brand) /.75);
+				color: hsl(var(--hsl-gray))
 			}
 		}
 		& p:first-child {
 			margin-bottom: 1rem;
 		}
-		& span {
-			font-weight: 400;
+		& span i{
+			font-size: var(--sm);
+			font-family: var(--ff-fkg-regular);
+			color: hsl(var(--hsl-gray) /0.5);
 		}
 		& .personal-data,
 		& .additional-data,
@@ -371,18 +374,17 @@
 				width: 100%;
 				& label {
 					font-size: 1.2rem;
-					font-weight: 600;
 					margin-bottom: 0.25rem;
 				}
 				& input,
 				textarea,
 				select {
 					padding: 0.5rem;
-					border: 1px solid hsl(var(--hsl-gray) /.25);
+					border: 1px solid hsl(var(--hsl-gray) /0.25);
 					border-radius: 0.5rem;
 					font-size: 1.5rem;
-					font-weight: 400;
-					/* color: var(--fc-main); */
+					color: hsl(var(--hsl-gray));
+					/* background: hsl(var(--hsl-white)); */
 					margin-bottom: 1rem;
 				}
 				& textarea {
@@ -404,9 +406,9 @@
 					& tr {
 						& th {
 							padding: 0.5rem;
-							border-bottom: 1px solid hsl(var(--hsl-gray) /.25);
+							border-bottom: 1px solid hsl(var(--hsl-gray) /0.25);
 							font-size: 1.2rem;
-							font-weight: 600;
+							/* font-weight: 600; */
 							text-align: left;
 						}
 					}
@@ -415,7 +417,7 @@
 					& tr {
 						& td {
 							padding: 0.5rem;
-							border-bottom: 1px solid hsl(var(--hsl-gray) /.25);
+							border-bottom: 1px solid hsl(var(--hsl-gray) /0.25);
 							font-size: 1.2rem;
 							font-weight: 400;
 							text-align: left;
@@ -434,7 +436,7 @@
 			padding: 3rem 0.5rem;
 			& label {
 				font-size: var(--sm);
-				font-weight: 400;
+				/* font-weight: 400; */
 				margin-bottom: 0.25rem;
 				position: relative;
 				cursor: pointer;
@@ -492,7 +494,7 @@
 				border-radius: 1rem;
 				font-size: 1.5rem;
 				font-weight: 700;
-				color:hsl(var(--hsl-white));
+				color: hsl(var(--hsl-white));
 				cursor: pointer;
 			}
 		}
@@ -515,10 +517,10 @@
 		cursor: pointer;
 		font-size: 1.5rem;
 		font-weight: 400;
-		/* color: var(--fc-main); */
+		color: hsl(var(--hsl-gray));
 		margin-bottom: 1rem;
 		padding: 0.5rem;
-		border: 1px solid hsl(var(--hsl-gray) /.25) !important;
+		border: 1px solid hsl(var(--hsl-gray)/.25) !important;
 		border-radius: 0.5rem;
 	}
 
@@ -528,7 +530,7 @@
 		background-repeat: no-repeat;
 		background-position: right 0.7em top 50%, 0 0;
 		background-size: 0.65em auto, 100%;
-		background-color: hsl(var(--hsl-green) /.25);
+		/* background-color: white; */
 	}
 	.table__w {
 		overflow-x: auto;
@@ -543,7 +545,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		/* background-color: hsl(var(--hsl-gray)); */
+		background-color: hsl(var(--hsl-gray));
 		z-index: 1000;
 	}
 
@@ -554,7 +556,7 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		text-align: center;
-		background-color: hsl(var(--hsl-green) /0.5);
+		background-color:hsl(var(--hsl-green) /.5);
 		padding: 2rem;
 		margin-bottom: 1rem;
 		border-radius: 0.25rem;

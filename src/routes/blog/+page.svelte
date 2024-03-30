@@ -10,9 +10,7 @@
 
 	// pagination base values
 	let currentPage = 1;
-	const itemsPerPage = 1;
-
-	const maxPages = 1;
+	const itemsPerPage = 12;
 
 	//  check these functions
 	// let uniqueCategories = categories.filter((v, i, a) => a.findIndex(t => (t.category === v.category)) === i);
@@ -64,21 +62,16 @@
 	// Calculate the total number of pages
 	$: totalPages = Math.ceil(allPosts.length / itemsPerPage);
 
-	/**
-	 * @param {number} page
-	 */
-	function goToPage(page) {
-		currentPage = page;
-	}
-
 	function goToPreviousPage() {
 		if (currentPage > 1) {
+			console.log('🚀 ~ goToPreviousPage ~ currentPage:', currentPage);
 			currentPage--;
 		}
 	}
 
 	function goToNextPage() {
 		if (currentPage < totalPages) {
+			console.log('🚀 ~ goToNextPage ~ currentPage:', currentPage);
 			currentPage++;
 		}
 	}
@@ -148,66 +141,23 @@
 				</div>
 			{/each}
 		</main>
-		{#if totalPages > 1}
-			<div class="pagination__w">
+		<!-- {#if totalPages > 1} -->
+		<div class="pagination__w">
+			{#if totalPages > 1}
 				<button on:click={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
-				{#each Array(totalPages) as _, i}
-					<!-- first page -->
-					{#if i === 0}
-						<button  class:current={currentPage === i +1} on:click={() => goToPage(i + 1)}>{i + 1}</button>
-						{/if}
-						<!-- {#if totalPages >= maxPages} -->
-						<!-- button with updating number of current page -->
-						
-						{#if i === currentPage && i > 0 && i <= totalPages - 1}
-						<span>...</span>
-							<button  class:current={currentPage === i+1} on:click={() => goToPage(i + 1)}>{i + 1}</button>
-							{/if}
-							
-							{#if i === totalPages - 1}
-							<span>...</span>
-							<button  class:current={currentPage === i + 1} on:click={() => goToPage(i + 1)}>{i + 1}</button>
-						{/if}
-					<!-- {/if} -->
-				{/each}
-				<button on:click={goToNextPage} disabled={currentPage === totalPages}>Next</button>
+			{/if}
+			<div class="page-num__c">
+				<p>page</p>
+				<p>{currentPage} of {totalPages}</p>
 			</div>
-		{/if}
+			{#if totalPages > 1}
+				<button on:click={goToNextPage} disabled={currentPage === totalPages}>Next</button>
+			{/if}
+		</div>
 	</div>
 </div>
 
 <style>
-	.pagination__w {
-		grid-template-columns: subgrid;
-		grid-column: 1/-1;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin-top: 2rem;
-		& button {
-			margin: 0 0.5rem;
-			padding: 0.5rem 1rem;
-			border: 1px solid hsl(var(--hsl-gray) / 0.25);
-			border-radius: 0.25rem;
-			background: hsl(var(--hsl-white));
-			color: hsl(var(--hsl-gray));
-			transition: all 0.2s ease-in-out;
-			&:hover {
-				background: hsl(var(--hsl-brand));
-				color: hsl(var(--hsl-white));
-			}
-			&:disabled {
-				opacity: 0.5;
-				pointer-events: none;
-			}
-		}
-		& .current {
-			/* color: red; */
-			background: hsl(var(--hsl-brand) / 0.25);
-
-			/* Replace with your desired color */
-		}
-	}
 	aside {
 		grid-area: aside;
 		& p {
@@ -239,6 +189,7 @@
 		grid-column: 1/-1;
 		margin-bottom: 5rem;
 	}
+
 	.hero-col-2__c {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -247,6 +198,7 @@
 		grid-template-rows: auto;
 		gap: 1rem;
 	}
+	
 	.hero-data {
 		display: flex;
 		flex-direction: column;
@@ -284,8 +236,6 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
-		/* max-width: 300px; */
-		/* border-right: 1px solid var(--gray-2); */
 		& .btn-tag {
 			margin: 0;
 			font-size: var(--xs);
@@ -394,7 +344,49 @@
 			}
 		}
 	}
-
+	.pagination__w {
+		grid-template-columns: subgrid;
+		grid-column: 1/-1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 2rem;
+		& button {
+			margin: 0 0.5rem;
+			min-width: 100px;
+			padding: 0.5rem 1rem;
+			border: 1px solid hsl(var(--hsl-gray) / 0.25);
+			border-radius: 0.25rem;
+			background: hsl(var(--hsl-white));
+			font-size: 1rem;
+			color: hsl(var(--hsl-gray));
+			transition: all 0.2s ease-in-out;
+			&:hover {
+				background: hsl(var(--hsl-gray));
+				color: hsl(var(--hsl-white));
+			}
+			&:disabled {
+				opacity: 0.5;
+				pointer-events: none;
+			}
+		}
+		& .page-num__c {
+			& p {
+				font-family: var(--ff-fkg-black);
+				font-size: 1rem;
+				color: hsl(var(--hsl-gray));
+				margin: 0;
+				/* margin-inline:1rem; */
+				width: 120px;
+				text-align: center;
+				&:first-child {
+					font-size: var(--xs);
+					color: hsl(var(--hsl-gray) / 0.75);
+					text-transform: uppercase;
+				}
+			}
+		}
+	}
 	/* Media Query */
 
 	@media screen and (max-width: 1024px) {

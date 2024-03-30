@@ -1,10 +1,39 @@
 <script>
 	export let data;
+	console.log('🚀 ~ data CATEGORY:', data);
 
 	let { catArticles } = data.props;
-
+	const allPosts = catArticles;
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { trimText } from '$lib/utils/globalhelpers.js';
+
+	// pagination base values
+	let currentPage = 1;
+	const itemsPerPage = 12;
+	// Calculate the start and end indices for the current page's items
+	$: start = (currentPage - 1) * itemsPerPage;
+	$: end = start + itemsPerPage;
+
+	// Get the current page's items
+	$: currentPageItems = allPosts.slice(start, end);
+	$: console.log('🚀 ~ currentPageItems:', currentPageItems);
+
+	// Calculate the total number of pages
+	$: totalPages = Math.ceil(allPosts.length / itemsPerPage);
+
+	function goToPreviousPage() {
+		if (currentPage > 1) {
+			console.log('🚀 ~ goToPreviousPage ~ currentPage:', currentPage);
+			currentPage--;
+		}
+	}
+
+	function goToNextPage() {
+		if (currentPage < totalPages) {
+			console.log('🚀 ~ goToNextPage ~ currentPage:', currentPage);
+			currentPage++;
+		}
+	}
 </script>
 
 <svelte:head>
@@ -13,16 +42,27 @@
 </svelte:head>
 
 <div class="page__c">
-	<div class="hero">
+		<div class="hero" id="top">
+		<div class="hero-col-2__c">
+			<div class="hero-data">
+				<div>
+					<h1 class="page-header">{catArticles[0].category}</h1>
+					<!-- <p class="excerpt">{post.excerpt}</p> -->
+				</div>
+				<!-- <a class="article_cat" href="/blog/{post.category_slug}">{post.category}</a> -->
+			</div>
+			<div class="hero-img">
+				<img
+					src={catArticles[0].category_img}
+					alt="illustration of boy reading a news"
+				/>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="hero">
 		<div class="hero-col-2__c">
 			<div class="hero-data">
 				<h1 class="page-header">{catArticles[0].category}</h1>
-				<!-- <h1>Short courses and workshops for Mental Health & Wellbeing</h1>
-				<p>
-					SHEP Courses and Trainings offer personalized learning experiences that prioritize
-					individual needs, creating a nurturing environment where participants are heard, fostering
-					a strong sense of belonging, safety, and respect within small, diverse groups.
-				</p> -->
 			</div>
 			<div class="hero-img">
 				<img
@@ -31,85 +71,147 @@
 				/>
 			</div>
 		</div>
-	</div>
-
-	<main class="container">
-		{#each catArticles as post}
-			<div class="card">
-				<!-- TODO: use Sanity image optimisation settings -> ?max=fit&xxx-->
-				<div class="card-subheading">
-					<p class="btn-link">{post.category}</p>
+	</div> -->
+	<div class="main__c">
+		<main class="container">
+			{#each catArticles as post}
+				<div class="card">
+					<!-- TODO: use Sanity image optimisation settings -> ?max=fit&xxx-->
+					<div class="card-subheading">
+						<p class="btn-link">{post.category}</p>
+					</div>
+					<div class="card-img">
+						<img src={post.main_img} alt={post.title} />
+					</div>
+					<div class="card-header">
+						<h3>{post.title}</h3>
+					</div>
+					<div class="card-body">
+						<!-- <p>{post.author[0].name}</p> -->
+						<p>{trimText(post.excerpt, 140)}</p>
+					</div>
+					<div class="card-footer">
+						<a class="btn-link" href={`/blog/${post.category_slug}/${post.slug}`}>
+							<LinkCircle width={48} height={48} />
+						</a>
+					</div>
 				</div>
-				<div class="card-img">
-					<img src={post.main_img} alt={post.title} />
-				</div>
-				<div class="card-header">
-					<h3>{post.title}</h3>
-				</div>
-				<div class="card-body">
-					<!-- <p>{post.author[0].name}</p> -->
-					<p>{trimText(post.excerpt, 140)}</p>
-				</div>
-				<div class="card-footer">
-					<a class="btn-link" href={`/blog/${post.category_slug}/${post.slug}`}>
-						<LinkCircle width={48} height={48} />
-					</a>
-				</div>
+			{/each}
+		</main>
+		<div class="pagination__w">
+			{#if totalPages > 1}
+				<button on:click={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
+			{/if}
+			<div class="page-num__c">
+				<p>page</p>
+				<p>{currentPage} of {totalPages}</p>
 			</div>
-		{/each}
-	</main>
+			{#if totalPages > 1}
+				<button on:click={goToNextPage} disabled={currentPage === totalPages}>Next</button>
+			{/if}
+		</div>
+	</div>
 </div>
 
 <style>
+main {
+		grid-area: main;
+		padding-inline: 1rem;
+	}
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;
-		margin-bottom: 2rem;
+		margin-bottom: 5rem;
 	}
 	.hero-col-2__c {
 		display: grid;
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;
-		grid-template-areas: 'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-img';
+		grid-template-areas: 'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
 		grid-template-rows: auto;
-		gap: 1rem;
 	}
 	.hero-data {
+		position: relative;
+		display: grid;
+		grid-template-columns: subgrid;
+		grid-column: 1/-1;
+		grid-row: 1/-1;
+		z-index: 1;
 		display: flex;
-		align-items: center;
-		justify-content: center;
 		flex-direction: column;
-		grid-column: 1 / 4;
-		grid-row: 1/1;
-		grid-area: hero-data;
+		justify-content: space-between;
 		padding: 2rem;
-		border-radius: 1rem;
-		/* background: var(--clr-brand); */
+		border-radius: 1rem 0 0 1rem;
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(
+				90deg,
+				hsl(var(--hsl-gray)) 0%,
+				hsl(var(--hsl-gray) / 0.5) 65%,
+				hsl(var(--hsl-gray) / 0) 100%
+			);
+			border-radius: 1rem;
+			z-index: -1;
+		}
 		& h1 {
-			color: var(--fc-white);
-			margin: 0;
+			color: hsl(var(--hsl-white));
+			max-width: 20ch;
+		}
+		& .excerpt {
+			max-width: 40ch;
+				color: hsl(var(--hsl-white));
+			font-size: 1.1rem;
+		}
+		& .article_cat {
+			padding: 0.8rem 1.6rem;
+			border-radius: 100px;
+			text-decoration: none;
+			line-height: 1;
+			/* border: 1px solid var(--gray-2); */
+			text-transform: uppercase;
+			letter-spacing: 0.07rem;
+			color: hsl(var(--hsl-white));
+			font-size: 0.9rem;
+			font-weight: 500;
+			align-self: flex-start;
+			background: hsl(var(--hsl-gray) / 0.75);
 		}
 	}
 	.hero-img {
-		grid-column: 4 / -1;
 		grid-area: hero-img;
+		position: relative;
 		border-radius: 1rem;
-		/* background: var(--gray-100); */
-		max-height: max-content;
 
+		max-height: 480px;
 		& img {
+			display: block;
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
+			object-position: top;
 			border-radius: 1rem;
-			aspect-ratio: 2.4/1;
 		}
 	}
-	.container {
+
+	.main__c {
 		display: grid;
+		grid-template-columns: subgrid;
+		grid-template-areas: 'main main main main main main main main';
 		grid-column: 1/-1;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+		grid-row: 2/auto;
+		margin-bottom: 5rem;
+		gap: 1rem;
+	}
+	.container {
+		grid-area: main;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 		gap: 1rem;
 	}
 	.page-header {
@@ -204,5 +306,48 @@
 	}
 	.btn-link {
 		pointer-events: all;
+	}
+	.pagination__w {
+		grid-template-columns: subgrid;
+		grid-column: 1/-1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 2rem;
+		& button {
+			margin: 0 0.5rem;
+			min-width: 100px;
+			padding: 0.5rem 1rem;
+			border: 1px solid hsl(var(--hsl-gray) / 0.25);
+			border-radius: 0.25rem;
+			background: hsl(var(--hsl-white));
+			font-size: 1rem;
+			color: hsl(var(--hsl-gray));
+			transition: all 0.2s ease-in-out;
+			&:hover {
+				background: hsl(var(--hsl-gray));
+				color: hsl(var(--hsl-white));
+			}
+			&:disabled {
+				opacity: 0.5;
+				pointer-events: none;
+			}
+		}
+		& .page-num__c {
+			& p {
+				font-family: var(--ff-fkg-black);
+				font-size: 1rem;
+				color: hsl(var(--hsl-gray));
+				margin: 0;
+				/* margin-inline:1rem; */
+				width: 120px;
+				text-align: center;
+				&:first-child {
+					font-size: var(--xs);
+					color: hsl(var(--hsl-gray) / 0.75);
+					text-transform: uppercase;
+				}
+			}
+		}
 	}
 </style>

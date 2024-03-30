@@ -81,6 +81,9 @@
 	<div class="main__c">
 		<!-- aside -->
 		<aside>
+			{#if upcoming.length > 0}
+				<h3>Apply for</h3>
+			{/if}
 			{#if upcoming.length == 0}
 				<div class="no-course">
 					<div class="content">
@@ -94,12 +97,12 @@
 					</div>
 					<div class="nlr-link">
 						<div class="dots">
-							<DotsCorner width={24} height={24} currentColor="hsl(var(--hsl-white))"/>
+							<DotsCorner width={24} height={24} currentColor="hsl(var(--hsl-white))" />
 						</div>
 						<div>
 							<p>Sign to newsletter</p>
 							<a href="/newsletter">
-								<LinkCircle width={48} height={48} currentColor="hsl(var(--hsl-white))"/>
+								<LinkCircle width={48} height={48} currentColor="hsl(var(--hsl-white))" />
 							</a>
 						</div>
 					</div>
@@ -262,6 +265,7 @@
 		</main>
 	</div>
 </div>
+
 <style>
 	.hero {
 		display: grid;
@@ -310,7 +314,7 @@
 			position: relative;
 			margin-top: 0;
 			margin-bottom: 1.2rem;
-				font-family: var(--ff-fkg-bold);
+			font-family: var(--ff-fkg-bold);
 			font-size: var(--sm);
 			/* width: fit-content; */
 			&::after {
@@ -330,7 +334,7 @@
 		}
 		& .fee {
 			text-align: center;
-				font-family: var(--ff-fkg-black);
+			font-family: var(--ff-fkg-black);
 			& p {
 				font-size: var(--h3);
 			}
@@ -359,7 +363,7 @@
 			position: relative;
 			margin-top: 0;
 			margin-bottom: 1.2rem;
-				font-family: var(--ff-fkg-bold);
+			font-family: var(--ff-fkg-bold);
 			font-size: var(--sm);
 			width: fit-content;
 			&::after {
@@ -450,8 +454,8 @@
 	}
 
 	.accordion_item {
-		--item-color: hsl(var(--hsl-brand));
-		--_base-color-private: var(--item-color, var(--clr-base));
+		--item-color: hsl(var(--hsl-purple));
+		--_base-color-private: var(--item-color, hsl(var(--hsl-gray)));
 		/* changing value of `--item-color` will change colors of each child element that contain `--_base-color-private`  */
 		margin-bottom: 1rem;
 		background-color: var(--_bkc-color);
@@ -469,7 +473,7 @@
 			text-decoration: none;
 			color: color-mix(in oklab, var(--_base-color-private) 80%, black);
 			font-size: 1.4rem;
-			font-family: var(--ff-gilroy-m);
+			font-family: var(--ff-fkg-black);
 			transition: all 0.3s ease-in-out;
 			&:hover {
 				/* text-decoration: underline; */
@@ -628,7 +632,7 @@
 				justify-content: space-between;
 				align-items: center;
 				padding: 0.7rem 1.4rem;
-				font-family: var(--ff-gilroy-m);
+				font-family: var(--ff-fkg-regular);
 				text-transform: uppercase;
 				text-decoration: none;
 				font-size: 1rem;
@@ -648,7 +652,7 @@
 			}
 		}
 		& .bold {
-			font-family: var(--ff-gilroy-m);
+			font-family: var(--ff-fkg-bold);
 		}
 	}
 
