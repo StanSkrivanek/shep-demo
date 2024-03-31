@@ -105,16 +105,15 @@
 			'body '
 			'footer ';
 		grid-template-rows:
-			[subHeader] 2.5rem
-			[header] 5.2rem
+			[subHeader] 2rem
+			[header] 4.6rem
 			[body] auto
 			[footer] 4rem;
 
-		border: 1px solid hsl(var(--hsl-gray) / 0.05);
-		border-radius: 0.75rem;
+		border-radius: 0.5rem;
 		padding: 1rem;
 		background: hsl(var(--hsl-purple) / 0.1);
-		transition: all 0.3s ease-in-out;
+		transition: all 0.2s ease-in-out;
 		pointer-events: none;
 		/* & svg {
 			pointer-events: all;
@@ -123,14 +122,17 @@
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.15);
-		background: hsl(var(--hsl-gray) / 0.05);
-		border: 1px solid hsl(var(--hsl-purple) / 0.25);
+		background: hsl(var(--hsl-gray) / .75);
+		& .card-header h3, p {
+			color: hsl(var(--hsl-white)) !important;
+		}
+		/* border: 1px solid hsl(var(--hsl-brand) / 0.25); */
 		& svg {
 			& circle {
-				stroke: hsl(var(--hsl-purple) / 0.75) !important;
+				stroke: hsl(var(--hsl-white) / 0.75) !important;
 			}
 			& path {
-				fill: hsl(var(--hsl-purple)) !important;
+				fill: hsl(var(--hsl-white) / 0.75) !important;
 			}
 		}
 	}
@@ -138,8 +140,9 @@
 	.card-header {
 		grid-area: header;
 		& h3 {
-			font-size: 1.5rem;
+			font-size: 1.3rem;
 			color: hsl(var(--hsl-gray));
+			line-height: 1.1;
 		}
 		& p {
 			margin: 0;
@@ -150,9 +153,9 @@
 		display: flex;
 		justify-content: space-between;
 		& p {
-			margin-bottom: 1rem;
+			margin-top: 0;
 			font-size: var(--sm);
-			color: hsl(var(--hsl-purple));
+			color: hsl(var(--hsl-gray) / 0.75);
 		}
 	}
 	.card-body {
@@ -161,7 +164,8 @@
 		& p {
 			margin: 0;
 			font-size: 1rem;
-			color: hsl(var(--hsl-gray) / 0.75);
+			line-height: 1.2;
+			color: hsl(var(--hsl-gray) / 0.9);
 		}
 	}
 	.card-footer {

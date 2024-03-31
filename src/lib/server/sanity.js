@@ -581,7 +581,9 @@ export const getAllArticlesByCategory = async (/** @type {undefined} */ category
 	"slug": slug.current,
 	"main_img": hero_image.asset->url,
 	"category": post_category->blog_category,
+	"category_excerpt": post_category->category_excerpt,
 	"category_img": post_category->hero_image.asset->url,
+  	"category_slug": post_category->slug.current,
   	"category_slug": post_category->slug.current,
 	"author": post_author[] {
 		_type == 'reference' => @->{name}    

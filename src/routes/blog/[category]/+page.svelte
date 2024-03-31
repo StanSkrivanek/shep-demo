@@ -42,20 +42,17 @@
 </svelte:head>
 
 <div class="page__c">
-		<div class="hero" id="top">
+	<div class="hero" id="top">
 		<div class="hero-col-2__c">
 			<div class="hero-data">
 				<div>
-					<h1 class="page-header">{catArticles[0].category}</h1>
-					<!-- <p class="excerpt">{post.excerpt}</p> -->
+					<h1 class="page-header">{data.props.cat_title}</h1>
+					<p class="excerpt">{data.props.cat_excerpt}</p>
 				</div>
 				<!-- <a class="article_cat" href="/blog/{post.category_slug}">{post.category}</a> -->
 			</div>
 			<div class="hero-img">
-				<img
-					src={catArticles[0].category_img}
-					alt="illustration of boy reading a news"
-				/>
+				<img src={data.props.cat_img} alt="illustration of boy reading a news" />
 			</div>
 		</div>
 	</div>
@@ -92,7 +89,7 @@
 					</div>
 					<div class="card-footer">
 						<a class="btn-link" href={`/blog/${post.category_slug}/${post.slug}`}>
-							<LinkCircle width={48} height={48} />
+							<LinkCircle width={42} height={42} />
 						</a>
 					</div>
 				</div>
@@ -114,7 +111,7 @@
 </div>
 
 <style>
-main {
+	main {
 		grid-area: main;
 		padding-inline: 1rem;
 	}
@@ -165,7 +162,7 @@ main {
 		}
 		& .excerpt {
 			max-width: 40ch;
-				color: hsl(var(--hsl-white));
+			color: hsl(var(--hsl-white));
 			font-size: 1.1rem;
 		}
 		& .article_cat {
@@ -204,7 +201,7 @@ main {
 		grid-template-columns: subgrid;
 		grid-template-areas: 'main main main main main main main main';
 		grid-column: 1/-1;
-		grid-row: 2/auto;
+		grid-row: 2 / auto;
 		margin-bottom: 5rem;
 		gap: 1rem;
 	}
@@ -228,7 +225,7 @@ main {
 		grid-template-rows:
 			[image] 15rem
 			[subHeader] 2rem
-			[header] 3.6rem
+			[header] 3.4rem
 			[body] auto
 			[footer] 2.6rem;
 
@@ -250,7 +247,8 @@ main {
 		}
 		& a {
 			font-size: var(--xs);
-			color: hsl(var(--hsl-blue));
+			color: hsl(var(--hsl-gray) / 0.8);
+			text-decoration: none;
 		}
 	}
 
@@ -258,7 +256,8 @@ main {
 		grid-area: header;
 		padding-inline: 1rem;
 		& h3 {
-			font-size: var(--h5);
+			font-size: var(--h6);
+			line-height: 1.1;
 			color: hsl(var(--hsl-gray) / 0.45);
 			font-family: var(--ff-fkg-bold);
 		}
@@ -266,7 +265,6 @@ main {
 	.card-img {
 		grid-area: image;
 		object-fit: cover;
-		margin-bottom: 1rem;
 		border-radius: 0.25rem 0.25rem 0 0;
 		overflow: hidden;
 		& img {
@@ -282,8 +280,8 @@ main {
 		margin-bottom: 0.5rem;
 		& p {
 			margin: 0;
-			font-size: 0.9rem;
-			line-height: 1.1;
+			font-size: 1rem;
+			line-height: 1.2;
 			color: hsl(var(--hsl-gray) / 0.75);
 		}
 	}
@@ -292,6 +290,17 @@ main {
 		display: flex;
 		justify-content: flex-end;
 		padding-inline: 1rem;
+	}
+	.btn-link {
+		pointer-events: all;
+		& svg:hover {
+			& circle {
+				stroke: var(--clr-brand) !important;
+			}
+			& path {
+				fill: var(--clr-brand) !important;
+			}
+		}
 	}
 	.btn-link {
 		pointer-events: all;

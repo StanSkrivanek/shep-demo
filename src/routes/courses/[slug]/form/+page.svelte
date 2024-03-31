@@ -329,7 +329,7 @@
 		display: flex;
 		flex-direction: column;
 		border-radius: 0.5rem;
-		background: hsl(var(--hsl-brand) / 0.25);
+		background: hsl(var(--hsl-brand) / 0.15);
 		margin-bottom: 5rem;
 	}
 	form {
@@ -348,7 +348,7 @@
 			font-size: 1.5rem;
 			margin-bottom: 1rem;
 			padding: 1rem;
-			background-color: hsl(var(--hsl-brand) / 0.25);
+			background-color: hsl(var(--hsl-brand) / 0.15);
 			border-radius: 0.25rem;
 		}
 		& p {
@@ -496,8 +496,8 @@
 				padding: 1rem 6rem;
 				background-color: hsl(var(--hsl-blue));
 				border: none;
-				border-radius: 1rem;
-				font-size: 0.5rem;
+				border-radius: 0.5rem;
+				font-size: 1.5rem;
 				font-weight: 700;
 				color: hsl(var(--hsl-white));
 				cursor: pointer;

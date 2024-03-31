@@ -121,12 +121,12 @@
 					</div>
 					<div class="nlr-link">
 						<div class="dots">
-							<DotsCorner width={24} height={24} currentColor="#f58585" />
+							<DotsCorner width={24} height={24} currentColor={"hsl(var(--hsl-white))"} />
 						</div>
 						<div>
 							<p>Sign to newsletter</p>
 							<a href="/newsletter">
-								<LinkCircle width={48} height={48} />
+								<LinkCircle width={48} height={48} currentColor={"hsl(var(--hsl-white))"} />
 							</a>
 						</div>
 					</div>
@@ -340,19 +340,17 @@
 		flex-direction: column;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: color-mix(in oklab, var(--cyan-200) 70%, white);
 		& h1 {
 			margin-bottom: 1rem;
 		}
 		& p {
-			color: var(--gray-500);
+			color: hsl(var(--hsl-gray) /.75);
 		}
 	}
 	.hero-img {
 		grid-column: 4 / 8;
 		grid-row: 1/5;
 		border-radius: 1rem;
-		background: var(--gray-50);
 		max-height: max-content;
 		/* background: color-mix(in oklab, var(--blue-200) 16%, white); */
 
@@ -369,12 +367,10 @@
 		grid-row: 1/3;
 		padding: 1.4rem;
 		border-radius: 1rem;
-		background: color-mix(in oklab, var(--blue-200) 70%, white);
 		& p {
 			margin: 0;
-			color: var(--fc-main);
+			font-family: var(--ff-fkg-bold);
 			font-size: var(--sm);
-			/* width:fit-content; */
 		}
 		& .small-title {
 			position: relative;
@@ -382,7 +378,6 @@
 			margin-bottom: 1.2rem;
 			font-family: var(--ff-fkg-bold);
 			font-size: var(--sm);
-			color: var(--fc-main);
 			width: fit-content;
 			&::after {
 				content: '';
@@ -466,11 +461,11 @@
 		display: flex;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: var(--red-300);
+		background: hsl(var(--hsl-red) / 0.8);
 		& p {
 			margin: 0;
 			margin-bottom: 0.5rem;
-			color: var(--fc-main);
+			color: hsl(var(--hsl-white));
 		}
 		& .content {
 			margin-right: 2rem;
@@ -480,33 +475,25 @@
 			flex-direction: column;
 			justify-content: space-between;
 			align-items: flex-end;
-			color: var(--red-100);
-			& .dots {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				/* transform: rotate(90deg); */
-				transition: all 0.3s ease-in-out;
-				& svg {
-					/* transform: rotate(90deg); */
-					fill: white;
-				}
-			}
-			/* &:first-child {
+			&:first-child {
 				margin-bottom: 1rem;
-			} */
+			}
 			& p {
 				text-align: right;
 				font-size: var(--sm);
 				line-height: 1;
 				margin: 0;
 				margin-bottom: 0.5rem;
-				color: var(--fc-main);
+				/* color: var(--fc-main); */
 			}
 			& a {
 				display: flex;
 				justify-content: end;
 			}
+		}
+		& .dots {
+			color: var(--clr-red);
+			/* transform: rotate(180deg); */
 		}
 	}
 	.course {
@@ -514,7 +501,7 @@
 		--_base-color-private: var(--item-color, var(--gray-500));
 		margin-bottom: 1rem;
 		background-color: var(--item-color);
-		border-radius: 1rem;
+		border-radius: 0.5rem;
 		background: color-mix(in oklab, var(--item-color) 20%, white);
 	}
 	.training {
@@ -522,7 +509,7 @@
 		--_base-color-private: var(--item-color, var(--gray-500));
 		margin-bottom: 1rem;
 		background-color: var(--item-color);
-		border-radius: 1rem;
+		border-radius: 0.5rem;
 		background: color-mix(in oklab, var(--item-color) 20%, white);
 	}
 
@@ -532,11 +519,12 @@
 		justify-content: space-between;
 		align-items: center;
 		& .accordion-header--link {
-			/* --item-color: var(--clr-green); */
+			display: inline-block;
+			line-height: initial;
 			text-decoration: none;
 			color: color-mix(in oklab, var(--_base-color-private) 80%, black);
-			font-size: 1.4rem;
-			font-family: var(--ff-gilroy-m);
+			font-size: 1.2rem;
+			font-family: var(--ff-fkg-bold);
 			transition: all 0.3s ease-in-out;
 			&:hover {
 				/* text-decoration: underline; */
@@ -695,7 +683,6 @@
 				justify-content: space-between;
 				align-items: center;
 				padding: 0.7rem 1.4rem;
-				font-family: var(--ff-gilroy-m);
 				text-transform: uppercase;
 				text-decoration: none;
 				font-size: 1rem;
@@ -715,7 +702,7 @@
 			}
 		}
 		& .bold {
-			font-family: var(--ff-gilroy-m);
+			font-family: var(--ff-fkg-bold);
 		}
 	}
 

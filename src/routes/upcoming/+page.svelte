@@ -3,6 +3,7 @@
 
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	export let data;
+	console.log('🚀 ~ data:', data);
 	const cities = data.allUpcomingEvents.map(
 		(/** @type {{ venue: { city: string; }; }} */ event) => event.venue.city
 	);
@@ -124,10 +125,10 @@
 			</div>
 		{/if}
 		{#each filteredList as upcoming}
-			<div class="card">
+			<div class="card" class:purple={upcoming.globalType === 'training'}>
 				<div class="card-subheading">
-					<p>{upcoming.event.type}</p>
-					<p>{upcoming.venue.city}</p>
+					<p class:purple-text={upcoming.globalType === 'training'}>{upcoming.event.type}</p>
+					<p class:purple-text={upcoming.globalType === 'training'}>{upcoming.venue.city}</p>
 				</div>
 				<div class="card-header">
 					<h3>{upcoming.event.title}</h3>
@@ -246,16 +247,16 @@
 			'body '
 			'footer ';
 		grid-template-rows:
-			[subHeader] 2.5rem
-			[header] 4.2rem
+			[subHeader] 2rem
+			[header] 4.6rem
 			[body] auto
 			[footer] 4rem;
 
-		border: 1px solid hsl(var(--hsl-gray) / 0.05);
-		border-radius: 0.75rem;
+		/* border: 1px solid hsl(var(--hsl-gray) / 0.05); */
+		border-radius: 0.5rem;
 		padding: 1rem;
-		background: hsl(var(--hsl-brand) / 0.04);
-		transition: all 0.3s ease-in-out;
+		background: hsl(var(--hsl-brand) / 0.1);
+		transition: all 0.4s ease-in-out;
 		pointer-events: none;
 		/* & svg {
 			pointer-events: all;
@@ -264,23 +265,32 @@
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.15);
-		background: hsl(var(--hsl-gray) / 0.05);
-		border: 1px solid hsl(var(--hsl-brand) / 0.25);
+		background: hsl(var(--hsl-gray) / 0.75);
+		& .card-header h3,
+		p {
+			color: hsl(var(--hsl-white)) !important;
+		}
+		/* border: 1px solid hsl(var(--hsl-brand) / 0.25); */
 		& svg {
 			& circle {
-				stroke: hsl(var(--hsl-brand) / 0.75) !important;
+				stroke: hsl(var(--hsl-white) / 0.75) !important;
 			}
 			& path {
-				fill: hsl(var(--hsl-brand)) !important;
+				fill: hsl(var(--hsl-white) / 0.75) !important;
 			}
 		}
+	}
+
+	.purple {
+		background: hsl(var(--hsl-purple) / 0.15);
 	}
 
 	.card-header {
 		grid-area: header;
 		& h3 {
-			font-size: 1.5rem;
+			font-size: 1.3rem;
 			color: hsl(var(--hsl-gray));
+			line-height: 1.1;
 		}
 		& p {
 			margin: 0;
@@ -291,9 +301,9 @@
 		display: flex;
 		justify-content: space-between;
 		& p {
-			margin-bottom: 1rem;
+			margin-top: 0;
 			font-size: var(--sm);
-			color: hsl(var(--hsl-brand) / 0.75);
+			color: hsl(var(--hsl-gray) / 0.8);
 		}
 	}
 	.card-body {
@@ -302,7 +312,7 @@
 		& p {
 			margin: 0;
 			font-size: 1rem;
-			color: hsl(var(--hsl-gray) / 0.75);
+			color: hsl(var(--hsl-gray) / 0.9);
 		}
 	}
 	.card-footer {
@@ -329,24 +339,23 @@
 		/* other styles for aesthetics */
 		width: 100%;
 		font-size: 1.15rem;
-		padding: 0.675em 0.675em 0.675em 1em;
-		background-color: #fff;
-		border: 1px solid #caced1;
+		padding: 0.65em 0.65em;
+		background-color: hsl(var(--hsl-white));
+		border: none;
 		border-radius: 0.25rem;
-
 		cursor: pointer;
 		position: relative;
 	}
 	label {
 		margin-bottom: 0.5rem;
 		font-size: 1rem;
-			font-family: var(--ff-fkg-bold);
+		font-family: var(--ff-fkg-bold);
 	}
 	.custom-select {
 		position: relative;
 		min-width: 240px;
 		height: 3rem;
-		border: 1px solid var(--clr-brand);
+		border: 1px solid hsl(var(--hsl-gray));
 		border-radius: 0.25rem;
 		overflow: hidden;
 		background-color: #fff;
@@ -365,7 +374,7 @@
 	.custom-select::after {
 		border-left: var(--size) solid transparent;
 		border-right: var(--size) solid transparent;
-		border-top: var(--size) solid var(--clr-brand);
+		border-top: var(--size) solid hsl(var(--hsl-brand) / 0.75);
 		border-radius: 1rem;
 		top: 50%;
 		/* background-color: red; */

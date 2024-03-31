@@ -1,14 +1,18 @@
 @font-face {
 	font-family: 'fkg-black';
-	src: url('/fonts/FKGN/FKGroteskNeueTrial-Black-BF6576818b4c472.otf') format('OpenType');
+	src: url('/fonts/grotesk/FamiljenGrotesk-Bold.ttf') format('TrueType');
 }
 @font-face {
 	font-family: 'fkg-bold';
-	src: url('/fonts/FKGN/FKGroteskNeueTrial-Bold-BF6576818bd3700.otf') format('OpenType');
+	src: url('/fonts/grotesk/FamiljenGrotesk-SemiBold.ttf') format('TrueType');
+}
+@font-face {
+	font-family: 'fkg-medium';
+	src: url('/fonts/grotesk/FamiljenGrotesk-Medium.ttf') format('TrueType');
 }
 @font-face {
 	font-family: 'fkg-regular';
-	src: url('/fonts/FKGN/FKGroteskNeueTrial-Regular-BF6576818c3af74.otf') format('OpenType');
+	src: url('/fonts/grotesk/FamiljenGrotesk-Regular.ttf') format('TrueType');
 }
 
 :root {
@@ -133,6 +137,7 @@ p,
 ul,
 ol {
 	max-width: 72ch;
+	
 }
 
 p {
@@ -162,7 +167,7 @@ a:hover {
 }
 
 strong {
-	font-family: var(--ff-fkg-bold);
+	/* font-family: var(--ff-fkg-bold); */
 	letter-spacing: 0.06rem;
 }
 
@@ -255,7 +260,7 @@ article > p:first-child {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border-bottom: 1px solid hsl(var(--hsl-gray) /.5);
+	border-bottom: 1px solid hsl(var(--hsl-gray) /.15);
 	padding-right: 1rem;
 	text-decoration: none;
 	& .dots {

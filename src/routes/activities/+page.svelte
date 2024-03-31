@@ -147,7 +147,6 @@
 		grid-area: image;
 		object-fit: cover;
 		border-radius: 0.25rem 0.25rem 0 0;
-		margin-bottom: 1rem;
 		overflow: hidden;
 		& img {
 			object-fit: cover;
@@ -156,28 +155,31 @@
 			height: 100%;
 		}
 	}
-
-	.card-subheading {
-		grid-area: subHeader;
-		padding-inline: 1rem;
-		& p {
-			font-size: var(--sm);
-		}
-		& a {
-			font-size: var(--xs);
-			color: hsl(var(--hsl-blue));
-		}
-	}
-
 	.card-header {
 		grid-area: header;
 		padding-inline: 1rem;
 		& h3 {
-			font-size: var(--h5);
-			color: hsl(var(--hsl-gray) / 0.45);
-			font-family: var(--ff-fkg-bold);
+			font-size: var(--h6);
+			color: hsl(var(--hsl-gray));
+			line-height: 1.1;
+		}
+		& p {
+			margin: 0;
 		}
 	}
+	.card-subheading {
+		grid-area: subHeader;
+		padding-inline: 1rem;
+		& p {
+			margin-top: 0;
+			font-size: var(--sm);
+		}
+		& a {
+			font-size: var(--sm);
+			text-decoration: none;
+		}
+	}
+
 
 	.card-body {
 		grid-area: body;
@@ -185,8 +187,8 @@
 		margin-bottom: 0.5rem;
 		& p {
 			margin: 0;
-			font-size: 0.9rem;
-			line-height: 1.1;
+			font-size: 1rem;
+			line-height: 1.4;
 			color: hsl(var(--hsl-gray) / 0.75);
 		}
 	}

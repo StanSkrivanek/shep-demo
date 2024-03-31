@@ -162,7 +162,7 @@
 		</main>
 
 		<aside class="side-links">
-			<h4>Related Articles</h4>
+			<p>Related Articles</p>
 			<div class="links__c">
 				{#if data.catArticles.length == 0}
 					<p>There are no related articles yet</p>
@@ -247,7 +247,7 @@
 			border-radius: 100px;
 			text-decoration: none;
 			line-height: 1;
-			/* border: 1px solid var(--gray-2); */
+			border: 1px solid hsl(var(--hsl-white) /.25);
 			text-transform: uppercase;
 			letter-spacing: 0.07rem;
 			color: hsl(var(--hsl-white));
@@ -365,6 +365,14 @@
 	.side-links {
 		grid-area: news;
 		/* background: lightgray; */
+		&> p{
+			font-family: fkg-medium;
+			color: hsl(var(--hsl-gray) / 0.75);
+			text-transform: uppercase;
+			letter-spacing: 0.1rem;
+			margin-top: 0;
+			/* font-size: var(--h4); */
+		}
 	}
 
 	.links__c {

@@ -443,7 +443,6 @@
 				line-height: 1;
 				margin: 0;
 				margin-bottom: 0.5rem;
-				/* color: var(--fc-main); */
 			}
 			& a {
 				display: flex;
@@ -451,18 +450,17 @@
 			}
 		}
 		& .dots {
-			color: var(--clr-red);
-			/* transform: rotate(180deg); */
+			color: hsl(var(--hsl-red));
+	
 		}
 	}
 
 	.accordion_item {
-	--item-color: hsl(var(--hsl-brand));
+		--item-color: hsl(var(--hsl-brand));
 		--_base-color-private: var(--item-color, hsl(var(--hsl-gray)));
 		/* changing value of `--item-color` will change colors of each child element that contain `--_base-color-private`  */
 		margin-bottom: 1rem;
-		background-color: var(--_bkc-color);
-		border-radius: 1rem;
+		border-radius: 0.5rem;
 		background: color-mix(in oklab, var(--_base-color-private) 20%, white);
 	}
 
@@ -472,14 +470,15 @@
 		align-items: center;
 		padding: 1rem;
 		& .accordion-header--link {
-			/* --item-color: var(--clr-green); */
+			display: inline-block;
+			line-height: initial;
 			text-decoration: none;
 			color: color-mix(in oklab, var(--_base-color-private) 80%, black);
-			font-size: 1.4rem;
+			font-size: 1.2rem;
 			font-family: var(--ff-fkg-bold);
 			transition: all 0.3s ease-in-out;
 			&:hover {
-				/* text-decoration: underline; */
+	
 				color: color-mix(in oklab, var(--_base-color-private) 100%, white);
 			}
 		}
@@ -492,7 +491,6 @@
 		& p:not(:first-child) {
 			margin: 0;
 			color: color-mix(in oklab, var(--_base-color-private) 80%, black);
-			/* margin-bottom: 0.5rem; */
 			font-size: var(--sm);
 		}
 		& p:nth-child(2) {
@@ -650,7 +648,7 @@
 					text-decoration: none;
 					border: 2px solid color-mix(in oklab, var(--_base-color-private) 60%, white);
 					background: color-mix(in oklab, var(--_base-color-private) 60%, white);
-					color: var(--fc-white);
+					color: hsl(var(--hsl-white));
 				}
 			}
 		}
