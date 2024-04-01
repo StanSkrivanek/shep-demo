@@ -83,13 +83,11 @@
 		grid-area: hero-data;
 		padding: 2rem 0;
 		border-radius: 1rem;
-		background: var(--orange-light);
 	}
 	.hero-img {
 		grid-column: 4 / -1;
 		grid-area: hero-img;
 		border-radius: 1rem;
-		background: var(--gray-1);
 		max-height: max-content;
 
 		& img {
@@ -122,23 +120,23 @@
 		flex-direction: column;
 		padding: 1rem;
 		width: 100%;
-		border: 1px solid white;
-		border: 1px solid var(--gray-2);
+		border: 1px solid hsl(var(--hsl-brand) / 0.25);
+
 		border-radius: 0.5rem;
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
-		background: var(--gray-50);
+		background: hsl(var(--hsl-white));
 		& svg {
 			& path {
-				stroke: var(--clr-brand) !important;
+				stroke: hsl(var(--hsl-gray));
 			}
 		}
 	}
 	.card-pdf__c:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
-		box-shadow: 8px 10px 15px -3px var(--gray-2);
+		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
 		pointer-events: none;
-		border-color: var(--clr-brand);
+		/* border-color: hsl(var(--hsl-brand) / 0.25); */
 	}
 
 	.card-pdf__data {
@@ -146,13 +144,12 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 0.5rem;
-		color: var(--clr-gray-400);
+		color: hsl(var(--hsl-gray));
 	}
 
 	.pdf__title {
-		font-size: 1.4rem;
-		/* font-weight: 700; */
-		color: var(--gray-600);
+		font-size: 1rem;
+		font-family: var(--ff-fkg-bold);
 	}
 
 	.pdf__date {
@@ -167,24 +164,13 @@
 		align-items: flex-end;
 	}
 
-	.pdf__number {
-		font-size: 3rem;
-		font-weight: 900;
-		line-height: 1;
-		color: var(--clr-gray-400);
-		font-family: var(--ff-gunterhaus);
-	}
-
 	.pdf__link {
 		font-size: 1rem;
-		font-weight: 400;
 		pointer-events: all;
-		/* border: 1px solid red; */
 		&:hover {
 			& svg {
 				& path {
-					stroke: var(--shep-green) !important;
-					/* fill: var(--shep-green) !important; */
+					stroke: hsl(var(--hsl-brand) / 0.75);
 				}
 			}
 		}

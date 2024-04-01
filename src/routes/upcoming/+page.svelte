@@ -379,7 +379,27 @@
 		top: 50%;
 		/* background-color: red; */
 	}
-
+@media (max-width: 996px) {
+		.hero-data {
+			flex-direction: column;
+			gap: 1rem;
+		}
+		.hero-data h1 {
+			margin-bottom: 0;
+		}
+		.hero-data p {
+			margin-bottom: 0;
+			max-width: 75ch;
+		}
+		.hero-col-2__c {
+			grid-template-areas:
+				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
+				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
+		}
+		/* .intro {
+			column-count: 1;
+		} */
+	}
 	@media (max-width: 500px) {
 		.filter__w {
 			flex-direction: column;

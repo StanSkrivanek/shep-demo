@@ -366,11 +366,11 @@
 		grid-area: news;
 		/* background: lightgray; */
 		&> p{
-			font-family: fkg-medium;
+			
 			color: hsl(var(--hsl-gray) / 0.75);
 			text-transform: uppercase;
 			letter-spacing: 0.1rem;
-			margin-top: 0;
+			/* margin-top: 0; */
 			/* font-size: var(--h4); */
 		}
 	}

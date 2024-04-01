@@ -260,7 +260,7 @@
 	article {
 		margin-bottom: 2rem;
 		cursor: pointer;
-		background: var(--gray-1);
+		background: hsl(var(--hsl-white));
 		transition: all 0.3s ease-in-out;
 		& .rotate {
 			transform: rotate(180deg);
@@ -272,26 +272,18 @@
 		/* padding: 2rem; */
 		width: 100%;
 		border: 1px solid white;
-		border: 1px solid var(--gray-2);
+		border: 1px solid hsl(var(--hsl-brand) / 0.25);
 		border-radius: 0.5rem;
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
 
 		& svg {
 			& circle {
-				stroke: var(--clr-brand) !important;
+				stroke: hsl(var(--hsl-brand)) !important;
 			}
 			& path {
-				stroke: var(--clr-brand) !important;
+				stroke: hsl(var(--hsl-brand)) !important;
 			}
-			/* &:hover {
-					& circle {
-						stroke: var(--shep-green) !important;
-					}
-					& path {
-						stroke: var(--shep-green) !important;
-					}
-				} */
 		}
 	}
 
@@ -318,20 +310,20 @@
 	}
 	.job-header__title {
 		margin-bottom: 0;
-		color: var(--clr-brand);
+		color: hsl(var(--hsl-brand)/.25);
 	}
 	.job-header__sub {
 		display: flex;
 		gap: 2rem;
 		font-size: 1rem;
 		font-weight: 400;
-		color: var(--gray-600);
+		color: hsl(var(--hsl-gray));
 	}
 	.job-body {
 		padding-inline: 2rem;
 	}
 	.job-data {
-		border-bottom: 2px solid var(--gray-300);
+		border-bottom: 1px solid hsl(var(--hsl-gray)/.25);
 		margin-bottom: 3rem;
 	}
 	.job-footer {
@@ -346,7 +338,7 @@
 				& h4 {
 					margin-bottom: 1rem;
 					line-height: 1;
-					color: var(--clr-brand);
+					color: hsl(var(--hsl-gray));
 				}
 				& p {
 					margin: 0.25rem;

@@ -4,15 +4,11 @@
 }
 @font-face {
 	font-family: 'fkg-bold';
-	src: url('/fonts/grotesk/FamiljenGrotesk-SemiBold.ttf') format('TrueType');
-}
-@font-face {
-	font-family: 'fkg-medium';
-	src: url('/fonts/grotesk/FamiljenGrotesk-Medium.ttf') format('TrueType');
+	src: url('/fonts/FKGN/FKGroteskNeueTrial-Bold-BF6576818bd3700.otf') format('OpenType');
 }
 @font-face {
 	font-family: 'fkg-regular';
-	src: url('/fonts/grotesk/FamiljenGrotesk-Regular.ttf') format('TrueType');
+	src: url('/fonts/FKGN/FKGroteskNeueTrial-Regular-BF6576818c3af74.otf') format('OpenType');
 }
 
 :root {
@@ -99,6 +95,9 @@ body {
 	line-height: var(--lineHeight);
 	color: hsl(var(--hsl-gray));
 	background: var(--clr-main-bg);
+	/* overflow: hidden;	 */
+
+	/* background: hsl(var(--hsl-red)); */
 }
 
 *,
@@ -137,7 +136,6 @@ p,
 ul,
 ol {
 	max-width: 72ch;
-	
 }
 
 p {
@@ -157,7 +155,7 @@ ol {
 
 /* Links */
 a {
-	color: hsl(var(--hsl-gray))
+	color: hsl(var(--hsl-gray));
 }
 
 a:hover {
@@ -260,7 +258,7 @@ article > p:first-child {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border-bottom: 1px solid hsl(var(--hsl-gray) /.15);
+	border-bottom: 1px solid hsl(var(--hsl-gray) / 0.15);
 	padding-right: 1rem;
 	text-decoration: none;
 	& .dots {
@@ -277,7 +275,7 @@ article > p:first-child {
 		}
 		& p {
 			font-size: var(--sm);
-			color: hsl(var(--hsl-gray)/.5);
+			color: hsl(var(--hsl-gray) / 0.5);
 			margin: 0;
 			margin-bottom: 0.75rem;
 			transition: color 0.25s ease-in-out;

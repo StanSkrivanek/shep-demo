@@ -1,4 +1,6 @@
 <script>
+	import LogoSimple from './../../lib/components/icons/LogoSimple.svelte';
+	import MainLogo from '$lib/components/icons/MainLogo.svelte';
 	import Book from '$lib/components/icons/Book.svelte';
 	export let data;
 
@@ -11,7 +13,10 @@
 		.sort((a, b) => a.title.split('-')[1] - b.title.split('-')[1])
 		.reverse();
 </script>
-
+<svelte:head>
+	<title>Archive</title>
+	<meta name="description" content="Archive of SHEP Nuacht and other documents" />
+</svelte:head>
 <div class="page__c">
 	<div class="hero">
 		<div class="hero-col-2__c">
@@ -41,7 +46,7 @@
 				{#each sortedPDFs as pdf}
 					<div class="card-pdf__c">
 						<div class="card-pdf__data">
-							<div class="pdf__title">{pdf.title.split('-')[0]}</div>
+							<div class="pdf__title"><span><LogoSimple width={24} height={24} /></span><span>{pdf.title.split('-')[0]}</span></div>
 							<div class="pdf__date">
 								{pdf.title.split('-')[2]} <span>{pdf.title.split('-')[3]}</span>
 							</div>
@@ -84,13 +89,11 @@
 		grid-area: hero-data;
 		padding: 2rem 0;
 		border-radius: 1rem;
-		background: var(--orange-light);
 	}
 	.hero-img {
 		grid-column: 4 / -1;
 		grid-area: hero-img;
 		border-radius: 1rem;
-		background: var(--gray-1);
 		max-height: max-content;
 
 		& img {
@@ -123,23 +126,21 @@
 		flex-direction: column;
 		padding: 1rem;
 		width: 100%;
-		border: 1px solid white;
-		border: 1px solid var(--gray-2);
 		border-radius: 0.5rem;
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
-		background: var(--gray-50);
+		background: hsl(var(--hsl-gray) / 0.1);
 		& svg {
 			& path {
-				stroke: var(--clr-brand) !important;
+				stroke: hsl(var(--hsl-blue) );
 			}
 		}
 	}
 	.card-pdf__c:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
-		box-shadow: 8px 10px 15px -3px var(--gray-2);
+		box-shadow: 8px 6px 20px -3px hsl(var(--hsl-gray) /.25 );
 		pointer-events: none;
-		border-color: var(--clr-brand);
+		/* border-color: hsl(var(--hsl-brand) ) !important; */
 	}
 
 	.card-pdf__data {
@@ -147,13 +148,18 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 0.5rem;
-		color: var(--clr-gray-400);
+		/* color: var(--clr-gray-400); */
 	}
 
 	.pdf__title {
-		font-size: 1.4rem;
+		display: flex;
+		align-items: center;
+		/* justify-content: center; */
+		gap: 0.5rem;
+		/* font-size: 1.4rem; */
 		/* font-weight: 700; */
-		color: var(--gray-600);
+		color: hsl(var(--hsl-gray) );
+		font-family: var(--ff-fkg-black);
 	}
 
 	.pdf__date {
@@ -170,10 +176,8 @@
 
 	.pdf__number {
 		font-size: 3rem;
-		font-weight: 900;
 		line-height: 1;
-		color: var(--clr-gray-400);
-		font-family: var(--ff-gunterhaus);
+		font-family: var(--ff-fkg-black); 
 	}
 
 	.pdf__link {
@@ -184,7 +188,7 @@
 		&:hover {
 			& svg {
 				& path {
-					stroke: var(--shep-green) !important;
+					stroke: hsl(var(--hsl-brand) );
 					/* fill: var(--shep-green) !important; */
 				}
 			}

@@ -7,13 +7,19 @@
 	import NavBurger from './icons/NavBurger.svelte';
 	import Twitter from './icons/Twitter.svelte';
 
-	let isSubmenuOpen = false;
-	let isMobileNavOpen = false;
-	let isMobile = false;
+	// let isSubmenuOpen = false;
+	$: isMobileNavOpen = false;
+	$: isMobile = false;
+	// $: console.log("GLOBAL",isMobileNavOpen);
+	function toggleMobileNav() {
+		isMobileNavOpen = !isMobileNavOpen;
+		isMobileNavOpen
+			? (document.body.style.overflow = 'hidden')
+			: (document.body.style.overflow = 'scroll');
 
+	}
 	onMount(() => {
 		const withChildren = [...document.querySelectorAll('.menu-item-has-children')];
-
 		// Set initial value of isMobile
 		isMobile = window.innerWidth < 991;
 
@@ -23,6 +29,7 @@
 			 */
 			let sub = undefined;
 
+			// @ts-ignore
 			el.addEventListener('mouseenter', (e) => {
 				sub = el.querySelector('.sub-menu');
 				sub?.classList.add('active');
@@ -30,9 +37,10 @@
 				const dropdownLinks = [...el.querySelectorAll('.sub-menu li a')];
 
 				dropdownLinks?.forEach((link) => {
+					// @ts-ignore
 					link.addEventListener('click', (/** @type {{ preventDefault: () => void; }} */ e) => {
 						sub?.classList.remove('active');
-						isSubmenuOpen = false;
+						// isSubmenuOpen = false;
 					});
 				});
 			});
@@ -64,7 +72,7 @@
 					<div class="current-menu-title" />
 					<button
 						class="mobile-menu-close"
-						on:click={() => (isMobileNavOpen = !isMobileNavOpen)}
+						on:click={() => toggleMobileNav()}
 						aria-label="Close mobile menu"
 					>
 						<Close />
@@ -73,9 +81,7 @@
 
 				<ul role="list" class="menu-main">
 					<li>
-						<a href="/" on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
-							>Home</a
-						>
+						<a href="/" on:click={isMobile ? () => toggleMobileNav() : null}>Home</a>
 					</li>
 					<li class="menu-item-has-children">
 						<!-- svelte-ignore a11y-invalid-attribute -->
@@ -87,24 +93,21 @@
 										<a
 											href="/courses/overview"
 											class="mega-nav-title"
-											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
-											>Overview</a
+											on:click={isMobile ? () => toggleMobileNav() : null}>Overview</a
 										>
 									</li>
 									<li>
 										<a
 											href="/courses"
 											class="mega-nav-title"
-											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
-											>Our Courses</a
+											on:click={isMobile ? () => toggleMobileNav() : null}>Our Courses</a
 										>
 									</li>
 									<li>
 										<a
 											href="/upcoming"
 											class="mega-nav-title"
-											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
-											>Upcoming</a
+											on:click={isMobile ? () => toggleMobileNav() : null}>Upcoming</a
 										>
 									</li>
 								</ul>
@@ -120,21 +123,16 @@
 									<li>
 										<a
 											href="/trainings/overview"
-											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
-											>Overview</a
+											on:click={isMobile ? () => toggleMobileNav() : null}>Overview</a
 										>
 									</li>
 									<li>
-										<a
-											href="/trainings"
-											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
+										<a href="/trainings" on:click={isMobile ? () => toggleMobileNav() : null}
 											>Our trainings</a
 										>
 									</li>
 									<li>
-										<a
-											href="/upcoming"
-											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
+										<a href="/upcoming" on:click={isMobile ? () => toggleMobileNav() : null}
 											>Upcoming</a
 										>
 									</li>
@@ -149,16 +147,12 @@
 							<div class="list-item">
 								<ul role="list" class="">
 									<li>
-										<a
-											href="/advocacy"
-											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
+										<a href="/advocacy" on:click={isMobile ? () => toggleMobileNav() : null}
 											>Advocacy</a
 										>
 									</li>
 									<li>
-										<a
-											href="/counselling"
-											on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
+										<a href="/counselling" on:click={isMobile ? () => toggleMobileNav() : null}
 											>Counselling</a
 										>
 									</li>
@@ -167,34 +161,16 @@
 						</div>
 					</li>
 					<li>
-						<a
-							href="/activities"
-							on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}>Activities</a
+						<a href="/activities" on:click={isMobile ? () => toggleMobileNav() : null}>Activities</a
 						>
 					</li>
 					<li>
-						<a
-							href="/venues"
-							on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}>Venues</a
-						>
+						<a href="/venues" on:click={isMobile ? () => toggleMobileNav() : null}>Venues</a>
 					</li>
 
 					<li>
-						<a href="/blog" on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
-							>Blog</a
-						>
+						<a href="/blog" on:click={isMobile ? () => toggleMobileNav() : null}>Blog</a>
 					</li>
-					<!-- <li>
-						<a href="/about" on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
-							>About</a
-						>
-					</li> -->
-					<!-- <li>
-						<a
-							href="/contact"
-							on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}>Contact</a
-						>
-					</li> -->
 				</ul>
 			</div>
 		</div>
@@ -206,9 +182,7 @@
 
 				<Instagram width={32} height={32} />
 			</div>
-			<button
-				class="mobile-menu-trigger"
-				on:click={isMobile ? () => (isMobileNavOpen = !isMobileNavOpen) : null}
+			<button class="mobile-menu-trigger" on:click={isMobile ? () => toggleMobileNav() : null}
 				><NavBurger width={32} height={32} /></button
 			>
 		</div>
@@ -341,6 +315,10 @@
 	}
 	/*responsive*/
 	@media (max-width: 991px) {
+		/* .header{
+			height: 100svh;
+			overflow-y: scroll;
+		} */
 		.header .item-center {
 			order: 3;
 			flex: 0 0 100%;
