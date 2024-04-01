@@ -87,7 +87,7 @@
 			& .slide-image {
 				position: relative;
 				grid-column: 1/1;
-				border-radius: 1rem;
+				border-radius: .5rem;
 				overflow: hidden;
 				& img {
 					width: 100%;

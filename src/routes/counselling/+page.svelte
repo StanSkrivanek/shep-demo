@@ -1,18 +1,16 @@
 <script>
 	// @ts-nocheck
-	import { PortableText } from '@portabletext/svelte';
-	// import CustomDefaultListItem from '$lib/components/sanityRte/CustomDefaultListItem.svelte';
-
 	import Toc from '$lib/components/icons/Toc.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
 	import clickOutside from '$lib/utils/clickoutside.js';
+	import { PortableText } from '@portabletext/svelte';
 	import { afterUpdate, tick } from 'svelte';
 
 	export let data;
-
 	$: post = data.pageContent;
 
 	let isTocOpen = false;
+
 	afterUpdate(() => {
 		const io = new IntersectionObserver(
 			(entries) => {
@@ -75,6 +73,7 @@
 	<title>SHEP Counselling</title>
 	<meta name="description" content="SHEP Counselling" />
 </svelte:head>
+
 <div class="page__c">
 	<div class="hero" id="top">
 		<div class="hero-col-2__c">
@@ -207,20 +206,20 @@
 			height: 100%;
 			background: linear-gradient(
 				90deg,
-				hsl(var(--hsl-cyan)) 0%,
-				hsl(var(--hsl-cyan) / 0.5) 65%,
-				hsl(var(--hsl-cyan) / 0) 100%
+				hsl(216, 61%, 24%) 0%,
+				hsl(216, 60%, 46%, .5)  65%,
+				hsl(216, 50%, 36%, 0) 100%
 			);
 			border-radius: 1rem;
 			z-index: -1;
 		}
 		& h1 {
-				color: hsl(var(--hsl-white));
+			color: hsl(var(--hsl-white));
 			max-width: 20ch;
 		}
 		& .excerpt {
 			max-width: 40ch;
-				color: hsl(var(--hsl-white));
+			color: hsl(var(--hsl-white));
 			font-size: 1.1rem;
 		}
 		& .article_cat {
@@ -276,7 +275,7 @@
 			margin-bottom: 0.5rem;
 			font-size: 1.1rem;
 			color: hsl(var(--hsl-gray));
-				font-family: var(--ff-fkg-bold);
+			font-family: var(--ff-fkg-bold);
 			&::after {
 				content: '';
 				display: block;
@@ -316,7 +315,7 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-top: 1rem;
-			font-family: var(--ff-fkg-bold);
+		font-family: var(--ff-fkg-bold);
 	}
 	.toc-icon__w {
 		position: fixed;
@@ -339,16 +338,14 @@
 				'news news news news news news news news ';
 		}
 	}
-	@media screen and (max-width: 1024px) {
-		/* doostuff */
-	}
+
 	@media (max-width: 768px) {
 		.hero-data::before {
 			background: linear-gradient(
 				90deg,
-				hsl(var(--hsl-cyan)) 0%,
-				hsl(var(--hsl-cyan) / 0.5) 65%,
-				hsl(var(--hsl-cyan) / 0) 100%
+				hsl(216, 61%, 24%) 0%,
+				hsl(216, 60%, 46%, .5)  65%,
+				hsl(216, 50%, 36%, 0) 100%
 			);
 		}
 		.main__c {
@@ -356,7 +353,7 @@
 				'main main main main main main main main '
 				'news news news news news news news news ';
 		}
-				.toc {
+		.toc {
 			position: fixed;
 			bottom: 0;
 			right: 0;
@@ -389,9 +386,9 @@
 		.hero-data::before {
 			background: linear-gradient(
 				90deg,
-				hsl(var(--hsl-cyan)) 0%,
-				hsl(var(--hsl-cyan) / 0.5) 65%,
-				hsl(var(--hsl-cyan) / 0) 100%
+				hsl(216, 61%, 24%) 0%,
+				hsl(216, 60%, 46%, .5)  65%,
+				hsl(216, 50%, 36%, 0) 100%
 			);
 		}
 		.hero-data h1 {
@@ -403,7 +400,6 @@
 		.hero-img {
 			max-height: 100%;
 		}
-
 	}
 	@media screen and (max-width: 480px) {
 		/* doostuff */

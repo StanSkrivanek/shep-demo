@@ -187,7 +187,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		padding: 2rem;
-		border-radius: 1rem 0 0 1rem;
+		border-radius: .5rem 0 0 .5rem;
 		&::before {
 			content: '';
 			position: absolute;
@@ -197,11 +197,11 @@
 			height: 100%;
 			background: linear-gradient(
 				90deg,
-				hsl(var(--hsl-brand) / 0.8) 0%,
-				hsl(var(--hsl-brand) / 0.4) 65%,
-				hsl(var(--hsl-brand) / 0) 100%
+				hsla(20, 100%, 48%, 0.9) 0%,
+				hsla(20, 100%, 48%, 0.7) 65%,
+				hsla(20, 100%, 48%, 0) 100%
 			);
-			border-radius: 1rem;
+			border-radius: .5rem;
 			z-index: -1;
 		}
 		& h1 {
@@ -231,7 +231,7 @@
 	.hero-img {
 		grid-area: hero-img;
 		position: relative;
-		border-radius: 1rem;
+		border-radius: .5rem;
 		background: var(--gray-100);
 		max-height: 480px;
 		& img {
@@ -240,7 +240,7 @@
 			height: 100%;
 			object-fit: cover;
 			object-position: top;
-			border-radius: 1rem;
+			border-radius: .5rem;
 		}
 	}
 
@@ -266,7 +266,7 @@
 			margin-bottom: 0.5rem;
 			font-size: 1.1rem;
 			color: hsl(var(--hsl-gray));
-				font-family: var(--ff-fkg-bold);
+			font-family: var(--ff-fkg-bold);
 			&::after {
 				content: '';
 				display: block;
@@ -306,7 +306,7 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-top: 1rem;
-			font-family: var(--ff-fkg-bold);
+		font-family: var(--ff-fkg-bold);
 	}
 	.toc-icon__w {
 		position: fixed;
@@ -336,9 +336,9 @@
 		.hero-data::before {
 			background: linear-gradient(
 				90deg,
-				hsl(var(--hsl-brand) / 0.8) 0%,
-				hsl(var(--hsl-brand) / 0.4) 65%,
-				hsl(var(--hsl-brand) / 0) 100%
+				hsla(20, 100%, 48%, 0.9) 0%,
+				hsla(20, 100%, 48%, 0.7) 65%,
+				hsla(20, 100%, 48%, 0) 100%
 			);
 		}
 		.main__c {
@@ -354,7 +354,7 @@
 			padding: 1.4rem;
 			z-index: 1;
 			background: hsl(var(--hsl-white));
-			border-radius: 1rem 0 0 0;
+			border-radius: .5rem 0 0 0;
 			border: 1px solid hsl(var(--hsl-gray) / 0.25);
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 			transform: translateX(100%);
@@ -376,11 +376,11 @@
 	}
 	@media screen and (max-width: 640px) {
 		.hero-data::before {
-			background: linear-gradient(
+		background: linear-gradient(
 				90deg,
-				rgba(21, 24, 48, 0.4) 0%,
-				rgba(21, 24, 48, 0.3) 80%,
-				rgba(11, 11, 11, 0.1) 100%
+				hsla(20, 100%, 48%, 0.9) 0%,
+				hsla(20, 100%, 48%, 0.7) 65%,
+				hsla(20, 100%, 48%, 0) 100%
 			);
 		}
 		.hero-data h1 {

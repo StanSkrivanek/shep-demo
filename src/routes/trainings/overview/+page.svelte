@@ -190,7 +190,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		padding: 2rem;
-		border-radius: 1rem 0 0 1rem;
+		border-radius: .5rem 0 0 .5rem;
 		&::before {
 			content: '';
 			position: absolute;
@@ -200,11 +200,11 @@
 			height: 100%;
 			background: linear-gradient(
 				90deg,
-				hsl(var(--hsl-purple) / 0.8) 0%,
-				hsl(var(--hsl-purple) / 0.4) 65%,
-				hsl(var(--hsl-purple) / 0) 100%
+				hsl(276, 86%, 23%,.9) 0%,
+				hsl(276, 86%, 23%, .6) 65%,
+				hsl(276, 86%, 23%, 0) 100%
 			);
-			border-radius: 1rem;
+			border-radius: .5rem;
 			z-index: -1;
 		}
 		& h1 {

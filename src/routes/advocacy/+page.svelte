@@ -1,6 +1,5 @@
 <script>
 	// @ts-nocheck
-
 	import Toc from '$lib/components/icons/Toc.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
 	import clickOutside from '$lib/utils/clickoutside.js';
@@ -71,9 +70,10 @@
 </script>
 
 <svelte:head>
-	<title>SHEP Advocacy</title>
-	<meta name="description" content="SHEP Advocacy" />
+	<title>SHEP Counselling</title>
+	<meta name="description" content="SHEP Counselling" />
 </svelte:head>
+
 <div class="page__c">
 	<div class="hero" id="top">
 		<div class="hero-col-2__c">
@@ -82,7 +82,7 @@
 					<h1><span>{post.title}</span></h1>
 					<p class="excerpt">{post.excerpt}</p>
 				</div>
-				<!-- <a class="article_cat" href="{post.category_slug}">{post.category}</a> -->
+				<!-- <a class="article_cat" href="/blog/{post.category_slug}">{post.category}</a> -->
 			</div>
 			<div class="hero-img">
 				<img src={post.main_img} alt={post.title} />
@@ -147,6 +147,16 @@
 							h5: CustomHeading,
 							normal: TextRte
 						},
+						// list: {
+						// 	// Swap only the list parts you need
+						// 	bullet: UnorderedListWrapper,
+						// 	// Custom user-defined list type
+						// 	checklist: ChecklistWrapper
+						// },
+						// listItem: {
+						// 	bullet: ListItem,
+						// 	checklist: ChecklistItem
+						// },
 						types: {
 							image: ImageRte
 						}
@@ -186,7 +196,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		padding: 2rem;
-		border-radius: 1rem 0 0 1rem;
+		border-radius: .5rem 0 0 .5rem;
 		&::before {
 			content: '';
 			position: absolute;
@@ -194,13 +204,13 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: linear-gradient(
+				background: linear-gradient(
 				90deg,
-				hsl(var(--hsl-blue)) 0%,
-				hsl(var(--hsl-blue) / 0.5) 65%,
-				hsl(var(--hsl-blue) / 0) 100%
+				hsl(216, 61%, 24%) 0%,
+				hsl(216, 60%, 46%, .5)  65%,
+				hsl(216, 50%, 36%, 0) 100%
 			);
-			border-radius: 1rem;
+			border-radius: .5rem;
 			z-index: -1;
 		}
 		& h1 {
@@ -230,7 +240,7 @@
 	.hero-img {
 		grid-area: hero-img;
 		position: relative;
-		border-radius: 1rem;
+		border-radius: .5rem;
 		background: var(--gray-100);
 		max-height: 480px;
 		& img {
@@ -239,7 +249,7 @@
 			height: 100%;
 			object-fit: cover;
 			object-position: top;
-			border-radius: 1rem;
+			border-radius: .5rem;
 		}
 	}
 
@@ -265,7 +275,7 @@
 			margin-bottom: 0.5rem;
 			font-size: 1.1rem;
 			color: hsl(var(--hsl-gray));
-				font-family: var(--ff-fkg-bold);
+			font-family: var(--ff-fkg-bold);
 			&::after {
 				content: '';
 				display: block;
@@ -305,7 +315,7 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-top: 1rem;
-			font-family: var(--ff-fkg-bold);
+		font-family: var(--ff-fkg-bold);
 	}
 	.toc-icon__w {
 		position: fixed;
@@ -328,18 +338,16 @@
 				'news news news news news news news news ';
 		}
 	}
-	@media screen and (max-width: 1024px) {
-		/* doostuff */
-	}
+
 	@media (max-width: 768px) {
-		.hero-data::before {
+		/* .hero-data::before {
 			background: linear-gradient(
 				90deg,
-			hsl(var(--hsl-blue)) 0%,
-				hsl(var(--hsl-blue) / 0.5) 65%,
-				hsl(var(--hsl-blue) / 0) 100%
+				hsl(var(--hsl-cyan)) 0%,
+				hsl(var(--hsl-cyan) / 0.5) 65%,
+				hsl(var(--hsl-cyan) / 0) 100%
 			);
-		}
+		} */
 		.main__c {
 			grid-template-areas:
 				'main main main main main main main main '
@@ -378,11 +386,11 @@
 		.hero-data::before {
 			background: linear-gradient(
 				90deg,
-				hsl(var(--hsl-blue)) 0%,
-				hsl(var(--hsl-blue) / 0.5) 65%,
-				hsl(var(--hsl-blue) / 0) 100%
+				hsl(216, 61%, 24%) 0%,
+				hsl(216, 60%, 46%, .5)  65%,
+				hsl(216, 50%, 36%, 0) 100%
 			);
-		}
+		} 
 		.hero-data h1 {
 			max-width: 24ch;
 		}
@@ -392,9 +400,6 @@
 		.hero-img {
 			max-height: 100%;
 		}
-		/* aside > h4 {
-			font-size: 1.6rem;
-		} */
 	}
 	@media screen and (max-width: 480px) {
 		/* doostuff */

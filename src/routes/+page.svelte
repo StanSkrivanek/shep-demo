@@ -271,7 +271,7 @@
 			grid-column: 4/ -1;
 			grid-row: 1/-1;
 			& img {
-				border-radius: 1rem;
+				border-radius: .5rem;
 				display: block;
 				width: 100%;
 				height: 100%;
@@ -329,16 +329,16 @@
 				height: 100%;
 				aspect-ratio: 2/1;
 				object-fit: contain;
-				border-radius: 0.55rem;
+				border-radius: 0.5rem;
 				display: block;
 				border-radius: 0.5rem;
 			}
 		}
 		& .card-mission {
 			grid-area: card;
-			background-color: var(--blue-50);
+			/* background-color: var(--blue-50); */
 			padding: 2.4rem;
-			border-radius: 1rem;
+			border-radius: .5rem;
 			background: var(--clr-main-white);
 			& p {
 				padding: 0;
@@ -395,8 +395,9 @@
 					}
 					& .credits__w {
 						padding: 0.25rem 0.5rem;
-						background-color: var(--clr-brand);
-						border-radius: 0.25rem;
+						background-color: hsl(var(--hsl-gray) / 0.5);
+						color: hsl(var(--hsl-brand));
+						border-radius: 0.5rem;
 					}
 					& p {
 						font-size: var(--sm);

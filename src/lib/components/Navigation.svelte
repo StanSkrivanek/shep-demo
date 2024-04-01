@@ -13,15 +13,24 @@
 	// $: console.log("GLOBAL",isMobileNavOpen);
 	function toggleMobileNav() {
 		isMobileNavOpen = !isMobileNavOpen;
-		isMobileNavOpen
-			? (document.body.style.overflow = 'hidden')
-			: (document.body.style.overflow = 'scroll');
-
+		// isMobileNavOpen
+		// 	? (document.body.style.overflow = 'hidden')
+		// 	: (document.body.style.overflow = 'scroll');
+		if (isMobileNavOpen) {
+			document.body.style.overflow = 'hidden';
+			console.log('FUNC', isMobileNavOpen);
+		} else {
+			console.log('FUNC', isMobileNavOpen);
+			document.body.style.overflow = 'scroll';
+		}
 	}
 	onMount(() => {
 		const withChildren = [...document.querySelectorAll('.menu-item-has-children')];
 		// Set initial value of isMobile
 		isMobile = window.innerWidth < 991;
+		// if (isMobile) {
+		// 	document.body.style.overflow = 'auto';
+		// }
 
 		withChildren.forEach((el) => {
 			/**

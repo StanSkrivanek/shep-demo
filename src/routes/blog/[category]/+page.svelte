@@ -139,7 +139,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		padding: 2rem;
-		border-radius: 1rem 0 0 1rem;
+		border-radius: .5rem 0 0 .5rem;
 		&::before {
 			content: '';
 			position: absolute;
@@ -149,11 +149,11 @@
 			height: 100%;
 			background: linear-gradient(
 				90deg,
-				hsl(var(--hsl-gray)) 0%,
-				hsl(var(--hsl-gray) / 0.5) 65%,
-				hsl(var(--hsl-gray) / 0) 100%
+				hsl(162, 100%, 35%) 0%,
+				hsl(162, 80%, 59%, 0.7) 65%,
+				hsl(162, 80%, 59%, 0) 100%
 			);
-			border-radius: 1rem;
+			border-radius: 0.5rem;
 			z-index: -1;
 		}
 		& h1 {
@@ -183,7 +183,7 @@
 	.hero-img {
 		grid-area: hero-img;
 		position: relative;
-		border-radius: 1rem;
+		border-radius: .5rem;
 
 		max-height: 480px;
 		& img {
@@ -192,7 +192,7 @@
 			height: 100%;
 			object-fit: cover;
 			object-position: top;
-			border-radius: 1rem;
+			border-radius: .5rem;
 		}
 	}
 
@@ -265,7 +265,7 @@
 	.card-img {
 		grid-area: image;
 		object-fit: cover;
-		border-radius: 0.25rem 0.25rem 0 0;
+		border-radius: 0.5rem 0.5rem 0 0;
 		overflow: hidden;
 		& img {
 			object-fit: cover;
@@ -328,7 +328,7 @@
 			min-width: 100px;
 			padding: 0.5rem 1rem;
 			border: 1px solid hsl(var(--hsl-gray) / 0.25);
-			border-radius: 0.25rem;
+			border-radius: 0.5rem;
 			background: hsl(var(--hsl-white));
 			font-size: 1rem;
 			color: hsl(var(--hsl-gray));
