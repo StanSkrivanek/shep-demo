@@ -85,7 +85,7 @@
 					</div>
 					<div class="card-body">
 						<!-- <p>{post.author[0].name}</p> -->
-						<p>{trimText(post.excerpt, 140)}</p>
+						<p>{trimText(post.excerpt, 128)}</p>
 					</div>
 					<div class="card-footer">
 						<a class="btn-link" href={`/blog/${post.category_slug}/${post.slug}`}>
@@ -139,7 +139,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		padding: 2rem;
-		border-radius: .5rem 0 0 .5rem;
+		border-radius: 0.5rem 0 0 0.5rem;
 		&::before {
 			content: '';
 			position: absolute;
@@ -183,7 +183,7 @@
 	.hero-img {
 		grid-area: hero-img;
 		position: relative;
-		border-radius: .5rem;
+		border-radius: 0.5rem;
 
 		max-height: 480px;
 		& img {
@@ -192,7 +192,7 @@
 			height: 100%;
 			object-fit: cover;
 			object-position: top;
-			border-radius: .5rem;
+			border-radius: 0.5rem;
 		}
 	}
 
@@ -229,6 +229,7 @@
 			[body] auto
 			[footer] 2.6rem;
 
+		height: 100%;
 		gap: 0.25rem;
 		padding-bottom: 1rem;
 		background: hsl(var(--hsl-white));

@@ -880,6 +880,7 @@ export const getNuachtPDFs = async () => {
   'pdfs': *[_type == 'sanity.fileAsset' && references(^._id)]{
 			// "fileName": originalFilename,
 			"title": title,
+			"excerpt": description,
 			"url":url
 		}
 	}`;

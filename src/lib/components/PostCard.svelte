@@ -25,7 +25,7 @@
 	</div>
 	<div class="card-body">
 		<!-- <p>{post.author[0].name}</p> -->
-		<p>{trimText(excerpt, 120)}</p>
+		<p>{trimText(excerpt, 128)}</p>
 	</div>
 	<div class="card-footer">
 		<a class="btn-link" href={`/blog/${catSlug}/${slug}`}>

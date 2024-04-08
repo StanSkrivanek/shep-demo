@@ -14,15 +14,7 @@
 <div class="page__c">
 	<div class="hero">
 		<div class="title">
-			<!-- <span class="subtitle">SHEP</span> -->
-			<!-- <h1><span>The place where mental health flourishes</span></h1> -->
 			<h1>We help building a healthy, loving, socially-just and sustainable way of living</h1>
-			<!-- <p> 61 different courses for the Autumn season and the year ahead. The courses are running in various counties primarily in the Munster region.  100's of people will get to work on themselves or have the opportunity to be trained so they can help others</p> -->
-
-			<!-- <img
-				src="https://cdn.sanity.io/images/gkez65br/production/0d2dea9c07ff8295c035cb63abf6c6b147e95133-654x753.svg"
-				alt="logo"
-			/> -->
 		</div>
 		<div class="img__w">
 			<img

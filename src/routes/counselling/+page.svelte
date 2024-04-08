@@ -119,7 +119,7 @@
 				</li>
 			</ul>
 		</aside>
-		<main>
+		<main class="container">
 			{#if !isTocOpen}
 				<div
 					class="toc-icon__w"
@@ -147,16 +147,6 @@
 							h5: CustomHeading,
 							normal: TextRte
 						},
-						// list: {
-						// 	// Swap only the list parts you need
-						// 	bullet: UnorderedListWrapper,
-						// 	// Custom user-defined list type
-						// 	checklist: ChecklistWrapper
-						// },
-						// listItem: {
-						// 	bullet: ListItem,
-						// 	checklist: ChecklistItem
-						// },
 						types: {
 							image: ImageRte
 						}

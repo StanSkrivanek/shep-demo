@@ -119,7 +119,7 @@
 				</li>
 			</ul>
 		</aside>
-		<main>
+		<main class="container">
 			{#if !isTocOpen}
 				<div
 					class="toc-icon__w"
@@ -147,16 +147,6 @@
 							h5: CustomHeading,
 							normal: TextRte
 						},
-						// list: {
-						// 	// Swap only the list parts you need
-						// 	bullet: UnorderedListWrapper,
-						// 	// Custom user-defined list type
-						// 	checklist: ChecklistWrapper
-						// },
-						// listItem: {
-						// 	bullet: ListItem,
-						// 	checklist: ChecklistItem
-						// },
 						types: {
 							image: ImageRte
 						}
@@ -172,6 +162,8 @@
 		grid-area: main;
 		padding-inline: 1rem;
 	}
+
+	
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -196,7 +188,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		padding: 2rem;
-		border-radius: .5rem 0 0 .5rem;
+		border-radius: 0.5rem 0 0 0.5rem;
 		&::before {
 			content: '';
 			position: absolute;
@@ -204,13 +196,13 @@
 			left: 0;
 			width: 100%;
 			height: 100%;
-				background: linear-gradient(
+			background: linear-gradient(
 				90deg,
 				hsl(216, 61%, 24%) 0%,
-				hsl(216, 60%, 46%, .5)  65%,
+				hsl(216, 60%, 46%, 0.5) 65%,
 				hsl(216, 50%, 36%, 0) 100%
 			);
-			border-radius: .5rem;
+			border-radius: 0.5rem;
 			z-index: -1;
 		}
 		& h1 {
@@ -240,7 +232,7 @@
 	.hero-img {
 		grid-area: hero-img;
 		position: relative;
-		border-radius: .5rem;
+		border-radius: 0.5rem;
 		background: var(--gray-100);
 		max-height: 480px;
 		& img {
@@ -249,7 +241,7 @@
 			height: 100%;
 			object-fit: cover;
 			object-position: top;
-			border-radius: .5rem;
+			border-radius: 0.5rem;
 		}
 	}
 
@@ -387,10 +379,10 @@
 			background: linear-gradient(
 				90deg,
 				hsl(216, 61%, 24%) 0%,
-				hsl(216, 60%, 46%, .5)  65%,
+				hsl(216, 60%, 46%, 0.5) 65%,
 				hsl(216, 50%, 36%, 0) 100%
 			);
-		} 
+		}
 		.hero-data h1 {
 			max-width: 24ch;
 		}

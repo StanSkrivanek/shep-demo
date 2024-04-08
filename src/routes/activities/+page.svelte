@@ -2,7 +2,7 @@
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { trimText } from '$lib/utils/globalhelpers';
 	export let data;
-	console.log("🚀 ~ data:", data)
+	console.log('🚀 ~ data:', data);
 </script>
 
 <svelte:head>
@@ -33,7 +33,6 @@
 	<div class="main__c">
 		<main class="container">
 			{#each data.activities as post}
-			
 				<div class="posts">
 					<div class="card">
 						<div class="card-subheading">
@@ -42,14 +41,14 @@
 						<div class="card-img">
 							<img src={post.main_img} alt={post.title} />
 							<!-- TODO: use Sanity image optimisation settings -> ?max=fit&xxx-->
-							<img src="" alt="" srcset="">
+							<img src="" alt="" srcset="" />
 						</div>
 						<div class="card-header">
 							<h3>{post.title}</h3>
 						</div>
 						<div class="card-body">
 							<!-- <p>{post.author[0].name}</p> -->
-							<p>{trimText(post.excerpt, 140)}</p>
+							<p>{trimText(post.excerpt, 128)}</p>
 						</div>
 						<div class="card-footer">
 							<a class="btn-link" href={`/blog/${post.category_slug}/${post.slug}`}>
@@ -136,7 +135,8 @@
 			[header] 3.6rem
 			[body] auto
 			[footer] 2.6rem;
-
+			
+		height: 100%;
 		gap: 0.25rem;
 		padding-bottom: 1rem;
 		background: hsl(var(--hsl-white));
@@ -182,7 +182,6 @@
 			text-decoration: none;
 		}
 	}
-
 
 	.card-body {
 		grid-area: body;

@@ -198,7 +198,7 @@
 		grid-template-rows: auto;
 		gap: 1rem;
 	}
-	
+
 	.hero-data {
 		display: flex;
 		flex-direction: column;
@@ -272,6 +272,7 @@
 			[body] auto
 			[footer] 2.6rem;
 
+		height: 100%;
 		gap: 0.25rem;
 		padding-bottom: 1rem;
 		background: hsl(var(--hsl-white));

@@ -22,7 +22,7 @@
 			</div>
 			<div class="hero-img">
 				<img
-					src="https://cdn.sanity.io/images/gkez65br/production/479126b0eb6e14162016f648c77a88c95f550685-1680x933.webp"
+					src="https://cdn.sanity.io/images/gkez65br/production/67efb19b62d2fbedeb953c75e48fa4255010e633-1200x600.jpg"
 					alt="pinky theme"
 				/>
 			</div>
@@ -112,7 +112,7 @@
 
 		border-radius: 0.5rem;
 		padding: 1rem;
-		background: hsl(var(--hsl-purple) / 0.1);
+		background: hsl(var(--hsl-purple) / 0.15);
 		transition: all 0.2s ease-in-out;
 		pointer-events: none;
 		/* & svg {
