@@ -1,4 +1,6 @@
 <script>
+	// ts-nocheck
+	import { onMount } from 'svelte';
 	import ArrowOpen from '$lib/components/icons/ArrowOpen.svelte';
 	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
@@ -7,6 +9,7 @@
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers';
 	import { PortableText } from '@portabletext/svelte';
 	import { slide } from 'svelte/transition';
+	// @ts-ignore
 	export let data;
 
 	const { title, excerpt, full_price, funded_price, main_img, content, brochure, slug } =
@@ -28,6 +31,17 @@
 	function storeCourseData(node) {
 		$singleEventStore = node;
 		localStorage.setItem('singleEventStore', JSON.stringify(node));
+	}
+		/**
+	 * @type {HTMLElement | null | undefined}
+	 */
+		let newsletterInput = undefined;
+	onMount(() => {
+		newsletterInput = document.getElementById('newsletter');
+	});
+	function signupFocus() {
+		// @ts-ignore
+		newsletterInput.focus();
 	}
 </script>
 
@@ -97,12 +111,12 @@
 					</div>
 					<div class="nlr-link">
 						<div class="dots">
-							<DotsCorner width={24} height={24} currentColor="hsl(var(--hsl-white))" />
+							<DotsCorner width={24} height={24} currentColor={'hsl(var(--hsl-white))'} />
 						</div>
-						<div>
+						<div class="newsletter-link">
 							<p>Sign to newsletter</p>
-							<a href="/newsletter">
-								<LinkCircle width={48} height={48} currentColor="hsl(var(--hsl-white))" />
+							<a href="#newsletter-signup" on:click={() => signupFocus()}>
+								<LinkCircle width={48} height={48} />
 							</a>
 						</div>
 					</div>
@@ -450,6 +464,17 @@
 		& .dots {
 			color: var(--clr-red);
 			/* transform: rotate(180deg); */
+		}
+	}
+
+	.newsletter-link {
+		& svg {
+			& circle {
+				stroke: hsl(var(--hsl-white)) !important;
+			}
+			& path {
+				fill: hsl(var(--hsl-white)) !important;
+			}
 		}
 	}
 

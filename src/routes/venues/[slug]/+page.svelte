@@ -498,6 +498,8 @@
 			color: var(--clr-red);
 			/* transform: rotate(180deg); */
 		}
+	}
+	.newsletter-link {
 		& svg {
 			& circle {
 				stroke: hsl(var(--hsl-white)) !important;

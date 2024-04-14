@@ -6,10 +6,13 @@
 	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers';
 	import { PortableText } from '@portabletext/svelte';
+	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 
+	// @ts-ignore
 	export let data;
 	// Registered Event
+	// @ts-ignore
 	const { title, excerpt, full_price, funded_price, main_img, content, brochure, slug, ref_name } =
 		data.course;
 	// Upcoming Events
@@ -31,6 +34,18 @@
 		$singleEventStore = node;
 		localStorage.setItem('singleEventStore', JSON.stringify(node));
 		// localStorage.setItem('refName', node.refName);
+	}
+	/**
+	 * @type {HTMLElement | null | undefined}
+	 */
+	let newsletterInput = undefined;
+	onMount(() => {
+		newsletterInput = document.getElementById('newsletter');
+	});
+	// @ts-ignore
+	function signupFocus() {
+		// @ts-ignore
+		newsletterInput.focus();
 	}
 </script>
 
@@ -100,10 +115,10 @@
 						<div class="dots">
 							<DotsCorner width={24} height={24} currentColor="hsl(var(--hsl-white))" />
 						</div>
-						<div>
+						<div class="newsletter-link">
 							<p>Sign to newsletter</p>
-							<a href="/newsletter">
-								<LinkCircle width={48} height={48} currentColor="hsl(var(--hsl-white))" />
+							<a href="#newsletter-signup" on:click={() => signupFocus()}>
+								<LinkCircle width={48} height={48} />
 							</a>
 						</div>
 					</div>
@@ -451,7 +466,16 @@
 		}
 		& .dots {
 			color: hsl(var(--hsl-red));
-	
+		}
+	}
+	.newsletter-link {
+		& svg {
+			& circle {
+				stroke: hsl(var(--hsl-white)) !important;
+			}
+			& path {
+				fill: hsl(var(--hsl-white)) !important;
+			}
 		}
 	}
 
@@ -478,7 +502,6 @@
 			font-family: var(--ff-fkg-bold);
 			transition: all 0.3s ease-in-out;
 			&:hover {
-	
 				color: color-mix(in oklab, var(--_base-color-private) 100%, white);
 			}
 		}
