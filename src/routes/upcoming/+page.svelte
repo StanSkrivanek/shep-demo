@@ -1,6 +1,6 @@
 <script>
 	// @ts-nocheck
-
+	import { onMount } from 'svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import Waves from '$lib/components/icons/waves.svelte';
 	export let data;
@@ -30,6 +30,14 @@
 			}
 		}
 	);
+	let newsletterInput = undefined;
+	onMount(() => {
+	newsletterInput = document.getElementById('newsletter');
+
+	});
+	function signupFocus() {
+		newsletterInput.focus();
+	}
 </script>
 
 <svelte:head>
@@ -118,8 +126,7 @@
 						will open for application.
 					</p>
 					<div class="no-upcoming--link__c">
-						<!-- <p>Sign up to newsletter</p> -->
-						<a href="/newsletter">
+						<a href="#newsletter-signup" on:click={() => signupFocus()}>
 							<LinkCircle width={48} height={48} />
 						</a>
 					</div>
@@ -411,12 +418,11 @@
 		/* background-color: red; */
 	}
 	@media (max-width: 1280px) {
-		
 		.no-upcoming__w {
 			grid-column: 1/-1;
 		}
 	}
-	
+
 	@media (max-width: 996px) {
 		.hero-data {
 			flex-direction: column;

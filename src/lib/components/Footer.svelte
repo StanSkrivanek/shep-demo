@@ -109,10 +109,10 @@
 			</div> -->
 		</div>
 		<div class="group">
-			<form action="">
+			<form action="" id="newsletter-signup">
 				<label for="newsletter">Sign up for newsletter</label>
 				<input type="email" name="newsletter" id="newsletter" placeholder="Your email address" />
-				<input type="submit" value="submit" />
+				<input type="submit" value="Sign up" />
 			</form>
 		</div>
 	</div>
@@ -212,6 +212,9 @@
 		& label {
 			margin-bottom: 0.5rem;
 			font-family: var(--ff-gilroy-smb);
+			/* font-size: var(--sm); */
+			color: hsl(var(--hsl-gray) / 0.8);
+			font-weight: 600;
 		}
 		& input[type='email'] {
 			/* all: unset; */
@@ -228,15 +231,16 @@
 			padding: 1rem;
 			border: none;
 			border-radius: 0.25rem;
-			background-color: hsl(var(--hsl-brand) / 0.5);
+			background-color: hsl(var(--hsl-blue)/0.75 );
 			font-weight: 600;
 			font-size: var(--sm);
 			letter-spacing: 0.05em;
+			color: white;
 			cursor: pointer;
 			text-transform: uppercase;
 		}
 		& input[type='submit']:hover {
-			background-color: hsl(var(--hsl-brand) / 0.75);
+			background-color: hsl(var(--hsl-blue));
 		}
 	}
 	@media (max-width: 1280px) {
