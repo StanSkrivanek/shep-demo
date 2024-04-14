@@ -257,11 +257,7 @@
 		padding-inline: 1rem;
 		& p {
 			font-size: var(--sm);
-		}
-		& a {
-			font-size: var(--xs);
-			color: hsl(var(--hsl-gray) / 0.8);
-			text-decoration: none;
+			pointer-events: none ;
 		}
 	}
 

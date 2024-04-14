@@ -110,9 +110,9 @@
 				</div>
 				<div>
 					<p>Sign up to newsletter</p>
-					<a href="/newsletter">
-						<LinkCircle width={48} height={48} />
-					</a>
+					<a href="#newsletter-signup" on:click={() => signupFocus()}>
+							<LinkCircle width={48} height={48} />
+						</a>
 				</div>
 			</div>
 		{/if}

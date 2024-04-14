@@ -309,6 +309,7 @@
 			font-size: var(--sm);
 			color: hsl(var(--hsl-gray) / 0.8);
 			text-decoration: none;
+			pointer-events: none;
 		}
 	}
 
