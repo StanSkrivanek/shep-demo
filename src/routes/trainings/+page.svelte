@@ -23,8 +23,8 @@
 			</div>
 			<div class="hero-img">
 				<img
-					src="https://cdn.sanity.io/images/gkez65br/production/67efb19b62d2fbedeb953c75e48fa4255010e633-1200x600.jpg"
-					alt="pinky theme"
+					src="https://cdn.sanity.io/images/gkez65br/production/050fb861803cab6007044e16fd3836a854e35da1-1400x525.webp"
+					alt=""
 				/>
 			</div>
 		</div>

@@ -25,8 +25,8 @@
 			</div>
 			<div class="hero-img">
 				<img
-					src="https://cdn.sanity.io/images/gkez65br/production/e839df8e4afd7bb9a69fa6ff57ff852dbfcdcfc2-800x400.jpg"
-					alt="man on paper ship looking into binocular"
+					src="https://cdn.sanity.io/images/gkez65br/production/d3d19ad9e0b491d54a754f78e408700c8fc1c288-960x540.webp"
+					alt=""
 				/>
 			</div>
 		</div>
@@ -92,6 +92,7 @@
 		grid-template-areas: 'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-img';
 		grid-template-rows: auto;
 		gap: 1rem;
+		min-height: 400px;
 	}
 	.hero-data {
 		display: flex;
@@ -113,7 +114,7 @@
 			height: 100%;
 			object-fit: cover;
 			border-radius: 1rem;
-			aspect-ratio: 8.4/1;
+			aspect-ratio: 9/1;
 		}
 	}
 
@@ -155,7 +156,6 @@
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
 		& svg {
-			
 			& circle {
 				stroke: hsl(var(--hsl-cyan)) !important;
 			}
@@ -171,6 +171,7 @@
 			font-size: var(--sm);
 			color: hsl(var(--hsl-gray) / 0.8);
 			text-decoration: none;
+			pointer-events: none;
 		}
 	}
 
@@ -237,6 +238,9 @@
 	/* Media Query */
 
 	@media screen and (max-width: 1024px) {
+		.hero-data {
+			padding-inline: 0;
+		}
 		.hero-data h1 {
 			margin-bottom: 0;
 		}
@@ -248,6 +252,10 @@
 			grid-template-areas:
 				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
 				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
+		}
+		.hero-img {
+				aspect-ratio: 8/4;
+			
 		}
 		.main__c {
 			display: block;

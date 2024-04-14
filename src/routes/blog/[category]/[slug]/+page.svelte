@@ -226,9 +226,9 @@
 			height: 100%;
 			background: linear-gradient(
 				90deg,
-				hsl(var(--hsl-cyan)) 0%,
-				hsl(var(--hsl-blue) / 0.5) 65%,
-				hsl(var(--hsl-blue) / 0) 100%
+				hsla(218, 98%, 16%, 0.798) 0%,
+				hsla(218, 94%, 12%, 0.476)  65%,
+				hsla(218, 98%, 16%, 0.16) 100%
 			);
 			border-radius: 0.5rem;
 			z-index: -1;
@@ -248,7 +248,7 @@
 			border-radius: 100px;
 			text-decoration: none;
 			line-height: 1;
-			/* border: 1px solid hsl(var(--hsl-white) / 0.25); */
+			border: 1px solid hsl(var(--hsl-white) / 0.25);
 			text-transform: uppercase;
 			letter-spacing: 0.07rem;
 			color: hsl(var(--hsl-white));

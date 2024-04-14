@@ -97,8 +97,8 @@
 			</div>
 			<div class="hero-img">
 				<img
-					src="https://cdn.sanity.io/images/gkez65br/production/e839df8e4afd7bb9a69fa6ff57ff852dbfcdcfc2-800x400.jpg"
-					alt="man on paper ship looking into binocular"
+					src="https://cdn.sanity.io/images/gkez65br/production/6f18003aa9dbf7a434ff295fbc17323eb29bf59d-960x540.webp"
+					alt=""
 				/>
 			</div>
 		</div>

@@ -1,4 +1,5 @@
 <script>
+	// @ts-nocheck
 	import ArrowOpen from '$lib/components/icons/ArrowOpen.svelte';
 	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
@@ -6,6 +7,7 @@
 	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers.js';
 	import { PortableText } from '@portabletext/svelte';
+	import { onMount } from 'svelte';
 	import { cubicOut } from 'svelte/easing';
 	import { slide } from 'svelte/transition';
 	export let data;
@@ -57,6 +59,14 @@
 	function storeCourseData(node) {
 		$singleEventStore = node;
 		localStorage.setItem('singleEventStore', JSON.stringify(node));
+	}
+
+	let newsletterInput = undefined;
+	onMount(() => {
+		newsletterInput = document.getElementById('newsletter');
+	});
+	function signupFocus() {
+		newsletterInput.focus();
 	}
 </script>
 
@@ -121,12 +131,12 @@
 					</div>
 					<div class="nlr-link">
 						<div class="dots">
-							<DotsCorner width={24} height={24} currentColor={"hsl(var(--hsl-white))"} />
+							<DotsCorner width={24} height={24} currentColor={'hsl(var(--hsl-white))'} />
 						</div>
-						<div>
+						<div class="newsletter-link">
 							<p>Sign to newsletter</p>
-							<a href="/newsletter">
-								<LinkCircle width={48} height={48} currentColor={"hsl(var(--hsl-white))"} />
+							<a href="#newsletter-signup" on:click={() => signupFocus()}>
+								<LinkCircle width={48} height={48} />
 							</a>
 						</div>
 					</div>
@@ -134,9 +144,6 @@
 			{:else}
 				<div class="accordion">
 					{#each upcoming as item, i}
-						<!-- <pre>
-					 {JSON.stringify(item, null, 2)}
-				</pre> -->
 						<div
 							class:training={item.generalType == 'training'}
 							class:course={item.generalType == 'course'}
@@ -319,14 +326,10 @@
 	</div>
 </div>
 
-<!-- <img src={logo} alt=""> -->
-<!-- <img src={image} alt=""> -->
 
 <style>
 	/* Hero */
-
 	.hero {
-		/* --_base-color-private: var(--item-color, var(--clr-base)); */
 		display: grid;
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;
@@ -344,7 +347,7 @@
 			margin-bottom: 1rem;
 		}
 		& p {
-			color: hsl(var(--hsl-gray) /.75);
+			color: hsl(var(--hsl-gray) / 0.75);
 		}
 	}
 	.hero-img {
@@ -494,6 +497,14 @@
 		& .dots {
 			color: var(--clr-red);
 			/* transform: rotate(180deg); */
+		}
+		& svg {
+			& circle {
+				stroke: hsl(var(--hsl-white)) !important;
+			}
+			& path {
+				fill: hsl(var(--hsl-white)) !important;
+			}
 		}
 	}
 	.course {

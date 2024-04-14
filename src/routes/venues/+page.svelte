@@ -23,7 +23,7 @@
 			</div>
 			<div class="hero-img">
 				<img
-					src="https://cdn.sanity.io/images/gkez65br/production/8b137c079b2438d98270dd211b76ea58c1a0210c-1200x719.jpg?w=2000&fit=max&auto=format"
+					src="https://cdn.sanity.io/images/gkez65br/production/b86d16c779223124f54af95e8741da5958424ba8-960x539.webp"
 					alt=""
 				/>
 			</div>
@@ -100,7 +100,7 @@
 			height: 100%;
 			object-fit: cover;
 			border-radius: 1rem;
-			aspect-ratio: 2.5/1;
+			aspect-ratio: 9/1;
 		}
 	}
 
@@ -114,7 +114,7 @@
 	/* Card */
 	.card {
 		position: relative;
-		background: hsl(var(--hsl-white));
+		background: hsl(var(--hsl-cyan)/0.08);
 		border-radius: 0.5rem;
 		pointer-events: none;
 		transition: all 0.3s ease-in-out;
@@ -219,6 +219,7 @@
 		.hero-data {
 			flex-direction: row;
 			gap: 3rem;
+			padding-inline: 0;
 		}
 		.hero-data h1 {
 			margin-bottom: 0;
@@ -231,6 +232,9 @@
 			grid-template-areas:
 				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
 				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
+		}
+		.hero-img {
+			aspect-ratio: 8/4;
 		}
 		.container {
 			grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

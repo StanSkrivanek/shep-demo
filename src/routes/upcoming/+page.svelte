@@ -1,8 +1,8 @@
 <script>
 	// @ts-nocheck
-	import { onMount } from 'svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import Waves from '$lib/components/icons/waves.svelte';
+	import { onMount } from 'svelte';
 	export let data;
 	console.log('🚀 ~ data:', data);
 	const cities = data.allUpcomingEvents.map(
@@ -32,8 +32,7 @@
 	);
 	let newsletterInput = undefined;
 	onMount(() => {
-	newsletterInput = document.getElementById('newsletter');
-
+		newsletterInput = document.getElementById('newsletter');
 	});
 	function signupFocus() {
 		newsletterInput.focus();
@@ -111,8 +110,8 @@
 				<div>
 					<p>Sign up to newsletter</p>
 					<a href="#newsletter-signup" on:click={() => signupFocus()}>
-							<LinkCircle width={48} height={48} />
-						</a>
+						<LinkCircle width={48} height={48} />
+					</a>
 				</div>
 			</div>
 		{/if}

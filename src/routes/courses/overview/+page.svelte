@@ -197,9 +197,9 @@
 			height: 100%;
 			background: linear-gradient(
 				90deg,
-				hsla(28, 100%, 48%, 0.689) 0%,
-				hsla(24, 100%, 48%, 0.504) 65%,
-				hsla(50, 100%, 48%, 0.19) 100%
+				hsla(11, 94%, 45%, 0.695) 0%,
+				hsla(20, 100%, 48%, 0.296) 65%,
+				hsla(17, 100%, 48%, 0.19) 100%
 			);
 			border-radius: .5rem;
 			z-index: -1;

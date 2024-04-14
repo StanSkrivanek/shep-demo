@@ -179,7 +179,7 @@
 	}
 	.hero-data {
 		position: relative;
-		display: grid;
+		/* display: grid; */
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;
 		grid-row: 1/-1;
@@ -198,8 +198,8 @@
 			height: 100%;
 			background: linear-gradient(
 				90deg,
-				hsl(216, 61%, 24%) 0%,
-				hsl(216, 60%, 46%, 0.5) 65%,
+				hsla(217, 61%, 15%, 0.902) 0%,
+				hsla(217, 60%, 19%, 0.5) 65%,
 				hsl(216, 50%, 36%, 0) 100%
 			);
 			border-radius: 0.5rem;
