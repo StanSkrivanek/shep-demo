@@ -1,7 +1,9 @@
 <script>
-	import DotsCorner  from '$lib/components/icons/DotsCorner.svelte';
+	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
 	// import LogoSimple from './../../lib/components/icons/LogoSimple.svelte';
 	import Book from '$lib/components/icons/Book.svelte';
+	import Waves from '$lib/components/icons/waves.svelte';
+	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	export let data;
 
 	const { allNuacht } = data.props;
@@ -63,7 +65,13 @@
 								<!-- <span><LogoSimple width={24} height={24} /></span> -->
 								<div class="pdf__date">
 									<span>{pdf.title.split('-')[2]} {pdf.title.split('-')[3]}</span>
-									<span><DotsCorner width={24} height={24} currentColor="hsl(var(--hsl-blue) / .75)"/></span>
+									<span
+										><DotsCorner
+											width={24}
+											height={24}
+											currentColor="hsl(var(--hsl-blue) / .75)"
+										/></span
+									>
 								</div>
 								<div class="pdf__number">
 									<span>{pdf.title.split('-')[0]}</span>
@@ -77,8 +85,11 @@
 						</div>
 						<div class="card-pdf__link">
 							<div class="pdf__link">
-								<a href={pdf.url} target="_blank"><Book width={40} height={40} /></a>
+								<a href={pdf.url} target="_blank"><LinkCircle width={40} height={40} /></a>
 							</div>
+						</div>
+						<div class="bg">
+							<Waves currentColor="hsl(var(--hsl-blue) / .35)" />
 						</div>
 					</div>
 				{/each}
@@ -143,6 +154,7 @@
 
 	/* pdf card */
 	.card-pdf__c {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-content: space-between;
@@ -153,11 +165,11 @@
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
 		background: hsl(var(--hsl-blue) / 0.15);
-		& svg {
+		/* & svg {
 			& path {
 				stroke: hsl(var(--hsl-blue));
 			}
-		}
+		} */
 		background-image: url();
 	}
 	.card-pdf__c:hover {
@@ -224,7 +236,7 @@
 		font-size: 3rem;
 		line-height: 1;
 		font-family: var(--ff-fkg-black);
-		color: hsl(var(--hsl-blue)/.75)
+		color: hsl(var(--hsl-blue) / 0.75);
 	}
 
 	.pdf__link {
@@ -232,16 +244,17 @@
 		font-weight: 400;
 		pointer-events: all;
 		/* border: 1px solid red; */
-		&:hover {
-			& svg {
-				& path {
-					stroke: hsl(var(--hsl-brand));
-					/* fill: var(--shep-green) !important; */
-				}
-			}
-		}
 	}
-
+	.bg {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		/* z-index: -1; */
+		width: 100%;
+		/* & svg {
+			width: 100%;
+		} */
+	}
 	@media (max-width: 996px) {
 		.hero-data {
 			flex-direction: column;
