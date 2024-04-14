@@ -5,6 +5,7 @@
 	let { catArticles } = data.props;
 	const allPosts = catArticles;
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import Waves from '$lib/components/icons/waves.svelte';
 	import { trimText } from '$lib/utils/globalhelpers.js';
 
 	// pagination base values
@@ -89,8 +90,11 @@
 					</div>
 					<div class="card-footer">
 						<a class="btn-link" href={`/blog/${post.category_slug}/${post.slug}`}>
-							<LinkCircle width={42} height={42} />
+							<LinkCircle width={48} height={48} />
 						</a>
+					</div>
+					<div class="bg">
+						<Waves currentColor="hsl(var(--hsl-blue) / .35)" />
 					</div>
 				</div>
 			{/each}
@@ -130,7 +134,7 @@
 	}
 	.hero-data {
 		position: relative;
-		display: grid;
+		/* display: grid; */
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;
 		grid-row: 1/-1;
@@ -149,8 +153,8 @@
 			height: 100%;
 			background: linear-gradient(
 				90deg,
-				hsl(162, 100%, 35%) 0%,
-				hsl(162, 80%, 59%, 0.7) 65%,
+				hsl(187, 100%, 35%) 0%,
+				hsla(194, 80%, 59%, 0.7) 65%,
 				hsl(162, 80%, 59%, 0) 100%
 			);
 			border-radius: 0.5rem;
@@ -227,19 +231,27 @@
 			[subHeader] 2rem
 			[header] 3.4rem
 			[body] auto
-			[footer] 2.6rem;
+			[footer] 2.9rem;
 
 		height: 100%;
 		gap: 0.25rem;
 		padding-bottom: 1rem;
 		background: hsl(var(--hsl-white));
-		border: 1px solid hsl(var(--hsl-blue) / 0.25);
 		border-radius: 0.5rem;
 		overflow: hidden;
 		pointer-events: none;
 		transition: all 0.3s ease-in-out;
+		position: relative;
+		background: hsl(var(--hsl-blue) / 0.15);
 	}
-
+	.card:hover {
+		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
+		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
+		& circle {
+			/* transition: stroke 1s ease-in-out; */
+			stroke: hsl(var(--hsl-blue)) !important;
+		}
+	}
 	.card-subheading {
 		grid-area: subHeader;
 		padding-inline: 1rem;
@@ -292,27 +304,15 @@
 		justify-content: flex-end;
 		padding-inline: 1rem;
 	}
-	.btn-link {
-		pointer-events: all;
-		& svg:hover {
-			& circle {
-				stroke: var(--clr-brand) !important;
-			}
-			& path {
-				fill: var(--clr-brand) !important;
-			}
-		}
-	}
-	.btn-link {
-		pointer-events: all;
-		& svg:hover {
-			& circle {
-				stroke: var(--clr-brand) !important;
-			}
-			& path {
-				fill: var(--clr-brand) !important;
-			}
-		}
+	.bg {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		/* z-index: -1; */
+		width: 100%;
+		/* & svg {
+			width: 100%;
+		} */
 	}
 	.btn-link {
 		pointer-events: all;

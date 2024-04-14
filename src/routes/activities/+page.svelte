@@ -1,5 +1,6 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import Waves from '$lib/components/icons/waves.svelte';
 	import { trimText } from '$lib/utils/globalhelpers';
 	export let data;
 	console.log('🚀 ~ data:', data);
@@ -52,8 +53,11 @@
 						</div>
 						<div class="card-footer">
 							<a class="btn-link" href={`/blog/${post.category_slug}/${post.slug}`}>
-								<LinkCircle width={42} height={42} />
+								<LinkCircle width={48} height={48} />
 							</a>
+						</div>
+						<div class="bg">
+							<Waves currentColor="hsl(var(--hsl-cyan) / .35)" />
 						</div>
 					</div>
 				</div>
@@ -109,7 +113,7 @@
 			height: 100%;
 			object-fit: cover;
 			border-radius: 1rem;
-			aspect-ratio: 2.4/1;
+			aspect-ratio: 8.4/1;
 		}
 	}
 
@@ -132,24 +136,58 @@
 		grid-template-rows:
 			[image] 15rem
 			[subHeader] 2rem
-			[header] 3.6rem
+			[header] 3.4rem
 			[body] auto
-			[footer] 2.6rem;
-			
+			[footer] 2.9rem;
+
 		height: 100%;
 		gap: 0.25rem;
 		padding-bottom: 1rem;
-		background: hsl(var(--hsl-white));
-		border: 1px solid hsl(var(--hsl-blue) / 0.25);
+		/* background: hsl(var(--hsl-white)); */
 		border-radius: 0.5rem;
-		pointer-events: none;
 		overflow: hidden;
+		pointer-events: none;
 		transition: all 0.3s ease-in-out;
+		position: relative;
+		background: hsl(var(--hsl-cyan) / 0.08);
+	}
+	.card:hover {
+		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
+		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
+		& svg {
+			
+			& circle {
+				stroke: hsl(var(--hsl-cyan)) !important;
+			}
+		}
+	}
+	.card-subheading {
+		grid-area: subHeader;
+		padding-inline: 1rem;
+		& p {
+			font-size: var(--sm);
+		}
+		& a {
+			font-size: var(--sm);
+			color: hsl(var(--hsl-gray) / 0.8);
+			text-decoration: none;
+		}
+	}
+
+	.card-header {
+		grid-area: header;
+		padding-inline: 1rem;
+		& h3 {
+			font-size: var(--h6);
+			line-height: 1.1;
+			color: hsl(var(--hsl-gray) / 0.45);
+			font-family: var(--ff-fkg-bold);
+		}
 	}
 	.card-img {
 		grid-area: image;
 		object-fit: cover;
-		border-radius: 0.25rem 0.25rem 0 0;
+		border-radius: 0.5rem 0.5rem 0 0;
 		overflow: hidden;
 		& img {
 			object-fit: cover;
@@ -158,31 +196,6 @@
 			height: 100%;
 		}
 	}
-	.card-header {
-		grid-area: header;
-		padding-inline: 1rem;
-		& h3 {
-			font-size: var(--h6);
-			color: hsl(var(--hsl-gray));
-			line-height: 1.1;
-		}
-		& p {
-			margin: 0;
-		}
-	}
-	.card-subheading {
-		grid-area: subHeader;
-		padding-inline: 1rem;
-		& p {
-			margin-top: 0;
-			font-size: var(--sm);
-		}
-		& a {
-			font-size: var(--sm);
-			text-decoration: none;
-		}
-	}
-
 	.card-body {
 		grid-area: body;
 		padding-inline: 1rem;
@@ -190,7 +203,7 @@
 		& p {
 			margin: 0;
 			font-size: 1rem;
-			line-height: 1.4;
+			line-height: 1.2;
 			color: hsl(var(--hsl-gray) / 0.75);
 		}
 	}
@@ -200,18 +213,27 @@
 		justify-content: flex-end;
 		padding-inline: 1rem;
 	}
+	.bg {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		/* z-index: -1; */
+		width: 100%;
+		/* & svg {
+			width: 100%;
+		} */
+	}
 	.btn-link {
 		pointer-events: all;
-		& svg:hover {
+		/* & svg:hover {
 			& circle {
 				stroke: var(--clr-brand) !important;
 			}
 			& path {
 				fill: var(--clr-brand) !important;
 			}
-		}
+		} */
 	}
-
 	/* Media Query */
 
 	@media screen and (max-width: 1024px) {

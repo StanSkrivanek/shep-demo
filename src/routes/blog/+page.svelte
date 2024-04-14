@@ -1,5 +1,6 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import Waves from '$lib/components/icons/waves.svelte';
 	import { trimText } from '$lib/utils/globalhelpers.js';
 	// import { reset } from '__sveltekit/paths';
 	// import { get } from 'svelte/store';
@@ -134,8 +135,11 @@
 						</div>
 						<div class="card-footer">
 							<a class="btn-link" href={`/blog/${post.category_slug}/${post.slug}`}>
-								<LinkCircle width={42} height={42} />
+								<LinkCircle width={48} height={48} />
 							</a>
+						</div>
+						<div class="bg">
+							<Waves currentColor="hsl(var(--hsl-blue) / 0.35)" />
 						</div>
 					</div>
 				</div>
@@ -242,8 +246,8 @@
 			line-height: 1;
 			pointer-events: all;
 			color: hsl(var(--hsl-gray));
-			border: none;
-			border: 1px solid hsl(var(--hsl-blue) / 0.25);
+			/* border: none; */
+			border: 1px solid hsl(var(--hsl-gray) / 0.25);
 			padding: 0.25rem 0.5rem;
 			border-radius: 0.25rem;
 			background: hsl(var(--hsl-white));
@@ -257,7 +261,9 @@
 			}
 		}
 	}
+
 	.card {
+		position: relative;
 		display: grid;
 		grid-template-areas:
 			'image'
@@ -270,19 +276,29 @@
 			[subHeader] 1.6rem
 			[header] 3.6rem
 			[body] auto
-			[footer] 2.6rem;
+			[footer] 2.9rem;
 
 		height: 100%;
 		gap: 0.25rem;
 		padding-bottom: 1rem;
-		background: hsl(var(--hsl-white));
-		border: 1px solid hsl(var(--hsl-blue) / 0.25);
 		border-radius: 0.5rem;
 		overflow: hidden;
 		pointer-events: none;
+		background: hsl(var(--hsl-blue) / 0.15);
 		transition: all 0.3s ease-in-out;
 	}
-
+.card:hover {
+		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
+		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
+		& svg {
+			& circle {
+				stroke: hsl(var(--hsl-blue)) !important;
+			}
+			/* & path {
+				fill: hsl(var(--hsl-blue)) ;
+			} */
+		}
+	}
 	.card-subheading {
 		grid-area: subHeader;
 		padding-inline: 1rem;
@@ -339,15 +355,17 @@
 	}
 	.btn-link {
 		pointer-events: all;
-		& svg:hover {
-			& circle {
-				stroke: var(--clr-brand) !important;
-			}
-			& path {
-				fill: var(--clr-brand) !important;
-			}
-		}
 	}
+		.bg {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			z-index: -1;
+			width: 100%;
+			/* & svg {
+				width: 100%;
+			} */
+		}
 	.pagination__w {
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;

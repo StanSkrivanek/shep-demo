@@ -1,5 +1,6 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import Waves from '$lib/components/icons/waves.svelte';
 	export let data;
 </script>
 
@@ -44,6 +45,9 @@
 						<LinkCircle width={48} height={48} />
 					</a>
 				</div>
+				<div class="bg">
+					<Waves currentColor="hsl(var(--hsl-brand) / 0.35)" />
+				</div>
 			</div>
 		{/each}
 	</main>
@@ -77,7 +81,6 @@
 		grid-column: 4 / -1;
 		grid-area: hero-img;
 		border-radius: 1rem;
-		background: var(--gray-1);
 		max-height: max-content;
 
 		& img {
@@ -97,6 +100,7 @@
 		margin-bottom: 5rem;
 	}
 	.card {
+		position: relative;
 		display: grid;
 		grid-template-areas:
 			'subHeader '
@@ -111,30 +115,25 @@
 
 		border-radius: 0.5rem;
 		padding: 1rem;
-		background: hsl(var(--hsl-brand) / 0.1);
+		background: hsl(var(--hsl-brand) / 0.08);
 		transition: all 0.2s ease-in-out;
 		pointer-events: none;
-
+		overflow: hidden;
 	}
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
-		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.15);
-		background: hsl(var(--hsl-gray) / .75);
-		& .card-header h3, p {
-			color: hsl(var(--hsl-white)) !important;
-		}
-		/* border: 1px solid hsl(var(--hsl-brand) / 0.25); */
+		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
 		& svg {
 			& circle {
-				stroke: hsl(var(--hsl-white) / 0.75) !important;
+				stroke: hsl(var(--hsl-brand)/.5) !important;
 			}
 			& path {
-				fill: hsl(var(--hsl-white) / 0.75) !important;
+				fill: hsl(var(--hsl-brand));
 			}
 		}
 	}
 
-.card-header {
+	.card-header {
 		grid-area: header;
 		& h3 {
 			font-size: 1.3rem;
@@ -161,6 +160,7 @@
 		& p {
 			margin: 0;
 			font-size: 1rem;
+			line-height: 1.2;
 			color: hsl(var(--hsl-gray) / 0.9);
 		}
 	}
@@ -168,7 +168,8 @@
 		grid-area: footer;
 		display: flex;
 		justify-content: flex-end;
-		align-items: center;
+		align-items: flex-end;
+		/* background-image: url('/images/svg/waves-01.svg'); */
 		& p {
 			align-self: flex-end;
 			margin: 0;
@@ -179,6 +180,16 @@
 		& .btn-link {
 			pointer-events: all;
 		}
+	}
+	.bg {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: -1;
+		width: 100%;
+		/* & svg {
+			width: 100%;
+		} */
 	}
 
 	@media (max-width: 996px) {

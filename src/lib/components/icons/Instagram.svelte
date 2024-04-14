@@ -1,32 +1,11 @@
 <script>
-	export let width = 48,
-		height = 48,
+	export let width = 40,
+		height = 40,
 		currentColor = '#212931';
 </script>
 
-<!-- <svg {width} {height} viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"> -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" {width} {height}
-	><path
-		fill="none"
-		stroke={currentColor}
-		stroke-linecap="round"
-		stroke-linejoin="round"
-		stroke-miterlimit="10"
-		stroke-width="3"
-		d="M41.5,21.1v-4.6c0-5.5-4.5-10-10-10h-15c-5.5,0-10,4.5-10,10v3"
-	/><path
-		fill="none"
-		stroke={currentColor}
-		stroke-linecap="round"
-		stroke-linejoin="round"
-		stroke-miterlimit="10"
-		stroke-width="3"
-		d="M6.5,25.6v5.9c0,5.5,4.5,10,10,10h15c5.5,0,10-4.5,10-10v-4.6"
-	/><path
-		fill="none"
-		stroke={currentColor}
-		stroke-miterlimit="10"
-		stroke-width="3"
-		d="M24,15.5c-4.7,0-8.5,3.8-8.5,8.5s3.8,8.5,8.5,8.5s8.5-3.8,8.5-8.5S28.7,15.5,24,15.5z"
-	/><path d="M34,12c-1.1,0-2,0.9-2,2s0.9,2,2,2s2-0.9,2-2S35.1,12,34,12z" /></svg
->
+<svg {width} {height}  viewBox="0 0 600 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"  style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-100,-100)">
+        <path d="M400,262.5C324.57,262.5 262.5,324.57 262.5,400C262.5,475.43 324.57,537.5 400,537.5C475.43,537.5 537.5,475.43 537.5,400C537.415,324.602 475.398,262.585 400,262.5ZM400,512.5C338.284,512.5 287.5,461.716 287.5,400C287.5,338.284 338.284,287.5 400,287.5C461.716,287.5 512.5,338.284 512.5,400C512.431,461.689 461.689,512.431 400,512.5ZM537.5,100L262.5,100C173.393,100.101 100.101,173.393 100,262.5L100,537.5C100.101,626.607 173.393,699.899 262.5,700L537.5,700C626.607,699.899 699.899,626.607 700,537.5L700,262.5C699.899,173.393 626.607,100.101 537.5,100ZM675,537.5C674.915,612.898 612.898,674.915 537.5,675L262.5,675C187.102,674.915 125.085,612.898 125,537.5L125,262.5C125.085,187.102 187.102,125.085 262.5,125L537.5,125C612.898,125.085 674.915,187.102 675,262.5L675,537.5ZM587.5,237.5C587.5,251.215 576.215,262.5 562.5,262.5C548.785,262.5 537.5,251.215 537.5,237.5C537.5,223.785 548.785,212.5 562.5,212.5C576.209,212.516 587.484,223.791 587.5,237.5Z" fill={currentColor}/>
+    </g>
+</svg>

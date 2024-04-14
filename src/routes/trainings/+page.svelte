@@ -1,5 +1,6 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import Waves from '$lib/components/icons/waves.svelte';
 	export let data;
 	const alUpcomingTrainings = data.allTrainings;
 </script>
@@ -46,10 +47,14 @@
 						<LinkCircle width={48} height={48} />
 					</a>
 				</div>
+				<div class="bg">
+					<Waves currentColor="hsl(var(--hsl-pink) / .35)" />
+				</div>
 			</div>
 		{/each}
 	</main>
 </div>
+
 <style>
 	.hero {
 		display: grid;
@@ -78,7 +83,7 @@
 		grid-column: 4 / -1;
 		grid-area: hero-img;
 		border-radius: 1rem;
-		background: var(--gray-1);
+		/* background: var(--gray-1); */
 		max-height: max-content;
 
 		& img {
@@ -98,6 +103,7 @@
 		margin-bottom: 5rem;
 	}
 	.card {
+		position: relative;
 		display: grid;
 		grid-template-areas:
 			'subHeader '
@@ -113,27 +119,21 @@
 		border-radius: 0.5rem;
 		padding: 1rem;
 		background: hsl(var(--hsl-purple) / 0.15);
-		transition: all 0.2s ease-in-out;
+		overflow: hidden;
 		pointer-events: none;
-		/* & svg {
-			pointer-events: all;
-		} */
+		transition: all 0.3s ease-in-out;
 	}
+
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
-		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.15);
-		background: hsl(var(--hsl-gray) / .75);
-		& .card-header h3, p {
-			color: hsl(var(--hsl-white)) !important;
-		}
-		/* border: 1px solid hsl(var(--hsl-brand) / 0.25); */
+		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
 		& svg {
 			& circle {
-				stroke: hsl(var(--hsl-white) / 0.75) !important;
+				stroke: hsl(var(--hsl-purple)/.5) !important;
 			}
-			& path {
-				fill: hsl(var(--hsl-white) / 0.75) !important;
-			}
+			/* & path {
+				fill: hsl(var(--hsl-purple)/.5) ;
+			} */
 		}
 	}
 
@@ -172,7 +172,7 @@
 		grid-area: footer;
 		display: flex;
 		justify-content: flex-end;
-		align-items: center;
+		align-items: flex-end;
 		& p {
 			align-self: flex-end;
 			margin: 0;
@@ -183,6 +183,16 @@
 		& .btn-link {
 			pointer-events: all;
 		}
+	}
+	.bg {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: -1;
+		width: 100%;
+		/* & svg {
+			width: 100%;
+		} */
 	}
 
 	@media (max-width: 996px) {

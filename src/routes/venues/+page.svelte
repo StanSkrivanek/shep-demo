@@ -1,5 +1,6 @@
 <script>
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import Waves from '$lib/components/icons/waves.svelte';
 	export let data;
 </script>
 
@@ -28,7 +29,7 @@
 			</div>
 		</div>
 	</div>
-	<h2>Facilities</h2>
+	<h2>Partners facilities</h2>
 	<div class="container">
 		{#each data.venues as venue}
 			<div class="card">
@@ -41,14 +42,19 @@
 						<h3>{venue.venue_name}</h3>
 						<!-- <p>{venue.excerpt}</p> -->
 					</div>
-					<a class="link" href="/venues/{venue.slug}">
-						<div class="link-desc__w">
-							<p class="small-title">See more</p>
-						</div>
-						<div class="link-icon">
-							<LinkCircle width={42} height={42} />
-						</div>
-					</a>
+					<div class="card-footer">
+						<a class="link" href="/venues/{venue.slug}">
+							<!-- <div class="link-desc__w">
+								<p class="small-title">See more</p>
+							</div> -->
+							<!-- <div class="link-icon"> -->
+							<LinkCircle width={48} height={48} />
+							<!-- </div> -->
+						</a>
+					</div>
+				</div>
+				<div class="bg">
+					<Waves currentColor="hsl(var(--hsl-green) / .35)" />
 				</div>
 			</div>
 		{/each}
@@ -63,6 +69,7 @@
 		grid-column: 1/-1;
 		margin-bottom: 5rem;
 	}
+
 	.hero-col-2__c {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -86,7 +93,6 @@
 	.hero-img {
 		grid-area: hero-img;
 		border-radius: 1rem;
-		background: var(--gray-100);
 		max-height: max-content;
 		& img {
 			display: block;
@@ -101,20 +107,29 @@
 	.container {
 		display: grid;
 		grid-column: 1/-1;
-		grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 		gap: 1rem;
 		margin-bottom: 5rem;
 	}
 	/* Card */
 	.card {
-		display: grid;
-		grid-template-areas: 'thumbnail body';
-		grid-template-columns: repeat(2, 1fr);
+		position: relative;
 		background: hsl(var(--hsl-white));
-		border: 1px solid hsl(var(--hsl-gray) / .15);
 		border-radius: 0.5rem;
 		pointer-events: none;
 		transition: all 0.3s ease-in-out;
+		overflow: hidden;
+	}
+
+	.card:hover {
+		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
+			box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
+		& svg {
+			& circle {
+				stroke: hsl(var(--hsl-green)) !important;
+			}
+
+		}
 	}
 
 	.thumbnail {
@@ -125,7 +140,6 @@
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
-			border-radius: 0.5rem 0 0 0.5rem;
 			aspect-ratio: 16/9;
 		}
 	}
@@ -145,6 +159,12 @@
 				font-size: var(--h5);
 			}
 		}
+		& .card-footer {
+			display: flex;
+			justify-content: flex-end;
+			align-items: flex-end;
+			z-index: 1;
+		}
 		& .link {
 			display: flex;
 			justify-content: space-between;
@@ -153,6 +173,7 @@
 			text-decoration: none;
 			color: var(--text-base);
 			pointer-events: auto;
+
 			& .link-desc__w {
 				width: 20ch;
 				color: var(--gray-400);
@@ -162,20 +183,27 @@
 					line-height: 1;
 				}
 			}
+	
 			& svg {
-				display: block;
-				transition: all 0.3s ease-in-out;
-				&:hover {
 					& circle {
-					stroke: var(--clr-brand) !important;
-				}
-				& path {
-					fill: var(--clr-brand) !important;
-				}
-				}
+						stroke: hsl(var(--hsl-gray));
+					}
+					/* & path {
+						fill: hsl(var(--hsl-gray)) ;
+					} */
 			}
 		}
 	}
+	 .bg {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			/* z-index: 1; */
+			width: 100%;
+			/* & svg {
+				width: 100%;
+			} */
+		}
 	/* 640px - sm - small devices (mobile)  */
 	@media (max-width: 640px) {
 		.hero-data {
@@ -206,7 +234,6 @@
 		}
 		.container {
 			grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-		
 		}
 		.thumbnail img {
 			border-radius: 1rem 1rem 0 0;

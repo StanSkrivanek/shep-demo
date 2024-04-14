@@ -2,6 +2,7 @@
 	// @ts-nocheck
 
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import Waves from '$lib/components/icons/waves.svelte';
 	export let data;
 	console.log('🚀 ~ data:', data);
 	const cities = data.allUpcomingEvents.map(
@@ -92,13 +93,13 @@
 	<main class="container">
 		{#if data.allUpcomingEvents.length === 0}
 			<div class="no-upcoming__w">
-				<p class="no-upcoming--message">
-					Currently there is not any upcoming course or training open for application
-				</p>
-				<p>
-					Please check back later or sing up to our newsletter to be notified when new courses will
-					open for application
-				</p>
+				<div class="message">
+					<p>Currently there is not any upcoming course or training open for application</p>
+					<p>
+						Please check back later or sing up to our newsletter to be notified when new courses
+						will open for application
+					</p>
+				</div>
 				<div>
 					<p>Sign up to newsletter</p>
 					<a href="/newsletter">
@@ -108,21 +109,23 @@
 			</div>
 		{/if}
 		{#if filteredList.length === 0}
+			<!-- <div class="no-upcoming__w"> -->
 			<div class="no-upcoming__w">
-				<p class="no-upcoming--message">There is not any upcoming {type} in {city}</p>
-				<div class="no-upcoming__w">
+				<div class="message">
+					<p>We are sorry but there is not any upcoming {type} in {city} at the moment</p>
 					<p>
 						Please check back later or sing up to our newsletter to be notified when new courses
 						will open for application.
 					</p>
 					<div class="no-upcoming--link__c">
-						<p>Sign up to newsletter</p>
+						<!-- <p>Sign up to newsletter</p> -->
 						<a href="/newsletter">
 							<LinkCircle width={48} height={48} />
 						</a>
 					</div>
 				</div>
 			</div>
+			<!-- </div> -->
 		{/if}
 		{#each filteredList as upcoming}
 			<div class="card" class:purple={upcoming.globalType === 'training'}>
@@ -143,10 +146,13 @@
 						</a>
 					{/if}
 					{#if upcoming.globalType === 'training'}
-						<a class="btn-link" href="/trainings/{upcoming.event.slug.current}">
+						<a class="btn-link training" href="/trainings/{upcoming.event.slug.current}">
 							<LinkCircle width={48} height={48} />
 						</a>
 					{/if}
+				</div>
+				<div class="bg">
+					<Waves currentColor="hsl(var(--hsl-pink) / 0.35)" />
 				</div>
 			</div>
 		{/each}
@@ -196,8 +202,6 @@
 		display: grid;
 		grid-column: 1/-1;
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		/* grid-template-rows: repeat(auto-fill, minmax(300px, 1fr)); */
-		/* min-height: 25vh; */
 		gap: 1rem;
 		margin-bottom: 5rem;
 	}
@@ -213,22 +217,42 @@
 	}
 
 	.no-upcoming__w {
+		/* position: relative; */
 		display: grid;
-		grid-column: 1/-1;
+		grid-column: 2/4;
 		justify-content: center;
 		align-items: center;
 		height: 100%;
-
+		text-align: center;
+		color: hsl(var(--hsl-white));
 		& p {
 			margin: 0;
+			text-align: center;
+			/* display: block; */
+			max-width: 100%;
 		}
 	}
 
-	.no-upcoming--message {
-		font-size: clamp(1.5rem, 4vw, 3rem);
-		color: var(--shep-red);
-		padding-inline: 2rem;
-		text-align: center;
+	.message {
+		position: relative;
+		background: hsl(var(--hsl-red));
+		padding: 2rem;
+		border-radius: 0.5rem;
+		margin-bottom: 1.6rem;
+
+		& p:first-child {
+			font-size: clamp(1.5rem, 4vw, 2rem);
+			line-height: 1.2;
+			margin-bottom: 1.6rem;
+		}
+		& svg {
+			& circle {
+				stroke: hsl(var(--hsl-white)) !important;
+			}
+			& path {
+				fill: hsl(var(--hsl-white)) !important;
+			}
+		}
 	}
 
 	.no-upcoming--link__c {
@@ -236,10 +260,11 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		gap: 1rem;
+		margin-top: 2rem;
 	}
 
 	.card {
+		position: relative;
 		display: grid;
 		grid-template-areas:
 			'subHeader '
@@ -256,27 +281,21 @@
 		border-radius: 0.5rem;
 		padding: 1rem;
 		background: hsl(var(--hsl-brand) / 0.1);
-		transition: all 0.4s ease-in-out;
+		transition: all 0.3s ease-in-out;
 		pointer-events: none;
-		/* & svg {
-			pointer-events: all;
-		} */
+		overflow: hidden;
 	}
+
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
-		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.15);
-		background: hsl(var(--hsl-gray) / 0.75);
-		& .card-header h3,
-		p {
-			color: hsl(var(--hsl-white)) !important;
+		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
+
+		& circle {
+			stroke: hsl(var(--hsl-brand)) !important;
 		}
-		/* border: 1px solid hsl(var(--hsl-brand) / 0.25); */
-		& svg {
+		& .training {
 			& circle {
-				stroke: hsl(var(--hsl-white) / 0.75) !important;
-			}
-			& path {
-				fill: hsl(var(--hsl-white) / 0.75) !important;
+				stroke: hsl(var(--hsl-purple)) !important;
 			}
 		}
 	}
@@ -290,6 +309,8 @@
 		& h3 {
 			font-size: 1.3rem;
 			color: hsl(var(--hsl-gray));
+			/* font-weight: 400; */
+			letter-spacing: 0.02rem;
 			line-height: 1.1;
 		}
 		& p {
@@ -319,7 +340,7 @@
 		grid-area: footer;
 		display: flex;
 		justify-content: flex-end;
-		align-items: center;
+		align-items: flex-end;
 		& p {
 			align-self: flex-end;
 			margin: 0;
@@ -332,6 +353,16 @@
 		}
 	}
 
+	.bg {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: -1;
+		width: 100%;
+		/* & svg {
+			width: 100%;
+		} */
+	}
 	select {
 		appearance: none;
 		/* safari */
@@ -374,12 +405,19 @@
 	.custom-select::after {
 		border-left: var(--size) solid transparent;
 		border-right: var(--size) solid transparent;
-		border-top: var(--size) solid hsl(var(--hsl-brand) / 0.75);
+		border-top: var(--size) solid hsl(var(--hsl-gray) / 0.75);
 		border-radius: 1rem;
 		top: 50%;
 		/* background-color: red; */
 	}
-@media (max-width: 996px) {
+	@media (max-width: 1280px) {
+		
+		.no-upcoming__w {
+			grid-column: 1/-1;
+		}
+	}
+	
+	@media (max-width: 996px) {
 		.hero-data {
 			flex-direction: column;
 			gap: 1rem;
@@ -396,9 +434,6 @@
 				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
 				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
 		}
-		/* .intro {
-			column-count: 1;
-		} */
 	}
 	@media (max-width: 500px) {
 		.filter__w {

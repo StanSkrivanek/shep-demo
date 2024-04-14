@@ -185,11 +185,15 @@
 		</div>
 		<div class="header-item item-right">
 			<div class="social">
-				<Twitter width={32} height={32} />
-
-				<Facebook width={32} height={32} />
-
-				<Instagram width={32} height={32} />
+				<a href="https://twitter.com">
+					<Twitter width={32} height={32} />
+				</a>
+				<a href="https://facebook.com">
+					<Facebook width={32} height={32} />
+				</a>
+				<a href="https://instagram.com">
+					<Instagram width={32} height={32} />
+				</a>
 			</div>
 			<button class="mobile-menu-trigger" on:click={isMobile ? () => toggleMobileNav() : null}
 				><NavBurger width={32} height={32} /></button
@@ -247,10 +251,8 @@
 	.header .item-right a {
 		text-decoration: none;
 		font-size: 16px;
-		/* color: #555555; */
 		color: hsl(var(--hsl-gray));
 		display: inline-block;
-		margin-left: 10px;
 		transition: color 0.3s ease;
 	}
 	.header .menu > ul > li {
@@ -289,6 +291,13 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		gap: 0.25rem;
+		& svg:hover {
+			transition: 0.3s ease;
+			& path {
+				fill: hsl(var(--hsl-brand)) !important;
+			}
+		}
 	}
 	@media (min-width: 992px) {
 		.active {
@@ -324,10 +333,6 @@
 	}
 	/*responsive*/
 	@media (max-width: 991px) {
-		/* .header{
-			height: 100svh;
-			overflow-y: scroll;
-		} */
 		.header .item-center {
 			order: 3;
 			flex: 0 0 100%;

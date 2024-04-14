@@ -897,12 +897,62 @@ export const getPublicationsPDFs = async () => {
   'publications': *[_type == 'sanity.fileAsset' && references(^._id)]{
 			// "fileName": originalFilename,
 			"title": title,
-			"url":url
+			"url":url,
+			"tags": opt.media.tags[]->name.current
 		}
 	}`;
 
 	let publicationPDFs = await client.fetch(query);
+	// console.log('🚀 ~ getPublicationsPDFs ~ publicationPDFs', ...publicationPDFs);
 	return publicationPDFs;
+};
+export const getAnnualReports = async () => {
+	const client = sanityClient();
+	const query = `*[_type == 'media.tag' && name.current == "annual-report"] {
+  'publications': *[_type == 'sanity.fileAsset' && references(^._id)]{
+			// "fileName": originalFilename,
+			"title": title,
+			"url":url,
+			"tags": opt.media.tags[]->name.current,
+			"date": _createdAt
+		}
+	}`;
+
+	let getAnnualReports = await client.fetch(query);
+	// console.log('🚀 ~ getPublicationsPDFs ~ publicationPDFs', ...getAnnualReports);
+	return getAnnualReports;
+};
+export const getFinancialReports = async () => {
+	const client = sanityClient();
+	const query = `*[_type == 'media.tag' && name.current == "financial-report"] {
+  'publications': *[_type == 'sanity.fileAsset' && references(^._id)]{
+			// "fileName": originalFilename,
+			"title": title,
+			"url":url,
+			"tags": opt.media.tags[]->name.current,
+			"date": _createdAt
+		}
+	}`;
+
+	let getFinancialReports = await client.fetch(query);
+	// console.log('🚀 ~ getPublicationsPDFs ~ publicationPDFs', ...getFinancialReports);
+	return getFinancialReports;
+};
+export const getIndependentReports = async () => {
+	const client = sanityClient();
+	const query = `*[_type == 'media.tag' && name.current == "independent-report"] {
+  'publications': *[_type == 'sanity.fileAsset' && references(^._id)]{
+			// "fileName": originalFilename,
+			"title": title,
+			"url":url,
+			"tags": opt.media.tags[]->name.current,
+			"date": _createdAt
+		}
+	}`;
+
+	let getIndependentReports = await client.fetch(query);
+	// console.log('🚀 ~ getPublicationsPDFs ~ publicationPDFs', ...getIndependentReports);
+	return getIndependentReports;
 };
 
 // get all jobs

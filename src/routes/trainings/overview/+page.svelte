@@ -2,6 +2,7 @@
 	// @ts-nocheck
 
 	import Toc from '$lib/components/icons/Toc.svelte';
+	import Waves from '$lib/components/icons/waves.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
 	import clickOutside from '$lib/utils/clickoutside.js';
 	import { PortableText } from '@portabletext/svelte';
@@ -87,6 +88,9 @@
 			</div>
 			<div class="hero-img">
 				<img src={post.main_img} alt={post.title} />
+				<!-- <div class="bg">
+					<Waves currentColor="hsl(var(--hsl-purple) / .35)" />
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -166,6 +170,16 @@
 		grid-area: main;
 		padding-inline: 1rem;
 	}
+	/* .bg {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: -1;
+		width: 100%;
+		& svg {
+			width: 100%;
+		}
+	} */
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -181,7 +195,7 @@
 	}
 	.hero-data {
 		position: relative;
-		display: grid;
+		/* display: grid; */
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;
 		grid-row: 1/-1;
@@ -190,7 +204,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		padding: 2rem;
-		border-radius: .5rem 0 0 .5rem;
+		border-radius: 0.5rem 0 0 0.5rem;
 		&::before {
 			content: '';
 			position: absolute;
@@ -200,11 +214,11 @@
 			height: 100%;
 			background: linear-gradient(
 				90deg,
-				hsl(276, 86%, 23%,.9) 0%,
-				hsl(276, 86%, 23%, .6) 65%,
-				hsl(276, 86%, 23%, 0) 100%
+				hsla(289, 89%, 29%, 0.791) 0%,
+				hsla(292, 86%, 23%, 0.446) 65%,
+				hsla(310, 86%, 23%, 0.07) 100%
 			);
-			border-radius: .5rem;
+			border-radius: 0.5rem;
 			z-index: -1;
 		}
 		& h1 {

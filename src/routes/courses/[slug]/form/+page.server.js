@@ -26,6 +26,7 @@ export const actions = {
 		const applicant = {
 			...formData
 		};
+		console.log("🚀 ~ sendToGoogle: ~ applicant:", applicant)
 	
 
 		// const sid = applicant.sheetID;

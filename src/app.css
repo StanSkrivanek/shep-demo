@@ -48,7 +48,7 @@
 
 	/* Colors */
 	--clr-transparent: transparent;
-	--clr-main-bg: hsl(48, 56%, 96%);
+	--clr-main-bg: hsl(45, 60%, 96%);
 
 	--hsl-brand: 13 100% 56%;
 	--hsl-off-white: 33 77% 96%;
@@ -94,7 +94,7 @@ html {
 	padding: 0;
 	font-size: clamp(1rem, 0.5vw + 0.5rem, 1.125rem);
 	letter-spacing: 0.03rem;
-	font-size: var(--base-size);
+	/* font-size: var(--base-size); */
 	line-height: var(--lineHeight);
 	color: hsl(var(--hsl-gray));
 	background: var(--clr-main-bg);

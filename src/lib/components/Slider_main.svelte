@@ -113,7 +113,6 @@
 				justify-content: space-between;
 				padding: 2rem;
 				/* background: var(--gray-1); */
-	
 				height: 100%;
 				border-block: 1px solid hsl(var(--hsl-gray) / 0.15);
 				& .slide__content {
@@ -146,14 +145,14 @@
 						transition: 0.3s ease;
 					}
 					& svg:hover {
-						transition: 0.3s ease;
+						/* transition: 0.3s ease; */
 						& circle {
 							stroke: hsl(var(--hsl-brand)) !important;
 						}
 
-						& path {
+						/* & path {
 							fill: hsl(var(--hsl-brand)) !important;
-						}
+						} */
 					}
 				}
 			}

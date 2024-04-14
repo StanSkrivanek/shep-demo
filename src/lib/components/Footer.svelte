@@ -14,13 +14,13 @@
 		<div class="logo__w">
 			<MainLogo />
 			<div class="social">
-				<a href="#">
+				<a href="#" aria-label="Instagram" rel="nofollow noopener noreferrer">
 					<Instagram currentColor="#3d4c5c" />
 				</a>
-				<a href="#">
+				<a href="#" aria-label="Facebook" rel="nofollow noopener noreferrer">
 					<Facebook currentColor="#3d4c5c" />
 				</a>
-				<a href="#">
+				<a href="#" aria-label="Twitter" rel="nofollow noopener noreferrer">
 					<Twitter currentColor="#3d4c5c" />
 				</a>
 			</div>
@@ -40,7 +40,15 @@
 			<p>Mid-West - (081) 356 6698</p>
 			<p>Kerry - (083) 155 7887</p>
 		</div>
-
+		<!-- <div class="group">
+			<h5>Accreditation</h5>
+			<div class="img__w">
+				<img
+					src="https://cdn.sanity.io/images/gkez65br/production/fc6eb5bb90867b44c5bc99c430f66ec856077b04-450x250.jpg"
+					alt="hse logo"
+				/>
+			</div>
+		</div> -->
 		<!-- <p>info@socialhealth.ie</p> -->
 	</div>
 	<div class="footer__section">
@@ -53,26 +61,26 @@
 			<div>
 				<a class="footer__link" href="/team">Our Team</a>
 			</div>
-			<!-- <div>
+			<div>
 				<a class="footer__link" href="/privacy">Privacy</a>
-			</div> -->
-			<!-- <div>
+			</div>
+			<div>
 				<a class="footer__link" href="/cookies">Cookies</a>
-			</div> -->
-			<!-- <div>
+			</div>
+			<div>
 				<a class="footer__link" href="/sitemap">Sitemap</a>
-			</div> -->
+			</div>
 			<div>
 				<a class="footer__link" href="/contact">Contact</a>
 			</div>
 		</div>
 		<div class="group">
-			<h5>Accreditation</h5>
-			<div class="img__w">
-				<img
-					src="https://cdn.sanity.io/images/gkez65br/production/fc6eb5bb90867b44c5bc99c430f66ec856077b04-450x250.jpg"
-					alt="hse logo"
-				/>
+			<h5>Other info</h5>
+			<div>
+				<a class="footer__link" href="/reports">Reports & Publications</a>
+			</div>
+			<div>
+				<a class="footer__link" href="/jobs">Job opportunities</a>
 			</div>
 		</div>
 		<!-- <div class="group">
@@ -86,19 +94,19 @@
 	</div>
 	<div class="footer__section">
 		<div class="group">
-			<h5>Other info</h5>
+			<div class="group">
+				<h5>SHEP Nuacht</h5>
+				<div>
+					<a class="footer__link" href="/archive">Archive</a>
+				</div>
+			</div>
+			<!-- <h5>Other info</h5>
 			<div>
-				<a class="footer__link" href="/reports">Publications</a>
+				<a class="footer__link" href="/reports">Reports & Publications</a>
 			</div>
 			<div>
 				<a class="footer__link" href="/jobs">Job opportunities</a>
-			</div>
-		</div>
-		<div class="group">
-			<h5>SHEP Nuacht</h5>
-			<div>
-				<a class="footer__link" href="/archive">Archive</a>
-			</div>
+			</div> -->
 		</div>
 		<div class="group">
 			<form action="">
@@ -178,13 +186,23 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		margin-bottom: 1rem;
+		/* margin-bottom: 1rem; */
 		height: 100%;
 		& .social {
 			display: flex;
 			justify-content: center;
-			width: 100%;
+			align-items: center;
+			gap:0.5rem;
 			margin-top: 2rem;
+			& svg:hover {
+				transition: 0.3s ease;
+				& path {
+					fill: hsl(var(--hsl-brand)) !important;
+				}
+
+				/* & path {
+				} */
+			}
 		}
 	}
 
