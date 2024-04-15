@@ -4,6 +4,7 @@
 	import Book from '$lib/components/icons/Book.svelte';
 	import Waves from '$lib/components/icons/waves.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import LeavesCorner from '$lib/components/icons/LeavesCorner.svelte';
 	export let data;
 
 	const { allNuacht } = data.props;
@@ -66,7 +67,7 @@
 								<div class="pdf__date">
 									<span>{pdf.title.split('-')[2]} {pdf.title.split('-')[3]}</span>
 									<span
-										><DotsCorner
+										><LeavesCorner
 											width={24}
 											height={24}
 											currentColor="hsl(var(--hsl-blue) / .75)"
@@ -85,7 +86,7 @@
 						</div>
 						<div class="card-pdf__link">
 							<div class="pdf__link">
-								<a href={pdf.url} target="_blank"><LinkCircle width={40} height={40} /></a>
+								<a href={pdf.url} target="_blank"><LinkCircle width={48} height={48} /></a>
 							</div>
 						</div>
 						<div class="bg">
@@ -176,7 +177,10 @@
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 6px 20px -3px hsl(var(--hsl-gray) / 0.25);
 		pointer-events: none;
-		/* border-color: hsl(var(--hsl-brand) ) !important; */
+		& circle {
+			/* transition: stroke 1s ease-in-out; */
+			stroke: hsl(var(--hsl-blue)) !important;
+		}
 	}
 
 	.card-pdf__data {

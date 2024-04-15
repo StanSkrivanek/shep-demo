@@ -102,7 +102,7 @@
 			<p class="small-title">Our Website</p>
 			<p class="limited-char">To get more info about our activities visit our website</p>
 			<a href="https://{website}" target="_blank">
-				<div class="link-icon">
+				<div class="icon link">
 					<LinkCircle width={48} height={48} />
 				</div>
 			</a>
@@ -170,7 +170,7 @@
 										<p>{formatTime12(item.in_person.start_date)}</p>
 									</div>
 								</div>
-								<div class="link-icon" class:rotate={show == i}>
+								<div class="icon" class:rotate={show == i}>
 									<ArrowOpen width={48} height={48} />
 								</div>
 							</div>
@@ -433,7 +433,7 @@
 		width: 16ch;
 	}
 
-	.link-icon {
+	.icon {
 		display: flex;
 		justify-content: right;
 		align-items: center;
@@ -577,7 +577,7 @@
 			justify-content: right;
 			align-items: center;
 		}
-		& .link-icon {
+		& .icon {
 			display: flex;
 			justify-content: right;
 			align-items: center;
@@ -598,6 +598,13 @@
 			transform: rotate(180deg);
 			transition: all 0.3s ease-in-out;
 		}
+	}
+	.icon.link:hover {
+		transition: 0.3s ease;
+		& circle {
+			stroke: hsl(var(--hsl-brand)) !important;
+		}
+		
 	}
 
 	.accordion-body {

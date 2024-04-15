@@ -214,19 +214,19 @@
 			color: hsl(var(--hsl-white));
 			font-size: 1.1rem;
 		}
-		& .article_cat {
+	& .article_cat {
 			padding: 0.8rem 1.6rem;
 			border-radius: 100px;
 			text-decoration: none;
 			line-height: 1;
-			/* border: 1px solid var(--gray-2); */
+			border: 1px solid hsl(var(--hsl-white) / 0.25);
 			text-transform: uppercase;
 			letter-spacing: 0.07rem;
-			color: var(--gray-1);
+			color: hsl(var(--hsl-white));
 			font-size: 0.9rem;
 			font-weight: 500;
 			align-self: flex-start;
-			/* background: hsla(0, 0%, 100%, 0.4); */
+			background: hsl(var(--hsl-gray) / 0.15);
 		}
 	}
 	.hero-img {

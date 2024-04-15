@@ -169,20 +169,21 @@
 			color: hsl(var(--hsl-white));
 			font-size: 1.1rem;
 		}
-		& .article_cat {
+& .article_cat {
 			padding: 0.8rem 1.6rem;
 			border-radius: 100px;
 			text-decoration: none;
 			line-height: 1;
-			/* border: 1px solid var(--gray-2); */
+			border: 1px solid hsl(var(--hsl-white) / 0.25);
 			text-transform: uppercase;
 			letter-spacing: 0.07rem;
 			color: hsl(var(--hsl-white));
 			font-size: 0.9rem;
 			font-weight: 500;
 			align-self: flex-start;
-			background: hsl(var(--hsl-gray) / 0.75);
+			background: hsl(var(--hsl-gray) / 0.15);
 		}
+		
 	}
 	.hero-img {
 		grid-area: hero-img;
@@ -248,7 +249,6 @@
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
 		& circle {
-			/* transition: stroke 1s ease-in-out; */
 			stroke: hsl(var(--hsl-blue)) !important;
 		}
 	}

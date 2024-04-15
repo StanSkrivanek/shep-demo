@@ -35,7 +35,7 @@
 					{#if member.phone}
 						<a class="link" href="tel:{member.phone}" target="_self">
 							<div class="link-icon">
-								<Phone width={24} height={24} />
+								<Phone width={32} height={32} />
 							</div>
 						</a>
 					{/if}
@@ -43,7 +43,7 @@
 					{#if member.email}
 						<a class="link" href="mailto:{member.email}">
 							<div class="link-icon">
-								<Mail width={24} height={24} />
+								<Mail width={32} height={32} />
 							</div>
 						</a>
 					{/if}
@@ -51,7 +51,7 @@
 					{#if member.linkedin}
 						<a class="link" href={member.linkedin} target="_blank">
 							<div class="link-icon">
-								<LinkedIn width={24} height={24} />
+								<LinkedIn width={32} height={32} />
 							</div>
 						</a>
 					{/if}
@@ -59,7 +59,7 @@
 					{#if member.facebook}
 						<a class="link" href={member.facebook} target="_blank">
 							<div class="link-icon">
-								<Facebook width={24} height={24} />
+								<Facebook width={32} height={32} />
 							</div>
 						</a>
 					{/if}
@@ -67,7 +67,7 @@
 					{#if member.instagram}
 						<a class="link" href={member.instagram} target="_blank">
 							<div class="link-icon">
-								<Instagram width={24} height={24} />
+								<Instagram width={32} height={32} />
 							</div>
 						</a>
 					{/if}
@@ -75,7 +75,7 @@
 					{#if member.twitter}
 						<a class="link" href={member.twitter} target="_blank">
 							<div class="link-icon">
-								<Twitter width={24} height={24} />
+								<Twitter width={32} height={32} />
 							</div>
 						</a>
 					{/if}
@@ -103,10 +103,10 @@
 		grid-template-areas: 'thumbnail' 'header' 'intro' 'contact';
 		grid-template-rows:
 			[thumbnail] 16rem
-			[header] 4rem
+			[header] 5rem
 			[intro] auto
 			[contact] 4rem;
-		border: 1px solid var(--gray-100);
+		border: 1px solid hsl(var(--hsl-gray) / 0.15);
 		transition: all 0.3s ease-in-out;
 		border-radius: 1rem;
 
@@ -134,13 +134,12 @@
 			& h2 {
 				font-size: var(--h4);
 				font-weight: 500;
-				/* color: var(--orange-700); */
 				margin-bottom: 0;
 			}
 			& p {
 				font-size: var(--sm);
-				margin: 0 0 0.25rem 0;
-				color: var(--gray-400);
+			margin:0;
+				color: hsl(var(--hsl-brand) /.75);
 			}
 		}
 		& .data-intro {
@@ -150,14 +149,14 @@
 				font-size: var(--sm);
 				text-align: left;
 				margin-bottom: 1rem;
-				color: var(--gray-600);
+				color: hsl(var(--hsl-gray) /.75);
 			}
 		}
 		& .contact {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			border-top: 1px solid var(--gray-100);
+			border-top: 1px solid hsl(var(--hsl-gray) / 0.15);
 
 			& .link-icon {
 				margin-top: 0.5rem;
@@ -165,11 +164,11 @@
 				& svg path {
 					width: 1.5rem;
 					height: 1.5rem;
-					stroke: var(--clr-brand);
+					stroke: hsl(var(--hsl-gray));
 				}
 
 				&:hover path {
-					stroke: var(--shep-green);
+					 stroke: hsl(var(--hsl-brand));;
 				}
 			}
 		}
