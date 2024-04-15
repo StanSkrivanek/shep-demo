@@ -3,6 +3,7 @@
 	import ArrowOpen from '$lib/components/icons/ArrowOpen.svelte';
 	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import Location from '$lib/components/icons/Location.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
 	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers.js';
@@ -96,7 +97,10 @@
 				<p>-</p>
 			{/if}
 			<p>{city}</p>
-			<p>{eircode}</p>
+			<!-- <a>{eircode}</a> -->
+			<a href="https://www.google.com/maps/place/{eircode}" target="_blank"
+				><span><Location width={24} height={24} /></span><span>View on Map</span></a
+			>
 		</div>
 		<div class="hero-sm-box-bottom">
 			<p class="small-title">Our Website</p>
@@ -326,7 +330,6 @@
 	</div>
 </div>
 
-
 <style>
 	/* Hero */
 	.hero {
@@ -372,7 +375,6 @@
 		border-radius: 1rem;
 		& p {
 			margin: 0;
-			font-family: var(--ff-fkg-bold);
 			font-size: var(--sm);
 		}
 		& .small-title {
@@ -382,14 +384,31 @@
 			font-family: var(--ff-fkg-bold);
 			font-size: var(--sm);
 			width: fit-content;
+			text-transform: uppercase;
 			&::after {
 				content: '';
 				position: absolute;
 				bottom: -4px;
 				left: 0;
 				width: 100%;
-				height: 2px;
-				background: black;
+				height: 1px;
+				background: hsl(var(--hsl-gray) / 0.25);
+			}
+		}
+		& a {
+			display: flex;
+			align-items: end;
+			gap: 0.5rem;
+			text-decoration: none;
+			line-height: 1;
+			&:last-child {
+				margin-top: 1.2rem;
+				font-size: var(--sm);
+				& svg {
+					& path {
+						stroke: hsl(var(--hsl-red));
+					}
+				}
 			}
 		}
 	}
@@ -402,9 +421,7 @@
 		justify-content: space-between;
 		padding: 1.4rem;
 		border-radius: 1rem;
-		color: var(--fc-light);
 		min-width: 160px;
-		background: color-mix(in oklab, hsl(var(--hsl-white)) 70%, white);
 		& p {
 			margin: 0;
 			font-size: var(--sm);
@@ -415,6 +432,7 @@
 			margin-bottom: 1.2rem;
 			font-family: var(--ff-fkg-bold);
 			font-size: var(--sm);
+			text-transform: uppercase;
 
 			width: fit-content;
 			&::after {
@@ -423,8 +441,8 @@
 				bottom: -4px;
 				left: 0;
 				width: 100%;
-				height: 2px;
-				background: black;
+				height: 1px;
+				background: hsl(var(--hsl-gray) / 0.25);
 			}
 		}
 	}
@@ -604,7 +622,6 @@
 		& circle {
 			stroke: hsl(var(--hsl-brand)) !important;
 		}
-		
 	}
 
 	.accordion-body {
