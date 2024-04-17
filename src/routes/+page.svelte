@@ -26,7 +26,7 @@
 
 	<div class="links-and-slider">
 		<div class="links">
-			<a href="./courses" class="decorative_link__c">
+			<a href="./courses/overview" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
 						<LeavesCorner width={24} height={24} currentColor="hsl(var(--hsl-red) / .75)" />
@@ -41,7 +41,7 @@
 				</div>
 			</a>
 
-			<a href="./trainings" class="decorative_link__c">
+			<a href="./trainings/overview" class="decorative_link__c">
 				<div class="link-header">
 					<div class="dots">
 						<LeavesCorner width={24} height={24} currentColor="hsl(var(--hsl-purple) / .75)" />
@@ -227,7 +227,6 @@
 
 		& .title {
 			grid-area: hero;
-			display: grid;
 			grid-template-columns: subgrid;
 			display: flex;
 			flex-direction: column;

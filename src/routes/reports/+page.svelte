@@ -196,9 +196,7 @@
 	.card-pdf__c {
 		padding: 0.75rem;
 		margin-bottom: 0.5rem;
-		/* width: 100%; */
 		border: 1px solid hsl(var(--hsl-purple) / 0.25);
-
 		border-radius: 0.25rem;
 		transition: all 0.3s ease-in-out;
 		pointer-events: none;
@@ -213,21 +211,19 @@
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 3px 3px 15px -3px hsl(var(--hsl-gray) / 0.25);
 		pointer-events: none;
-		/* border-color: hsl(var(--hsl-brand) / 0.25); */
 	}
 
 	.card-pdf__data {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		/* margin-bottom: 0.5rem; */
+	
 		color: hsl(var(--hsl-gray));
 	}
 
 	.pdf__title {
 		font-size: 1rem;
 		line-height: 1.2;
-		/* font-family: var(--ff-fkg-bold); */
 	}
 
 	.pdf__date {
@@ -251,9 +247,9 @@
 				stroke: hsl(var(--hsl-brand)) !important;
 			}
 
-			& path {
+			/* & path {
 				fill: hsl(var(--hsl-brand)) !important;
-			}
+			} */
 		}
 	}
 

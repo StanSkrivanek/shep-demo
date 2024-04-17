@@ -40,19 +40,9 @@
 			<p>Mid-West - (081) 356 6698</p>
 			<p>Kerry - (083) 155 7887</p>
 		</div>
-		<!-- <div class="group">
-			<h5>Accreditation</h5>
-			<div class="img__w">
-				<img
-					src="https://cdn.sanity.io/images/gkez65br/production/fc6eb5bb90867b44c5bc99c430f66ec856077b04-450x250.jpg"
-					alt="hse logo"
-				/>
-			</div>
-		</div> -->
-		<!-- <p>info@socialhealth.ie</p> -->
 	</div>
 	<div class="footer__section">
-		<!-- <h3 class="footer__title">Locations</h3> -->
+	
 		<div class="group">
 			<h5>Organization</h5>
 			<div>
@@ -61,15 +51,15 @@
 			<div>
 				<a class="footer__link" href="/team">Our Team</a>
 			</div>
-			<div>
+			<!-- <div>
 				<a class="footer__link" href="/privacy">Privacy</a>
-			</div>
-			<div>
+			</div> -->
+			<!-- <div>
 				<a class="footer__link" href="/cookies">Cookies</a>
-			</div>
-			<div>
+			</div> -->
+			<!-- <div>
 				<a class="footer__link" href="/sitemap">Sitemap</a>
-			</div>
+			</div> -->
 			<div>
 				<a class="footer__link" href="/contact">Contact</a>
 			</div>
@@ -83,14 +73,6 @@
 				<a class="footer__link" href="/jobs">Job opportunities</a>
 			</div>
 		</div>
-		<!-- <div class="group">
-			<h5>Locations</h5>
-			<p>SHEP Cork</p>
-			<p>SHEP Kerry</p>
-			<p>SHEP Mid West (Limerick, Clare, Tipperary)</p>
-			<p>SHEP Waterford</p>
-			<p>SHEP Dublin</p>
-		</div> -->
 	</div>
 	<div class="footer__section">
 		<div class="group">
@@ -100,13 +82,6 @@
 					<a class="footer__link" href="/archive">Archive</a>
 				</div>
 			</div>
-			<!-- <h5>Other info</h5>
-			<div>
-				<a class="footer__link" href="/reports">Reports & Publications</a>
-			</div>
-			<div>
-				<a class="footer__link" href="/jobs">Job opportunities</a>
-			</div> -->
 		</div>
 		<div class="group">
 			<form action="" id="newsletter-signup">
@@ -156,22 +131,6 @@
 		}
 	}
 
-	/* .footer__title {
-		font-size: 1.5rem;
-		font-weight: 600;
-		margin-bottom: 1rem;
-	} */
-
-	/* .footer__list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	} */
-
-	/* .footer__item {
-		margin-bottom: 0.5rem;
-	} */
-
 	.footer__link {
 		/* color: #fff; */
 		text-decoration: none;
@@ -199,20 +158,15 @@
 				& path {
 					fill: hsl(var(--hsl-brand)) !important;
 				}
-
-				/* & path {
-				} */
 			}
 		}
 	}
 
 	form {
 		width: 100%;
-		/* border: 1px solid red; */
 		& label {
 			margin-bottom: 0.5rem;
 			font-family: var(--ff-gilroy-smb);
-			/* font-size: var(--sm); */
 			color: hsl(var(--hsl-gray) / 0.8);
 			font-weight: 600;
 		}

@@ -1,10 +1,8 @@
 <script>
-	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
 	// import LogoSimple from './../../lib/components/icons/LogoSimple.svelte';
-	import Book from '$lib/components/icons/Book.svelte';
-	import Waves from '$lib/components/icons/waves.svelte';
-	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import LeavesCorner from '$lib/components/icons/LeavesCorner.svelte';
+	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	import Waves from '$lib/components/icons/waves.svelte';
 	export let data;
 
 	const { allNuacht } = data.props;
@@ -156,29 +154,23 @@
 	/* pdf card */
 	.card-pdf__c {
 		position: relative;
+		pointer-events: none;
 		display: flex;
 		flex-direction: column;
 		align-content: space-between;
 		justify-content: space-between;
-		/* width: 100%; */
 		padding: 1rem;
 		border-radius: 0.5rem;
-		transition: all 0.3s ease-in-out;
-		pointer-events: none;
 		background: hsl(var(--hsl-blue) / 0.15);
-		/* & svg {
-			& path {
-				stroke: hsl(var(--hsl-blue));
-			}
-		} */
-		background-image: url();
+		overflow: hidden;
+		transition: all 0.3s ease-in-out;
+
 	}
 	.card-pdf__c:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 6px 20px -3px hsl(var(--hsl-gray) / 0.25);
 		pointer-events: none;
 		& circle {
-			/* transition: stroke 1s ease-in-out; */
 			stroke: hsl(var(--hsl-blue)) !important;
 		}
 	}
@@ -200,11 +192,11 @@
 	}
 
 	.pdf__title {
-		margin-bottom: 1rem;
 		font-size: 1.4rem;
 		font-weight: 700;
-		color: hsl(var(--hsl-brand));
-		font-family: var(--ff-fkg-black);
+		/* color: hsl(var(--hsl-brand)); */
+		/* font-family: var(--ff-fkg-black); */
+		margin-bottom: 1rem;
 	}
 
 	.pdf__date {
@@ -212,52 +204,44 @@
 		justify-content: space-between;
 		font-size: 1rem;
 		font-weight: 100;
-		color: hsl(var(--hsl-blue) / 0.75);
+		/* color: hsl(var(--hsl-blue) / 0.75); */
 	}
 
 	.pdf-excerpt {
 		font-size: small;
 		color: hsl(var(--hsl-gray));
-		margin-bottom: 0.25rem;
 		text-wrap: pretty;
+		margin-bottom: 0.25rem;
 		& ul {
 			margin: 0;
 			padding-left: 1rem;
 			& li {
 				margin-bottom: 0.05rem;
-				/* padding:0.025rem */
 			}
-			/* padding: 0; */
 		}
 	}
 	.card-pdf__link {
 		display: flex;
 		justify-content: end;
-		/* align-items: flex-end; */
 	}
 
 	.pdf__number {
 		font-size: 3rem;
 		line-height: 1;
 		font-family: var(--ff-fkg-black);
-		color: hsl(var(--hsl-blue) / 0.75);
+		color: hsl(var(--hsl-blue));
 	}
 
 	.pdf__link {
 		font-size: 1rem;
 		font-weight: 400;
 		pointer-events: all;
-		/* border: 1px solid red; */
 	}
 	.bg {
 		position: absolute;
 		bottom: 0;
 		left: 0;
-		/* z-index: -1; */
 		width: 100%;
-		/* & svg {
-			width: 100%;
-		} */
 	}
 	@media (max-width: 996px) {
 		.hero-data {

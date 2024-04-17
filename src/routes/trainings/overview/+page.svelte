@@ -1,13 +1,14 @@
 <script>
 	// @ts-nocheck
-
+	import Arrow from '$lib/components/icons/Arrow.svelte';
+	import LeavesCorner from '$lib/components/icons/LeavesCorner.svelte';
 	import Toc from '$lib/components/icons/Toc.svelte';
-	import Waves from '$lib/components/icons/waves.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
 	import clickOutside from '$lib/utils/clickoutside.js';
 	import { PortableText } from '@portabletext/svelte';
 	import { afterUpdate, tick } from 'svelte';
-
+	// import Waves from '$lib/components/icons/waves.svelte';
+	
 	export let data;
 	$: post = data.pageContent;
 
@@ -161,6 +162,20 @@
 					<a href="/upcoming">Upcoming</a>
 				</div> -->
 			</article>
+			<a href="/trainings" class="decorative_link__c">
+				<div class="link-header">
+					<div class="dots">
+						<LeavesCorner width={24} height={24} currentColor="hsl(var(--hsl-purple) / .75)" />
+					</div>
+					<div class="link-body">
+						<h3>Our Intensive Trainings</h3>
+						<p>From fundation to specialised practitioner</p>
+					</div>
+				</div>
+				<div class="link">
+					<Arrow width={24} height={24} />
+				</div>
+			</a>
 		</main>
 	</div>
 </div>
@@ -269,6 +284,9 @@
 		grid-column: 1/-1;
 		margin-bottom: 5rem;
 		gap: 1rem;
+	}
+	article{
+		border-bottom: 1px solid hsl(var(--hsl-gray) / 0.75);
 	}
 	/* TOC */
 	.toc {

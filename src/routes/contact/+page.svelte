@@ -158,20 +158,20 @@
 
 	input {
 		width: 100%;
-		padding-block: 0.5rem;
+		/* padding-block: 0.5rem; */
 		font-size: 1.4rem;
 		&:focus {
 			outline: none;
-			box-shadow: 0 0 0 3px var(--blue-300);
+			box-shadow: 0 0 0 3px hsl(var(--hsl-blue) / 0.7);
 		}
 	}
 	input,
 	textarea {
 		border: none;
-		border-bottom: 2px solid var(--gray-2);
 		border-radius: 0.25rem;
 		margin-bottom: 1rem;
 		font-size: 1.4rem;
+		padding:0.5rem;
 	}
 
 	textarea {
@@ -179,8 +179,10 @@
 		overflow-wrap: break-word;
 		line-break: after-white-space;
 		width: 100%;
-		padding-bottom: 2rem;
+		/* padding-bottom: 2rem; */
 		outline: transparent;
+		border-radius: 0.25rem 0.25rem 0 0;
+		border-bottom: 2px solid hsl(var(--hsl-gray) / 0.35); 
 	}
 	textarea::placeholder {
 		font-size: --sm;
@@ -189,18 +191,18 @@
 		padding: 1rem 2rem;
 		border-radius: 0.25rem;
 		font-size: 1.4rem;
-		background: var(--blue-300);
-		color: var(--fc-white);
+		background: hsl(var(--hsl-blue) / 0.7);
+		color: hsl(var(--hsl-white));
 		border: none;
 		cursor: pointer;
 		transition: all 0.3s;
 		&:hover {
-			background: var(--blue-600);
+			background: hsl(var(--hsl-blue));
 		}
 	}
 	button:disabled {
 		cursor: not-allowed;
-		background: gray;
+		background: hsl(var(--hsl-gray) / 0.5);
 		border: transparent;
 		opacity: 0.5;
 	}
@@ -235,8 +237,8 @@
 		padding: 2rem;
 		border-radius: 0.25rem;
 		text-align: center;
-		background: var(--green-300);
-		color: var(--clr-gray-600);
+		background: hsl(var(--hsl-green) / 0.9);
+		color: hsl(var(--hsl-white));
 		& .text-black {
 			line-height: 1;
 			font-weight: 600;

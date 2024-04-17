@@ -60,6 +60,7 @@ export const actions = {
 					status: response.status,
 					statusText: response.statusText
 				});
+
 			}
 
 			// TODO: and open thank you toast
@@ -140,6 +141,7 @@ export const actions = {
 			};
 			await sendSelfEmail(senderEmailMessage);
 
+			// throw redirect(303, '/courses');
 			return { success: true };
 		} catch (error) {
 			// open toast with error

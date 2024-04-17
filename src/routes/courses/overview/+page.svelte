@@ -1,6 +1,7 @@
 <script>
 	// @ts-nocheck
-
+	import Arrow from '$lib/components/icons/Arrow.svelte';
+	import LeavesCorner from '$lib/components/icons/LeavesCorner.svelte';
 	import Toc from '$lib/components/icons/Toc.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte/index.js';
 	import clickOutside from '$lib/utils/clickoutside.js';
@@ -154,6 +155,20 @@
 					}}
 				/>
 			</article>
+			<a href="/courses" class="decorative_link__c">
+				<div class="link-header">
+					<div class="dots">
+						<LeavesCorner width={24} height={24} currentColor="hsl(var(--hsl-red) / .75)" />
+					</div>
+					<div class="link-body">
+						<h3>Our Short Courses</h3>
+						<p>In personal development and social awareness</p>
+					</div>
+				</div>
+				<div class="link">
+					<Arrow width={24} height={24} />
+				</div>
+			</a>
 		</main>
 	</div>
 </div>
@@ -187,7 +202,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		padding: 2rem;
-		border-radius: .5rem 0 0 .5rem;
+		border-radius: 0.5rem 0 0 0.5rem;
 		&::before {
 			content: '';
 			position: absolute;
@@ -201,7 +216,7 @@
 				hsla(20, 100%, 48%, 0.296) 65%,
 				hsla(17, 100%, 48%, 0.19) 100%
 			);
-			border-radius: .5rem;
+			border-radius: 0.5rem;
 			z-index: -1;
 		}
 		& h1 {
@@ -213,7 +228,7 @@
 			color: hsl(var(--hsl-white));
 			font-size: 1.1rem;
 		}
-& .article_cat {
+		& .article_cat {
 			padding: 0.8rem 1.6rem;
 			border-radius: 100px;
 			text-decoration: none;
@@ -231,7 +246,7 @@
 	.hero-img {
 		grid-area: hero-img;
 		position: relative;
-		border-radius: .5rem;
+		border-radius: 0.5rem;
 		background: var(--gray-100);
 		max-height: 480px;
 		& img {
@@ -240,7 +255,7 @@
 			height: 100%;
 			object-fit: cover;
 			object-position: top;
-			border-radius: .5rem;
+			border-radius: 0.5rem;
 		}
 	}
 
@@ -252,6 +267,9 @@
 		grid-column: 1/-1;
 		margin-bottom: 5rem;
 		gap: 1rem;
+	}
+	article {
+		border-bottom: 1px solid hsl(var(--hsl-gray) / 0.75);
 	}
 	/* TOC */
 	.toc {
@@ -354,7 +372,7 @@
 			padding: 1.4rem;
 			z-index: 1;
 			background: hsl(var(--hsl-white));
-			border-radius: .5rem 0 0 0;
+			border-radius: 0.5rem 0 0 0;
 			border: 1px solid hsl(var(--hsl-gray) / 0.25);
 			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 			transform: translateX(100%);
@@ -376,7 +394,7 @@
 	}
 	@media screen and (max-width: 640px) {
 		.hero-data::before {
-		background: linear-gradient(
+			background: linear-gradient(
 				90deg,
 				hsla(20, 100%, 48%, 0.9) 0%,
 				hsla(20, 100%, 48%, 0.7) 65%,

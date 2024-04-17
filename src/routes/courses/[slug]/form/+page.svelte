@@ -1,18 +1,41 @@
 <script>
 	// @ts-nocheck
+	import { goto } from '$app/navigation';
+	import { enhance } from '$app/forms';
 	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDateYear, monthYear } from '$lib/utils/datehelpers';
 	import { counties, source } from '$lib/utils/globalhelpers';
-
 	import { onMount } from 'svelte';
+	import { cubicIn, cubicOut } from 'svelte/easing';
+	import { fly } from 'svelte/transition';
 
 	// variable form contain the form `data` and `issues` from validation
 	export let form;
 
 	let courseData = $singleEventStore;
 
+	$: isSending = false;
+
+	$: console.log('🚀 ~ isSending:', isSending);
+	$: isToastOpen = false;
+
+	$: if (form?.success && !isToastOpen) {
+		isToastOpen = true;
+		setTimeout(() => {
+			if (isToastOpen) {
+				form.success = false;
+				isToastOpen = false;
+			}
+			goto('/courses');
+		}, 3000);
+	}
+
 	let canAttend = [];
+
 	// Toggle value for checkbox input
+	/**
+	 * @param {{ target: { checked: any; name: any; value: string; }; }} e
+	 */
 	function eventHandler(e) {
 		canAttend = e.target.checked
 			? [...canAttend, e.target.name]
@@ -36,20 +59,46 @@
 <div class="page__c">
 	<!-- display success thankyou if form success is true display it for 3s -->
 
-	{#if form?.success}
+	<!-- {#if form?.success}
 		<div class="msg__c">
 			<div class="msg-success">
-				<h1>Thank you for your application</h1>
+				<p>Thank you for your application</p>
 				<p>
 					We have received your application and will be in touch with you shortly. Please check your
 					email for confirmation.
 				</p>
 			</div>
 		</div>
+	{/if} -->
+	{#if isToastOpen}
+		<div
+			role="alert"
+			aria-live="assertive"
+			aria-atomic="true"
+			in:fly={{ duration: 800, easing: cubicOut, y: -100, x: 0 }}
+			out:fly={{ delay: 200, duration: 800, easing: cubicIn, y: -100, x: 0 }}
+			class="toast toast-success"
+		>
+			<p class="text-black">Thank you for your application</p>
+			<p>
+				We have received your application and will be in touch with you shortly. Please check your
+				email for confirmation.
+			</p>
+		</div>
 	{/if}
 
 	{#if courseData.event}
-		<form method="POST" action="?/sendToGoogle">
+		<form
+			method="POST"
+			action="?/sendToGoogle"
+			use:enhance={() => {
+				isSending = true;
+				setTimeout(() => {
+					isSending = false;
+					// goto('/');
+				}, 4000);
+			}}
+		>
 			<div class="form-header">
 				<p>Application form for {courseData.event.type}</p>
 				<h1>{courseData.event.title}</h1>
@@ -315,7 +364,9 @@
 				<input type="hidden" name="refName" value={courseData.refName} />
 			</div>
 			<div class="submit">
-				<button type="submit">Submit</button>
+				<button type="submit" disabled={isSending}>
+					{isSending ? 'Sending...' : 'Send'}
+				</button>
 			</div>
 		</form>
 	{/if}
@@ -433,6 +484,12 @@
 					font-weight: 600;
 				}
 			}
+			& button:disabled {
+				cursor: not-allowed;
+				background: hsl(var(--hsl-gray) / 0.5);
+				border: transparent;
+				opacity: 0.5;
+			}
 		}
 
 		& .agreement {
@@ -516,7 +573,7 @@
 		appearance: none;
 		outline: 0;
 		box-shadow: none;
-		border: 0 !important;
+		/* border: 0 !important; */
 		background-image: none;
 		background-color: transparent;
 		cursor: pointer;
@@ -533,15 +590,20 @@
 	select {
 		background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='var(--fc-main)'><polygon points='0,0 16,0 8,16'/></svg>");
 		background-repeat: no-repeat;
-		background-position: right 0.7em top 50%, 0 0;
-		background-size: 0.65em auto, 100%;
+		background-position:
+			right 0.7em top 50%,
+			0 0;
+		background-size:
+			0.65em auto,
+			100%;
 		/* background-color: white; */
 	}
+
 	.table__w {
 		overflow-x: auto;
 	}
 
-	.msg__c {
+	/* .msg__c {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -552,10 +614,10 @@
 		align-items: center;
 		background-color: hsl(var(--hsl-gray));
 		z-index: 1000;
-	}
+	} */
 
 	/* center msg-success on screen */
-	.msg-success {
+	/* .msg-success {
 		position: fixed;
 		top: 50%;
 		left: 50%;
@@ -572,12 +634,27 @@
 			max-width: 100vw;
 			margin: 0.25rem;
 		}
-	}
+	} */
 	.agreement label {
 		display: flex;
 		padding-bottom: 1rem;
 	}
-
+	.toast {
+		position: fixed;
+		top: 0;
+		right: 0;
+		margin: 3rem;
+		padding: 2rem;
+		border-radius: 0.25rem;
+		text-align: center;
+		background: hsl(var(--hsl-green) / 0.9);
+		color: hsl(var(--hsl-white));
+		& .text-black {
+			line-height: 1;
+			font-weight: 600;
+			margin-top: 0.5rem;
+		}
+	}
 	/* MediaQueries */
 
 	@media (max-width: 768px) {
