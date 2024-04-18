@@ -9,6 +9,7 @@
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers';
 	import { PortableText } from '@portabletext/svelte';
 	import { slide } from 'svelte/transition';
+	import LeavesCorner from '$lib/components/icons/LeavesCorner.svelte';
 	// @ts-ignore
 	export let data;
 
@@ -111,7 +112,7 @@
 					</div>
 					<div class="nlr-link">
 						<div class="dots">
-							<DotsCorner width={24} height={24} currentColor={'hsl(var(--hsl-white))'} />
+							<LeavesCorner width={24} height={24} currentColor={'hsl(var(--hsl-white))'} />
 						</div>
 						<div class="newsletter-link">
 							<p>Sign to newsletter</p>
@@ -431,7 +432,7 @@
 		display: flex;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: hsl(var(--hsl-red) / 0.8);
+		background: hsl(var(--hsl-red));
 		& p {
 			margin: 0;
 			margin-bottom: 0.5rem;
@@ -462,8 +463,8 @@
 			}
 		}
 		& .dots {
-			color: var(--clr-red);
-			/* transform: rotate(180deg); */
+			/* color: var(--clr-red); */
+			transform: rotate(180deg);
 		}
 	}
 

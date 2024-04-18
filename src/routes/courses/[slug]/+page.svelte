@@ -1,6 +1,7 @@
 <script>
 	import ArrowOpen from '$lib/components/icons/ArrowOpen.svelte';
 	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
+	import LeavesCorner from '$lib/components/icons/LeavesCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
 	import { singleEventStore } from '$lib/stores/forms';
@@ -113,7 +114,7 @@
 					</div>
 					<div class="nlr-link">
 						<div class="dots">
-							<DotsCorner width={24} height={24} currentColor="hsl(var(--hsl-white))" />
+							<LeavesCorner width={24} height={24} currentColor="hsl(var(--hsl-white))" />
 						</div>
 						<div class="newsletter-link">
 							<p>Sign to newsletter</p>
@@ -435,7 +436,7 @@
 		display: flex;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: hsl(var(--hsl-red) / 0.8);
+		background: hsl(var(--hsl-red));
 		& p {
 			margin: 0;
 			margin-bottom: 0.5rem;
@@ -465,7 +466,7 @@
 			}
 		}
 		& .dots {
-			color: hsl(var(--hsl-red));
+			transform: rotate(180deg);
 		}
 	}
 	.newsletter-link {

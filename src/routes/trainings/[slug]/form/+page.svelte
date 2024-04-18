@@ -1,15 +1,35 @@
 <script>
 	// @ts-nocheck
-
+	import { enhance } from '$app/forms';
+	import { goto } from '$app/navigation';
 	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDateYear, monthYear } from '$lib/utils/datehelpers';
 	import { counties, source } from '$lib/utils/globalhelpers';
 	import { onMount } from 'svelte';
+	import { cubicIn, cubicOut } from 'svelte/easing';
+	import { fly } from 'svelte/transition';
 
 	// variable form contain the form `data` and `issues` from validation
 	export let form;
 
 	let courseData = $singleEventStore;
+
+	$: isSending = false;
+
+	$: console.log('🚀 ~ isSending:', isSending);
+	$: isToastOpen = false;
+	$: console.log('🚀 ~ isToastOpen:', isToastOpen);
+
+	$: if (form?.success && !isToastOpen) {
+		isToastOpen = true;
+		setTimeout(() => {
+			if (isToastOpen) {
+				// form.success = false;
+				isToastOpen = false;
+			}
+			goto('/trainings');
+		}, 4500);
+	}
 
 	let canAttend = [];
 	// Toggle value for checkbox input
@@ -35,8 +55,33 @@
 </svelte:head>
 
 <div class="page__c">
+	{#if isToastOpen}
+		<div
+			role="alert"
+			aria-live="assertive"
+			aria-atomic="true"
+			in:fly={{ duration: 800, easing: cubicOut, y: -100, x: 0 }}
+			out:fly={{ delay: 200, duration: 800, easing: cubicIn, y: -100, x: 0 }}
+			class="toast toast-success"
+		>
+			<p class="text-black">Thank you for your application</p>
+			<p class="text-black">
+				We have received your application and will be in touch with you shortly.
+			</p>
+		</div>
+	{/if}
+
 	{#if courseData.event}
-		<form method="POST" action="?/sendToGoogle">
+		<form
+			method="POST"
+			action="?/sendToGoogle"
+			use:enhance={() => {
+				isSending = true;
+				setTimeout(() => {
+					isSending = false;
+				}, 5000);
+			}}
+		>
 			<div class="form-header">
 				<p>Application form for {courseData.event.type}</p>
 				<h1>{courseData.event.title}</h1>
@@ -297,7 +342,9 @@
 				<input type="hidden" name="refName" value={courseData.refName} />
 			</div>
 			<div class="submit">
-				<button type="submit">Submit</button>
+				<button type="submit" disabled={isSending}>
+					{isSending ? 'Sending...' : 'Send'}
+				</button>
 			</div>
 		</form>
 	{/if}
@@ -496,7 +543,7 @@
 		appearance: none;
 		outline: 0;
 		box-shadow: none;
-		border: 0 !important;
+		/* border: 0 !important; */
 		background-image: none;
 		background-color: transparent;
 		cursor: pointer;
@@ -513,15 +560,44 @@
 	select {
 		background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='var(--fc-main)'><polygon points='0,0 16,0 8,16'/></svg>");
 		background-repeat: no-repeat;
-		background-position: right 0.7em top 50%, 0 0;
-		background-size: 0.65em auto, 100%;
+		background-position:
+			right 0.7em top 50%,
+			0 0;
+		background-size:
+			0.65em auto,
+			100%;
 		/* background-color: white; */
 	}
 	.table__w {
 		overflow-x: auto;
 	}
+	.toast {
+		position: fixed;
+		top: 0;
+		right: 0;
+		margin: 3rem;
+		padding: 1rem 2rem;
+		border-radius: 0.25rem;
+		/* text-align: center; */
+		/* background: hsl(var(--hsl-green) / 0.5); */
+		background: hsl(var(--hsl-white));
+		border: 2px solid hsl(var(--hsl-green));
+		border-left-width: 3rem;
+		color: hsl(var(--hsl-gray));
+		z-index: 1000;
 
-	.msg__c {
+		& .text-black {
+			line-height: 1.4;
+			/* font-weight: 600; */
+			margin-top: 0.5rem;
+			max-width: 40ch;
+			&:first-child {
+				text-transform: uppercase;
+				font-weight: 600;
+			}
+		}
+	}
+	/* .msg__c {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -532,10 +608,10 @@
 		align-items: center;
 		background-color: hsl(var(--hsl-gray));
 		z-index: 1000;
-	}
+	} */
 
 	/* center msg-success on screen */
-	.msg-success {
+	/* .msg-success {
 		position: fixed;
 		top: 50%;
 		left: 50%;
@@ -552,11 +628,11 @@
 			max-width: 100vw;
 			margin: 0.25rem;
 		}
-	}
-	.agreement label {
+	} */
+	/* .agreement label {
 		display: flex;
 		padding-bottom: 1rem;
-	}
+	} */
 
 	/* MediaQueries */
 

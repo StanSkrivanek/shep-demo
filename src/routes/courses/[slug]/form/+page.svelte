@@ -23,11 +23,11 @@
 		isToastOpen = true;
 		setTimeout(() => {
 			if (isToastOpen) {
-				form.success = false;
+				// form.success = false;
 				isToastOpen = false;
 			}
 			goto('/courses');
-		}, 3000);
+		}, 4500);
 	}
 
 	let canAttend = [];
@@ -56,20 +56,9 @@
 	<title>Application form</title>
 	<meta name="description" content="Application form for upcoming courses" />
 </svelte:head>
+
 <div class="page__c">
 	<!-- display success thankyou if form success is true display it for 3s -->
-
-	<!-- {#if form?.success}
-		<div class="msg__c">
-			<div class="msg-success">
-				<p>Thank you for your application</p>
-				<p>
-					We have received your application and will be in touch with you shortly. Please check your
-					email for confirmation.
-				</p>
-			</div>
-		</div>
-	{/if} -->
 	{#if isToastOpen}
 		<div
 			role="alert"
@@ -80,10 +69,8 @@
 			class="toast toast-success"
 		>
 			<p class="text-black">Thank you for your application</p>
-			<p>
-				We have received your application and will be in touch with you shortly. Please check your
-				email for confirmation.
-			</p>
+			<p class="text-black">
+				We have received your application and will be in touch with you shortly.
 		</div>
 	{/if}
 
@@ -96,7 +83,7 @@
 				setTimeout(() => {
 					isSending = false;
 					// goto('/');
-				}, 4000);
+				}, 6000);
 			}}
 		>
 			<div class="form-header">
@@ -644,15 +631,25 @@
 		top: 0;
 		right: 0;
 		margin: 3rem;
-		padding: 2rem;
+		padding: 1rem 2rem;
 		border-radius: 0.25rem;
-		text-align: center;
-		background: hsl(var(--hsl-green) / 0.9);
-		color: hsl(var(--hsl-white));
+		/* text-align: center; */
+		/* background: hsl(var(--hsl-green) / 0.5); */
+		background: hsl(var(--hsl-white));
+		border: 2px solid hsl(var(--hsl-green));
+		border-left-width: 3rem;
+		color: hsl(var(--hsl-gray));
+		z-index: 1000;
+
 		& .text-black {
-			line-height: 1;
-			font-weight: 600;
+			line-height: 1.4;
+			/* font-weight: 600; */
 			margin-top: 0.5rem;
+			max-width: 40ch;;
+			&:first-child {
+				text-transform: uppercase;
+				font-weight: 600;
+			}
 		}
 	}
 	/* MediaQueries */
