@@ -7,20 +7,14 @@
 	import NavBurger from './icons/NavBurger.svelte';
 	import Twitter from './icons/Twitter.svelte';
 
-	// let isSubmenuOpen = false;
+
 	$: isMobileNavOpen = false;
 	$: isMobile = false;
-	// $: console.log("GLOBAL",isMobileNavOpen);
 	function toggleMobileNav() {
 		isMobileNavOpen = !isMobileNavOpen;
-		// isMobileNavOpen
-		// 	? (document.body.style.overflow = 'hidden')
-		// 	: (document.body.style.overflow = 'scroll');
 		if (isMobileNavOpen) {
 			document.body.style.overflow = 'hidden';
-			console.log('FUNC', isMobileNavOpen);
 		} else {
-			console.log('FUNC', isMobileNavOpen);
 			document.body.style.overflow = 'scroll';
 		}
 	}
@@ -28,9 +22,6 @@
 		const withChildren = [...document.querySelectorAll('.menu-item-has-children')];
 		// Set initial value of isMobile
 		isMobile = window.innerWidth < 991;
-		// if (isMobile) {
-		// 	document.body.style.overflow = 'auto';
-		// }
 
 		withChildren.forEach((el) => {
 			/**
@@ -49,13 +40,13 @@
 					// @ts-ignore
 					link.addEventListener('click', (/** @type {{ preventDefault: () => void; }} */ e) => {
 						sub?.classList.remove('active');
-						// isSubmenuOpen = false;
+
 					});
 				});
 			});
 			el.addEventListener('mouseleave', (e) => {
 				e.preventDefault();
-				// isSubmenuOpen = false;
+	
 				if (sub) {
 					sub.classList.remove('active');
 				}
@@ -377,7 +368,6 @@
 		.header .menu.active {
 			left: 0%;
 			transition: left 0.5s ease;
-			/* display: block; */
 		}
 		.header .menu > ul > li {
 			line-height: 1;
@@ -399,7 +389,6 @@
 			border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 			justify-content: space-between;
 			align-items: center;
-			position: relative;
 			z-index: 501;
 			position: sticky;
 			background-color: #ffffff;
@@ -450,7 +439,6 @@
 		}
 
 		.sub-menu {
-			/* padding: 0; */
 			display: block;
 			position: relative;
 		}

@@ -2,25 +2,21 @@
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 
 	export let data;
-	// console.log('🚀 ~ data:', data);
 
 	const { allPublications, annual, financial, independent } = data.pdfs;
 
 	$: annualReports = annual[0].publications;
-	$: sortedAnnual = annualReports
-	
+	$: sortedAnnual = annualReports;
+
 	$: financialReports = financial[0].publications;
-	$: sortedFinancial = financialReports
+	$: sortedFinancial = financialReports;
 
 	$: independentReports = independent[0].publications;
 	$: sortedindependent = independentReports
 
-	//@ts-ignore
-	.sort((a, b) => new Date(a.date) - new Date(b.date)).reverse();
-	
-	// console.log("🚀 ~ sortedAnnual:", sortedAnnual)
-
-
+		//@ts-ignore
+		.sort((a, b) => new Date(a.date) - new Date(b.date))
+		.reverse();
 </script>
 
 <div class="page__c">
@@ -51,23 +47,23 @@
 				{#each sortedAnnual as pdf}
 					<!-- {pdf.tags} -->
 					<!-- {#if pdf.tags.includes('annual')} -->
-						<div class="card-pdf__c">
-							<div class="card-pdf__data">
-								<!-- <File width={40} height={40} /> -->
-								<div class="pdf__title">{pdf.title}</div>
-								<div class="pdf__date">
-									<!-- {pdf.title.split('-')[2]} <span>{pdf.title.split('-')[3]}</span> -->
-									<div class="pdf__link">
-										<a href={pdf.url} target="_blank"><LinkCircle width={40} height={40} /></a>
-									</div>
-								</div>
-							</div>
-							<div class="card-pdf__link">
-								<div class="pdf__number">
-									<!-- {pdf.title.split('-')[1]} -->
+					<div class="card-pdf__c">
+						<div class="card-pdf__data">
+							<!-- <File width={40} height={40} /> -->
+							<div class="pdf__title">{pdf.title}</div>
+							<div class="pdf__date">
+								<!-- {pdf.title.split('-')[2]} <span>{pdf.title.split('-')[3]}</span> -->
+								<div class="pdf__link">
+									<a href={pdf.url} target="_blank"><LinkCircle width={40} height={40} /></a>
 								</div>
 							</div>
 						</div>
+						<div class="card-pdf__link">
+							<div class="pdf__number">
+								<!-- {pdf.title.split('-')[1]} -->
+							</div>
+						</div>
+					</div>
 					<!-- {/if} -->
 					<!--  update getPublicationsPDFs() get all PDF's except Nuacht. RENAME publications to REPORTS-->
 				{/each}
@@ -80,53 +76,53 @@
 				{#each sortedFinancial as pdf}
 					<!-- {pdf.tags} -->
 					<!-- {#if pdf.tags.includes('annual')} -->
-						<div class="card-pdf__c">
-							<div class="card-pdf__data">
-								<!-- <File width={40} height={40} /> -->
-								<div class="pdf__title">{pdf.title}</div>
-								<div class="pdf__date">
-									<!-- {pdf.title.split('-')[2]} <span>{pdf.title.split('-')[3]}</span> -->
-									<div class="pdf__link">
-										<a href={pdf.url} target="_blank"><LinkCircle width={40} height={40} /></a>
-									</div>
-								</div>
-							</div>
-							<div class="card-pdf__link">
-								<div class="pdf__number">
-									<!-- {pdf.title.split('-')[1]} -->
+					<div class="card-pdf__c">
+						<div class="card-pdf__data">
+							<!-- <File width={40} height={40} /> -->
+							<div class="pdf__title">{pdf.title}</div>
+							<div class="pdf__date">
+								<!-- {pdf.title.split('-')[2]} <span>{pdf.title.split('-')[3]}</span> -->
+								<div class="pdf__link">
+									<a href={pdf.url} target="_blank"><LinkCircle width={40} height={40} /></a>
 								</div>
 							</div>
 						</div>
+						<div class="card-pdf__link">
+							<div class="pdf__number">
+								<!-- {pdf.title.split('-')[1]} -->
+							</div>
+						</div>
+					</div>
 					<!-- {/if} -->
 					<!--  update getPublicationsPDFs() get all PDF's except Nuacht. RENAME publications to REPORTS-->
 				{/each}
 			</div>
 		</div>
 		<!-- Independent Evaluation Reports -->
-				<div class="section">
+		<div class="section">
 			<h2>Independent Evaluation Reports</h2>
 			<!-- <p>SHEP is registered with the Company Registration Office as a company limited by guarantee. We are pleased to present below our most recent audited accounts.</p> -->
 			<div class="list__c">
 				{#each sortedindependent as pdf}
 					<!-- {pdf.tags} -->
 					<!-- {#if pdf.tags.includes('annual')} -->
-						<div class="card-pdf__c">
-							<div class="card-pdf__data">
-								<!-- <File width={40} height={40} /> -->
-								<div class="pdf__title">{pdf.title}</div>
-								<div class="pdf__date">
-									<!-- {pdf.title.split('-')[2]} <span>{pdf.title.split('-')[3]}</span> -->
-									<div class="pdf__link">
-										<a href={pdf.url} target="_blank"><LinkCircle width={40} height={40} /></a>
-									</div>
-								</div>
-							</div>
-							<div class="card-pdf__link">
-								<div class="pdf__number">
-									<!-- {pdf.title.split('-')[1]} -->
+					<div class="card-pdf__c">
+						<div class="card-pdf__data">
+							<!-- <File width={40} height={40} /> -->
+							<div class="pdf__title">{pdf.title}</div>
+							<div class="pdf__date">
+								<!-- {pdf.title.split('-')[2]} <span>{pdf.title.split('-')[3]}</span> -->
+								<div class="pdf__link">
+									<a href={pdf.url} target="_blank"><LinkCircle width={40} height={40} /></a>
 								</div>
 							</div>
 						</div>
+						<div class="card-pdf__link">
+							<div class="pdf__number">
+								<!-- {pdf.title.split('-')[1]} -->
+							</div>
+						</div>
+					</div>
 					<!-- {/if} -->
 					<!--  update getPublicationsPDFs() get all PDF's except Nuacht. RENAME publications to REPORTS-->
 				{/each}
@@ -217,7 +213,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-	
+
 		color: hsl(var(--hsl-gray));
 	}
 

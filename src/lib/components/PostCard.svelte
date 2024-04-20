@@ -8,7 +8,6 @@
    export const title = '';
    export const excerpt = '';
    export const img = '';
-   // export const author = '';
 
 </script>
 
@@ -24,7 +23,6 @@
 		<h3>{title}</h3>
 	</div>
 	<div class="card-body">
-		<!-- <p>{post.author[0].name}</p> -->
 		<p>{trimText(excerpt, 128)}</p>
 	</div>
 	<div class="card-footer">

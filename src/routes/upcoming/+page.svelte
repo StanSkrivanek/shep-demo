@@ -4,7 +4,6 @@
 	import Waves from '$lib/components/icons/waves.svelte';
 	import { onMount } from 'svelte';
 	export let data;
-	console.log('🚀 ~ data:', data);
 	const cities = data.allUpcomingEvents.map(
 		(/** @type {{ venue: { city: string; }; }} */ event) => event.venue.city
 	);

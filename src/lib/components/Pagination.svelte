@@ -17,7 +17,6 @@
 
 	// Get the current page's items
 	$: currentPageItems = allPosts.slice(start, end);
-	// $: console.log('🚀 ~ currentPageItems:', currentPageItems);
 
 	// Calculate the total number of pages
 	$: totalPages = Math.ceil(allPosts.length / itemsPerPage);

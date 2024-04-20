@@ -7,7 +7,6 @@
 	import clickOutside from '$lib/utils/clickoutside.js';
 	import { PortableText } from '@portabletext/svelte';
 	import { afterUpdate, tick } from 'svelte';
-	// import Waves from '$lib/components/icons/waves.svelte';
 	
 	export let data;
 	$: post = data.pageContent;
@@ -85,13 +84,11 @@
 					<h1><span>{post.title}</span></h1>
 					<p class="excerpt">{post.excerpt}</p>
 				</div>
-				<!-- <a class="article_cat" href="/blog/{post.category_slug}">{post.category}</a> -->
+		
 			</div>
 			<div class="hero-img">
 				<img src={post.main_img} alt={post.title} />
-				<!-- <div class="bg">
-					<Waves currentColor="hsl(var(--hsl-purple) / .35)" />
-				</div> -->
+
 			</div>
 		</div>
 	</div>
@@ -158,9 +155,7 @@
 						}
 					}}
 				/>
-				<!-- <div>
-					<a href="/upcoming">Upcoming</a>
-				</div> -->
+
 			</article>
 			<a href="/trainings" class="decorative_link__c">
 				<div class="link-header">
@@ -185,16 +180,6 @@
 		grid-area: main;
 		padding-inline: 1rem;
 	}
-	/* .bg {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		z-index: -1;
-		width: 100%;
-		& svg {
-			width: 100%;
-		}
-	} */
 	.hero {
 		display: grid;
 		grid-template-columns: subgrid;
@@ -210,7 +195,7 @@
 	}
 	.hero-data {
 		position: relative;
-		/* display: grid; */
+	
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;
 		grid-row: 1/-1;
@@ -357,7 +342,7 @@
 
 	/* Media Query */
 	@media screen and (max-width: 1280px) {
-		/* doostuff */
+		
 		.main__c {
 			grid-template-areas:
 				'aside aside aside main main main main main '

@@ -1,5 +1,4 @@
 import adapter from '@sveltejs/adapter-auto';
-// import { svelteInspector } from '@sveltejs/vite-plugin-svelte-inspector';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -27,9 +26,6 @@ const config = {
 			toggleButtonPos: 'bottom-right'
 		}
 	}
-	// vitePlugins: {
-	// 	inspector: true
-	// }
 };
 
 export default config;

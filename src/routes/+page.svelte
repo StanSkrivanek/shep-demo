@@ -1,12 +1,10 @@
 <script>
-	// import Carousel_01 from '$lib/components/Carousel_01.svelte';
 	import Scroller from '$lib/components/Scroller.svelte';
 	import SliderMain from '$lib/components/Slider_main.svelte';
 	import Arrow from '$lib/components/icons/Arrow.svelte';
 	import LeavesCorner from '$lib/components/icons/LeavesCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 
-	// import { formatDate, formatTime12, monthNameDateYear } from '$lib/utils/datehelpers.js';
 	export let data;
 	let { logos, slides } = data;
 </script>
@@ -163,7 +161,6 @@
 					When it comes to mental health, we all have our own unique stories to tell. But no matter
 					what we are going through, there are other people experiencing it too.
 				</p>
-				<!-- <p>Personal Stories</p> -->
 				<p>
 					Read personal stories from community members who've shared how they managed to find their
 					way through difficult times.
@@ -174,7 +171,6 @@
 					<LinkCircle width={48} height={48} />
 				</a>
 			</div>
-			<!-- <p>Reading their stories of recovery can help you imagine your own journey.</p> -->
 		</div>
 		<div class="sec-img">
 			<img
@@ -184,7 +180,6 @@
 		</div>
 	</div>
 	<div class="scroller">
-		<!-- <h4 class="h1">Our partners</h4> -->
 		<Scroller {logos} duration={40} gap={1} direction={'forwards'} />
 	</div>
 	<div class="activities">
@@ -303,16 +298,11 @@
 	.mission {
 		display: grid;
 		grid-template-columns: subgrid;
-		/* grid-template-areas: ' img img img img img card card card '; */
+
 		grid-template-areas: ' img img img card card card card card ';
 		grid-column: 1/-1;
 		gap: 1rem;
 		margin-bottom: 3rem;
-		/* background: var(--clr-main-white); */
-		/* @media screen and (max-width: 1280px) {
-			grid-template-areas:
-				' img img img card card card card card';
-		} */
 		& .img_w {
 			grid-area: img;
 			& img {
@@ -327,7 +317,6 @@
 		}
 		& .card-mission {
 			grid-area: card;
-			/* background-color: var(--blue-50); */
 			padding: 2.4rem;
 			border-radius: 0.5rem;
 			background: var(--clr-main-white);
@@ -337,11 +326,9 @@
 			}
 			& .content__w {
 				display: flex;
-				/* flex-direction: column; */
-				/* @media screen and (max-width: 1280px) { */
 				flex-direction: row;
 				gap: 1rem;
-				/* } */
+	
 				@media screen and (max-width: 640px) {
 					display: block;
 				}
@@ -444,7 +431,7 @@
 			flex-direction: column;
 			justify-content: space-between;
 			padding: 2.4rem;
-			/* border: 1px solid var(--gray-2); */
+
 			background: var(--clr-main-white);
 			border-radius: 0.5rem;
 		}
@@ -456,10 +443,6 @@
 				& circle {
 					stroke: hsl(var(--hsl-brand)) !important;
 				}
-
-				/* & path {
-					fill: hsl(var(--hsl-brand)) !important;
-				} */
 			}
 		}
 	}

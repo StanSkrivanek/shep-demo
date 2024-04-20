@@ -84,7 +84,7 @@
 					<h1><span>{post.title}</span></h1>
 					<p class="excerpt">{post.excerpt}</p>
 				</div>
-				<!-- <a class="article_cat" href="/blog/{post.category_slug}">{post.category}</a> -->
+	
 			</div>
 			<div class="hero-img">
 				<img src={post.main_img} alt={post.title} />
@@ -193,7 +193,6 @@
 	}
 	.hero-data {
 		position: relative;
-		/* display: grid; */
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;
 		grid-row: 1/-1;
@@ -313,7 +312,7 @@
 
 					&:hover {
 						color: hsl(var(--hsl-brand));
-						/* text-decoration: underline; */
+					
 					}
 				}
 			}
@@ -340,7 +339,7 @@
 
 	/* Media Query */
 	@media screen and (max-width: 1280px) {
-		/* doostuff */
+		
 		.main__c {
 			grid-template-areas:
 				'aside aside aside main main main main main '

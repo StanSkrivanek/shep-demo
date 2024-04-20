@@ -11,10 +11,6 @@ export async function load() {
 	const annual = await getAnnualReports();
 	const financial = await getFinancialReports();
 	const independent = await getIndependentReports();
-	console.log("🚀 ~ load ~ independent:", ...independent)
-
-	// const annual = allPublications[0].publications.filter((/** @type {{ tags: string | string[]; }} */ pdf) => pdf.tags.includes('annual'));
-
 
 	return {
 		pdfs: {

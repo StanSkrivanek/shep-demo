@@ -2,8 +2,7 @@
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import Waves from '$lib/components/icons/waves.svelte';
 	import { trimText } from '$lib/utils/globalhelpers.js';
-	// import { reset } from '__sveltekit/paths';
-	// import { get } from 'svelte/store';
+
 	export let data;
 	let { posts, categories } = data;
 
@@ -58,21 +57,18 @@
 
 	// Get the current page's items
 	$: currentPageItems = allPosts.slice(start, end);
-	$: console.log('🚀 ~ currentPageItems:', currentPageItems);
 
 	// Calculate the total number of pages
 	$: totalPages = Math.ceil(allPosts.length / itemsPerPage);
 
 	function goToPreviousPage() {
 		if (currentPage > 1) {
-			console.log('🚀 ~ goToPreviousPage ~ currentPage:', currentPage);
 			currentPage--;
 		}
 	}
 
 	function goToNextPage() {
 		if (currentPage < totalPages) {
-			console.log('🚀 ~ goToNextPage ~ currentPage:', currentPage);
 			currentPage++;
 		}
 	}
@@ -145,7 +141,7 @@
 				</div>
 			{/each}
 		</main>
-		<!-- {#if totalPages > 1} -->
+	
 		<div class="pagination__w">
 			{#if totalPages > 1}
 				<button on:click={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
@@ -168,7 +164,7 @@
 			margin: 0;
 			margin-bottom: 1rem;
 			padding-bottom: 0.5rem;
-			/* font-size: var(--xs); */
+		
 			line-height: 1;
 			border-bottom: 1px solid hsl(var(--hsl-gray) / 0.25);
 			color: var(--gray-3);
@@ -176,7 +172,7 @@
 	}
 	main {
 		grid-area: main;
-		/* padding-inline: 1rem; */
+	
 	}
 	.main__c {
 		display: grid;
@@ -230,13 +226,13 @@
 	.container {
 		grid-area: main;
 		display: grid;
-		/* grid-column: 1/-1; */
+	
 		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 		gap: 1rem;
 	}
 
 	.tags {
-		/* grid-area: aside; */
+
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
@@ -246,7 +242,7 @@
 			line-height: 1;
 			pointer-events: all;
 			color: hsl(var(--hsl-gray));
-			/* border: none; */
+	
 			border: 1px solid hsl(var(--hsl-gray) / 0.25);
 			padding: 0.25rem 0.5rem;
 			border-radius: 0.25rem;
@@ -294,9 +290,6 @@
 			& circle {
 				stroke: hsl(var(--hsl-blue)) !important;
 			}
-			/* & path {
-				fill: hsl(var(--hsl-blue)) ;
-			} */
 		}
 	}
 	.card-subheading {
@@ -321,13 +314,13 @@
 			line-height: 1.1;
 			color: hsl(var(--hsl-gray));
 			letter-spacing: 0.05rem;
-			/* font-family: var(--ff-fkg-bold); */
+		
 		}
 	}
 	.card-img {
 		grid-area: image;
 		object-fit: cover;
-		/* margin-bottom: 1rem; */
+	
 		border-radius: 0.25rem 0.25rem 0 0;
 		overflow: hidden;
 		& img {
@@ -363,9 +356,6 @@
 			left: 0;
 			z-index: -1;
 			width: 100%;
-			/* & svg {
-				width: 100%;
-			} */
 		}
 	.pagination__w {
 		grid-template-columns: subgrid;
@@ -399,7 +389,6 @@
 				font-size: 1rem;
 				color: hsl(var(--hsl-gray));
 				margin: 0;
-				/* margin-inline:1rem; */
 				width: 120px;
 				text-align: center;
 				&:first-child {

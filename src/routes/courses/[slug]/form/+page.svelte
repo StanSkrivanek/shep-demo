@@ -1,7 +1,7 @@
 <script>
 	// @ts-nocheck
-	import { goto } from '$app/navigation';
 	import { enhance } from '$app/forms';
+	import { goto } from '$app/navigation';
 	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDateYear, monthYear } from '$lib/utils/datehelpers';
 	import { counties, source } from '$lib/utils/globalhelpers';
@@ -15,8 +15,6 @@
 	let courseData = $singleEventStore;
 
 	$: isSending = false;
-
-	$: console.log('🚀 ~ isSending:', isSending);
 	$: isToastOpen = false;
 
 	$: if (form?.success && !isToastOpen) {
@@ -71,6 +69,7 @@
 			<p class="text-black">Thank you for your application</p>
 			<p class="text-black">
 				We have received your application and will be in touch with you shortly.
+		</p>
 		</div>
 	{/if}
 
@@ -82,7 +81,7 @@
 				isSending = true;
 				setTimeout(() => {
 					isSending = false;
-					// goto('/');
+			
 				}, 6000);
 			}}
 		>
@@ -233,8 +232,6 @@
 						/>
 					</div>
 				</div>
-
-				<!-- <input type="text" id="medical-needs" name="medical-needs" placeholder="Please specify if any special/medical needs that we should be aware of for practical purposes" /> -->
 			</div>
 			<div class="attending-opt">
 				<h2>
@@ -329,14 +326,13 @@
 						information to me on this upcoming course and other SHEP courses and events.
 					</p>
 				</label>
-				<!-- <input type="text" id="coursedata" name="coursedata" value={coursedata.id} > -->
+		
 			</div>
 			<div hidden>
 				<!-- NOTE:
 				Send open course ID to form and use it to get course data venue, course name etc. from DB
 				
 				-->
-				<!-- <input type="hidden" name="courseId" value={courseData.id} /> -->
 				<input type="hidden" name="courseId" value={courseData.ref} />
 				<input type="hidden" name="courseCity" value={courseData.venue.city} />
 				<input type="hidden" name="courseVenue" value={courseData.venue.venue_name} />
@@ -560,7 +556,7 @@
 		appearance: none;
 		outline: 0;
 		box-shadow: none;
-		/* border: 0 !important; */
+		
 		background-image: none;
 		background-color: transparent;
 		cursor: pointer;
@@ -583,45 +579,14 @@
 		background-size:
 			0.65em auto,
 			100%;
-		/* background-color: white; */
+	
 	}
 
 	.table__w {
 		overflow-x: auto;
 	}
 
-	/* .msg__c {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: hsl(var(--hsl-gray));
-		z-index: 1000;
-	} */
-
-	/* center msg-success on screen */
-	/* .msg-success {
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		text-align: center;
-		background-color: hsl(var(--hsl-green) / 0.5);
-		padding: 2rem;
-		margin-bottom: 1rem;
-		border-radius: 0.25rem;
-		& h1 {
-			margin-bottom: 0.25rem;
-		}
-		& p {
-			max-width: 100vw;
-			margin: 0.25rem;
-		}
-	} */
+	
 	.agreement label {
 		display: flex;
 		padding-bottom: 1rem;
@@ -633,8 +598,6 @@
 		margin: 3rem;
 		padding: 1rem 2rem;
 		border-radius: 0.25rem;
-		/* text-align: center; */
-		/* background: hsl(var(--hsl-green) / 0.5); */
 		background: hsl(var(--hsl-white));
 		border: 2px solid hsl(var(--hsl-green));
 		border-left-width: 3rem;
@@ -643,7 +606,7 @@
 
 		& .text-black {
 			line-height: 1.4;
-			/* font-weight: 600; */
+	
 			margin-top: 0.5rem;
 			max-width: 40ch;;
 			&:first-child {

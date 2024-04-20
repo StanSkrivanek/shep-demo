@@ -18,7 +18,10 @@
 		i == show ? (show = null) : (show = i);
 	};
 </script>
-
+<svelte:head>
+	<title>Jobs</title>
+	<meta name="description" content="Shep Job opportunities" />
+</svelte:head>
 <div class="page__c">
 	<div class="hero">
 		<div class="hero-col-2__c">
@@ -33,8 +36,8 @@
 			</div>
 			<div class="hero-img">
 				<img
-					src="https://cdn.sanity.io/images/gkez65br/production/d80ed09c76f1040fac2224c0dc96d63551160ea9-5395x3215.webp"
-					alt="Team illustration"
+					src="https://cdn.sanity.io/images/gkez65br/production/d56f01a1b3c55896bf63fcb61b4dd56c21db6b26-1600x900.webp"
+					alt="Teamwork"
 				/>
 			</div>
 		</div>
@@ -246,10 +249,11 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		padding-block: 3rem;
+		padding: 6rem 2rem;
+
 		background: var(--gray-1);
 		border-radius: 0.5rem;
-		/* background: rgb(164, 224, 244); */
+		background: rgb(244, 164, 172);
 		/* color:aliceblue; */
 		font-size: 1.5rem;
 		/* font-weight: 500; */
@@ -271,7 +275,7 @@
 	.job__c {
 		/* padding: 2rem; */
 		width: 100%;
-		border: 1px solid white;
+		/* border: 1px solid white; */
 		border: 1px solid hsl(var(--hsl-brand) / 0.25);
 		border-radius: 0.5rem;
 		transition: all 0.3s ease-in-out;

@@ -1,5 +1,5 @@
 <script>
-	// import LogoSimple from './../../lib/components/icons/LogoSimple.svelte';
+
 	import LeavesCorner from '$lib/components/icons/LeavesCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import Waves from '$lib/components/icons/waves.svelte';
@@ -8,7 +8,7 @@
 	const { allNuacht } = data.props;
 	$: nuachtPDFs = allNuacht[0].pdfs;
 
-	// // destructure title and split by space
+	// destructure title and split by space
 	$: sortedPDFs = nuachtPDFs
 		//@ts-ignore
 		.sort((a, b) => a.title.split('-')[1] - b.title.split('-')[1])
@@ -61,7 +61,7 @@
 					<div class="card-pdf__c">
 						<div class="card-pdf__data">
 							<div class="pdf__title">
-								<!-- <span><LogoSimple width={24} height={24} /></span> -->
+			
 								<div class="pdf__date">
 									<span>{pdf.title.split('-')[2]} {pdf.title.split('-')[3]}</span>
 									<span
@@ -194,8 +194,6 @@
 	.pdf__title {
 		font-size: 1.4rem;
 		font-weight: 700;
-		/* color: hsl(var(--hsl-brand)); */
-		/* font-family: var(--ff-fkg-black); */
 		margin-bottom: 1rem;
 	}
 
@@ -204,7 +202,10 @@
 		justify-content: space-between;
 		font-size: 1rem;
 		font-weight: 100;
-		/* color: hsl(var(--hsl-blue) / 0.75); */
+
+		& span:has(svg) {
+			transform: rotate(180deg);
+		}
 	}
 
 	.pdf-excerpt {

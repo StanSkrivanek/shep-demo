@@ -723,7 +723,7 @@
 			grid-template-areas:
 				'main main main main main main main main'
 				'aside aside aside aside aside aside aside aside';
-			/* 'aside aside main main main main main main' */
+	
 		}
 
 		.no-course {
@@ -745,10 +745,7 @@
 	}
 
 	@media (max-width: 768px) {
-		/* .hero-img {
-			grid-column: 1/-1;
-			grid-row: 1/2;
-		} */
+/* do stuff */
 	}
 	@media (max-width: 576px) {
 		.main__c {

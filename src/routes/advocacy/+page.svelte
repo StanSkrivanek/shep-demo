@@ -179,7 +179,6 @@
 	}
 	.hero-data {
 		position: relative;
-		/* display: grid; */
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;
 		grid-row: 1/-1;
@@ -332,14 +331,7 @@
 	}
 
 	@media (max-width: 768px) {
-		/* .hero-data::before {
-			background: linear-gradient(
-				90deg,
-				hsl(var(--hsl-cyan)) 0%,
-				hsl(var(--hsl-cyan) / 0.5) 65%,
-				hsl(var(--hsl-cyan) / 0) 100%
-			);
-		} */
+
 		.main__c {
 			grid-template-areas:
 				'main main main main main main main main '
@@ -374,7 +366,6 @@
 		}
 	}
 	@media screen and (max-width: 640px) {
-		/* doostuff */
 		.hero-data::before {
 			background: linear-gradient(
 				90deg,

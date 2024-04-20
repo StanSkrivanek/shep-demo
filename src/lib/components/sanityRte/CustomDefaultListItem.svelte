@@ -3,6 +3,4 @@
 </script>
 
 <li><slot /></li>
-<!-- https://github.com/portabletext/svelte-portabletext -->
-<!-- https://github.com/portabletext/svelte-portabletext/issues -->
-<!-- https://github.com/portabletext/svelte-portabletext/issues/10 -->
+

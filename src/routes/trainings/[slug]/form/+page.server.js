@@ -26,16 +26,10 @@ export const actions = {
 		const applicant = {
 			...formData
 		};
-		const sid = applicant.sheetID;
+		// const sid = applicant.sheetID;
 
-		// add sheet url with ID as searchParam
-		// const sheetUrl = `https://script.google.com/macros/s/${sid}/exec`;
-
-		// console.log('🚀 ~ sendToGoogle: ~ sheetUrl:', sheetUrl);
 		// `url` is link to google script that will trigger function to add data to google sheet
 		const scriptUrl = API3_URL;
-
-		// console.log(`Please hold ${applicant.name}, we are Sending your application...`);
 		try {
 			
 			const response = await fetch(scriptUrl, {

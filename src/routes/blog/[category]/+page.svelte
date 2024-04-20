@@ -1,6 +1,5 @@
 <script>
 	export let data;
-	console.log('🚀 ~ data CATEGORY:', data);
 
 	let { catArticles } = data.props;
 	const allPosts = catArticles;
@@ -17,21 +16,18 @@
 
 	// Get the current page's items
 	$: currentPageItems = allPosts.slice(start, end);
-	$: console.log('🚀 ~ currentPageItems:', currentPageItems);
 
 	// Calculate the total number of pages
 	$: totalPages = Math.ceil(allPosts.length / itemsPerPage);
 
 	function goToPreviousPage() {
 		if (currentPage > 1) {
-			console.log('🚀 ~ goToPreviousPage ~ currentPage:', currentPage);
 			currentPage--;
 		}
 	}
 
 	function goToNextPage() {
 		if (currentPage < totalPages) {
-			console.log('🚀 ~ goToNextPage ~ currentPage:', currentPage);
 			currentPage++;
 		}
 	}
@@ -50,26 +46,13 @@
 					<h1 class="page-header">{data.props.cat_title}</h1>
 					<p class="excerpt">{data.props.cat_excerpt}</p>
 				</div>
-				<!-- <a class="article_cat" href="/blog/{post.category_slug}">{post.category}</a> -->
+		
 			</div>
 			<div class="hero-img">
 				<img src={data.props.cat_img} alt="illustration of boy reading a news" />
 			</div>
 		</div>
 	</div>
-	<!-- <div class="hero">
-		<div class="hero-col-2__c">
-			<div class="hero-data">
-				<h1 class="page-header">{catArticles[0].category}</h1>
-			</div>
-			<div class="hero-img">
-				<img
-					src="https://cdn.sanity.io/images/gkez65br/production/479126b0eb6e14162016f648c77a88c95f550685-1680x933.webp"
-					alt="illustration of boy reading a news"
-				/>
-			</div>
-		</div>
-	</div> -->
 	<div class="main__c">
 		<main class="container">
 			{#each catArticles as post}
@@ -85,7 +68,7 @@
 						<h3>{post.title}</h3>
 					</div>
 					<div class="card-body">
-						<!-- <p>{post.author[0].name}</p> -->
+						
 						<p>{trimText(post.excerpt, 128)}</p>
 					</div>
 					<div class="card-footer">
@@ -134,7 +117,7 @@
 	}
 	.hero-data {
 		position: relative;
-		/* display: grid; */
+		
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;
 		grid-row: 1/-1;
@@ -304,11 +287,9 @@
 		position: absolute;
 		bottom: 0;
 		left: 0;
-		/* z-index: -1; */
+		
 		width: 100%;
-		/* & svg {
-			width: 100%;
-		} */
+	
 	}
 	.btn-link {
 		pointer-events: all;
@@ -345,7 +326,7 @@
 				font-size: 1rem;
 				color: hsl(var(--hsl-gray));
 				margin: 0;
-				/* margin-inline:1rem; */
+			
 				width: 120px;
 				text-align: center;
 				&:first-child {

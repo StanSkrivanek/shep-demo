@@ -4,7 +4,6 @@
 	import MainLogo from './icons/MainLogoNew.svelte';
 	import Twitter from './icons/Twitter.svelte';
 
-	// do stuff
 </script>
 
 <!-- four section footer -->
@@ -14,12 +13,15 @@
 		<div class="logo__w">
 			<MainLogo />
 			<div class="social">
+				<!-- svelte-ignore a11y-invalid-attribute -->
 				<a href="#" aria-label="Instagram" rel="nofollow noopener noreferrer">
 					<Instagram currentColor="#3d4c5c" />
 				</a>
+				<!-- svelte-ignore a11y-invalid-attribute -->
 				<a href="#" aria-label="Facebook" rel="nofollow noopener noreferrer">
 					<Facebook currentColor="#3d4c5c" />
 				</a>
+				<!-- svelte-ignore a11y-invalid-attribute -->
 				<a href="#" aria-label="Twitter" rel="nofollow noopener noreferrer">
 					<Twitter currentColor="#3d4c5c" />
 				</a>
@@ -51,15 +53,6 @@
 			<div>
 				<a class="footer__link" href="/team">Our Team</a>
 			</div>
-			<!-- <div>
-				<a class="footer__link" href="/privacy">Privacy</a>
-			</div> -->
-			<!-- <div>
-				<a class="footer__link" href="/cookies">Cookies</a>
-			</div> -->
-			<!-- <div>
-				<a class="footer__link" href="/sitemap">Sitemap</a>
-			</div> -->
 			<div>
 				<a class="footer__link" href="/contact">Contact</a>
 			</div>
@@ -145,7 +138,6 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		/* margin-bottom: 1rem; */
 		height: 100%;
 		& .social {
 			display: flex;
@@ -171,7 +163,6 @@
 			font-weight: 600;
 		}
 		& input[type='email'] {
-			/* all: unset; */
 			width: 100%;
 			font-size: 1rem;
 			padding: 0.5rem;

@@ -151,14 +151,10 @@
 	/* force input style on autofill */
 	input:-webkit-autofill {
 		background-color: transparent !important;
-		/* -webkit-box-shadow: 0 0 0 80px black inset; */
-
-		/* -webkit-text-fill-color: #fff !important; */
 	}
 
 	input {
 		width: 100%;
-		/* padding-block: 0.5rem; */
 		font-size: 1.4rem;
 		&:focus {
 			outline: none;
@@ -179,7 +175,6 @@
 		overflow-wrap: break-word;
 		line-break: after-white-space;
 		width: 100%;
-		/* padding-bottom: 2rem; */
 		outline: transparent;
 		border-radius: 0.25rem 0.25rem 0 0;
 		border-bottom: 2px solid hsl(var(--hsl-gray) / 0.35); 

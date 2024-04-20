@@ -1,7 +1,7 @@
 <script>
 	import { fade } from 'svelte/transition';
 	import LinkCircle from './icons/LinkCircle.svelte';
-	// import { quintOut, bounceInOut } from 'svelte/easing';
+
 	/**
 	 * @type {any[]}
 	 */
@@ -87,7 +87,7 @@
 			& .slide-image {
 				position: relative;
 				grid-column: 1/1;
-				border-radius: .5rem;
+				border-radius: 0.5rem;
 				overflow: hidden;
 				& img {
 					width: 100%;
@@ -123,7 +123,6 @@
 						line-height: 1.1;
 						margin-bottom: 1rem;
 						padding-bottom: 0.5rem;
-						/* border-bottom: 1px solid hsl(var(--hsl-gray) / 0.25); */
 						font-family: var(--ff-fkg-regular);
 						font-weight: 100;
 						text-transform: uppercase;
@@ -145,14 +144,9 @@
 						transition: 0.3s ease;
 					}
 					& svg:hover {
-						/* transition: 0.3s ease; */
 						& circle {
 							stroke: hsl(var(--hsl-brand)) !important;
 						}
-
-						/* & path {
-							fill: hsl(var(--hsl-brand)) !important;
-						} */
 					}
 				}
 			}

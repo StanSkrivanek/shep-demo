@@ -3,7 +3,7 @@
 	import Waves from '$lib/components/icons/waves.svelte';
 	import { trimText } from '$lib/utils/globalhelpers';
 	export let data;
-	console.log('🚀 ~ data:', data);
+
 </script>
 
 <svelte:head>

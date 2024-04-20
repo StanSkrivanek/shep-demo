@@ -83,7 +83,6 @@
 		-webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
 		overflow-x: hidden;
 		& .scroller__inner {
-			width: max-content;
 			display: flex;
 			gap: var(--gap);
 			width: max-content;
@@ -111,18 +110,4 @@
 			transform: translateX(calc(-50% - var(--gap)));
 		}
 	}
-	/* @keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(calc(-50% - var(--gap)));
-  }
-} */
 </style>
-
-
-<!-- +page.svelte -->
-<!-- Duration gap and direction are predefined but thy can be set on Scroller individually   -->
-<!-- 	<Scroller data={data.logos} duration={60} gap={1} direction={"forwards"} /> -->

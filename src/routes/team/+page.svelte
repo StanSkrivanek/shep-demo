@@ -80,9 +80,7 @@
 						</a>
 					{/if}
 				</div>
-				<!-- </div> -->
 			</div>
-			<!-- <img src={venue.logo} alt=""> -->
 		{/each}
 	</main>
 </div>

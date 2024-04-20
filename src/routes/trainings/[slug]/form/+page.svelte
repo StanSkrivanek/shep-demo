@@ -15,16 +15,12 @@
 	let courseData = $singleEventStore;
 
 	$: isSending = false;
-
-	$: console.log('🚀 ~ isSending:', isSending);
 	$: isToastOpen = false;
-	$: console.log('🚀 ~ isToastOpen:', isToastOpen);
 
 	$: if (form?.success && !isToastOpen) {
 		isToastOpen = true;
 		setTimeout(() => {
 			if (isToastOpen) {
-				// form.success = false;
 				isToastOpen = false;
 			}
 			goto('/trainings');
@@ -90,10 +86,9 @@
 					<b>{monthYear(courseData.in_person.start_date)}<b /></b>
 				</p>
 			</div>
-			<!-- personal coursedata -->
+		
 			<div class="personal-data">
 				<h2>Personal data <span><i>( mandatory )</i></span></h2>
-				<!-- name  -->
 
 				<div class="form-group">
 					<div class="row">
@@ -226,8 +221,6 @@
 						/>
 					</div>
 				</div>
-
-				<!-- <input type="text" id="medical-needs" name="medical-needs" placeholder="Please specify if any special/medical needs that we should be aware of for practical purposes" /> -->
 			</div>
 			<div class="attending-opt">
 				<h2>
@@ -320,14 +313,13 @@
 					Yes, I give consent to SHEP to hold these details for the purposes of sending information to
 					me on this upcoming course and other SHEP courses and events.
 				</label>
-				<!-- <input type="text" id="coursedata" name="coursedata" value={coursedata.id} > -->
+				
 			</div>
 			<div hidden>
 				<!-- NOTE:
 				Send open course ID to form and use it to get course data venue, course name etc. from DB
 				
 				-->
-				<!-- <input type="hidden" name="courseId" value={courseData.id} /> -->
 				<input type="hidden" name="courseId" value={courseData.ref} />
 				<input type="hidden" name="courseCity" value={courseData.venue.city} />
 				<input type="hidden" name="courseVenue" value={courseData.venue.venue_name} />
@@ -397,7 +389,6 @@
 		& .form-group {
 			display: flex;
 			flex-direction: column;
-			/* padding-block: 1rem; */
 			margin-bottom: 1rem;
 			& .input-group {
 				display: flex;
@@ -416,7 +407,7 @@
 					border-radius: 0.5rem;
 					font-size: 1.5rem;
 					color: hsl(var(--hsl-gray));
-					/* background: hsl(var(--hsl-white)); */
+					
 					margin-bottom: 1rem;
 				}
 				& textarea {
@@ -429,6 +420,7 @@
 			display: flex;
 			gap: 1rem;
 		}
+
 		/* table */
 		& .attending-opt {
 			& table {
@@ -440,7 +432,7 @@
 							padding: 0.5rem;
 							border-bottom: 1px solid hsl(var(--hsl-gray) / 0.25);
 							font-size: 1.2rem;
-							/* font-weight: 600; */
+						
 							text-align: left;
 						}
 					}
@@ -468,7 +460,7 @@
 			padding: 3rem 0.5rem;
 			& label {
 				font-size: var(--sm);
-				/* font-weight: 400; */
+			
 				margin-bottom: 0.25rem;
 				position: relative;
 				cursor: pointer;
@@ -507,8 +499,6 @@
 			border: calc(var(--unit) * 0.4) solid hsl(var(--hsl-blue));
 			border-top-width: 0;
 			border-right-width: 0;
-			/* border-radius: calc(var(--unit) * 0.3);
-			box-shadow: 0 0.5em 0.5em 0 rgba(0, 0, 0, 0.3); */
 			transform: translate(-50%, -50%) rotate(-45deg);
 			width: calc(var(--unit) * 1.8);
 			height: calc(var(--unit) * 0.9);
@@ -543,7 +533,6 @@
 		appearance: none;
 		outline: 0;
 		box-shadow: none;
-		/* border: 0 !important; */
 		background-image: none;
 		background-color: transparent;
 		cursor: pointer;
@@ -566,7 +555,6 @@
 		background-size:
 			0.65em auto,
 			100%;
-		/* background-color: white; */
 	}
 	.table__w {
 		overflow-x: auto;
@@ -578,8 +566,6 @@
 		margin: 3rem;
 		padding: 1rem 2rem;
 		border-radius: 0.25rem;
-		/* text-align: center; */
-		/* background: hsl(var(--hsl-green) / 0.5); */
 		background: hsl(var(--hsl-white));
 		border: 2px solid hsl(var(--hsl-green));
 		border-left-width: 3rem;
@@ -588,7 +574,6 @@
 
 		& .text-black {
 			line-height: 1.4;
-			/* font-weight: 600; */
 			margin-top: 0.5rem;
 			max-width: 40ch;
 			&:first-child {
@@ -597,42 +582,6 @@
 			}
 		}
 	}
-	/* .msg__c {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: hsl(var(--hsl-gray));
-		z-index: 1000;
-	} */
-
-	/* center msg-success on screen */
-	/* .msg-success {
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		text-align: center;
-		background-color: hsl(var(--hsl-green) / 0.5);
-		padding: 2rem;
-		margin-bottom: 1rem;
-		border-radius: 0.25rem;
-		& h1 {
-			margin-bottom: 0.25rem;
-		}
-		& p {
-			max-width: 100vw;
-			margin: 0.25rem;
-		}
-	} */
-	/* .agreement label {
-		display: flex;
-		padding-bottom: 1rem;
-	} */
 
 	/* MediaQueries */
 

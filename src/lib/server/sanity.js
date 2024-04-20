@@ -435,9 +435,6 @@ export const getAllPosts = async () => {
 
 	const allPosts = await client.fetch(allPostsQuery);
 	// lastId = allPosts[allPosts.length - 1].id;
-	// console.log('------------------------------------------------------------');
-	// console.log('🚀 ~ GETALLPOSTS ~ lastId:', lastId);
-	// console.log('------------------------------------------------------------');
 	return allPosts;
 };
 
@@ -903,7 +900,6 @@ export const getPublicationsPDFs = async () => {
 	}`;
 
 	let publicationPDFs = await client.fetch(query);
-	// console.log('🚀 ~ getPublicationsPDFs ~ publicationPDFs', ...publicationPDFs);
 	return publicationPDFs;
 };
 export const getAnnualReports = async () => {
@@ -919,7 +915,6 @@ export const getAnnualReports = async () => {
 	}`;
 
 	let getAnnualReports = await client.fetch(query);
-	// console.log('🚀 ~ getPublicationsPDFs ~ publicationPDFs', ...getAnnualReports);
 	return getAnnualReports;
 };
 export const getFinancialReports = async () => {
@@ -935,7 +930,6 @@ export const getFinancialReports = async () => {
 	}`;
 
 	let getFinancialReports = await client.fetch(query);
-	// console.log('🚀 ~ getPublicationsPDFs ~ publicationPDFs', ...getFinancialReports);
 	return getFinancialReports;
 };
 export const getIndependentReports = async () => {
@@ -951,7 +945,6 @@ export const getIndependentReports = async () => {
 	}`;
 
 	let getIndependentReports = await client.fetch(query);
-	// console.log('🚀 ~ getPublicationsPDFs ~ publicationPDFs', ...getIndependentReports);
 	return getIndependentReports;
 };
 
