@@ -1,35 +1,25 @@
 // @ts-nocheck
-import { API3_URL, GOOGLE_EMAIL } from '$env/static/private';
-import transporter from '$lib/mail/nodemailer.server';
+
+import { NEWSLETTER_URL, NEWSLETTER_SHEET_ID, GOOGLE_EMAIL } from '$env/static/private';
+
+import transporter from '$lib/mail/nodemailer.server.js';
 import { fail } from '@sveltejs/kit';
-// svelte default actions
+
 export const actions = {
-	sendToGoogle: async ({ request }) => {
+	sendToNewsletter: async ({ request }) => {
 		const formData = Object.fromEntries(await request.formData());
-		// const formData = await request.formData();
-		if (!formData.inPerson) {
-			// if inPerson is not checked, add the key and set it to 'no'
-			formData.inPerson = '---';
-		}
-		if (!formData.online) {
-			// if online is not checked, set it to 'no'
-			formData.online = '---';
-		}
-		if (!formData.county) {
-			formData.county = '';
-		}
-		if (!formData.source) {
-			formData.source = '';
-		}
-
-		// applicant form object
+		console.log('🚀 ~ sendToNewsletter: ~ formData:', formData);
+		
 		const applicant = {
-			...formData
+			...formData,
+			sheetID: NEWSLETTER_SHEET_ID
 		};
-		// const sid = applicant.sheetID;
+		
+		
 
-		// `url` is link to google script that will trigger function to add data to google sheet
-		const scriptUrl = API3_URL;
+		const scriptUrl = NEWSLETTER_URL;
+	
+		
 		try {
 			const response = await fetch(scriptUrl, {
 				method: 'POST',
@@ -42,19 +32,17 @@ export const actions = {
 
 			// if response is not ok, return fail
 			if (!response.ok) {
+				console.log('🚀 ~ sendToGoogle: ~ response: ERROR', response);
 				return fail(response.status, {
 					status: response.status,
 					statusText: response.statusText
 				});
 			}
 
+			// send email to client
 			const htmlClient = `
 			<div>
-			<h2>Hello ${applicant.name}</h2>
-			<p>Thank you for your application for 
-				<b>${applicant.courseTitle}</b> in <b>${applicant.courseVenue}</b>, 
-				<b>${applicant.courseCity}</b> starting <b>${applicant.course_start}</b>.
-			</p>
+			<p>Thank you for your Newsletter subscription.</p>
 			<p>We will be in touch soon.</p>
 			</div>
 			`;
@@ -62,8 +50,8 @@ export const actions = {
 			// email message setup
 			const emailMessage = {
 				from: `"FineDiv Studio" <${GOOGLE_EMAIL}>`,
-				to: `"${applicant.email}"`,
-				subject: `Application confirmation`,
+				to: `"${applicant.email}" <${applicant.email}>`,
+				subject: `Newsletter subscription`,
 				html: htmlClient
 			};
 			// @ts-ignore
@@ -75,6 +63,7 @@ export const actions = {
 							reject(err);
 						} else {
 							console.log('transporter messageId', info.messageId);
+							console.log('transporter info', info);
 							resolve(info);
 						}
 					});
@@ -82,26 +71,21 @@ export const actions = {
 			};
 			await sendEmail(emailMessage);
 
-			// send emails to self
+			// send emails to your self
 			const htmlSender = `
 			<div>
-			<p>New application from ${applicant.name} for 
-				<b>${applicant.courseTitle}</b> in <b>${applicant.courseVenue}</b>, 
-				<b>${applicant.courseCity}</b> starting <b>${applicant.course_start}</b> was add to Google Sheet
-			</p>
-			refName / Google sheet : ${applicant.refName}
-
+			<p>New Newsletter subscription was added to Google Sheet</p>
 			<p>Applicant email: ${applicant.email}</p>
-			<p>Applicant phone: ${applicant.phone}</p>
-
 			</div>
 			`;
+
+			// refName / Google sheet : ${applicant.refName}
 
 			// email message setup
 			const senderEmailMessage = {
 				from: `"FineDiv Studio" <${applicant.email}>`,
 				to: GOOGLE_EMAIL,
-				subject: `"New Applicant Notification for ${applicant.courseTitle} | ref: ${applicant.refName}"`,
+				subject: `"New Newsletter subscription"`,
 				html: htmlSender
 			};
 			// @ts-ignore
@@ -121,9 +105,12 @@ export const actions = {
 			await sendSelfEmail(senderEmailMessage);
 
 			return { success: true };
+
 		} catch (error) {
+
 			console.log('🚀 ~ default: ~ error:', error);
-			return fail('500', {
+
+			return fail(500, {
 				status: '500',
 				statusText: 'Internal Server Error'
 			});

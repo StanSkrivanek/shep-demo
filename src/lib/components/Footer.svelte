@@ -1,9 +1,13 @@
 <script>
+	// @ts-nocheck
 	import Facebook from './icons/Facebook.svelte';
 	import Instagram from './icons/Instagram.svelte';
 	import MainLogo from './icons/MainLogoNew.svelte';
 	import Twitter from './icons/Twitter.svelte';
-
+	// export let form = {};
+	// $: console.log('form', form);
+	// $newsletterFormStore = form;
+	// $: console.log('newsletterFormStore', $newsletterFormStore);
 </script>
 
 <!-- four section footer -->
@@ -44,7 +48,6 @@
 		</div>
 	</div>
 	<div class="footer__section">
-	
 		<div class="group">
 			<h5>Organization</h5>
 			<div>
@@ -77,11 +80,10 @@
 			</div>
 		</div>
 		<div class="group">
-			<form action="" id="newsletter-signup">
-				<label for="newsletter">Sign up for newsletter</label>
-				<input type="email" name="newsletter" id="newsletter" placeholder="Your email address" />
-				<input type="submit" value="Sign up" />
-			</form>
+			<h5>News</h5>
+			<div>
+				<a href="/newsletter" class="signup">sign up for newsletter</a>
+			</div>
 		</div>
 	</div>
 </div>
@@ -102,9 +104,22 @@
 			margin-bottom: 1rem;
 			& h5 {
 				margin-bottom: 0.75rem;
-				font-family: var(--ff-gilroy-smb);
 				max-width: max-content;
 				line-height: 1.6rem;
+			}
+			& .signup {
+				padding: 0.5rem 1rem;
+				border-radius: 0.25rem;
+				color: hsl(var(--hsl-brand) / 0.75);
+				line-height: 1.6rem;
+				text-decoration: none;
+				text-transform: uppercase;
+				background: hsl(var(--hsl-brand) / 0.15);
+				transition: color 0.3s linear;
+				&:hover {
+					background: hsl(var(--hsl-blue));
+					color: hsl(var(--hsl-white));
+				}
 			}
 			& .img__w {
 				max-width: 100%;
@@ -143,7 +158,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			gap:0.5rem;
+			gap: 0.5rem;
 			margin-top: 2rem;
 			& svg:hover {
 				transition: 0.3s ease;
@@ -176,7 +191,7 @@
 			padding: 1rem;
 			border: none;
 			border-radius: 0.25rem;
-			background-color: hsl(var(--hsl-blue)/0.75 );
+			background-color: hsl(var(--hsl-blue) / 0.75);
 			font-weight: 600;
 			font-size: var(--sm);
 			letter-spacing: 0.05em;
