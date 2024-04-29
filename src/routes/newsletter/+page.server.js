@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { NEWSLETTER_URL, NEWSLETTER_SHEET_ID, GOOGLE_EMAIL } from '$env/static/private';
+import { GOOGLE_EMAIL, NEWSLETTER_SHEET_ID, NEWSLETTER_URL } from '$env/static/private';
 
 import transporter from '$lib/mail/nodemailer.server.js';
 import { fail } from '@sveltejs/kit';
@@ -8,18 +8,14 @@ import { fail } from '@sveltejs/kit';
 export const actions = {
 	sendToNewsletter: async ({ request }) => {
 		const formData = Object.fromEntries(await request.formData());
-		console.log('🚀 ~ sendToNewsletter: ~ formData:', formData);
-		
+
 		const applicant = {
 			...formData,
 			sheetID: NEWSLETTER_SHEET_ID
 		};
-		
-		
 
 		const scriptUrl = NEWSLETTER_URL;
-	
-		
+
 		try {
 			const response = await fetch(scriptUrl, {
 				method: 'POST',
@@ -32,7 +28,6 @@ export const actions = {
 
 			// if response is not ok, return fail
 			if (!response.ok) {
-				console.log('🚀 ~ sendToGoogle: ~ response: ERROR', response);
 				return fail(response.status, {
 					status: response.status,
 					statusText: response.statusText
@@ -42,8 +37,9 @@ export const actions = {
 			// send email to client
 			const htmlClient = `
 			<div>
-			<p>Thank you for your Newsletter subscription.</p>
-			<p>We will be in touch soon.</p>
+			<p>Thank you for Newsletter subscription.</p>
+			<p>You can check old newsletters in our <a href="http://localhost:5173/archive">Archive</a></p>
+			<img src="https://cdn.sanity.io/images/gkez65br/production/d4881aa85a12a4b55de32a576068e958057fd27c-263x265.svg" style="width: 128px; height: 128px;" alt="shep logo" />
 			</div>
 			`;
 
@@ -54,20 +50,9 @@ export const actions = {
 				subject: `Newsletter subscription`,
 				html: htmlClient
 			};
-			// @ts-ignore
-			const sendEmail = async (emailMessage) => {
-				await new Promise((resolve, reject) => {
-					transporter.sendMail(emailMessage, (err, info) => {
-						if (err) {
-							console.log('transporter ERR', err);
-							reject(err);
-						} else {
-							console.log('transporter messageId', info.messageId);
-							console.log('transporter info', info);
-							resolve(info);
-						}
-					});
-				});
+			const sendEmail = async (message) => {
+				const sentInfo = await transporter.sendMail(message);
+				return sentInfo;
 			};
 			await sendEmail(emailMessage);
 
@@ -79,8 +64,6 @@ export const actions = {
 			</div>
 			`;
 
-			// refName / Google sheet : ${applicant.refName}
-
 			// email message setup
 			const senderEmailMessage = {
 				from: `"FineDiv Studio" <${applicant.email}>`,
@@ -88,26 +71,29 @@ export const actions = {
 				subject: `"New Newsletter subscription"`,
 				html: htmlSender
 			};
-			// @ts-ignore
-			const sendSelfEmail = async (senderEmailMessage) => {
-				await new Promise((resolve, reject) => {
-					transporter.sendMail(senderEmailMessage, (err, info) => {
-						if (err) {
-							console.log('transporter ERR', err);
-							reject(err);
-						} else {
-							console.log('transporter messageId', info.messageId);
-							resolve(info);
-						}
-					});
-				});
+
+			/**
+			 * Sends an email to the sender with the provided message.
+			 *
+			 * @param {object} senderEmailMessage - The email message to be sent.
+			 * @return {Promise} A Promise that resolves with information about the sent email.
+			 */
+
+			const sendToSelf = async (message) => {
+				try {
+					const info = await transporter.sendMail(message);
+					return info;
+				} catch (error) {
+					console.error('Failed to send email to self', error);
+					throw error;
+				}
 			};
-			await sendSelfEmail(senderEmailMessage);
+
+			await sendToSelf(senderEmailMessage);
 
 			return { success: true };
 
 		} catch (error) {
-
 			console.log('🚀 ~ default: ~ error:', error);
 
 			return fail(500, {

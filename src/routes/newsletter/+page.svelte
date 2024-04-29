@@ -20,7 +20,7 @@
 				isToastOpen = false;
 			}
 			goto('/');
-		}, 3000);
+		}, 1500);
 	}
 </script>
 
@@ -35,9 +35,6 @@
 		class="toast toast-success"
 	>
 		<p class="text-black">Thank you for newsletter subscription</p>
-		<!-- <p class="text-black">
-			We have received your application and will be in touch with you shortly.
-		</p> -->
 	</div>
 {/if}
 <div class="page__c">
@@ -57,7 +54,7 @@
 					isSending = true;
 					setTimeout(() => {
 						isSending = false;
-					}, 2000);
+					}, 1500);
 				}}
 				id="newsletter-signup"
 			>
@@ -86,6 +83,9 @@
 	.sign-up__c {
 
 		gap: 2rem;
+		& h1{
+			text-align: center;
+		}
 		& img {
 			border-radius: 0.25rem;
 			aspect-ratio: 1/1;

@@ -1,9 +1,11 @@
 <script>
 	// @ts-nocheck
+	import { enhance } from '$app/forms';
 	import Facebook from './icons/Facebook.svelte';
 	import Instagram from './icons/Instagram.svelte';
 	import MainLogo from './icons/MainLogoNew.svelte';
 	import Twitter from './icons/Twitter.svelte';
+	export const form = {}; // form data from newsletter
 	// export let form = {};
 	// $: console.log('form', form);
 	// $newsletterFormStore = form;
@@ -72,17 +74,20 @@
 	</div>
 	<div class="footer__section">
 		<div class="group">
+			<!-- <a href="/newsletter" class="signup">sign up for</a> -->
+			<form action="http://localhost:5173?/sendToNewsletter" id="newsletter-signup" use:enhance method="POST">
+				<label for="email">Sign up for Nuacht</label>
+				<input type="text" name="name" id="name" placeholder="Your name" />
+				<input type="email" name="email" id="email" placeholder="Your email address" />
+				<input type="submit" value="Sign up" />
+			</form>
+		</div>
+		<div class="group">
 			<div class="group">
 				<h5>SHEP Nuacht</h5>
 				<div>
 					<a class="footer__link" href="/archive">Archive</a>
 				</div>
-			</div>
-		</div>
-		<div class="group">
-			<h5>News</h5>
-			<div>
-				<a href="/newsletter" class="signup">sign up for newsletter</a>
 			</div>
 		</div>
 	</div>
@@ -104,22 +109,28 @@
 			margin-bottom: 1rem;
 			& h5 {
 				margin-bottom: 0.75rem;
+				font-family: var(--ff-gilroy-smb);
 				max-width: max-content;
 				line-height: 1.6rem;
 			}
 			& .signup {
-				padding: 0.5rem 1rem;
-				border-radius: 0.25rem;
-				color: hsl(var(--hsl-brand) / 0.75);
+				margin-bottom: 0.75rem;
+				font-family: var(--ff-gilroy-smb);
+				/* max-width: max-content;
+				 */
+				/* display: block; */
 				line-height: 1.6rem;
 				text-decoration: none;
 				text-transform: uppercase;
-				background: hsl(var(--hsl-brand) / 0.15);
+				color: hsl(var(--hsl-brand) / 0.75);
 				transition: color 0.3s linear;
 				&:hover {
 					background: hsl(var(--hsl-blue));
 					color: hsl(var(--hsl-white));
 				}
+				padding: 0.5rem 1rem;
+				border-radius: 0.5rem;
+				background: hsl(var(--hsl-brand) / 0.15);
 			}
 			& .img__w {
 				max-width: 100%;
@@ -177,7 +188,7 @@
 			color: hsl(var(--hsl-gray) / 0.8);
 			font-weight: 600;
 		}
-		& input[type='email'] {
+		& input[type='email'], input[type='text'] {
 			width: 100%;
 			font-size: 1rem;
 			padding: 0.5rem;

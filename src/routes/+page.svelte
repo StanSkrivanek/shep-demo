@@ -17,7 +17,7 @@
 		<div class="img__w">
 			<img
 				src="https://cdn.sanity.io/images/gkez65br/production/1a823e800e23ac51c17affffb8858b6248869609-800x533.jpg"
-				alt="pinky theme"
+				alt="women portrait"
 			/>
 		</div>
 	</div>
