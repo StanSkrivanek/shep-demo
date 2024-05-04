@@ -6,13 +6,8 @@
 	import MainLogo from './icons/MainLogoNew.svelte';
 	import Twitter from './icons/Twitter.svelte';
 	export const form = {}; // form data from newsletter
-	// export let form = {};
-	// $: console.log('form', form);
-	// $newsletterFormStore = form;
-	// $: console.log('newsletterFormStore', $newsletterFormStore);
-</script>
 
-<!-- four section footer -->
+</script>
 
 <div class="footer__w">
 	<div class="footer__section">
@@ -75,9 +70,9 @@
 	<div class="footer__section">
 		<div class="group">
 			<!-- <a href="/newsletter" class="signup">sign up for</a> -->
-			<form action="http://localhost:5173?/sendToNewsletter" id="newsletter-signup" use:enhance method="POST">
+			<form action="/?/sendToNewsletter" id="newsletter-signup" use:enhance method="POST">
 				<label for="email">Sign up for Nuacht</label>
-				<input type="text" name="name" id="name" placeholder="Your name" />
+				<!-- <input type="text" name="name" id="name" placeholder="Your name" /> -->
 				<input type="email" name="email" id="email" placeholder="Your email address" />
 				<input type="submit" value="Sign up" />
 			</form>
@@ -92,6 +87,9 @@
 		</div>
 	</div>
 </div>
+<div class="copyright">
+	<p>&copy; {new Date().getFullYear()} SHEP. All rights reserved.</p>
+</div>
 
 <style>
 	.footer__w {
@@ -100,7 +98,9 @@
 		max-width: 1474px;
 		margin: 0 auto;
 		gap: 2rem;
-		padding: 1rem;
+		padding-block: 3rem;
+		padding-inline: 1.5rem;
+		border-top: 1px solid hsl(var(--hsl-gray) / 0.1);
 	}
 
 	.footer__section {
@@ -214,6 +214,19 @@
 			background-color: hsl(var(--hsl-blue));
 		}
 	}
+
+
+	.copyright {
+		padding: 1rem;
+		background-color: hsl(var(--hsl-gray) / 0.05);
+		text-align: center;
+		& p {
+			max-width: none;
+			font-size: var(--xs);
+		}
+	}
+
+	/* Media Queries */
 	@media (max-width: 1280px) {
 	}
 

@@ -1,6 +1,5 @@
 // @ts-nocheck
 import { getLogos, getPostsForSlider } from '$lib/server/sanity';
-	import { newsletterSubscribe } from '$lib/server/actions/newsletterSubscribe';
 export async function load() {
 	const logos = await getLogos();
 	const slides = await getPostsForSlider();
