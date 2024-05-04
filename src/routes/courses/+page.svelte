@@ -76,6 +76,7 @@
 		grid-area: hero-data;
 		padding: 1rem;
 		border-radius: 1rem;
+		background: color-mix(in oklab, hsl(var(--hsl-brand)) 8%, white 10%);
 	}
 	.hero-img {
 		grid-column: 4 / -1;

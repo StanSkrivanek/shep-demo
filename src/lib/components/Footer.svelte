@@ -5,7 +5,7 @@
 	import Instagram from './icons/Instagram.svelte';
 	import MainLogo from './icons/MainLogoNew.svelte';
 	import Twitter from './icons/Twitter.svelte';
-	export const form = {}; // form data from newsletter
+	// export const form = {}; // form data from newsletter
 
 </script>
 
@@ -74,7 +74,7 @@
 				<label for="email">Sign up for Nuacht</label>
 				<!-- <input type="text" name="name" id="name" placeholder="Your name" /> -->
 				<input type="email" name="email" id="email" placeholder="Your email address" />
-				<input type="submit" value="Sign up" />
+				<input class="signup" type="submit" value="Sign up" />
 			</form>
 		</div>
 		<div class="group">
@@ -105,6 +105,7 @@
 
 	.footer__section {
 		border-radius: 1rem;
+
 		& .group {
 			margin-bottom: 1rem;
 			& h5 {
@@ -114,23 +115,19 @@
 				line-height: 1.6rem;
 			}
 			& .signup {
-				margin-bottom: 0.75rem;
-				font-family: var(--ff-gilroy-smb);
-				/* max-width: max-content;
-				 */
-				/* display: block; */
-				line-height: 1.6rem;
-				text-decoration: none;
-				text-transform: uppercase;
-				color: hsl(var(--hsl-brand) / 0.75);
-				transition: color 0.3s linear;
-				&:hover {
-					background: hsl(var(--hsl-blue));
-					color: hsl(var(--hsl-white));
-				}
 				padding: 0.5rem 1rem;
-				border-radius: 0.5rem;
-				background: hsl(var(--hsl-brand) / 0.15);
+				background: hsl(var(--hsl-blue));
+				border-radius: 0.25rem;
+				/* font-family: var(--ff-gilroy-smb); */
+				line-height: 1.6rem;
+				/* text-decoration: none; */
+				/* text-transform: uppercase; */
+				color: hsl(var(--hsl-white) / 0.75);
+				margin-bottom: 0.75rem;
+				&:hover {
+					background: hsl(var(--hsl-green) / 0.75);
+					color: hsl(var(--hsl-gray));
+				}
 			}
 			& .img__w {
 				max-width: 100%;
