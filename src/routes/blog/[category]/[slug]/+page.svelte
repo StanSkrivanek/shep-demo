@@ -382,7 +382,7 @@
 		& .back-to-blog {
 			text-transform: uppercase;
 			text-decoration: none;
-			font-size: 2rem;
+			font-size: 1.6rem;
 			font-family: var(--ff-fkg-bold);
 		}
 	}
