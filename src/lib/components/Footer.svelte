@@ -69,6 +69,14 @@
 	</div>
 	<div class="footer__section">
 		<div class="group">
+			<div class="group">
+				<h5>SHEP Nuacht</h5>
+				<div>
+					<a class="footer__link" href="/archive">Archive</a>
+				</div>
+			</div>
+		</div>
+		<div class="group">
 			<!-- <a href="/newsletter" class="signup">sign up for</a> -->
 			<form action="/?/sendToNewsletter" id="newsletter-signup" use:enhance method="POST">
 				<label for="email">Sign up for Nuacht</label>
@@ -76,14 +84,6 @@
 				<input type="email" name="email" id="email" placeholder="Your email address" />
 				<input class="signup" type="submit" value="Sign up" />
 			</form>
-		</div>
-		<div class="group">
-			<div class="group">
-				<h5>SHEP Nuacht</h5>
-				<div>
-					<a class="footer__link" href="/archive">Archive</a>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>

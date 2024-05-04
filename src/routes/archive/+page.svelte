@@ -118,8 +118,9 @@
 		grid-column: 1 / 4;
 		grid-row: 1/1;
 		grid-area: hero-data;
-		padding: 2rem 0;
+		padding: 1rem;
 		border-radius: 1rem;
+		background: color-mix(in oklab, hsl(var(--hsl-blue)) 8%, white 10%);
 	}
 	.hero-img {
 		grid-column: 4 / -1;
@@ -175,22 +176,6 @@
 		}
 	}
 
-	.card-pdf__data {
-		/* display: flex; */
-		/* flex-direction: column; */
-		/* justify-content: space-between; */
-		/* padding: 1rem; */
-		/* border-radius: 0.5rem; */
-		/* background: hsl(var(--hsl-gray) / 0.1); */
-		/* transition: all 0.3s ease-in-out; */
-		/* pointer-events: none; */
-		/* & svg { */
-		/* 	& path { */
-		/* 		stroke: hsl(var(--hsl-blue)); */
-		/* 	} */
-		/* } */
-	}
-
 	.pdf__title {
 		font-size: 1.4rem;
 		font-weight: 700;
@@ -230,7 +215,7 @@
 		font-size: 3rem;
 		line-height: 1;
 		font-family: var(--ff-fkg-black);
-		color: hsl(var(--hsl-blue));
+		color: hsl(var(--hsl-blue) /0.5);
 	}
 
 	.pdf__link {

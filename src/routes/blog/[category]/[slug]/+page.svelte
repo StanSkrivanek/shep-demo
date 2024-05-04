@@ -182,6 +182,7 @@
 						{/if}
 					{/each}
 				{/if}
+				<a class="back-to-blog" href="/blog">back to blog</a>
 			</div>
 		</aside>
 	</div>
@@ -227,7 +228,7 @@
 			background: linear-gradient(
 				90deg,
 				hsla(218, 98%, 16%, 0.798) 0%,
-				hsla(218, 94%, 12%, 0.476)  65%,
+				hsla(218, 94%, 12%, 0.476) 65%,
 				hsla(218, 98%, 16%, 0.16) 100%
 			);
 			border-radius: 0.5rem;
@@ -362,12 +363,11 @@
 	}
 	.side-links {
 		grid-area: news;
-		
+
 		& > p {
 			color: hsl(var(--hsl-gray) / 0.75);
 			text-transform: uppercase;
 			letter-spacing: 0.1rem;
-			
 		}
 	}
 
@@ -379,6 +379,12 @@
 		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 		gap: 1rem;
 		position: relative;
+		& .back-to-blog {
+			text-transform: uppercase;
+			text-decoration: none;
+			font-size: 2rem;
+			font-family: var(--ff-fkg-bold);
+		}
 	}
 
 	.link__w {
@@ -418,7 +424,6 @@
 					& circle {
 						stroke: hsl(var(--hsl-brand) / 0.75) !important;
 					}
-			
 				}
 			}
 		}
@@ -433,7 +438,6 @@
 				'news news news news news news news news ';
 		}
 		.links__c {
-	
 			border-left: none;
 		}
 	}

@@ -87,8 +87,7 @@
 		grid-area: hero-data;
 		padding: 2rem;
 		border-radius: 1rem;
-		background: var(--orange-50);
-		/* max-height: max-content; */
+		background: color-mix(in oklab, hsl(var(--hsl-green)) 8%, white 10%);
 	}
 	.hero-img {
 		grid-area: hero-img;

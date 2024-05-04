@@ -135,10 +135,11 @@
 							</a>
 						</div>
 						<div class="bg">
-							<Waves currentColor="hsl(var(--hsl-blue) / 0.35)" />
+							<Waves currentColor="hsl(var(--hsl-cyan) / 0.35)" />
 						</div>
 					</div>
 				</div>
+				
 			{/each}
 		</main>
 	
@@ -280,7 +281,7 @@
 		border-radius: 0.5rem;
 		overflow: hidden;
 		pointer-events: none;
-		background: hsl(var(--hsl-blue) / 0.15);
+		background: hsl(var(--hsl-cyan) / 0.15);
 		transition: all 0.3s ease-in-out;
 	}
 .card:hover {
@@ -288,7 +289,7 @@
 		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
 		& svg {
 			& circle {
-				stroke: hsl(var(--hsl-blue)) !important;
+				stroke: hsl(var(--hsl-cyan)) !important;
 			}
 		}
 	}
