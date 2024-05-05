@@ -1,5 +1,6 @@
 <script>
 	import { toast } from '$lib/stores/ToastStore';
+	import { flip } from 'svelte/animate';
 	import { cubicIn, cubicOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
 	import Portal from './Portal.svelte';
@@ -11,17 +12,18 @@
 	<div class="toaster">
 		{#each $toast as msg (msg.id)}
 			<div
+				class="toast-msg"
+				role="alert"
+				aria-live="polite"
+				aria-atomic="true"
 				id={msg.id}
 				class:info={msg.type === 'info'}
 				class:error={msg.type === 'error'}
 				class:warning={msg.type === 'warning'}
 				class:success={msg.type === 'success'}
-				class="toast-msg"
 				in:fly={{ duration: 800, easing: cubicOut, y: -100, x: 0 }}
-				out:fly={{ delay: 200, duration: 800, easing: cubicIn, y: -100, x: 0 }}
-				role="alert"
-				aria-live="polite"
-				aria-atomic="true"
+				out:fly={{ duration: 800, easing: cubicIn, y: -100, x: 0 }}
+				animate:flip={{ delay: 600, duration: 600, easing: cubicOut }}
 			>
 				<div>
 					<ToastMesage msg={msg.msg} />
@@ -64,13 +66,14 @@
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
+		/* transition: all 0.3s ease-in-out; */
 		& .toast-msg {
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			gap: 0.5rem;
-			padding: .5rem;
-			border-radius: .25rem;
+			padding: 0.5rem;
+			border-radius: 0.25rem;
 		}
 	}
 </style>

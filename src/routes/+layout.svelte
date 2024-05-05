@@ -10,7 +10,7 @@
 <Toast/>
 <Navigation />
 <button on:click={() => {
-	toast.send({ msg: 'Hello', type: 'info' });
+	toast.send({ msg: 'Hello', type: 'error' });
 }}>TOAST</button>
 <slot />
 <Footer />
