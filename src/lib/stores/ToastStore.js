@@ -16,7 +16,6 @@ const newToast = () => {
 	    update(store => {
 	      if (id) return store.filter(item => item.id !== id)
 	      const [_, ...rest] = store;
-      console.log('🚀 ~ file: ToastStore.js:remove ~ rest:', ...rest)
 	      return [...rest];
 	    })
 	  }
