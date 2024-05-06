@@ -17,17 +17,17 @@
 		class:success={type === 'success'}
 	>
 		{#if type === 'error'}
-			<IcnError width={32} height={32} currentColor="hsl(var(--hsl-error-light))"></IcnError>
+			<IcnError width={32} height={32} currentColor="color-mix(in oklab, hsl(var(--hsl-error)) 10%, white)"></IcnError>
 		{/if}
 
 		{#if type === 'info'}
-			<IcnInfo width={32} height={32} currentColor="hsl(var(--hsl-info-light))"></IcnInfo>
+			<IcnInfo width={32} height={32} currentColor="color-mix(in oklab, hsl(var(--hsl-info)) 10%, white)"></IcnInfo>
 		{/if}
 		{#if type === 'warning'}
-			<IcnWarning width={32} height={32} currentColor="hsl(var(--hsl-warning-light))"></IcnWarning>
+			<IcnWarning width={32} height={32} currentColor="color-mix(in oklab, hsl(var(--hsl-warning)) 60%, black)"></IcnWarning>
 		{/if}
 		{#if type === 'success'}
-			<IcnSuccess width={32} height={32} currentColor="hsl(var(--hsl-success-light))"></IcnSuccess>
+			<IcnSuccess width={32} height={32} currentColor="color-mix(in oklab, hsl(var(--hsl-success)) 60%, black)"></IcnSuccess>
 		{/if}
 	</div>
 	<div class="toast__body">

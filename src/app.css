@@ -66,21 +66,12 @@
 	--hsl-gray: 213 36% 27%;
 	--test: hsl(230, 65%, 25%);
 
-/* Allerts */
- /* TODO: USE COLOR MIX  */
+	/* Allerts */
 
---hsl-info-light: 204 100% 97%;
---hsl-info: 212 97% 43%;
-
---hsl-success-light: 134 41% 88%; 
---hsl-success: 154 80% 41%; 
-
---hsl-warning-light: 46 100% 90%;
---hsl-warning: 45 86% 48%;
-
---hsl-error-light:355 70% 91%;
---hsl-error: 354 64% 47%;
-
+	--hsl-info: 212 80% 60%;
+	--hsl-success: 154 80% 70%;
+	--hsl-warning: 45 90% 70%;
+	--hsl-error: 354 90% 65%;
 
 	--clr-brand: color-mix(in oklab, hsl(var(--hsl-brand)) 65%, white);
 }
@@ -105,7 +96,7 @@ html {
 	/* position: relative; */
 }
 /* global body setting */
- body {
+body {
 	margin: 0;
 	padding: 0;
 	font-size: clamp(1rem, 0.5vw + 0.5rem, 1.125rem);

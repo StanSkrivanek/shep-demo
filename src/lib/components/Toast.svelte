@@ -35,27 +35,27 @@
 
 <style>
 	.info {
-		background-color: #f0f9ff;
-		color: #0366d6;
-		border: 1px solid #0366d6;
+		background-color: color-mix(in oklab, hsl(var(--hsl-info)) 10%, white);
+		color: color-mix(in oklab, hsl(var(--hsl-info)) 70%, black);
+		border: 1px solid hsl(var(--hsl-info));
 	}
 
 	.error {
-		background-color: #f8d7da;
-		color: hsl(354, 64%, 47%);
-		border: 1px solid #721c24;
+		background-color: color-mix(in oklab, hsl(var(--hsl-error)) 10%, white);
+		color: color-mix(in oklab, hsl(var(--hsl-error)) 70%, black);
+		border: 1px solid hsl(var(--hsl-error));
 	}
 
 	.warning {
-		background-color: #fff3cd;
-		color: #856404;
-		border: 1px solid hsl(45, 86%, 48%);
+		background-color: color-mix(in oklab, hsl(var(--hsl-warning)) 10%, white);
+		color: color-mix(in oklab, hsl(var(--hsl-warning)) 70%, black);
+		border: 1px solid hsl(var(--hsl-warning));
 	}
 
 	.success {
-		background-color: #d4edda;
-		color: hsl(153, 80%, 41%);
-		border: 1px solid #155724;
+		background-color: color-mix(in oklab, hsl(var(--hsl-success)) 10%, white);
+		color: color-mix(in oklab, hsl(var(--hsl-success)) 70%, black);
+		border: 1px solid hsl(var(--hsl-success));
 	}
 	.toaster {
 		position: fixed;
