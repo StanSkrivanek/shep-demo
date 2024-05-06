@@ -66,6 +66,22 @@
 	--hsl-gray: 213 36% 27%;
 	--test: hsl(230, 65%, 25%);
 
+/* Allerts */
+ /* TODO: USE COLOR MIX  */
+
+--hsl-info-light: 204 100% 97%;
+--hsl-info: 212 97% 43%;
+
+--hsl-success-light: 134 41% 88%; 
+--hsl-success: 154 80% 41%; 
+
+--hsl-warning-light: 46 100% 90%;
+--hsl-warning: 45 86% 48%;
+
+--hsl-error-light:355 70% 91%;
+--hsl-error: 354 64% 47%;
+
+
 	--clr-brand: color-mix(in oklab, hsl(var(--hsl-brand)) 65%, white);
 }
 /* SVG */

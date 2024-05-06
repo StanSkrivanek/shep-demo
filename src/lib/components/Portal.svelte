@@ -12,9 +12,7 @@
 		function destroy() {
 			if (node.parentNode) node.parentNode.removeChild(node);
 		}
-
 		update();
-
 		return { update, destroy };
 	}
 </script>

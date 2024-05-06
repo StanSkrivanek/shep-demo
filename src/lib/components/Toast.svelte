@@ -26,7 +26,7 @@
 				animate:flip={{ delay: 600, duration: 600, easing: cubicOut }}
 			>
 				<div>
-					<ToastMesage msg={msg.msg} />
+					<ToastMesage msg={msg.msg} type={msg.type} />
 				</div>
 			</div>
 		{/each}
@@ -42,37 +42,37 @@
 
 	.error {
 		background-color: #f8d7da;
-		color: #721c24;
+		color: hsl(354, 64%, 47%);
 		border: 1px solid #721c24;
 	}
 
 	.warning {
 		background-color: #fff3cd;
 		color: #856404;
-		border: 1px solid #856404;
+		border: 1px solid hsl(45, 86%, 48%);
 	}
 
 	.success {
 		background-color: #d4edda;
-		color: #155724;
+		color: hsl(153, 80%, 41%);
 		border: 1px solid #155724;
 	}
 	.toaster {
 		position: fixed;
 		top: 24px;
 		right: 50%;
-		transform: translateX(50%);
-		z-index: 9999;
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
+		gap: 1rem;
+		transform: translateX(50%);
+		z-index: 9999;
 		/* transition: all 0.3s ease-in-out; */
 		& .toast-msg {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			gap: 0.5rem;
-			padding: 0.5rem;
+			/* gap: 1rem; */
+			/* padding: 0.5rem; */
 			border-radius: 0.25rem;
 		}
 	}
