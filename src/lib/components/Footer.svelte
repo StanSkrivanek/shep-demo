@@ -1,22 +1,12 @@
 <script>
 	// @ts-nocheck
-	import { enhance } from '$app/forms';
 	import Facebook from './icons/Facebook.svelte';
 	import Instagram from './icons/Instagram.svelte';
 	import MainLogo from './icons/MainLogoNew.svelte';
 	import Twitter from './icons/Twitter.svelte';
-	// import { toast } from '$lib/stores/ToastStore';
-	
+	// Import your store
+
 	$: isSending = false;
-
-	// $: if (form?.success) {
-		// toast.send({
-		// 	msg: 'Thank you for "Nuacht" subscription',
-		// 	type: 'success'
-		// });
-		// goto('/');
-	// }heidy
-
 </script>
 
 <div class="footer__w">
@@ -87,14 +77,22 @@
 			</div>
 		</div>
 		<div class="group">
+			<h5>Subscribe</h5>
 			<!-- <a href="/newsletter" class="signup">sign up for</a> -->
-			<form method="POST" action="../?/sendToNewsletter" id="newsletter-signup" use:enhance >
+			<!-- <form method="POST" id="newsletter-signup" use:enhance on:submit|preventDefault={submit}>
 				<label for="email">Sign up for Nuacht</label>
-				<input type="email" name="email" id="email" placeholder="Your email address" />
+				<input
+					type="email"
+					name="email"
+					id="email"
+					placeholder="Your email address"
+					bind:value={email}
+				/>
 				<button type="submit" disabled={isSending}>
 					{isSending ? 'Sending...' : 'Sign Up'}
 				</button>
-			</form>
+			</form> -->
+			<a class="button" href="/newsletter">Subscribe to newsletter</a>
 		</div>
 	</div>
 </div>
@@ -125,21 +123,21 @@
 				max-width: max-content;
 				line-height: 1.6rem;
 			}
-			& .signup {
-				padding: 0.5rem 1rem;
-				background: hsl(var(--hsl-blue));
-				border-radius: 0.25rem;
+			/* & .signup { */
+				/* padding: 0.5rem 1rem; */
+				/* background: hsl(var(--hsl-blue)); */
+				/* border-radius: 0.25rem; */
 				/* font-family: var(--ff-gilroy-smb); */
-				line-height: 1.6rem;
+				/* line-height: 1.6rem; */
 				/* text-decoration: none; */
 				/* text-transform: uppercase; */
-				color: hsl(var(--hsl-white) / 0.75);
-				margin-bottom: 0.75rem;
-				&:hover {
-					background: hsl(var(--hsl-green) / 0.75);
-					color: hsl(var(--hsl-gray));
-				}
-			}
+				/* color: hsl(var(--hsl-white) / 0.75); */
+				/* margin-bottom: 0.75rem; */
+				/* &:hover { */
+					/* background: hsl(var(--hsl-green) / 0.75); */
+					/* color: hsl(var(--hsl-gray)); */
+				/* } */
+			/* } */
 			& .img__w {
 				max-width: 100%;
 
@@ -188,7 +186,7 @@
 		}
 	}
 
-	form {
+	/* form {
 		width: 100%;
 		& label {
 			margin-bottom: 0.5rem;
@@ -205,34 +203,26 @@
 			border-radius: 0.25rem;
 			margin-bottom: 1rem;
 		}
+	} */
 
-		& button {
-			width: 100%;
-			padding: 1rem;
-			border: none;
-			border-radius: 0.25rem;
-			background-color: hsl(var(--hsl-blue));
-			font-weight: 600;
-			font-size: var(--sm);
-			letter-spacing: 0.05em;
-			color: white;
-			cursor: pointer;
-			text-transform: uppercase;
-		}
-		& button:hover {
-			background-color: hsl(var(--hsl-green));
-		}
+	.button {
+		width: 100%;
+		/* padding: 1rem; */
+		border: none;
+		/* border-radius: 0.25rem; */
+		/* background-color: hsl(var(--hsl-blue)); */
+		/* font-weight: 600; */
+		text-decoration: none;
+		/* font-size: var(--sm); */
+		/* letter-spacing: 0.05em; */
+		/* color: white; */
+		cursor: pointer;
+		/* text-transform: uppercase; */
 	}
-/* button {
-				padding: 1rem 6rem;
-				background-color: hsl(var(--hsl-blue));
-				border: none;
-				border-radius: 0.5rem;
-				font-size: 1.5rem;
-				font-weight: 700;
-				color: hsl(var(--hsl-white));
-				cursor: pointer;
-			} */
+	.button:hover {
+		/* background-color: hsl(var(--hsl-green)); */
+		/* text-decoration: underline; */
+	}
 	.copyright {
 		padding: 1rem;
 		background-color: hsl(var(--hsl-gray) / 0.05);

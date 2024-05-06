@@ -2,6 +2,7 @@
 	//@ts-nocheck
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
+	import { toast } from '$lib/stores/ToastStore';
 
 	export let form;
 
@@ -18,14 +19,18 @@
 
 <div class="page__c">
 	<div class="sign-up__c">
-		<div class="group sign-up">
-			<h1>Sign up for our newsletter</h1>
+		<div class="group logo">
+			
 			<img
 				src="https://cdn.sanity.io/images/gkez65br/production/4006e3dd46fac8441e6d714a48c7e4006d3385f1-1024x1024.png"
 				alt=""
 			/>
 		</div>
-		<div class="group sign-up">
+		<div class="group ">
+			<div class="sign-up--title">
+				<h1>Join Our Comunity Newsletter</h1>
+				<p>Stay up to date with the latest news, events and activities from SHEP and the community.</p>
+			</div>
 			<form
 				method="POST"
 				action="?/sendToNewsletter"
@@ -39,7 +44,7 @@
 				<!-- <input type="text" name="name" id="name" placeholder="Your name and surname" /> -->
 				<input type="email" name="email" id="email" placeholder="Your email address" />
 				<button type="submit" disabled={isSending} value="Sign up">
-					{isSending ? 'Sending...' : 'Send'}
+					{isSending ? 'Sending...' : 'Sign Up'}
 				</button>
 			</form>
 		</div>
@@ -51,14 +56,20 @@
 		display: flex;
 		border-radius: 0.5rem;
 		margin-bottom: 3rem;
-		min-height: 70vh;
+		min-height: 56svh;
 		justify-content: center;
 	}
 
 	.sign-up__c {
-		gap: 2rem;
-		& h1 {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		& h1, p {
 			text-align: center;
+			max-width: 40ch;
+			margin-inline: auto;
 		}
 		& img {
 			border-radius: 0.25rem;
@@ -80,6 +91,9 @@
 		margin-inline: auto;
 		max-height: 100%;
 	}
+	.sign-up--title{
+		margin-bottom: 4rem;
+	}
 	form {
 		display: flex;
 		flex-direction: column;
@@ -97,39 +111,27 @@
 	}
 
 	button {
-		padding: 1rem;
+		display: inline-flex;
+		align-self: center;
+		justify-content: center;
+		align-items: center;
+		max-width: max-content;
+		padding: 1rem 4rem;
 		border: none;
 		border-radius: 0.25rem;
-		background-color: hsl(var(--hsl-blue) / 0.75);
+		background-color: hsl(var(--hsl-blue));
 		font-weight: 600;
 		font-size: var(--sm);
 		letter-spacing: 0.05em;
 		color: white;
 		cursor: pointer;
 		text-transform: uppercase;
+		transition: 0.3s ease;
 	}
-	.toast {
-		position: fixed;
-		top: 0;
-		right: 0;
-		margin: 3rem;
-		padding: 1rem 2rem;
-		border-radius: 0.25rem;
-		background: hsl(var(--hsl-white));
-		border: 2px solid hsl(var(--hsl-green));
-		border-left-width: 3rem;
-		color: hsl(var(--hsl-gray));
-		z-index: 1000;
 
-		& .text-black {
-			line-height: 1.4;
-
-			margin-top: 0.5rem;
-			max-width: 40ch;
-			&:first-child {
-				text-transform: uppercase;
-				font-weight: 600;
-			}
-		}
+	button:hover {
+		background-color: hsl(var(--hsl-green));
+		color: color-mix(in oklab, hsl(var(--hsl-green)) 70%, black);
 	}
+
 </style>
