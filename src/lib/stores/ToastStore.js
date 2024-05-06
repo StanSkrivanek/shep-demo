@@ -10,7 +10,7 @@ const newToast = () => {
 		// Remove the toast after 3 seconds
 		setTimeout(() => {
 			remove(newMsg.id);
-		}, 4000);
+		}, 3000);
 	}
 	  function remove(id) {
 	    update(store => {

@@ -4,9 +4,24 @@
 	import Arrow from '$lib/components/icons/Arrow.svelte';
 	import LeavesCorner from '$lib/components/icons/LeavesCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
+	
+	import { goto } from '$app/navigation';
+	import { toast } from '$lib/stores/ToastStore.js';
+	
+	export let form;
 
 	export let data;
+	
 	let { logos, slides } = data;
+
+	$: if (form?.success) {
+		toast.send({
+			msg: 'Thank you for your application, we will be in contact soon',
+			type: 'success'
+		});
+
+		goto('/');
+	}
 </script>
 
 <div class="page__c">
@@ -328,7 +343,7 @@
 				display: flex;
 				flex-direction: row;
 				gap: 1rem;
-	
+
 				@media screen and (max-width: 640px) {
 					display: block;
 				}

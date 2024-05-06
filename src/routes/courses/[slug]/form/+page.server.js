@@ -54,10 +54,6 @@ export const actions = {
 
 			}
 
-			// TODO: and open thank you toast
-			// openToast("Thank you for your application. We will be in touch soon.");
-	
-
 			// send emails to client
 
 			const htmlClient = `

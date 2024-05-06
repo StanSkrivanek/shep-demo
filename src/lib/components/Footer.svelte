@@ -5,7 +5,17 @@
 	import Instagram from './icons/Instagram.svelte';
 	import MainLogo from './icons/MainLogoNew.svelte';
 	import Twitter from './icons/Twitter.svelte';
-	// export const form = {}; // form data from newsletter
+	// import { toast } from '$lib/stores/ToastStore';
+	
+	$: isSending = false;
+
+	// $: if (form?.success) {
+		// toast.send({
+		// 	msg: 'Thank you for "Nuacht" subscription',
+		// 	type: 'success'
+		// });
+		// goto('/');
+	// }heidy
 
 </script>
 
@@ -78,11 +88,12 @@
 		</div>
 		<div class="group">
 			<!-- <a href="/newsletter" class="signup">sign up for</a> -->
-			<form action="/?/sendToNewsletter" id="newsletter-signup" use:enhance method="POST">
+			<form method="POST" action="../?/sendToNewsletter" id="newsletter-signup" use:enhance >
 				<label for="email">Sign up for Nuacht</label>
-				<!-- <input type="text" name="name" id="name" placeholder="Your name" /> -->
 				<input type="email" name="email" id="email" placeholder="Your email address" />
-				<input class="signup" type="submit" value="Sign up" />
+				<button type="submit" disabled={isSending}>
+					{isSending ? 'Sending...' : 'Sign Up'}
+				</button>
 			</form>
 		</div>
 	</div>
@@ -185,7 +196,8 @@
 			color: hsl(var(--hsl-gray) / 0.8);
 			font-weight: 600;
 		}
-		& input[type='email'], input[type='text'] {
+		& input[type='email'],
+		input[type='text'] {
 			width: 100%;
 			font-size: 1rem;
 			padding: 0.5rem;
@@ -194,12 +206,12 @@
 			margin-bottom: 1rem;
 		}
 
-		& input[type='submit'] {
+		& button {
 			width: 100%;
 			padding: 1rem;
 			border: none;
 			border-radius: 0.25rem;
-			background-color: hsl(var(--hsl-blue) / 0.75);
+			background-color: hsl(var(--hsl-blue));
 			font-weight: 600;
 			font-size: var(--sm);
 			letter-spacing: 0.05em;
@@ -207,12 +219,20 @@
 			cursor: pointer;
 			text-transform: uppercase;
 		}
-		& input[type='submit']:hover {
-			background-color: hsl(var(--hsl-blue));
+		& button:hover {
+			background-color: hsl(var(--hsl-green));
 		}
 	}
-
-
+/* button {
+				padding: 1rem 6rem;
+				background-color: hsl(var(--hsl-blue));
+				border: none;
+				border-radius: 0.5rem;
+				font-size: 1.5rem;
+				font-weight: 700;
+				color: hsl(var(--hsl-white));
+				cursor: pointer;
+			} */
 	.copyright {
 		padding: 1rem;
 		background-color: hsl(var(--hsl-gray) / 0.05);

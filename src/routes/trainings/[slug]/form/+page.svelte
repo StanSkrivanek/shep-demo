@@ -2,12 +2,11 @@
 	// @ts-nocheck
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
+	import { toast } from '$lib/stores/ToastStore';
 	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDateYear, monthYear } from '$lib/utils/datehelpers';
 	import { counties, source } from '$lib/utils/globalhelpers';
 	import { onMount } from 'svelte';
-	import { cubicIn, cubicOut } from 'svelte/easing';
-	import { fly } from 'svelte/transition';
 
 	// variable form contain the form `data` and `issues` from validation
 	export let form;
@@ -15,18 +14,23 @@
 	let courseData = $singleEventStore;
 
 	$: isSending = false;
-	$: isToastOpen = false;
 
-	$: if (form?.success && !isToastOpen) {
-		isToastOpen = true;
-		setTimeout(() => {
-			if (isToastOpen) {
-				isToastOpen = false;
-			}
-			goto('/trainings');
-		}, 4500);
+	$: if (form?.success) {
+		toast.send({
+			msg: 'Thank you for your application, we will be in contact soon',
+			type: 'success'
+		});
+
+		goto('/upcoming');
 	}
+	// if (!form?.success) {
+	// 	toast.send({
+	// 		msg: 'Something went wrong, try again later',
+	// 		type: 'error'
+	// 	});
 
+	// 	goto('/');
+	// }
 	let canAttend = [];
 	// Toggle value for checkbox input
 	function eventHandler(e) {
@@ -51,22 +55,6 @@
 </svelte:head>
 
 <div class="page__c">
-	{#if isToastOpen}
-		<div
-			role="alert"
-			aria-live="assertive"
-			aria-atomic="true"
-			in:fly={{ duration: 800, easing: cubicOut, y: -100, x: 0 }}
-			out:fly={{ delay: 200, duration: 800, easing: cubicIn, y: -100, x: 0 }}
-			class="toast toast-success"
-		>
-			<p class="text-black">Thank you for your application</p>
-			<p class="text-black">
-				We have received your application and will be in touch with you shortly.
-			</p>
-		</div>
-	{/if}
-
 	{#if courseData.event}
 		<form
 			method="POST"
@@ -75,7 +63,7 @@
 				isSending = true;
 				setTimeout(() => {
 					isSending = false;
-				}, 5000);
+				}, 1000);
 			}}
 		>
 			<div class="form-header">
@@ -86,7 +74,7 @@
 					<b>{monthYear(courseData.in_person.start_date)}<b /></b>
 				</p>
 			</div>
-		
+
 			<div class="personal-data">
 				<h2>Personal data <span><i>( mandatory )</i></span></h2>
 
@@ -313,7 +301,6 @@
 					Yes, I give consent to SHEP to hold these details for the purposes of sending information to
 					me on this upcoming course and other SHEP courses and events.
 				</label>
-				
 			</div>
 			<div hidden>
 				<!-- NOTE:
@@ -407,7 +394,7 @@
 					border-radius: 0.5rem;
 					font-size: 1.5rem;
 					color: hsl(var(--hsl-gray));
-					
+
 					margin-bottom: 1rem;
 				}
 				& textarea {
@@ -432,7 +419,7 @@
 							padding: 0.5rem;
 							border-bottom: 1px solid hsl(var(--hsl-gray) / 0.25);
 							font-size: 1.2rem;
-						
+
 							text-align: left;
 						}
 					}
@@ -460,7 +447,7 @@
 			padding: 3rem 0.5rem;
 			& label {
 				font-size: var(--sm);
-			
+
 				margin-bottom: 0.25rem;
 				position: relative;
 				cursor: pointer;

@@ -2,9 +2,8 @@
 	// @ts-nocheck
 	import { enhance } from '$app/forms';
 	import MainLogo from '$lib/components/icons/MainLogoNew.svelte';
+	import { toast } from '$lib/stores/ToastStore';
 	import { onMount } from 'svelte';
-	import { cubicIn, cubicOut } from 'svelte/easing';
-	import { fly } from 'svelte/transition';
 
 	export let form;
 
@@ -12,17 +11,15 @@
 	$: errors = {} || form?.errors;
 
 	$: isSending = false;
-	$: isToastOpen = false;
 
 	// This is my second test massage send from Contact page using node emailer. Hope this will work!
-	$: if (form?.success && !isToastOpen) {
-		isToastOpen = true;
-		setTimeout(() => {
-			if (isToastOpen) {
-				form.success = false;
-				isToastOpen = false;
-			}
-		}, 5000);
+	$: if (form?.success) {
+		toast.send({
+			msg: 'Thank you for your request, we will be in contact soon',
+			type: 'success'
+		});
+
+		goto('/');
 	}
 	onMount(() => {
 		const textareaEl = document.querySelector('textarea');
@@ -71,25 +68,11 @@
 	</div>
 	<div class="main__c">
 		<!-- TODO: use ZOD to validate data and keep button disabled until all data are filled in an valid -->
-		{#if isToastOpen}
-			<div
-				role="alert"
-				aria-live="assertive"
-				aria-atomic="true"
-				in:fly={{ duration: 800, easing: cubicOut, y: -100, x: 0 }}
-				out:fly={{ delay: 200, duration: 800, easing: cubicIn, y: -100, x: 0 }}
-				class="toast toast-success"
-			>
-				<p class="text-black">Your message was send successfully</p>	
-			</div>
-		{/if}
 		<form
 			method="POST"
 			use:enhance={() => {
 				isSending = true;
-				setTimeout(() => {
-					isSending = false;
-				}, 2000);
+				if (form?.success) isSending = false;
 			}}
 		>
 			<div class="form-group">
@@ -167,7 +150,7 @@
 		border-radius: 0.25rem;
 		margin-bottom: 1rem;
 		font-size: 1.4rem;
-		padding:0.5rem;
+		padding: 0.5rem;
 	}
 
 	textarea {
@@ -177,7 +160,7 @@
 		width: 100%;
 		outline: transparent;
 		border-radius: 0.25rem 0.25rem 0 0;
-		border-bottom: 2px solid hsl(var(--hsl-gray) / 0.35); 
+		border-bottom: 2px solid hsl(var(--hsl-gray) / 0.35);
 	}
 	textarea::placeholder {
 		font-size: --sm;

@@ -1,5 +1,4 @@
 <script>
-	import { toast } from '$lib/stores/ToastStore';
 	//@ts-nocheck
 	import Footer from '$lib/components/Footer.svelte';
 	import Navigation from '$lib/components/Navigation.svelte';
@@ -9,8 +8,5 @@
 
 <Toast/>
 <Navigation />
-<button on:click={() => {
-	toast.send({ msg: 'Hello', type: 'info' });
-}}>TOAST</button>
 <slot />
 <Footer />

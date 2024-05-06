@@ -1,42 +1,21 @@
 <script>
 	//@ts-nocheck
-	import { goto } from '$app/navigation';
 	import { enhance } from '$app/forms';
-	import { cubicIn, cubicOut } from 'svelte/easing';
-	import { fly } from 'svelte/transition';
+	import { goto } from '$app/navigation';
 
 	export let form;
-	$: console.log('🚀 ~ form:', form);
 
 	$: isSending = false;
-	// $: console.log("🚀 ~ isSending:", isSending)
-	$: isToastOpen = false;
 
-	$: if (form?.success && !isToastOpen) {
-		isToastOpen = true;
-		setTimeout(() => {
-			if (isToastOpen) {
-				// form.success = false;
-				isToastOpen = false;
-			}
-			goto('/');
-		}, 1500);
+	$: if (form?.success) {
+		toast.send({
+			msg: 'Thank you for "Nuacht" subscription',
+			type: 'success'
+		});
+		goto('/');
 	}
 </script>
 
-{#if isToastOpen}
-	<!-- display success thankyou if form success is true display it for 3s -->
-	<div
-		role="alert"
-		aria-live="assertive"
-		aria-atomic="true"
-		in:fly={{ duration: 400, easing: cubicOut, y: -100, x: 0 }}
-		out:fly={{ duration: 400, easing: cubicIn, y: 100, x: 0 }}
-		class="toast toast-success"
-	>
-		<p class="text-black">Thank you for newsletter subscription</p>
-	</div>
-{/if}
 <div class="page__c">
 	<div class="sign-up__c">
 		<div class="group sign-up">
@@ -52,17 +31,13 @@
 				action="?/sendToNewsletter"
 				use:enhance={() => {
 					isSending = true;
-					setTimeout(() => {
-						isSending = false;
-					}, 1500);
+					if (form?.success) isSending = false;
 				}}
 				id="newsletter-signup"
 			>
 				<!-- <label for="email">Stay up to date with the latest news and events</label> -->
-				<input type="text" name="name" id="name" placeholder="Your name and surname" />
+				<!-- <input type="text" name="name" id="name" placeholder="Your name and surname" /> -->
 				<input type="email" name="email" id="email" placeholder="Your email address" />
-				<!-- <input type="hidden" name="sheetID" value="1Zx1SOOPnT2V_ldVi6vvIl3MrwvDsKTKsL0bJqTKbBnA"> -->
-				<!-- <input bind:this={form} type="hidden" name="refName" value="newsletter-clients" /> -->
 				<button type="submit" disabled={isSending} value="Sign up">
 					{isSending ? 'Sending...' : 'Send'}
 				</button>
@@ -81,9 +56,8 @@
 	}
 
 	.sign-up__c {
-
 		gap: 2rem;
-		& h1{
+		& h1 {
 			text-align: center;
 		}
 		& img {

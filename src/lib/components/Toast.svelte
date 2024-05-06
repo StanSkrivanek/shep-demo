@@ -5,7 +5,6 @@
 	import { fly } from 'svelte/transition';
 	import Portal from './Portal.svelte';
 	import ToastMesage from './ToastMesage.svelte';
-	$: console.log($toast);
 </script>
 
 <Portal>

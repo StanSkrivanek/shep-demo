@@ -119,10 +119,11 @@ export const actions = {
 				});
 			};
 			await sendSelfEmail(senderEmailMessage);
-
 			return { success: true };
+
 		} catch (error) {
 			console.log('🚀 ~ default: ~ error:', error);
+			
 			return fail('500', {
 				status: '500',
 				statusText: 'Internal Server Error'

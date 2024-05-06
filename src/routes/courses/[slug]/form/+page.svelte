@@ -2,12 +2,11 @@
 	// @ts-nocheck
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
+	import { toast } from '$lib/stores/ToastStore';
 	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDateYear, monthYear } from '$lib/utils/datehelpers';
 	import { counties, source } from '$lib/utils/globalhelpers';
 	import { onMount } from 'svelte';
-	import { cubicIn, cubicOut } from 'svelte/easing';
-	import { fly } from 'svelte/transition';
 
 	// variable form contain the form `data` and `issues` from validation
 	export let form;
@@ -15,22 +14,17 @@
 	let courseData = $singleEventStore;
 
 	$: isSending = false;
-	$: isToastOpen = false;
 
-	$: if (form?.success && !isToastOpen) {
-		isToastOpen = true;
-		setTimeout(() => {
-			if (isToastOpen) {
-				// form.success = false;
-				isToastOpen = false;
-			}
-			goto('/courses');
-		}, 4500);
+	$: if (form?.success) {
+		toast.send({
+			msg: 'Thank you for your application, we will be in contact soon',
+			type: 'success'
+		});
+
+		goto('/upcoming');
 	}
-
 	let canAttend = [];
 
-	// Toggle value for checkbox input
 	/**
 	 * @param {{ target: { checked: any; name: any; value: string; }; }} e
 	 */
@@ -57,21 +51,6 @@
 
 <div class="page__c">
 	<!-- display success thankyou if form success is true display it for 3s -->
-	{#if isToastOpen}
-		<div
-			role="alert"
-			aria-live="assertive"
-			aria-atomic="true"
-			in:fly={{ duration: 800, easing: cubicOut, y: -100, x: 0 }}
-			out:fly={{ delay: 200, duration: 800, easing: cubicIn, y: -100, x: 0 }}
-			class="toast toast-success"
-		>
-			<p class="text-black">Thank you for your application</p>
-			<p class="text-black">
-				We have received your application and will be in touch with you shortly.
-		</p>
-		</div>
-	{/if}
 
 	{#if courseData.event}
 		<form
@@ -79,10 +58,7 @@
 			action="?/sendToGoogle"
 			use:enhance={() => {
 				isSending = true;
-				setTimeout(() => {
-					isSending = false;
-			
-				}, 6000);
+				if (form?.success) isSending = false;
 			}}
 		>
 			<div class="form-header">
@@ -326,7 +302,6 @@
 						information to me on this upcoming course and other SHEP courses and events.
 					</p>
 				</label>
-		
 			</div>
 			<div hidden>
 				<!-- NOTE:
@@ -556,7 +531,7 @@
 		appearance: none;
 		outline: 0;
 		box-shadow: none;
-		
+
 		background-image: none;
 		background-color: transparent;
 		cursor: pointer;
@@ -579,14 +554,12 @@
 		background-size:
 			0.65em auto,
 			100%;
-	
 	}
 
 	.table__w {
 		overflow-x: auto;
 	}
 
-	
 	.agreement label {
 		display: flex;
 		padding-bottom: 1rem;
@@ -606,9 +579,9 @@
 
 		& .text-black {
 			line-height: 1.4;
-	
+
 			margin-top: 0.5rem;
-			max-width: 40ch;;
+			max-width: 40ch;
 			&:first-child {
 				text-transform: uppercase;
 				font-weight: 600;

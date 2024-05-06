@@ -1,4 +1,8 @@
 // @ts-nocheck
+import { GOOGLE_EMAIL, NEWSLETTER_SHEET_ID, NEWSLETTER_URL } from '$env/static/private';
+import transporter from '$lib/mail/nodemailer.server.js';
+import { fail } from '@sveltejs/kit';
+
 import { getLogos, getPostsForSlider } from '$lib/server/sanity';
 export async function load() {
 	const logos = await getLogos();
@@ -9,14 +13,10 @@ export async function load() {
 	};
 }
 
-import { NEWSLETTER_URL, NEWSLETTER_SHEET_ID, GOOGLE_EMAIL } from '$env/static/private';
-
-import transporter from '$lib/mail/nodemailer.server.js';
-import { fail } from '@sveltejs/kit';
-
 export const actions = {
 	sendToNewsletter: async ({ request }) => {
 		const formData = Object.fromEntries(await request.formData());
+		console.log("🚀 ~ sendToNewsletter: ~ formData:", formData)
 
 		const applicant = {
 			...formData,
@@ -37,7 +37,6 @@ export const actions = {
 
 			// if response is not ok, return fail
 			if (!response.ok) {
-				// console.log('🚀 ~ sendToGoogle: ~ response: ERROR', response);
 				return fail(response.status, {
 					status: response.status,
 					statusText: response.statusText
@@ -106,9 +105,10 @@ export const actions = {
 					});
 				});
 			};
-			await sendSelfEmail(senderEmailMessage);
 
+			await sendSelfEmail(senderEmailMessage);
 			return { success: true };
+			
 		} catch (error) {
 			console.log('🚀 ~ default: ~ error:', error);
 
