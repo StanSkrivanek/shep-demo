@@ -77,7 +77,7 @@
 			</div>
 		</div>
 		<div class="group">
-			<h5>Subscribe</h5>
+			<h5>Newsletter</h5>
 			<!-- <a href="/newsletter" class="signup">sign up for</a> -->
 			<!-- <form method="POST" id="newsletter-signup" use:enhance on:submit|preventDefault={submit}>
 				<label for="email">Sign up for Nuacht</label>

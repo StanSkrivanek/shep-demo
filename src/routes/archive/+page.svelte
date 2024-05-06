@@ -1,5 +1,4 @@
 <script>
-
 	import LeavesCorner from '$lib/components/icons/LeavesCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import Waves from '$lib/components/icons/waves.svelte';
@@ -61,9 +60,11 @@
 					<div class="card-pdf__c">
 						<div class="card-pdf__data">
 							<div class="pdf__title">
-			
-								<div class="pdf__date">
-									<span>{pdf.title.split('-')[2]} {pdf.title.split('-')[3]}</span>
+								<div class="pdf__number">
+									<span
+										>{pdf.title.split('-')[0]}
+										<span class="nuacht-number">{pdf.title.split('-')[1]}</span></span
+									>
 									<span
 										><LeavesCorner
 											width={24}
@@ -72,9 +73,8 @@
 										/></span
 									>
 								</div>
-								<div class="pdf__number">
-									<span>{pdf.title.split('-')[0]}</span>
-									{pdf.title.split('-')[1]}
+								<div class="pdf__date">
+									<span>{pdf.title.split('-')[2]} {pdf.title.split('-')[3]}</span>
 								</div>
 							</div>
 							<div class="pdf-excerpt">
@@ -165,7 +165,6 @@
 		background: hsl(var(--hsl-blue) / 0.15);
 		overflow: hidden;
 		transition: all 0.3s ease-in-out;
-
 	}
 	.card-pdf__c:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
@@ -179,7 +178,10 @@
 	.pdf__title {
 		font-size: 1.4rem;
 		font-weight: 700;
-		margin-bottom: 1rem;
+		margin-bottom: 1.5rem;
+		padding-bottom: 0.5rem;
+		border-bottom: 1px solid color-mix(in oklab, hsl(var(--hsl-blue)) 48%, white);
+		
 	}
 
 	.pdf__date {
@@ -187,15 +189,12 @@
 		justify-content: space-between;
 		font-size: 1rem;
 		font-weight: 100;
-
-		& span:has(svg) {
-			transform: rotate(180deg);
-		}
+		color: color-mix(in oklab, hsl(var(--hsl-blue)) 75%, black);
 	}
 
 	.pdf-excerpt {
 		font-size: small;
-		color: hsl(var(--hsl-gray));
+		color: color-mix(in oklab, hsl(var(--hsl-blue)) 70%, black);
 		text-wrap: pretty;
 		margin-bottom: 0.25rem;
 		& ul {
@@ -212,10 +211,24 @@
 	}
 
 	.pdf__number {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
 		font-size: 3rem;
 		line-height: 1;
-		font-family: var(--ff-fkg-black);
-		color: hsl(var(--hsl-blue) /0.5);
+		color: color-mix(in oklab, hsl(var(--hsl-blue)) 90%, black);
+		& span {
+			display: flex;
+			gap: 0.5rem;
+		}
+		& .nuacht-number {
+			font-size: 2rem;
+			/* font-family: var(--ff-fkg-bold); */
+			color: color-mix(in oklab, hsl(var(--hsl-blue)) 80%, black);
+		}
+		& span:has(svg) {
+			transform: rotate(180deg);
+		}
 	}
 
 	.pdf__link {

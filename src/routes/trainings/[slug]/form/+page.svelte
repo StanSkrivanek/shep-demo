@@ -59,11 +59,9 @@
 		<form
 			method="POST"
 			action="?/sendToGoogle"
-			use:enhance={() => {
+		use:enhance={() => {
 				isSending = true;
-				setTimeout(() => {
-					isSending = false;
-				}, 1000);
+				if (form?.success) isSending = false;
 			}}
 		>
 			<div class="form-header">
