@@ -9,7 +9,6 @@
 	import { toast } from '$lib/stores/ToastStore.js';
 	
 	export let form;
-
 	export let data;
 	
 	let { logos, slides } = data;
@@ -255,7 +254,6 @@
 				margin-bottom: 2rem;
 				color: var(--fc-mid);
 
-				/* text-align: right; */
 				& span {
 					font-size: clamp(1.953rem, calc(1.6rem + 1vw), 3.52rem);
 				}
@@ -373,7 +371,6 @@
 				}
 				& .aside {
 					position: absolute;
-					/* width: 100%; */
 					display: flex;
 					bottom: 0;
 					right: 0;
