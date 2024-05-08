@@ -4,9 +4,6 @@
 	import Instagram from './icons/Instagram.svelte';
 	import MainLogo from './icons/MainLogoNew.svelte';
 	import Twitter from './icons/Twitter.svelte';
-	// Import your store
-
-	$: isSending = false;
 </script>
 
 <div class="footer__w">
@@ -78,20 +75,6 @@
 		</div>
 		<div class="group">
 			<h5>Newsletter</h5>
-			<!-- <a href="/newsletter" class="signup">sign up for</a> -->
-			<!-- <form method="POST" id="newsletter-signup" use:enhance on:submit|preventDefault={submit}>
-				<label for="email">Sign up for Nuacht</label>
-				<input
-					type="email"
-					name="email"
-					id="email"
-					placeholder="Your email address"
-					bind:value={email}
-				/>
-				<button type="submit" disabled={isSending}>
-					{isSending ? 'Sending...' : 'Sign Up'}
-				</button>
-			</form> -->
 			<a class="button" href="/newsletter">Subscribe to newsletter</a>
 		</div>
 	</div>
@@ -123,21 +106,6 @@
 				max-width: max-content;
 				line-height: 1.6rem;
 			}
-			/* & .signup { */
-				/* padding: 0.5rem 1rem; */
-				/* background: hsl(var(--hsl-blue)); */
-				/* border-radius: 0.25rem; */
-				/* font-family: var(--ff-gilroy-smb); */
-				/* line-height: 1.6rem; */
-				/* text-decoration: none; */
-				/* text-transform: uppercase; */
-				/* color: hsl(var(--hsl-white) / 0.75); */
-				/* margin-bottom: 0.75rem; */
-				/* &:hover { */
-					/* background: hsl(var(--hsl-green) / 0.75); */
-					/* color: hsl(var(--hsl-gray)); */
-				/* } */
-			/* } */
 			& .img__w {
 				max-width: 100%;
 
@@ -157,7 +125,6 @@
 	}
 
 	.footer__link {
-		/* color: #fff; */
 		text-decoration: none;
 		transition: color 0.3s ease-in-out;
 	}
@@ -185,44 +152,7 @@
 			}
 		}
 	}
-
-	/* form {
-		width: 100%;
-		& label {
-			margin-bottom: 0.5rem;
-			font-family: var(--ff-gilroy-smb);
-			color: hsl(var(--hsl-gray) / 0.8);
-			font-weight: 600;
-		}
-		& input[type='email'],
-		input[type='text'] {
-			width: 100%;
-			font-size: 1rem;
-			padding: 0.5rem;
-			border: 1px solid var(--gray-100);
-			border-radius: 0.25rem;
-			margin-bottom: 1rem;
-		}
-	} */
-
-	.button {
-		width: 100%;
-		/* padding: 1rem; */
-		border: none;
-		/* border-radius: 0.25rem; */
-		/* background-color: hsl(var(--hsl-blue)); */
-		/* font-weight: 600; */
-		text-decoration: none;
-		/* font-size: var(--sm); */
-		/* letter-spacing: 0.05em; */
-		/* color: white; */
-		cursor: pointer;
-		/* text-transform: uppercase; */
-	}
-	.button:hover {
-		/* background-color: hsl(var(--hsl-green)); */
-		/* text-decoration: underline; */
-	}
+	
 	.copyright {
 		padding: 1rem;
 		background-color: hsl(var(--hsl-gray) / 0.05);

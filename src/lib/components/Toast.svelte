@@ -65,13 +65,11 @@
 		gap: 1rem;
 		transform: translateX(50%);
 		z-index: 9999;
-		/* transition: all 0.3s ease-in-out; */
+		
 		& .toast-msg {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			/* gap: 1rem; */
-			/* padding: 0.5rem; */
 			border-radius: 0.25rem;
 		}
 	}

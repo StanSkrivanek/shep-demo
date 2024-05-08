@@ -4,7 +4,6 @@
 		currentColor = '#212931';
 </script>
 
-<!-- <svg {width} {height} viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"> -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 81" {width} {height}>
 	<g transform="matrix(1,0,0,1,-15263,-1911.52)">
 		<g transform="matrix(1,0,0,1,3967.35,0)">

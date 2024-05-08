@@ -18,8 +18,6 @@
 		display: flex;
 		justify-content: center;
 		align-items: center; 
-		/* border-radius: 1rem;
-		overflow: hidden; */
 	}
 	.img__w img {
 		max-width: 100%;

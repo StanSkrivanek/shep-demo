@@ -7,7 +7,6 @@
 	let currentPage = 1;
 	export const itemsPerPage = 2;
   
-
 	// Assuming `allPosts` is an array of all your posts
 	$: allPosts = posts;
 

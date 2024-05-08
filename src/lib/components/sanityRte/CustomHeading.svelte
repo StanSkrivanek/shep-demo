@@ -29,22 +29,8 @@
 		<h5 id={anchorId}><slot /></h5>
 	{/if}
 </div>
-<!-- </div> -->
 
 <style>
-	/* a {
-		color: blue;
-		position: absolute;
-		top: -0.5rem;
-		left: -1.5rem;
-		opacity: 0;
-		transition: opacity 0.2s ease-in-out;
-	} */
-
-	/* a:hover {
-		color: red;
-		opacity: 1;
-	} */
 	/* h1, */
 	h2,
 	h3,
@@ -54,25 +40,5 @@
 		line-height: 1;
 		letter-spacing: -0.025em;
 		color: hsl(var(--hsl-gray) / .5);
-	
-		/* margin-block: 2rem 0.5rem; */
 	}
-	/* h1 {
-		font-size: 4.209rem;
-	}
-
-	h2 {
-		font-size: 3.157rem;
-	}
-
-	h3 {
-		font-size: 2.369rem;
-	}
-
-	h4 {
-		font-size: 1.777rem;
-	}
-	h5 {
-		font-size: 1.333rem;
-	}  */
 </style>

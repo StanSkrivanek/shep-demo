@@ -55,7 +55,6 @@
 	});
 </script>
 
-<!--  Update isMobile when the window is resized -->
 <svelte:window on:resize={() => (isMobile = window.innerWidth <= 991)} />
 
 <div class="header">
