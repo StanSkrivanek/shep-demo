@@ -84,8 +84,6 @@ function formatTime12(date) {
 	// To display "0" as "12"
 	hours = hours ? hours : 12;
 	// @ts-ignore
-	// if (hours.toString().length < 2) hours = '0' + hours.toString();
-	// @ts-ignore
 	if (minutes.toString().length < 2) minutes = '0' + minutes.toString();
 
 	return `${[hours, minutes].join(':')}${am_pm}`;

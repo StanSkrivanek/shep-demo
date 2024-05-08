@@ -443,11 +443,6 @@ export const getAllPostsWithPagination = async () => {
 
 	let lastId = allPostsQuery._id;
 
-	// async function fetchNextPage() {
-	// 	if (lastId === null) {
-	// 		return [];
-	// 	}
-	// }
 	const allPostsQuery = `*[_type == "post" && _id > $lastId ] | order(_id) [0...3]{
 		"id":_id,
 	"title": article_title,
@@ -517,7 +512,6 @@ export const getAllActivities = async () => {
 
 // Single Article
 export const getSingleArticle = async (/** @type {undefined} */ id) => {
-	// 772b1b99-4d2e-4e21-8029-89be6fb6294b
 	const client = sanityClient();
 	const query = `*[_type == "post" && _id == $id][0]{
 	...,
@@ -568,8 +562,8 @@ export const getArticleBySlug = async (/** @type {undefined} */ slug) => {
 	const article = await client.fetch(query, { slug });
 	return article;
 };
-// get all articles with same category but not the current article
 
+// get all articles with same category but not the current article
 export const getAllArticlesByCategory = async (/** @type {undefined} */ category_slug) => {
 	const client = sanityClient();
 	const query = `*[_type == "post" && post_category->slug.current == $category_slug]{

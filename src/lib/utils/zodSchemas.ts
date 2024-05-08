@@ -30,6 +30,7 @@ export const courseFormSchema = z
 		message: 'You must select at least one option',
 		path: ['inPerson', 'online']
 	});
+// TODO: Check this out
 
 // export type CourseForm = z.infer<typeof courseFormSchema>;
 

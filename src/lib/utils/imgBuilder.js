@@ -1,3 +1,6 @@
+
+// TODO: check this out
+
 // import { env } from '$env/dynamic/private';
 // import { createClient } from '@sanity/client';
 // function sanityClient() {
