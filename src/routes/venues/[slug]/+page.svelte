@@ -97,7 +97,6 @@
 				<p>-</p>
 			{/if}
 			<p>{city}</p>
-			<!-- <a>{eircode}</a> -->
 			<a href="https://www.google.com/maps/place/{eircode}" target="_blank"
 				><span><Location width={24} height={24} /></span><span>View on Map</span></a
 			>
@@ -111,7 +110,6 @@
 				</div>
 			</a>
 		</div>
-		<!-- </div> -->
 	</div>
 	<!-- wapper start -->
 	<div class="main__c">
@@ -184,7 +182,6 @@
 										<!-- header -->
 										<div class="detail-header">
 											<p class="back-underline-tilt">In Person</p>
-											<!-- <p>refNo: {training.in_person.course_in_ref}</p> -->
 										</div>
 										{#if item.in_person.is_active == false}
 											<p>Not available</p>
@@ -227,13 +224,11 @@
 
 									{#if item.online.is_active == false}
 										<p>We do not currently offer an online version for this course.</p>
-										<!-- <p /> -->
 									{:else}
 										<div class="detail">
 											<!-- header -->
 											<div class="detail-header">
 												<p class="back-underline-tilt">Online</p>
-												<!-- <p>refNo: {item.in_person.course_in_ref}</p> -->
 											</div>
 											{#if item.online.is_active == false}
 												<p>Not available</p>
@@ -254,7 +249,6 @@
 													<div>
 														<span>{formatTime12(item.online.start_date)}</span>
 														<span class="schedule-spacer">-</span>
-														<!-- <span>{formatTime12(item.online.end_date)}</span> -->
 													</div>
 												</div>
 												<!-- trainers list -->
@@ -270,7 +264,6 @@
 														{/each}
 													</p>
 												</div>
-												<!-- footer - week day & time-->
 											{/if}
 										</div>
 									{/if}
@@ -312,7 +305,6 @@
 					onMissingComponent={false}
 					components={{
 						block: {
-							// blockquote: Quote,
 							h1: CustomHeading,
 							h2: CustomHeading,
 							h3: CustomHeading,
@@ -358,7 +350,6 @@
 		grid-row: 1/5;
 		border-radius: 1rem;
 		max-height: max-content;
-		/* background: color-mix(in oklab, var(--blue-200) 16%, white); */
 
 		& img {
 			width: 100%;
@@ -514,7 +505,6 @@
 		}
 		& .dots {
 			color: var(--clr-red);
-			/* transform: rotate(180deg); */
 		}
 	}
 	.newsletter-link {
@@ -558,7 +548,6 @@
 			font-family: var(--ff-fkg-bold);
 			transition: all 0.3s ease-in-out;
 			&:hover {
-				/* text-decoration: underline; */
 				color: color-mix(in oklab, var(--_base-color-private) 100%, white);
 			}
 		}
@@ -571,7 +560,7 @@
 		& p:not(:first-child) {
 			margin: 0;
 			color: color-mix(in oklab, var(--_base-color-private) 100%, white);
-			/* margin-bottom: 0.5rem; */
+
 			font-size: var(--sm);
 		}
 		& p:nth-child(2) {
@@ -785,7 +774,6 @@
 			grid-template-areas:
 				'main main main main main main main main'
 				'aside aside aside aside aside aside aside aside';
-			/* 'aside aside main main main main main main' */
 		}
 
 		.no-course {

@@ -44,12 +44,7 @@
 					</div>
 					<div class="card-footer">
 						<a class="link" href="/venues/{venue.slug}">
-							<!-- <div class="link-desc__w">
-								<p class="small-title">See more</p>
-							</div> -->
-							<!-- <div class="link-icon"> -->
 							<LinkCircle width={48} height={48} />
-							<!-- </div> -->
 						</a>
 					</div>
 				</div>
@@ -77,7 +72,6 @@
 		grid-template-areas: 'hero-data hero-data hero-data hero-img hero-img hero-img hero-img hero-img';
 		grid-template-rows: auto;
 		gap: 1rem;
-		/* padding: 1rem; */
 	}
 	.hero-data {
 		display: flex;
@@ -113,7 +107,7 @@
 	/* Card */
 	.card {
 		position: relative;
-		background: hsl(var(--hsl-cyan)/0.08);
+		background: hsl(var(--hsl-cyan) / 0.08);
 		border-radius: 0.5rem;
 		pointer-events: none;
 		transition: all 0.3s ease-in-out;
@@ -122,12 +116,11 @@
 
 	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
-			box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
+		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
 		& svg {
 			& circle {
 				stroke: hsl(var(--hsl-green)) !important;
 			}
-
 		}
 	}
 
@@ -182,27 +175,21 @@
 					line-height: 1;
 				}
 			}
-	
+
 			& svg {
-					& circle {
-						stroke: hsl(var(--hsl-gray));
-					}
-					/* & path {
-						fill: hsl(var(--hsl-gray)) ;
-					} */
+				& circle {
+					stroke: hsl(var(--hsl-gray));
+				}
 			}
 		}
 	}
-	 .bg {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			/* z-index: 1; */
-			width: 100%;
-			/* & svg {
-				width: 100%;
-			} */
-		}
+	.bg {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+	}
+
 	/* 640px - sm - small devices (mobile)  */
 	@media (max-width: 640px) {
 		.hero-data {
