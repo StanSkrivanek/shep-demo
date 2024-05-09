@@ -75,7 +75,7 @@
 		</div>
 		<div class="group">
 			<h5>Newsletter</h5>
-			<a class="button" href="/newsletter">Subscribe to newsletter</a>
+			<a class="footer__link" href="/newsletter">Subscribe to newsletter</a>
 		</div>
 	</div>
 </div>

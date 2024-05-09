@@ -26,15 +26,10 @@ export const actions = {
 		const applicant = {
 			...formData
 		};
-	
-		// `url` is link to google script that will trigger function to add data to google sheet
+
 		const scriptUrl = API3_URL;
 
 		try {
-			// TODO: open modal with spinner and message 'please wait, we are sending your application data'
-
-	
-
 			// send data to GOOGLE SHEET
 			const response = await fetch(scriptUrl, {
 				method: 'POST',
@@ -46,12 +41,10 @@ export const actions = {
 			});
 
 			if (!response.ok) {
-		
 				return fail(response.status, {
 					status: response.status,
 					statusText: response.statusText
 				});
-
 			}
 
 			// send emails to client
@@ -132,7 +125,7 @@ export const actions = {
 			return { success: true };
 		} catch (error) {
 			// open toast with error
-		
+
 			console.log('🚀 ~ default: ~ error:', error);
 			return fail('500', {
 				status: '500',

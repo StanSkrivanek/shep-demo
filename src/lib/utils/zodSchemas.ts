@@ -30,19 +30,4 @@ export const courseFormSchema = z
 		message: 'You must select at least one option',
 		path: ['inPerson', 'online']
 	});
-// TODO: Check this out
 
-// export type CourseForm = z.infer<typeof courseFormSchema>;
-
-// on:blur={(e) => {
-// 	try {
-// 		// check if form has errors
-// 		courseFormSchema.pick({ name: true }).parse({ name: e.target.value });
-// 		// append errors to errors object
-// 		// errors = { ...errors, error: form?.errors };
-// 		errors = form?.errors ;
-// 		// data = { ...data, name: e.target.value };
-// 	} catch (error) {
-// 		errors = error.formErrors.fieldErrors;
-// 	}
-// }}
