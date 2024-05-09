@@ -20,16 +20,17 @@
 <div class="page__c">
 	<div class="sign-up__c">
 		<div class="group logo">
-			
 			<img
 				src="https://cdn.sanity.io/images/gkez65br/production/4006e3dd46fac8441e6d714a48c7e4006d3385f1-1024x1024.png"
 				alt=""
 			/>
 		</div>
-		<div class="group ">
+		<div class="group">
 			<div class="sign-up--title">
 				<h1>Join Our Comunity Newsletter</h1>
-				<p>Stay up to date with the latest news, events and activities from SHEP and the community.</p>
+				<p>
+					Stay up to date with the latest news, events and activities from SHEP and the community.
+				</p>
 			</div>
 			<form
 				method="POST"
@@ -40,8 +41,6 @@
 				}}
 				id="newsletter-signup"
 			>
-				<!-- <label for="email">Stay up to date with the latest news and events</label> -->
-				<!-- <input type="text" name="name" id="name" placeholder="Your name and surname" /> -->
 				<input type="email" name="email" id="email" placeholder="Your email address" />
 				<button type="submit" disabled={isSending} value="Sign up">
 					{isSending ? 'Sending...' : 'Sign Up'}
@@ -66,7 +65,8 @@
 		align-items: center;
 		justify-content: center;
 		gap: 1rem;
-		& h1, p {
+		& h1,
+		p {
 			text-align: center;
 			max-width: 40ch;
 			margin-inline: auto;
@@ -91,7 +91,7 @@
 		margin-inline: auto;
 		max-height: 100%;
 	}
-	.sign-up--title{
+	.sign-up--title {
 		margin-bottom: 4rem;
 	}
 	form {
@@ -133,5 +133,4 @@
 		background-color: hsl(var(--hsl-green));
 		color: color-mix(in oklab, hsl(var(--hsl-green)) 70%, black);
 	}
-
 </style>
