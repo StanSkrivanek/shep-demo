@@ -18,6 +18,7 @@
 		i == show ? (show = null) : (show = i);
 	};
 </script>
+
 <svelte:head>
 	<title>Jobs</title>
 	<meta name="description" content="Shep Job opportunities" />
@@ -42,9 +43,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- <pre>
-		 {JSON.stringify( data, null, 2)}
-	</pre> -->
+
 	<main class="container">
 		<div class="section">
 			<h2>Job Opportunities</h2>
@@ -159,8 +158,6 @@
 										</div>
 
 										<div class="job-footer">
-											<!-- <p>Department: {job.department}</p> -->
-											<!-- <h3>More information</h3> -->
 											<div class="footer__section">
 												<div class="group">
 													<h4>Office</h4>
@@ -169,7 +166,7 @@
 													<p>Balinatemple</p>
 													<p>Co. Cork | T25 XYD7</p>
 												</div>
-												<!-- <div> -->
+
 												<div class="group">
 													<h4>Contact person</h4>
 													{#each job.contact as contact}
@@ -184,7 +181,6 @@
 													<h4>Phone</h4>
 													<p>Cork - (022) 12 4455</p>
 												</div>
-												<!-- </div> -->
 											</div>
 										</div>
 									</div>
@@ -254,9 +250,9 @@
 		background: var(--gray-1);
 		border-radius: 0.5rem;
 		background: rgb(244, 164, 172);
-		/* color:aliceblue; */
+
 		font-size: 1.5rem;
-		/* font-weight: 500; */
+
 		& p {
 			margin: 0;
 		}
@@ -273,9 +269,7 @@
 	}
 
 	.job__c {
-		/* padding: 2rem; */
 		width: 100%;
-		/* border: 1px solid white; */
 		border: 1px solid hsl(var(--hsl-brand) / 0.25);
 		border-radius: 0.5rem;
 		transition: all 0.3s ease-in-out;
@@ -314,7 +308,7 @@
 	}
 	.job-header__title {
 		margin-bottom: 0;
-		color: hsl(var(--hsl-brand)/.25);
+		color: hsl(var(--hsl-brand) / 0.25);
 	}
 	.job-header__sub {
 		display: flex;
@@ -327,7 +321,7 @@
 		padding-inline: 2rem;
 	}
 	.job-data {
-		border-bottom: 1px solid hsl(var(--hsl-gray)/.25);
+		border-bottom: 1px solid hsl(var(--hsl-gray) / 0.25);
 		margin-bottom: 3rem;
 	}
 	.job-footer {
