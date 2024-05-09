@@ -22,7 +22,7 @@
 				<div class="thumbnail">
 					<img src={member.image} alt={member.alt} />
 				</div>
-				<!-- <div class="data"> -->
+				
 				<div class="data-header">
 					<h2>{member.name}</h2>
 					<p>{member.designation}</p>
