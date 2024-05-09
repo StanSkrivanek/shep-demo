@@ -1,6 +1,6 @@
 <script>
+	// @ts-nocheck
 	import ArrowOpen from '$lib/components/icons/ArrowOpen.svelte';
-	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
 	import LeavesCorner from '$lib/components/icons/LeavesCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
@@ -10,13 +10,14 @@
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 
-	// @ts-ignore
+	/** @type {import('./$types').PageData} */
 	export let data;
+
 	// Registered Event
-	// @ts-ignore
+
 	const { title, excerpt, full_price, funded_price, main_img, content, brochure, slug, ref_name } =
 		data.course;
-	// Upcoming Events
+
 	const upcoming = data.allOpenCourses;
 
 	/**
@@ -34,8 +35,8 @@
 	function storeCourseData(node) {
 		$singleEventStore = node;
 		localStorage.setItem('singleEventStore', JSON.stringify(node));
-		// localStorage.setItem('refName', node.refName);
 	}
+
 	/**
 	 * @type {HTMLElement | null | undefined}
 	 */
@@ -43,9 +44,8 @@
 	onMount(() => {
 		newsletterInput = document.getElementById('newsletter');
 	});
-	// @ts-ignore
+
 	function signupFocus() {
-		// @ts-ignore
 		newsletterInput.focus();
 	}
 </script>
@@ -137,7 +137,7 @@
 							<div class="accordion-header">
 								<div class="data">
 									<div class="location">
-										<!-- <p>{item.venue.venue_name}</p> -->
+								
 										<a class="accordion-header--link" href="/venues/{item.venue.slug.current}"
 											>{item.venue.venue_name}</a
 										>
@@ -156,7 +156,7 @@
 										<!-- header -->
 										<div class="detail-header">
 											<p class="back-underline-tilt">In Person</p>
-											<!-- <p>refNo: {item.in_person.course_in_ref}</p> -->
+											
 										</div>
 										{#if item.in_person.is_active == false}
 											<p>Not available</p>
@@ -190,19 +190,19 @@
 													{/each}
 												</p>
 											</div>
-											<!-- footer - week day & time-->
+											
 										{/if}
 									</div>
 
 									{#if item.online.is_active == false}
-										<!-- <p>We do not currently offer an online version for this course.</p> -->
+										
 										<p />
 									{:else}
 										<div class="detail">
 											<!-- header -->
 											<div class="detail-header">
 												<p class="back-underline-tilt">Online</p>
-												<!-- <p>refNo: {item.in_person.course_in_ref}</p> -->
+												
 											</div>
 											{#if item.online.is_active == false}
 												<p>Not available</p>
@@ -236,7 +236,7 @@
 														{/each}
 													</p>
 												</div>
-												<!-- footer - week day & time-->
+												
 											{/if}
 										</div>
 									{/if}
@@ -247,7 +247,7 @@
 										</a>
 
 										<!-- apply online -->
-										<!-- <a href="/courses/{slug}/form" on:click={()=> storeCourseData(item)}> -->
+								
 										<a href="/courses/{slug}/form" on:click={() => storeCourseData(item)}>
 											<span>apply online</span>
 										</a>
@@ -267,7 +267,7 @@
 					onMissingComponent={false}
 					components={{
 						block: {
-							// blockquote: Quote,
+						
 							h1: CustomHeading,
 							h2: CustomHeading,
 							h3: CustomHeading,
@@ -336,7 +336,7 @@
 			margin-bottom: 1.2rem;
 			font-family: var(--ff-fkg-bold);
 			font-size: var(--sm);
-			/* width: fit-content; */
+			
 			&::after {
 				content: '';
 				position: absolute;
@@ -404,7 +404,7 @@
 	}
 
 	.link-desc__w {
-		/* margin-bottom: 1.2rem; */
+		
 		& p {
 			font-size: var(--sm);
 			line-height: 1.1;
@@ -484,7 +484,7 @@
 	.accordion_item {
 		--item-color: hsl(var(--hsl-brand));
 		--_base-color-private: var(--item-color, hsl(var(--hsl-gray)));
-		/* changing value of `--item-color` will change colors of each child element that contain `--_base-color-private`  */
+		
 		margin-bottom: 1rem;
 		border-radius: 0.5rem;
 		background: color-mix(in oklab, var(--_base-color-private) 20%, white);
@@ -658,7 +658,6 @@
 				justify-content: space-between;
 				align-items: center;
 				padding: 0.7rem 1.4rem;
-				/* font-family: var(--ff-fkg-regular); */
 				text-transform: uppercase;
 				text-decoration: none;
 				font-size: 1rem;

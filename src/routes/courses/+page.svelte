@@ -170,7 +170,7 @@
 		display: flex;
 		justify-content: flex-end;
 		align-items: flex-end;
-		/* background-image: url('/images/svg/waves-01.svg'); */
+	
 		& p {
 			align-self: flex-end;
 			margin: 0;
@@ -188,9 +188,7 @@
 		left: 0;
 		z-index: -1;
 		width: 100%;
-		/* & svg {
-			width: 100%;
-		} */
+
 	}
 
 	@media (max-width: 996px) {
@@ -210,9 +208,7 @@
 				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
 				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
 		}
-		/* .intro {
-			column-count: 1;
-		} */
+
 	}
 
 	@media (max-width: 500px) {

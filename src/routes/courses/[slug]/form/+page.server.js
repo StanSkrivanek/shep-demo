@@ -132,7 +132,7 @@ export const actions = {
 			return { success: true };
 		} catch (error) {
 			// open toast with error
-			// openToast('There was an error sending your application data. Please try again');
+		
 			console.log('🚀 ~ default: ~ error:', error);
 			return fail('500', {
 				status: '500',

@@ -50,7 +50,7 @@
 </svelte:head>
 
 <div class="page__c">
-	<!-- display success thankyou if form success is true display it for 3s -->
+	
 
 	{#if courseData.event}
 		<form
@@ -304,10 +304,6 @@
 				</label>
 			</div>
 			<div hidden>
-				<!-- NOTE:
-				Send open course ID to form and use it to get course data venue, course name etc. from DB
-				
-				-->
 				<input type="hidden" name="courseId" value={courseData.ref} />
 				<input type="hidden" name="courseCity" value={courseData.venue.city} />
 				<input type="hidden" name="courseVenue" value={courseData.venue.venue_name} />
@@ -379,7 +375,7 @@
 		& .form-group {
 			display: flex;
 			flex-direction: column;
-			/* padding-block: 1rem; */
+		
 			margin-bottom: 1rem;
 			& .input-group {
 				display: flex;
@@ -398,7 +394,7 @@
 					border-radius: 0.5rem;
 					font-size: 1.5rem;
 					color: hsl(var(--hsl-gray));
-					/* background: hsl(var(--hsl-white)); */
+					
 					margin-bottom: 1rem;
 				}
 				& textarea {
@@ -422,7 +418,7 @@
 							padding: 0.5rem;
 							border-bottom: 1px solid hsl(var(--hsl-gray) / 0.25);
 							font-size: 1.2rem;
-							/* font-weight: 600; */
+						
 							text-align: left;
 						}
 					}
@@ -456,7 +452,7 @@
 			padding: 3rem 0.5rem;
 			& label {
 				font-size: var(--sm);
-				/* font-weight: 400; */
+				
 				margin-bottom: 0.25rem;
 				position: relative;
 				cursor: pointer;
@@ -564,30 +560,7 @@
 		display: flex;
 		padding-bottom: 1rem;
 	}
-	.toast {
-		position: fixed;
-		top: 0;
-		right: 0;
-		margin: 3rem;
-		padding: 1rem 2rem;
-		border-radius: 0.25rem;
-		background: hsl(var(--hsl-white));
-		border: 2px solid hsl(var(--hsl-green));
-		border-left-width: 3rem;
-		color: hsl(var(--hsl-gray));
-		z-index: 1000;
-
-		& .text-black {
-			line-height: 1.4;
-
-			margin-top: 0.5rem;
-			max-width: 40ch;
-			&:first-child {
-				text-transform: uppercase;
-				font-weight: 600;
-			}
-		}
-	}
+	
 	/* MediaQueries */
 
 	@media (max-width: 768px) {
