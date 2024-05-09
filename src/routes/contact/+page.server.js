@@ -1,5 +1,7 @@
+// @ts-nocheck
 import { GOOGLE_EMAIL } from '$env/static/private';
 import transporter from '$lib/mail/nodemailer.server';
+
 /** @type {import('./$types').Actions} */
 export const actions = {
 	default: async ({ request }) => {
@@ -12,8 +14,7 @@ export const actions = {
 			message: formData.get('message')
 		};
 		try {
-			// try validate data
-			// contactEmailSchema.parse(contactEmailData);
+
 			// email HTML template
 			const html = `
 			<table>
@@ -52,7 +53,7 @@ export const actions = {
 				subject: `New message from SHEP website`,
 				html
 			};
-			// @ts-ignore
+			
 			const sendEmail = async (emailMessage) => {
 				await new Promise((resolve, reject) => {
 					transporter.sendMail(emailMessage, (err, info) => {
@@ -69,7 +70,7 @@ export const actions = {
 			await sendEmail(emailMessage);
 		} catch (err) {
 			// if not valid return errors
-			// @ts-ignore
+		
 			const { fieldErrors } = err.flatten();
 			const { ...rest } = contactEmailData;
 			return {
