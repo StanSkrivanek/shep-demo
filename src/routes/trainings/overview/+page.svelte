@@ -7,7 +7,7 @@
 	import clickOutside from '$lib/utils/clickoutside.js';
 	import { PortableText } from '@portabletext/svelte';
 	import { afterUpdate, tick } from 'svelte';
-	
+
 	export let data;
 	$: post = data.pageContent;
 
@@ -84,11 +84,9 @@
 					<h1><span>{post.title}</span></h1>
 					<p class="excerpt">{post.excerpt}</p>
 				</div>
-		
 			</div>
 			<div class="hero-img">
 				<img src={post.main_img} alt={post.title} />
-
 			</div>
 		</div>
 	</div>
@@ -155,7 +153,6 @@
 						}
 					}}
 				/>
-
 			</article>
 			<a href="/trainings" class="decorative_link__c">
 				<div class="link-header">
@@ -195,7 +192,7 @@
 	}
 	.hero-data {
 		position: relative;
-	
+
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;
 		grid-row: 1/-1;
@@ -230,7 +227,7 @@
 			color: hsl(var(--hsl-white));
 			font-size: 1.1rem;
 		}
-	& .article_cat {
+		& .article_cat {
 			padding: 0.8rem 1.6rem;
 			border-radius: 100px;
 			text-decoration: none;
@@ -270,7 +267,7 @@
 		margin-bottom: 5rem;
 		gap: 1rem;
 	}
-	article{
+	article {
 		border-bottom: 1px solid hsl(var(--hsl-gray) / 0.75);
 	}
 	/* TOC */
@@ -315,7 +312,6 @@
 
 					&:hover {
 						color: hsl(var(--hsl-brand));
-						/* text-decoration: underline; */
 					}
 				}
 			}
@@ -342,7 +338,6 @@
 
 	/* Media Query */
 	@media screen and (max-width: 1280px) {
-		
 		.main__c {
 			grid-template-areas:
 				'aside aside aside main main main main main '

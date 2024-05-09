@@ -23,14 +23,7 @@
 
 		goto('/upcoming');
 	}
-	// if (!form?.success) {
-	// 	toast.send({
-	// 		msg: 'Something went wrong, try again later',
-	// 		type: 'error'
-	// 	});
 
-	// 	goto('/');
-	// }
 	let canAttend = [];
 	// Toggle value for checkbox input
 	function eventHandler(e) {
@@ -228,7 +221,6 @@
 						<thead>
 							<tr>
 								<th>Option</th>
-
 								<th>Weekday</th>
 								<th>Starts</th>
 								<th>Ends</th>
@@ -301,10 +293,6 @@
 				</label>
 			</div>
 			<div hidden>
-				<!-- NOTE:
-				Send open course ID to form and use it to get course data venue, course name etc. from DB
-				
-				-->
 				<input type="hidden" name="courseId" value={courseData.ref} />
 				<input type="hidden" name="courseCity" value={courseData.venue.city} />
 				<input type="hidden" name="courseVenue" value={courseData.venue.venue_name} />
@@ -544,29 +532,7 @@
 	.table__w {
 		overflow-x: auto;
 	}
-	.toast {
-		position: fixed;
-		top: 0;
-		right: 0;
-		margin: 3rem;
-		padding: 1rem 2rem;
-		border-radius: 0.25rem;
-		background: hsl(var(--hsl-white));
-		border: 2px solid hsl(var(--hsl-green));
-		border-left-width: 3rem;
-		color: hsl(var(--hsl-gray));
-		z-index: 1000;
 
-		& .text-black {
-			line-height: 1.4;
-			margin-top: 0.5rem;
-			max-width: 40ch;
-			&:first-child {
-				text-transform: uppercase;
-				font-weight: 600;
-			}
-		}
-	}
 
 	/* MediaQueries */
 
@@ -580,9 +546,6 @@
 		.agreement label {
 			display: flex;
 			padding-bottom: 1rem;
-		}
-		.agreement label p {
-			margin-block-start: -0.25rem;
 		}
 	}
 </style>

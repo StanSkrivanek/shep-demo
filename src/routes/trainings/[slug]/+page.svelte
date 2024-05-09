@@ -1,15 +1,14 @@
 <script>
 	// ts-nocheck
-	import { onMount } from 'svelte';
 	import ArrowOpen from '$lib/components/icons/ArrowOpen.svelte';
-	import DotsCorner from '$lib/components/icons/DotsCorner.svelte';
+	import LeavesCorner from '$lib/components/icons/LeavesCorner.svelte';
 	import LinkCircle from '$lib/components/icons/LinkCircle.svelte';
 	import { CustomHeading, ImageRte, TextRte } from '$lib/components/sanityRte';
 	import { singleEventStore } from '$lib/stores/forms';
 	import { formatTime12, monthNameDate, monthNameDateYear } from '$lib/utils/datehelpers';
 	import { PortableText } from '@portabletext/svelte';
+	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
-	import LeavesCorner from '$lib/components/icons/LeavesCorner.svelte';
 	// @ts-ignore
 	export let data;
 
@@ -33,10 +32,10 @@
 		$singleEventStore = node;
 		localStorage.setItem('singleEventStore', JSON.stringify(node));
 	}
-		/**
+	/**
 	 * @type {HTMLElement | null | undefined}
 	 */
-		let newsletterInput = undefined;
+	let newsletterInput = undefined;
 	onMount(() => {
 		newsletterInput = document.getElementById('newsletter');
 	});
@@ -135,7 +134,6 @@
 							<div class="accordion-header">
 								<div class="data">
 									<div class="location">
-										<!-- <p>{item.venue.venue_name}</p> -->
 										<a class="accordion-header--link" href="../venues/{item.venue.slug.current}"
 											>{item.venue.venue_name}</a
 										>
@@ -154,7 +152,6 @@
 										<!-- header -->
 										<div class="detail-header">
 											<p class="back-underline-tilt">In Person</p>
-											<!-- <p>refNo: {item.in_person.course_in_ref}</p> -->
 										</div>
 										{#if item.in_person.is_active == false}
 											<p>Not available</p>
@@ -192,14 +189,12 @@
 									</div>
 
 									{#if item.online.is_active == false}
-										<!-- <p>We do not currently offer an online version for this course.</p> -->
 										<p />
 									{:else}
 										<div class="detail">
 											<!-- header -->
 											<div class="detail-header">
 												<p class="back-underline-tilt">Online</p>
-												<!-- <p>refNo: {item.in_person.course_in_ref}</p> -->
 											</div>
 											{#if item.online.is_active == false}
 												<p>Not available</p>
@@ -263,7 +258,6 @@
 					onMissingComponent={false}
 					components={{
 						block: {
-							// blockquote: Quote,
 							h1: CustomHeading,
 							h2: CustomHeading,
 							h3: CustomHeading,
@@ -331,7 +325,7 @@
 			margin-bottom: 1.2rem;
 			font-family: var(--ff-fkg-bold);
 			font-size: var(--sm);
-			/* width: fit-content; */
+
 			&::after {
 				content: '';
 				position: absolute;
@@ -399,7 +393,6 @@
 	}
 
 	.link-desc__w {
-		/* margin-bottom: 1.2rem; */
 		& p {
 			font-size: var(--sm);
 			line-height: 1.1;
@@ -426,7 +419,6 @@
 	}
 
 	/* Accordion */
-
 	.no-course {
 		position: relative;
 		display: flex;
@@ -455,7 +447,6 @@
 				line-height: 1;
 				margin: 0;
 				margin-bottom: 0.5rem;
-				/* color: var(--fc-main); */
 			}
 			& a {
 				display: flex;
@@ -463,7 +454,6 @@
 			}
 		}
 		& .dots {
-			/* color: var(--clr-red); */
 			transform: rotate(180deg);
 		}
 	}
@@ -495,14 +485,12 @@
 		align-items: center;
 		padding: 1rem;
 		& .accordion-header--link {
-			/* --item-color: var(--clr-green); */
 			text-decoration: none;
 			color: color-mix(in oklab, var(--_base-color-private) 80%, black);
 			font-size: 1.4rem;
 			font-family: var(--ff-fkg-black);
 			transition: all 0.3s ease-in-out;
 			&:hover {
-				/* text-decoration: underline; */
 				color: color-mix(in oklab, var(--_base-color-private) 100%, white);
 			}
 		}
@@ -515,7 +503,7 @@
 		& p:not(:first-child) {
 			margin: 0;
 			color: color-mix(in oklab, var(--_base-color-private) 80%, black);
-			/* margin-bottom: 0.5rem; */
+
 			font-size: var(--sm);
 		}
 		& p:nth-child(2) {
@@ -724,7 +712,6 @@
 			grid-template-areas:
 				'main main main main main main main main'
 				'aside aside aside aside aside aside aside aside';
-			/* 'aside aside main main main main main main' */
 		}
 
 		.no-course {
@@ -746,10 +733,7 @@
 	}
 
 	@media (max-width: 768px) {
-		/* .hero-img {
-			grid-column: 1/-1;
-			grid-row: 1/2;
-		} */
+		/* do stuff*/
 	}
 	@media (max-width: 576px) {
 		.main__c {

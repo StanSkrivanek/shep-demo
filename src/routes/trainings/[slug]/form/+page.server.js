@@ -26,9 +26,7 @@ export const actions = {
 		const applicant = {
 			...formData
 		};
-		// const sid = applicant.sheetID;
 
-		// `url` is link to google script that will trigger function to add data to google sheet
 		const scriptUrl = API3_URL;
 		try {
 			const response = await fetch(scriptUrl, {
@@ -40,7 +38,6 @@ export const actions = {
 				body: JSON.stringify(applicant)
 			});
 
-			// if response is not ok, return fail
 			if (!response.ok) {
 				return fail(response.status, {
 					status: response.status,
@@ -120,10 +117,9 @@ export const actions = {
 			};
 			await sendSelfEmail(senderEmailMessage);
 			return { success: true };
-
 		} catch (error) {
 			console.log('🚀 ~ default: ~ error:', error);
-			
+
 			return fail('500', {
 				status: '500',
 				statusText: 'Internal Server Error'

@@ -29,7 +29,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- <h1 class="separator-heading">Trainings</h1> -->
+
 	<main class="container">
 		{#each alUpcomingTrainings as training}
 			<div class="card">
@@ -84,7 +84,6 @@
 		grid-column: 4 / -1;
 		grid-area: hero-img;
 		border-radius: 1rem;
-		/* background: var(--gray-1); */
 		max-height: max-content;
 
 		& img {
@@ -130,11 +129,8 @@
 		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
 		& svg {
 			& circle {
-				stroke: hsl(var(--hsl-purple)/.5) !important;
+				stroke: hsl(var(--hsl-purple) / 0.5) !important;
 			}
-			/* & path {
-				fill: hsl(var(--hsl-purple)/.5) ;
-			} */
 		}
 	}
 
@@ -191,9 +187,6 @@
 		left: 0;
 		z-index: -1;
 		width: 100%;
-		/* & svg {
-			width: 100%;
-		} */
 	}
 
 	@media (max-width: 996px) {
@@ -213,9 +206,6 @@
 				'hero-data hero-data hero-data hero-data hero-data hero-data hero-data hero-data'
 				'hero-img hero-img hero-img hero-img hero-img hero-img hero-img hero-img';
 		}
-		/* .intro {
-			column-count: 1;
-		} */
 	}
 
 	@media (max-width: 500px) {
