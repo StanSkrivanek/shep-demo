@@ -223,7 +223,6 @@
 		}
 		& .nuacht-number {
 			font-size: 2rem;
-			/* font-family: var(--ff-fkg-bold); */
 			color: color-mix(in oklab, hsl(var(--hsl-blue)) 80%, black);
 		}
 		& span:has(svg) {
