@@ -48,7 +48,7 @@
 							<h3>{post.title}</h3>
 						</div>
 						<div class="card-body">
-							<!-- <p>{post.author[0].name}</p> -->
+						
 							<p>{trimText(post.excerpt, 128)}</p>
 						</div>
 						<div class="card-footer">
@@ -121,7 +121,7 @@
 	.container {
 		grid-area: main;
 		display: grid;
-		/* grid-column: 1/-1; */
+
 		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 		gap: 1rem;
 	}
@@ -144,7 +144,7 @@
 		height: 100%;
 		gap: 0.25rem;
 		padding-bottom: 1rem;
-		/* background: hsl(var(--hsl-white)); */
+	
 		border-radius: 0.5rem;
 		overflow: hidden;
 		pointer-events: none;
@@ -218,23 +218,14 @@
 		position: absolute;
 		bottom: 0;
 		left: 0;
-		/* z-index: -1; */
+		
 		width: 100%;
-		/* & svg {
-			width: 100%;
-		} */
+
 	}
 	.btn-link {
 		pointer-events: all;
-		/* & svg:hover {
-			& circle {
-				stroke: var(--clr-brand) !important;
-			}
-			& path {
-				fill: var(--clr-brand) !important;
-			}
-		} */
 	}
+	
 	/* Media Query */
 
 	@media screen and (max-width: 1024px) {
