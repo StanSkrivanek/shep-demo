@@ -45,14 +45,13 @@
 			<h2>Annual Reports</h2>
 			<div class="list__c">
 				{#each sortedAnnual as pdf}
-					<!-- {pdf.tags} -->
-					<!-- {#if pdf.tags.includes('annual')} -->
+				
 					<div class="card-pdf__c">
 						<div class="card-pdf__data">
-							<!-- <File width={40} height={40} /> -->
+							
 							<div class="pdf__title">{pdf.title}</div>
 							<div class="pdf__date">
-								<!-- {pdf.title.split('-')[2]} <span>{pdf.title.split('-')[3]}</span> -->
+								
 								<div class="pdf__link">
 									<a href={pdf.url} target="_blank"><LinkCircle width={40} height={40} /></a>
 								</div>
@@ -60,28 +59,26 @@
 						</div>
 						<div class="card-pdf__link">
 							<div class="pdf__number">
-								<!-- {pdf.title.split('-')[1]} -->
+								
 							</div>
 						</div>
 					</div>
-					<!-- {/if} -->
-					<!--  update getPublicationsPDFs() get all PDF's except Nuacht. RENAME publications to REPORTS-->
+	
 				{/each}
 			</div>
 		</div>
 		<div class="section">
 			<h2>Financial Reports</h2>
-			<!-- <p>SHEP is registered with the Company Registration Office as a company limited by guarantee. We are pleased to present below our most recent audited accounts.</p> -->
+
 			<div class="list__c">
 				{#each sortedFinancial as pdf}
-					<!-- {pdf.tags} -->
-					<!-- {#if pdf.tags.includes('annual')} -->
+
 					<div class="card-pdf__c">
 						<div class="card-pdf__data">
-							<!-- <File width={40} height={40} /> -->
+							
 							<div class="pdf__title">{pdf.title}</div>
 							<div class="pdf__date">
-								<!-- {pdf.title.split('-')[2]} <span>{pdf.title.split('-')[3]}</span> -->
+								
 								<div class="pdf__link">
 									<a href={pdf.url} target="_blank"><LinkCircle width={40} height={40} /></a>
 								</div>
@@ -89,29 +86,27 @@
 						</div>
 						<div class="card-pdf__link">
 							<div class="pdf__number">
-								<!-- {pdf.title.split('-')[1]} -->
+							
 							</div>
 						</div>
 					</div>
-					<!-- {/if} -->
-					<!--  update getPublicationsPDFs() get all PDF's except Nuacht. RENAME publications to REPORTS-->
+				
 				{/each}
 			</div>
 		</div>
 		<!-- Independent Evaluation Reports -->
 		<div class="section">
 			<h2>Independent Evaluation Reports</h2>
-			<!-- <p>SHEP is registered with the Company Registration Office as a company limited by guarantee. We are pleased to present below our most recent audited accounts.</p> -->
+
 			<div class="list__c">
 				{#each sortedindependent as pdf}
-					<!-- {pdf.tags} -->
-					<!-- {#if pdf.tags.includes('annual')} -->
+		
 					<div class="card-pdf__c">
 						<div class="card-pdf__data">
-							<!-- <File width={40} height={40} /> -->
+							
 							<div class="pdf__title">{pdf.title}</div>
 							<div class="pdf__date">
-								<!-- {pdf.title.split('-')[2]} <span>{pdf.title.split('-')[3]}</span> -->
+								
 								<div class="pdf__link">
 									<a href={pdf.url} target="_blank"><LinkCircle width={40} height={40} /></a>
 								</div>
@@ -123,8 +118,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- {/if} -->
-					<!--  update getPublicationsPDFs() get all PDF's except Nuacht. RENAME publications to REPORTS-->
 				{/each}
 			</div>
 		</div>
@@ -175,17 +168,10 @@
 	.section {
 		margin-bottom: 5rem;
 	}
+	
 	/* list */
 	.list__c {
 		list-style: none;
-		/* display: flex; */
-		/* flex-direction: column; */
-
-		/* display: grid; */
-		/* padding: 0; */
-		/* width: 100%; */
-		/* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
-		/* gap: .5rem; */
 	}
 
 	/* pdf card */
@@ -242,10 +228,6 @@
 			& circle {
 				stroke: hsl(var(--hsl-brand)) !important;
 			}
-
-			/* & path {
-				fill: hsl(var(--hsl-brand)) !important;
-			} */
 		}
 	}
 
