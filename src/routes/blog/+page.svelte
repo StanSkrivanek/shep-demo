@@ -12,10 +12,6 @@
 	let currentPage = 1;
 	const itemsPerPage = 12;
 
-	//  check these functions
-	// let uniqueCategories = categories.filter((v, i, a) => a.findIndex(t => (t.category === v.category)) === i);
-	// let uniquePosts = posts.filter((v, i, a) => a.findIndex((t) => t.category === v.category) === i);
-
 	// filter categories for unique values (render only categories that have posts)
 	let uniqueCategories = categories.filter(
 		(
@@ -126,7 +122,7 @@
 							<h3>{post.title}</h3>
 						</div>
 						<div class="card-body">
-							<!-- <p>{post.author[0].name}</p> -->
+						
 							<p>{trimText(post.excerpt, 128)}</p>
 						</div>
 						<div class="card-footer">
@@ -400,6 +396,7 @@
 			}
 		}
 	}
+	
 	/* Media Query */
 
 	@media screen and (max-width: 1024px) {
