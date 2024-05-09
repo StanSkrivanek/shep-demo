@@ -252,6 +252,7 @@
 		margin-bottom: 5rem;
 		gap: 1rem;
 	}
+
 	/* TOC */
 	.toc {
 		grid-area: aside;
@@ -386,9 +387,7 @@
 		.hero-img {
 			max-height: 100%;
 		}
-		/* aside > h4 {
-			font-size: 1.6rem;
-		} */
+
 	}
 	@media screen and (max-width: 480px) {
 		/* doostuff */
