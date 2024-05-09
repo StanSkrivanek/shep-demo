@@ -67,8 +67,6 @@
 
 	<div class="filter__w">
 		{#if uniqueCities}
-			<!-- add radiobuttons to filter `all` `courses` `training`  -->
-			<!-- <div class="filter__c"> -->
 			<div class="filter">
 				<label for="type">Type</label>
 				<div class="custom-select">
@@ -92,7 +90,6 @@
 					</select>
 				</div>
 			</div>
-			<!-- </div> -->
 		{/if}
 	</div>
 
@@ -115,7 +112,6 @@
 			</div>
 		{/if}
 		{#if filteredList.length === 0}
-			<!-- <div class="no-upcoming__w"> -->
 			<div class="no-upcoming__w">
 				<div class="message">
 					<p>We are sorry but there is not any upcoming {type} in {city} at the moment</p>
@@ -130,7 +126,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- </div> -->
 		{/if}
 		{#each filteredList as upcoming}
 			<div class="card" class:purple={upcoming.globalType === 'training'}>
@@ -233,7 +228,6 @@
 		& p {
 			margin: 0;
 			text-align: center;
-			/* display: block; */
 			max-width: 100%;
 		}
 	}
@@ -282,7 +276,6 @@
 			[body] auto
 			[footer] 4rem;
 
-		/* border: 1px solid hsl(var(--hsl-gray) / 0.05); */
 		border-radius: 0.5rem;
 		padding: 1rem;
 		background: hsl(var(--hsl-brand) / 0.1);
@@ -314,7 +307,6 @@
 		& h3 {
 			font-size: 1.3rem;
 			color: hsl(var(--hsl-gray));
-			/* font-weight: 400; */
 			letter-spacing: 0.02rem;
 			line-height: 1.1;
 		}
@@ -364,9 +356,6 @@
 		left: 0;
 		z-index: -1;
 		width: 100%;
-		/* & svg {
-			width: 100%;
-		} */
 	}
 	select {
 		appearance: none;
