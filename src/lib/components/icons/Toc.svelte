@@ -1,7 +1,7 @@
  <script>
 	export let width = 70,
 		height = 70,
-       currentColor = 'hsl(var(--hsl-brand) / .75)';
+       currentColor = 'hsl(var(--hsl-brand))';
 
 </script>
 

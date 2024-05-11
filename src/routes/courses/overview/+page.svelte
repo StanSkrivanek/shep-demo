@@ -363,7 +363,7 @@
 				'main main main main main main main main '
 				'news news news news news news news news ';
 		}
-		.toc {
+		 .toc {
 			position: fixed;
 			bottom: 0;
 			right: 0;
@@ -373,7 +373,7 @@
 			background: hsl(var(--hsl-white));
 			border-radius: 0.5rem 0 0 0;
 			border: 1px solid hsl(var(--hsl-gray) / 0.25);
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			box-shadow: 0 0 10px hsl(var(--hsl-gray) / 0.25);
 			transform: translateX(100%);
 		}
 		.toc-open {
