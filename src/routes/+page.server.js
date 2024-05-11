@@ -47,7 +47,7 @@ export const actions = {
 			const htmlClient = `
 			<div>
 			<p>Thank you for Newsletter subscription.</p>
-			<p>You can check old newsletters in our <a href="http://localhost:5173/archive">Archive</a></p>
+			<p>You can check old newsletters in our <a href="https://shep-demo.vercel.app/archive">Archive</a></p>
 			<img src="https://cdn.sanity.io/images/gkez65br/production/d4881aa85a12a4b55de32a576068e958057fd27c-263x265.svg" style="width: 128px; height: 128px;" alt="shep logo" />
 			</div>
 			`;
