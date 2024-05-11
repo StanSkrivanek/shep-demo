@@ -15,3 +15,5 @@ Tech-stack used in this project is:
 - [x] Newsletter, Training and Courses forms with validation
 - [x] Google Sheets API integration to store form data in Google Sheets
 - [x] Nodemailer API integration to send email to SHEP team when a form is submitted by a user and to send a confirmation email to the user
+
+Live presentation can be found [here](https://shep-demo-stan-skrivaneks-projects.vercel.app)
