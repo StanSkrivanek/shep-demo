@@ -122,7 +122,6 @@
 							<h3>{post.title}</h3>
 						</div>
 						<div class="card-body">
-						
 							<p>{trimText(post.excerpt, 128)}</p>
 						</div>
 						<div class="card-footer">
@@ -135,10 +134,9 @@
 						</div>
 					</div>
 				</div>
-				
 			{/each}
 		</main>
-	
+
 		<div class="pagination__w">
 			{#if totalPages > 1}
 				<button on:click={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
@@ -161,7 +159,7 @@
 			margin: 0;
 			margin-bottom: 1rem;
 			padding-bottom: 0.5rem;
-		
+
 			line-height: 1;
 			border-bottom: 1px solid hsl(var(--hsl-gray) / 0.25);
 			color: var(--gray-3);
@@ -169,7 +167,6 @@
 	}
 	main {
 		grid-area: main;
-	
 	}
 	.main__c {
 		display: grid;
@@ -223,13 +220,12 @@
 	.container {
 		grid-area: main;
 		display: grid;
-	
+
 		grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 		gap: 1rem;
 	}
 
 	.tags {
-
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.5rem;
@@ -239,7 +235,7 @@
 			line-height: 1;
 			pointer-events: all;
 			color: hsl(var(--hsl-gray));
-	
+
 			border: 1px solid hsl(var(--hsl-gray) / 0.25);
 			padding: 0.25rem 0.5rem;
 			border-radius: 0.25rem;
@@ -260,10 +256,10 @@
 		display: grid;
 		grid-template-areas:
 			'image'
-			'subHeader '
-			'header '
-			'body '
-			'footer ';
+			'subHeader'
+			'header'
+			'body'
+			'footer';
 		grid-template-rows:
 			[image] 15rem
 			[subHeader] 1.6rem
@@ -280,7 +276,7 @@
 		background: hsl(var(--hsl-cyan) / 0.15);
 		transition: all 0.3s ease-in-out;
 	}
-.card:hover {
+	.card:hover {
 		/* offset-horizontal | offset-vertical | blur-radius | spread-radius | color */
 		box-shadow: 8px 10px 15px -3px hsl(var(--hsl-gray) / 0.25);
 		& svg {
@@ -311,13 +307,12 @@
 			line-height: 1.1;
 			color: hsl(var(--hsl-gray));
 			letter-spacing: 0.05rem;
-		
 		}
 	}
 	.card-img {
 		grid-area: image;
 		object-fit: cover;
-	
+
 		border-radius: 0.25rem 0.25rem 0 0;
 		overflow: hidden;
 		& img {
@@ -347,13 +342,13 @@
 	.btn-link {
 		pointer-events: all;
 	}
-		.bg {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			z-index: -1;
-			width: 100%;
-		}
+	.bg {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		z-index: -1;
+		width: 100%;
+	}
 	.pagination__w {
 		grid-template-columns: subgrid;
 		grid-column: 1/-1;
@@ -396,7 +391,7 @@
 			}
 		}
 	}
-	
+
 	/* Media Query */
 
 	@media screen and (max-width: 1024px) {
@@ -429,20 +424,18 @@
 		}
 		.card {
 			grid-template-areas:
-				'subHeader '
 				'image'
+				'subHeader '
 				'header '
 				'body '
 				'footer ';
 			grid-template-rows:
-				[image] 10rem
+				[image] 12rem
 				[subHeader] 2rem
-				[header] 3.6rem
+				[header] 2.4rem
 				[body] auto
 				[footer] 2.6rem;
 		}
-		.card-img {
-			display: none;
-		}
+
 	}
 </style>

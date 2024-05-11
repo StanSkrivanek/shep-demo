@@ -7,7 +7,6 @@
 	import NavBurger from './icons/NavBurger.svelte';
 	import Twitter from './icons/Twitter.svelte';
 
-
 	$: isMobileNavOpen = false;
 	$: isMobile = false;
 	function toggleMobileNav() {
@@ -40,13 +39,12 @@
 					// @ts-ignore
 					link.addEventListener('click', (/** @type {{ preventDefault: () => void; }} */ e) => {
 						sub?.classList.remove('active');
-
 					});
 				});
 			});
 			el.addEventListener('mouseleave', (e) => {
 				e.preventDefault();
-	
+
 				if (sub) {
 					sub.classList.remove('active');
 				}
@@ -411,10 +409,11 @@
 			cursor: pointer;
 		}
 		.header .menu .menu-main {
-			height: 100%;
+			height: 100svh;
 			overflow-x: hidden;
 			overflow-y: auto;
 			text-align: left;
+			margin-bottom: 3rem;
 		}
 		.menu-main > li:hover {
 			background-color: var(--gray-1);
