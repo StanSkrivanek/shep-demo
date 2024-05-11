@@ -394,7 +394,6 @@
 					border-radius: 0.5rem;
 					font-size: 1.5rem;
 					color: hsl(var(--hsl-gray));
-					
 					margin-bottom: 1rem;
 				}
 				& textarea {
@@ -527,9 +526,8 @@
 		appearance: none;
 		outline: 0;
 		box-shadow: none;
-
 		background-image: none;
-		background-color: transparent;
+		background-color: hsl(var(--hsl-brand) / 0.25);
 		cursor: pointer;
 		font-size: 1.5rem;
 		font-weight: 400;
