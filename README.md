@@ -1,8 +1,20 @@
+# SHEP
 
-# Notes
+This DEMO website is for Social & Health Education Project (SHEP) Ireland
 
-[Learn GROQ](https://hdoro.dev/learn-groq)
-[Rendering portableText](https://hdoro.dev/rendering-portable-text-from-scratch)
-[TOC with Sanity and portableText](https://kittygiraudel.com/2022/05/19/table-of-contents-with-sanity-portable-text/)
-[Optimize images ](https://hdoro.dev/performant-sanity-io-images)
+Thechsatck used in this project is:
+- Svelte
+- Sanity API
+- Nodemailer API
+- Google Sheets API
+
+## Features
+- [x] Sanity API integration
+- [x] Newsletter, Training and Courses forms with validation
+- [x] Google Sheets API integration to store form data in Google Sheets
+- [x] Nodemailer API integration to send email to SHEP team when a form is submitted by a user and to send a confirmation email to the user
+
+
+
+
 
