@@ -409,11 +409,11 @@
 			cursor: pointer;
 		}
 		.header .menu .menu-main {
-			height: 100svh;
+			height: 100%;
 			overflow-x: hidden;
 			overflow-y: auto;
 			text-align: left;
-			margin-bottom: 3rem;
+			padding-bottom: 6rem;
 		}
 		.menu-main > li:hover {
 			background-color: var(--gray-1);
