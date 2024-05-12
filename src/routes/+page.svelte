@@ -385,8 +385,8 @@
 					}
 					& .credits__w {
 						padding: 0.25rem 0.5rem;
-						background-color: hsl(var(--hsl-gray) / 0.5);
-						color: hsl(var(--hsl-brand));
+						background-color: hsl(var(--hsl-gray) / 0.75);
+						color: hsl(var(--hsl-white));
 						border-radius: 0.5rem;
 					}
 					& p {
